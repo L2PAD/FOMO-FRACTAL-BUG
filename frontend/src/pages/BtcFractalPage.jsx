@@ -702,24 +702,16 @@ const BtcFractalPage = () => {
       const horizonDays = parseInt(focusStr.replace('d', ''), 10);
       const windowLen = horizonDays <= 14 ? 30 : horizonDays <= 30 ? 60 : 90;
       
-      const matchResponse = await fetch(`${API_URL}/api/fractal/match?symbol=BTC&windowLen=${windowLen}&forwardHorizon=${horizonDays}`);
-      const matchResult = await matchResponse.json();
+      // Run all 3 fetches in parallel; tolerate individual failures
+      const [matchRes, signalRes, overlayRes] = await Promise.allSettled([
+        fetch(`${API_URL}/api/fractal/match?symbol=BTC&windowLen=${windowLen}&forwardHorizon=${horizonDays}`).then(r => r.json()),
+        fetch(`${API_URL}/api/fractal/signal`).then(r => r.json()),
+        fetch(`${API_URL}/api/overlay/coeffs?base=BTC&driver=SPX&horizon=${focusStr}`).then(r => r.json()),
+      ]);
       
-      // Fetch BTC fractal signal data for other fields
-      const signalResponse = await fetch(`${API_URL}/api/fractal/signal`);
-      const signalResult = await signalResponse.json();
-      
-      // Fetch SPX→BTC overlay coefficients
-      let overlayData = null;
-      try {
-        const overlayRes = await fetch(`${API_URL}/api/overlay/coeffs?base=BTC&driver=SPX&horizon=${focusStr}`);
-        const overlayResult = await overlayRes.json();
-        if (overlayResult.ok) {
-          overlayData = overlayResult.coeffs;
-        }
-      } catch (e) {
-        console.warn('[BTC] Failed to fetch overlay data:', e);
-      }
+      const matchResult = matchRes.status === 'fulfilled' ? matchRes.value : { ok: false };
+      const signalResult = signalRes.status === 'fulfilled' ? signalRes.value : { ok: false };
+      const overlayData = (overlayRes.status === 'fulfilled' && overlayRes.value?.ok) ? overlayRes.value.coeffs : null;
       
       if (matchResult.ok && signalResult.ok) {
         const btcData = signalResult;
@@ -832,9 +824,10 @@ const BtcFractalPage = () => {
         setData(transformedData);
         setError(null);
       } else {
-        setError(result.error || 'Failed to fetch data');
+        setError(matchResult.error || signalResult.error || 'Failed to fetch data');
       }
     } catch (err) {
+      console.error('[BtcFractalPage] caught error:', err);
       setError(err.message);
     } finally {
       setLoading(false);

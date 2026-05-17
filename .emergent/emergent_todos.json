@@ -1,50 +1,58 @@
 [
   {
-    "content": "Изучить структуру репозитория и последние коммиты",
+    "content": "Paywall отключён в billing_config + payments.py",
     "status": "completed"
   },
   {
-    "content": "Скопировать репозиторий в /app, сохраняя .env файлы",
+    "content": "React 19 nested Suspense bug: убрали lazy/Suspense из FractalIntelligencePage",
     "status": "completed"
   },
   {
-    "content": "Создать backend/.env с fomo_mobile DB и EMERGENT_LLM_KEY",
+    "content": "OverviewPage убрали внутренний Suspense вокруг LivePredictionChart",
     "status": "completed"
   },
   {
-    "content": "Установить Python зависимости",
+    "content": "BtcFractalPage фикс sequential fetch → Promise.allSettled",
     "status": "completed"
   },
   {
-    "content": "Установить frontend зависимости (yarn)",
+    "content": "SpxFractalPage фикс sequential fetch → Promise.allSettled",
     "status": "completed"
   },
   {
-    "content": "Запустить backend в supervisor + проверить логи",
+    "content": "/api/ui/overview добавили charts.actual + charts.predicted",
     "status": "completed"
   },
   {
-    "content": "Исправить /api/news/* эндпоинты (читать из news_articles)",
+    "content": "/api/news/* фикс чтобы читать из news_articles",
     "status": "completed"
   },
   {
-    "content": "Создать supervisor конфиг для news_substrate",
+    "content": "StrictMode удалён",
     "status": "completed"
   },
   {
-    "content": "Seed news_sources (119) и прогнать RSS pipeline (ОК 2773 articles)",
+    "content": "✅ Fractal: Overview/BTC/SPX/DXY/Brain - реальные данные",
     "status": "completed"
   },
   {
-    "content": "Deep parser cycle (ОК 87 projects, 204 funding rounds, 649 persons)",
+    "content": "✅ Exchange Intelligence - Final Decision + Allocation + Macro",
     "status": "completed"
   },
   {
-    "content": "Проверить 5 модулей: TA, Fractal, OnChain, Exchange, Sentiment",
+    "content": "✅ Tech Analysis Trading Terminal - candle chart + state",
     "status": "completed"
   },
   {
-    "content": "E2E testing_agent backend: 100% (34/34 endpoints LIVE)",
+    "content": "✅ On-chain Intelligence - Network Overview + Market Context",
     "status": "completed"
+  },
+  {
+    "content": "✅ Sentiment - URL analyzer + news feed",
+    "status": "completed"
+  },
+  {
+    "content": "E2E testing_agent: backend + frontend (5 модулей)",
+    "status": "in_progress"
   }
 ]

@@ -512,7 +512,7 @@ export function useFocusPack(symbol = 'BTC', focus = '30d', options = {}) {
           meta: result.meta || {},
           currentPrice: result.core?.current?.price || 0,
         };
-        console.log('[useFocusPack] DXY data extracted, macro.path:', result.macro?.path?.length);
+  console.log('[useFocusPack] DXY data extracted, macro.path:', result.macro?.path?.length);
         const focusPack = transformDxyToFocusPack(dxyData, focus);
         cacheRef.current[cacheKey] = focusPack;
         setData(focusPack);

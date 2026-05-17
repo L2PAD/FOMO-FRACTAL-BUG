@@ -12,7 +12,7 @@
  * 8. Meta Footer
  */
 
-import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   TrendingUp,
   TrendingDown,
@@ -34,7 +34,7 @@ import {
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 // Lazy load LivePredictionChart
-const LivePredictionChart = lazy(() => import('../components/charts/LivePredictionChart'));
+import LivePredictionChart from '../components/charts/LivePredictionChart';
 
 // ═══════════════════════════════════════════════════════════════
 // HELPERS & COLORS
@@ -692,17 +692,11 @@ export default function OverviewPage() {
             1. BIG CHART — Hero Element (65vh)
             ═══════════════════════════════════════════════════════ */}
         <div className="mb-6">
-          <Suspense fallback={
-            <div className="h-[60vh] bg-white rounded-xl border border-gray-100 flex items-center justify-center">
-              <RefreshCw className="w-8 h-8 text-gray-300 animate-spin" />
-            </div>
-          }>
-            <LivePredictionChart
-              asset={asset.toUpperCase()}
-              horizonDays={horizon}
-              view={predictionView}
-            />
-          </Suspense>
+          <LivePredictionChart
+            asset={asset.toUpperCase()}
+            horizonDays={horizon}
+            view={predictionView}
+          />
         </div>
         
         {/* Loading State */}

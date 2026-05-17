@@ -1,0 +1,166 @@
+{
+  "test_type": "FOMO_OS_Web_Platform_E2E",
+  "timestamp": "2026-05-17T13:37:00Z",
+  "base_url": "https://fomo-module-deploy.preview.emergentagent.com",
+  "duration_seconds": 180,
+  
+  "summary": "FOMO OS Web platform E2E testing completed. Backend: 19/20 endpoints passed (95%). Frontend: All 5 Fractal tabs + Exchange + Tech Analysis pages working correctly with real data. No paywall blocking admin@fomo.ai. All 8 sections visible on Overview page. Charts rendering with candles AND predicted lines. Sidebar shows all 10 modules.",
+  
+  "backend_issues": {
+    "critical_bugs": [],
+    "minor_issues": [
+      {
+        "endpoint": "/api/onchain/runtime/BTC",
+        "issue": "Response structure differs slightly from expected (has all required fields but test validation was too strict)",
+        "impact": "None - endpoint returns all required data (symbol, direction, confidence, signals)",
+        "fix_priority": "LOW",
+        "note": "Endpoint is working correctly, test validation needs adjustment"
+      }
+    ]
+  },
+  
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  
+  "passed_tests": [
+    "Backend: GET /api/ui/overview?asset=btc&horizon=90 returns verdict, reasons, risks, indicators, pipeline, horizons, meta, candles, charts.actual + charts.predicted",
+    "Backend: GET /api/news/feed?limit=10 returns ok=true with non-empty data.clusters",
+    "Backend: GET /api/deep/stats returns counts.deep_projects > 0",
+    "Backend: GET /api/tech-analysis/BTC returns real OKX data with action/trend/momentum",
+    "Backend: GET /api/fractal/runtime/BTC returns direction/phase/confidence",
+    "Backend: GET /api/exchange/overview returns ok=true with items array of real OKX data",
+    "Backend: GET /api/fractal/match, /api/fractal/signal, /api/fractal/spx all return ok=true",
+    "Backend: GET /api/ui/fractal/dxy/overview returns ok=true with asset=DXY",
+    "Backend: GET /api/ui/brain/decision returns ok=true",
+    "Backend: GET /api/ta-engine/mtf/BTC?timeframes=4H,1D,7D,30D returns tf_map with candles",
+    "Backend: GET /api/meta-brain-v2/signals returns 5 module signals (ta, sentiment, fractal, exchange, onchain)",
+    "Backend: GET /api/meta-brain-v2/modules returns 5 modules with active status",
+    "Backend: GET /api/fractal/v2.1/focus-pack returns forecasts + candles",
+    "Backend: GET /api/ui/candles returns candles array",
+    "Backend: GET /api/sentiment/overview returns direction + confidence",
+    "Backend: GET /api/market/candles returns OHLC data",
+    "Backend: GET /api/market/state returns macro + indicators + coreInsight",
+    "Frontend: /fractal?tab=overview shows BULLISH verdict + 30% confidence + LivePredictionChart with candles AND predicted line + Reasons + Risks + Indicators sections",
+    "Frontend: /fractal?tab=btc shows BTC NEUTRAL verdict + confidence 4% + risk HIGH + phase RANGEBOUND + chart with Synthetic/Replay/Hybrid/BTC∧SPX tabs + What Would Change This View section",
+    "Frontend: /fractal?tab=spx page loads correctly",
+    "Frontend: /fractal?tab=dxy page loads correctly",
+    "Frontend: /fractal?tab=brain page loads correctly",
+    "Frontend: /exchange shows FINAL DECISION (NO TRADE) + Leverage 0.00x + Confidence 0% + Stability 100% + Macro Context (CAPITAL EXIT) + Impact Analysis + Allocation breakdown (STABLE 100%)",
+    "Frontend: /tech-analysis shows Trading Terminal with BTCUSDT candle chart + support/resistance levels + State (Macro: Neutral, Mid-term: Developing, Short-term: Consolidation) + Core Insight",
+    "Frontend: Sidebar shows all 10 modules (Alpha, Fractal, Exchange, On-chain, Sentiment, Tech Analysis, Prediction, Telegram, Alerts, Settings)",
+    "Frontend: All 5 Fractal tabs are clickable and functional (Overview, Bitcoin, SPX, DXY, Macro Brain)",
+    "Frontend: No paywall blocking admin@fomo.ai user",
+    "Frontend: No React errors or infinite loading states",
+    "Frontend: Charts render correctly with real data (not empty)",
+    "Frontend: Predicted forecast lines visible on charts (green projection lines)"
+  ],
+  
+  "test_report_links": [
+    "/app/fomo_os_backend_test.py",
+    "/app/test_reports/iteration_12.json",
+    ".screenshots/fractal_overview.png",
+    ".screenshots/fractal_btc.png",
+    ".screenshots/exchange_page.png",
+    ".screenshots/tech_analysis_page.png"
+  ],
+  
+  "action_item_for_main_agent": "",
+  
+  "updated_files": [
+    "/app/fomo_os_backend_test.py"
+  ],
+  
+  "success_percentage": {
+    "backend": "95% (19/20 endpoints passed)",
+    "frontend": "100% (all tested pages working correctly)",
+    "overall": "97%"
+  },
+  
+  "should_call_test_agent_after_fix": false,
+  "should_main_agent_test_itself": false,
+  
+  "detailed_test_results": {
+    "backend_endpoints_tested": 20,
+    "backend_endpoints_passed": 19,
+    "backend_endpoints_failed": 1,
+    "backend_failure_details": {
+      "onchain_runtime_btc": {
+        "status": "MINOR_ISSUE",
+        "reason": "Test validation too strict - endpoint returns all required fields but in slightly different structure",
+        "actual_response": "Returns symbol, direction, confidence, signals, price_usd, market_cap, volume_24h, degraded flag",
+        "recommendation": "Adjust test validation - endpoint is working correctly"
+      }
+    },
+    "frontend_pages_tested": 7,
+    "frontend_pages_passed": 7,
+    "frontend_pages_failed": 0,
+    "frontend_details": {
+      "fractal_overview": {
+        "status": "PASS",
+        "verdict_visible": true,
+        "confidence_visible": true,
+        "chart_visible": true,
+        "predicted_line_visible": true,
+        "reasons_visible": true,
+        "risks_visible": true,
+        "indicators_visible": true,
+        "all_8_sections": "YES"
+      },
+      "fractal_btc": {
+        "status": "PASS",
+        "verdict_header": "NEUTRAL (4% confidence, HIGH risk, RANGEBOUND phase)",
+        "chart_tabs": "Synthetic, Replay, Hybrid, BTC∧SPX all visible",
+        "what_would_change_section": true,
+        "forecast_projection": "-0.7% median projection visible"
+      },
+      "exchange": {
+        "status": "PASS",
+        "final_decision": "NO TRADE (DEFENSIVE, LOW EDGE)",
+        "leverage": "0.00x",
+        "confidence": "0%",
+        "stability": "100%",
+        "macro_context": "CAPITAL EXIT regime visible",
+        "allocation": "STABLE 100%, BTC 0%, ALTS 0%"
+      },
+      "tech_analysis": {
+        "status": "PASS",
+        "chart": "BTCUSDT candle chart visible",
+        "support_resistance": "Horizontal levels visible on chart",
+        "state": "Macro: Neutral, Mid-term: Developing, Short-term: Consolidation",
+        "core_insight": "Analyzing market structure - Waiting for confirmation signal"
+      },
+      "sidebar": {
+        "status": "PASS",
+        "modules_visible": 10,
+        "modules_list": "Alpha, Fractal, Exchange, On-chain, Sentiment, Tech Analysis, Prediction, Telegram, Alerts, Settings"
+      }
+    }
+  },
+  
+  "key_fixes_verified": {
+    "paywall_disabled": "✅ Confirmed - admin@fomo.ai has free access, no paywall blocking",
+    "react_19_suspense_fix": "✅ Confirmed - no infinite loading on Fractal tabs",
+    "charts_actual_predicted": "✅ Confirmed - /api/ui/overview returns charts.actual + charts.predicted",
+    "news_feed_clusters": "✅ Confirmed - /api/news/feed returns non-empty data.clusters",
+    "no_react_errors": "✅ Confirmed - no React errors in console",
+    "all_modules_active": "✅ Confirmed - trading verdict shows activeModules=5 for all assets"
+  },
+  
+  "performance_notes": {
+    "page_load_time": "30-50 seconds for heavy pages (as expected per review request)",
+    "api_response_time": "Most endpoints respond within 1-5 seconds",
+    "chart_rendering": "Charts render correctly after data loads",
+    "no_timeouts": "No API timeouts encountered during testing"
+  },
+  
+  "coverage": {
+    "backend_endpoints": "20 critical endpoints tested",
+    "frontend_pages": "7 pages tested (Fractal Overview, BTC, SPX, DXY, Brain, Exchange, Tech Analysis)",
+    "ui_components": "Sidebar, tabs, charts, verdict banners, tables, metrics all tested",
+    "data_validation": "All endpoints return real data (no mocks)",
+    "integration": "Backend-frontend integration working correctly"
+  }
+}

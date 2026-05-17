@@ -918,9 +918,13 @@ const SpxFractalPage = () => {
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      // Fetch SPX data from fractal API
-      const response = await fetch(`${API_URL}/api/fractal/spx?focus=${focusStr}`);
-      const result = await response.json();
+      // Fetch SPX data + overlay in parallel — sequential await can hang in dev mode
+      const [mainRes, overlayResSettled] = await Promise.allSettled([
+        fetch(`${API_URL}/api/fractal/spx?focus=${focusStr}`).then(r => r.json()),
+        fetch(`${API_URL}/api/fractal/spx/overlay/debug?horizon=${focusStr}`).then(r => r.json()).catch(() => null),
+      ]);
+      const result = mainRes.status === 'fulfilled' ? mainRes.value : { ok: false };
+      const overlayDataPre = (overlayResSettled.status === 'fulfilled' && overlayResSettled.value?.ok) ? overlayResSettled.value : null;
       
       if (result.ok) {
         // Transform SPX data to match expected format
@@ -1068,9 +1072,8 @@ const SpxFractalPage = () => {
         };
         
         try {
-          const overlayRes = await fetch(`${API_URL}/api/fractal/spx/overlay/debug?horizon=${focusStr}`);
-          const overlayData = await overlayRes.json();
-          if (overlayData.ok) {
+          if (overlayDataPre && overlayDataPre.ok) {
+            const overlayData = overlayDataPre;
             crossAssetOverlay = {
               baseHybrid: overlayData.returns.spxHybrid || expectedReturn * 100,
               dxyImpact: overlayData.returns.overlayDelta || 0,
@@ -1088,7 +1091,7 @@ const SpxFractalPage = () => {
             };
           }
         } catch (e) {
-          console.warn('[SPX] Failed to fetch overlay debug data:', e);
+          console.warn('[SPX] Failed to extract overlay debug data:', e);
         }
         
         // Add crossAssetOverlay to transformedData

@@ -9,18 +9,18 @@
  * URL: /fractal?tab=overview|btc|spx|dxy|brain
  */
 
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import {
   Triangle, Eye, TrendingUp, BarChart3, DollarSign, Brain, Loader2
 } from 'lucide-react';
 
-// Lazy-load tab pages
-const OverviewPage = lazy(() => import('./OverviewPage'));
-const BtcFractalPage = lazy(() => import('./BtcFractalPage'));
-const SpxFractalPage = lazy(() => import('./SpxFractalPage'));
-const DxyFractalPage = lazy(() => import('./DxyFractalPage'));
-const BrainOverviewPage = lazy(() => import('./BrainOverviewPageV4'));
+// Eagerly import tab pages — React 19 has known nested Suspense+lazy bugs
+import OverviewPage from './OverviewPage';
+import BtcFractalPage from './BtcFractalPage';
+import SpxFractalPage from './SpxFractalPage';
+import DxyFractalPage from './DxyFractalPage';
+import BrainOverviewPage from './BrainOverviewPageV4';
 
 const TABS = [
   { id: 'overview', label: 'Overview', icon: Eye },
@@ -121,9 +121,7 @@ export default function FractalIntelligencePage() {
 
       {/* Tab content — scrollable */}
       <div className="flex-1 min-h-0 overflow-y-auto">
-        <Suspense fallback={<LoadingFallback />}>
-          <ActiveComponent />
-        </Suspense>
+        <ActiveComponent />
       </div>
     </div>
   );
