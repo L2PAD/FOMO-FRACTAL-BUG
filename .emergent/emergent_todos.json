@@ -1,58 +1,26 @@
 [
   {
-    "content": "Paywall отключён",
+    "content": "TELEGRAM_BOT_TOKEN в backend/.env (@FOMO_mini_bot validated)",
     "status": "completed"
   },
   {
-    "content": "React 19 nested Suspense bug fix (FractalIntelligencePage)",
+    "content": "GOOGLE_CLIENT_ID в backend/.env + /api/auth/gate выдаёт",
     "status": "completed"
   },
   {
-    "content": "OverviewPage внутренний Suspense removed",
+    "content": "INFURA_KEY в backend/.env + ONCHAIN_ENABLED=true",
     "status": "completed"
   },
   {
-    "content": "BtcFractalPage Promise.allSettled fix",
+    "content": "NOWPAYMENTS ключи в .env + в DB billing_config",
     "status": "completed"
   },
   {
-    "content": "SpxFractalPage Promise.allSettled fix",
+    "content": "/api/onchain/{summary,whales,flows} возвращают real Ethereum data через Infura",
     "status": "completed"
   },
   {
-    "content": "/api/ui/overview charts.actual + charts.predicted",
-    "status": "completed"
-  },
-  {
-    "content": "/api/news/* читать из news_articles",
-    "status": "completed"
-  },
-  {
-    "content": "StrictMode removed",
-    "status": "completed"
-  },
-  {
-    "content": "✅ Fractal Intelligence (5 tabs) - REAL DATA",
-    "status": "completed"
-  },
-  {
-    "content": "✅ Exchange Intelligence - Final Decision + Allocation + Macro",
-    "status": "completed"
-  },
-  {
-    "content": "✅ Tech Analysis Trading Terminal - candle chart",
-    "status": "completed"
-  },
-  {
-    "content": "✅ On-chain Intelligence - Network Overview",
-    "status": "completed"
-  },
-  {
-    "content": "✅ Sentiment - URL analyzer + news feed",
-    "status": "completed"
-  },
-  {
-    "content": "✅ E2E testing_agent: backend 95% (19/20) + frontend 100% (7/7)",
-    "status": "completed"
+    "content": "/api/v10/onchain-v2/* endpoints (OnchainV3 page) - стабы, требуют отдельный индексер (next iter)",
+    "status": "pending"
   }
 ]
