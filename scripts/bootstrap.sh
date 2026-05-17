@@ -257,3 +257,12 @@ bash /app/scripts/cold_boot_ta.sh || warn "TA cold-boot returned non-zero"
 echo ""
 echo "→ TA docs:             cat /app/TA_API.md"
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 9) EXCHANGE — cold-boot extension
+# ─────────────────────────────────────────────────────────────────────────────
+hdr "9. EXCHANGE"
+bash /app/scripts/cold_boot_exchange.sh || warn "Exchange cold-boot returned non-zero"
+
+echo ""
+echo "→ Exchange docs:       cat /app/EXCHANGE_API.md"
+

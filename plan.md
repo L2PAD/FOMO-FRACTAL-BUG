@@ -1,6 +1,6 @@
 # plan.md — FOMO OS
 
-> **Финальное состояние проекта на 2026-05-17.**  
+> **Финальное состояние проекта на 2026-05-17 (обновлено).**  
 > Все исторические audit-логи и handoff'ы перенесены в `/app/_archive_2026-05/`. Полная архитектура и описание модулей: см. [`PROJECT.md`](./PROJECT.md).
 
 ---
@@ -13,7 +13,7 @@
 | **Tech Analysis (TA)** | ✅ LIVE (full-stack, zero stubs) | `services.technical_analysis` (native_ta_v1) + OKX/CoinGecko candles (`tech_analysis_runtime`) |
 | **Fractal** | ✅ LIVE | own native engine + sidecar cosine-similarity |
 | **OnChain** | ✅ LIVE (per-asset) | `services/onchain_per_asset.py`, `/api/onchain/runtime/{asset}` |
-| **Exchange (CEX)** | ✅ LIVE | OKX public REST live |
+| **Exchange (CEX)** | ✅ LIVE (full-stack, **zero stubs**, 49 endpoints) | OKX public REST live + Mongo `exchange_forecasts`/`exchange_forecast_runs`/`paper_orders_v2` + live venue ping |
 | **Sentiment** | ✅ LIVE | RSS×119 + Twitter Hybrid V2 + Deep parser (DropsTab/CryptoRank/ICODrops/CMC) |
 | **News pipeline** | ✅ 3048+ articles | 84 уник. источников активных, 119 настроены |
 | **Deep parser** | ✅ LIVE | 106 projects, 386 funding rounds, 899 persons, 26 unlocks, 20 funds |
@@ -57,10 +57,40 @@
 
 ---
 
-### Exchange (CEX intelligence) full-stack wire-up (P0)
-- **Backend** — создан `routes/exchange_runtime.py` с 21 endpoint, зарегистрирован ДО `legacy_compat`.
+### Exchange (CEX intelligence) full-stack wire-up (P0) — **обновлено**
+
+#### A) Core Exchange runtime (уже было)
+- **Backend** — `routes/exchange_runtime.py` (≈21 endpoint), зарегистрирован ДО `legacy_compat`.
 - **Источник**: OKX public REST (geo-allowed). Binance/Bybit зафиксированы как `blocked`.
 - **TTL cache**: 15s/30s/60s.
+
+#### B) Удаление legacy-стабов по Exchange (главный фикс этой сессии)
+- Создан `routes/exchange_extras_real.py` и **смонтирован ДО `legacy_compat`** в `backend/server.py`.
+- Закрыты **15 ранее стабовых** endpoint'ов (screener/segments/operator/registry):
+  - `/api/exchange/screener/{health,candidates,winners,ml/predict}`
+  - `/api/exchange/{segments,segment-candles}`
+  - `/api/exchange/{providers/health,proxy-config,test-connection,test-order,sync,sync-fills,fills}`
+  - `/api/exchanges`, `/api/exchanges/stats`
+- **Итоговый аудит**: `real=49, stubs=0` по exchange-семейству (включая prediction + miniapp).
+
+#### C) Fix: Labs crash (Exchange)
+- Исправлен баг в `/app/backend/labs/service.py`: `KeyError: totalRisk` при пустом `feature_map`.
+- Теперь при отсутствии данных возвращается честный пакет:
+  - `totalRisk: 0.0`, `activeRisks: []`, `integrity: CRITICAL`, без 500.
+
+#### D) Документация + cold boot (Exchange)
+- Добавлено: `/app/EXCHANGE_API.md`
+- Добавлено: `/app/scripts/cold_boot_exchange.sh`
+  - 6 шагов, проверяет core OKX feeds + все ранее стабовые endpoints + prediction layer.
+  - Гарантирует отсутствие `legacy_compat_stub_empty`.
+- `scripts/bootstrap.sh` расширен: теперь запускает `cold_boot_exchange.sh` на каждом cold-boot.
+
+#### E) Поведение без данных — только честные ответы
+- `screener/ml/predict` при отсутствии обученной модели → `{ok:false, error:"NO_MODEL"}` (UI это умеет).
+- `screener/candidates` при отсутствии forecast-memory → `candidates: []` + `forecastsConsidered`.
+- `segments` без нужного (asset,horizon) → `items: []` + `note` (без выдумки сегментов).
+
+---
 
 ### Mobile (Expo) — Exchange
 - `mobile/src/modules/trading/intelligence/ExchangeScreen.tsx`.
@@ -115,17 +145,17 @@
 - `target = current ± (band/2) * confidence * sqrt(days/30)`
 - если TA даёт `WAIT/NEUTRAL` → `target=current`, `movePct=0` (честно, без выдумки)
 
-#### E) Документация + cold boot
+#### E) UI crash fix (Web Prediction)
+- Устранён runtime-crash `toFixed of undefined`:
+  - Backend `/api/prediction/ta/graph4` возвращает `stats: null`, `band: null`, `riskProfile: null` (без частично-заполненных объектов).
+  - Frontend `PredictionPage.jsx` усилен защитами (fmtPct/Performance блок/NaN guards).
+
+#### F) Документация + cold boot
 - Добавлено: `/app/TA_API.md`
 - Добавлено: `/app/scripts/cold_boot_ta.sh`
   - 6 шагов, проверяет 22 endpoint'а + mobile/miniapp + MTF candles.
   - Гарантирует отсутствие `legacy_compat_stub_empty`.
 - `scripts/bootstrap.sh` расширен: теперь запускает `cold_boot_ta.sh` на каждом cold-boot.
-
-#### F) Тестирование (факт)
-- Backend: curl/python проверки подтверждают `note != legacy_compat_stub_empty`.
-- Web: скриншоты (Terminal/Analysis) показывают реальные candles и уровни.
-- Mobile: backend miniapp endpoints (`/api/miniapp/tech-analysis`) возвращают реальные MTF данные.
 
 ---
 
@@ -148,9 +178,11 @@
 1. **CoinMarketCap data-api геоблокирован** для IP датацентра. Парсер использует SSR и сохраняет `hasData=False` с причиной.
 2. **Twitter Hybrid V2** требует свежих cookies (`auth_token`, `ct0`).
 3. **News tab UI** lazy-load ~10–15s при холодном запуске — performance frontend.
-4. **TA patterns  walk-forward**:
+4. **TA patterns / walk-forward**:
    - `native_ta_v1` не реализует паттерн-детектор: `/api/ta/patterns/*` возвращает пусто **с честным `note`**.
    - `native_ta_v1` не хранит историю rolling прогнозов: `/api/prediction/ta/graph4` отдаёт **реальные свечи + текущий snapshot**, но не выдумывает исторические forecast points (есть `note`).
+5. **Exchange screener ML**:
+   - если `screener_ml_models` не обучены → `/api/exchange/screener/ml/predict` отдаёт `{ok:false, error:"NO_MODEL"}` (это не stub; UI показывает подсказку обучения).
 
 ---
 
@@ -159,9 +191,11 @@
 | Приоритет | Задача |
 |---|---|
 | P1 | (Если нужно) добавить walk-forward storage для TA (аналогично fractal_rolling_snapshots) — только при наличии реального расчёта/истории, без синтетики. |
+| P1 | Добавить реальный ML pipeline для Exchange Screener: обучить/заполнить `screener_ml_models` и `screener_ml_predictions` (иначе будет честный `NO_MODEL`). |
+| P1 | Полный «no-stub» аудит **On-chain** и **Sentiment edge endpoints**: поиск `legacy_compat_stub_empty` и вынос в `*_real.py` с приоритетным mount. |
 | P2 | Получить CMC pro-api ключ для полного доступа к token-unlock listings. |
 | P3 | Поднять Twitter Hybrid V2 в production: добавить cookies через расширение, проверить `twitter_tweets > 0`. |
-| P3 | Удалить `routes/legacy_compat.py` целиком (все нужные маршруты теперь обходятся явно). |
+| P3 | Удалить `routes/legacy_compat.py` целиком (когда все оставшиеся legacy пути мигрируют). |
 | P4 | Code-split `frontend/src/pages/twitter/NewsTab.jsx` (1265 строк) — уменьшит lazy chunk и время `Loading module...`. |
 
 ---
@@ -174,6 +208,9 @@ bash /app/scripts/bootstrap.sh
 
 # TA module verify (cold boot + stubs audit)
 bash /app/scripts/cold_boot_ta.sh
+
+# Exchange module verify (cold boot + stubs audit)
+bash /app/scripts/cold_boot_exchange.sh
 
 # Fractal verify
 bash /app/scripts/cold_boot_fractal.sh --verify-only
@@ -189,5 +226,5 @@ supervisorctl restart backend frontend
 tail -f /var/log/supervisor/backend.*.log
 
 # DB-summary
-python -c "from pymongo import MongoClient; import os; db=MongoClient(os.environ['MONGO_URL'])['fomo_mobile']; [print(c, ':', db[c].count_documents({})) for c in ['news_articles','deep_projects','deep_unlocks','deep_funds','mbrain_verdicts']]"
+python -c "from pymongo import MongoClient; import os; db=MongoClient(os.environ['MONGO_URL'])['fomo_mobile']; [print(c, ':', db[c].count_documents({})) for c in ['news_articles','deep_projects','deep_unlocks','deep_funds','mbrain_verdicts','exchange_forecasts','exchange_forecast_runs','paper_orders_v2']]"
 ```

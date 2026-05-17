@@ -38,6 +38,8 @@ def compute_single_asset(symbol: str) -> dict:
             "labs": [],
             "overallState": {"stateKey": "DATA_WEAK", "stateLabel": "No data", "confidence": 0, "tags": ["NO_DATA"]},
             "explain": {"oneLiner": "No data available", "bullets": [], "risks": [], "invalidation": ""},
+            "totalRisk": 0.0,
+            "activeRisks": [],
             "integrity": {"status": "CRITICAL", "coveragePct": 0, "freshnessSec": 9999, "reasons": ["No data"]},
         }
 

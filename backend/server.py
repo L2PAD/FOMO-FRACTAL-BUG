@@ -163,6 +163,18 @@ except Exception as _tar_err:  # pragma: no cover
     print(f"[TechAnalysisReal] import failed: {_tar_err!r}")
 
 
+# ── Exchange Extras (real-data) ── (must be mounted BEFORE legacy_compat
+# and BEFORE the exchange_runtime catch-alls).  Fills the remaining
+# `legacy_compat_stub_empty` paths for screener/segments/operator/
+# registry endpoints with real Mongo / OKX-backed data.
+try:
+    from routes.exchange_extras_real import router as _exchange_extras_real_router
+    app.include_router(_exchange_extras_real_router)
+    print("[ExchangeExtrasReal] mounted: /api/exchange/{screener,segments,segment-candles,providers/health,proxy-config,test-connection,test-order,sync,sync-fills,fills} + /api/exchanges{,/stats}")
+except Exception as _eer_err:  # pragma: no cover
+    print(f"[ExchangeExtrasReal] import failed: {_eer_err!r}")
+
+
 # ── Stage A-4: Sentiment Runtime (events-based, LLM-independent) ──
 # Mounted BEFORE the trading-terminal gateway / node proxy so
 # /api/sentiment/runtime/* literal routes win over upstream-503 forwarders.
