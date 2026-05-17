@@ -11,7 +11,9 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "UIBackgroundModes": ["remote-notification"],
+        "UIBackgroundModes": [
+          "remote-notification"
+        ],
         "NSUserNotificationsUsageDescription": "Get real-time crypto signal alerts"
       }
     },
@@ -21,7 +23,11 @@
         "backgroundColor": "#000"
       },
       "edgeToEdgeEnabled": true,
-      "permissions": ["RECEIVE_BOOT_COMPLETED", "VIBRATE", "POST_NOTIFICATIONS"]
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -29,7 +35,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "experiments": {
-      "baseUrl": "/api/app"
+      "typedRoutes": true,
+      "baseUrl": "/m"
     },
     "plugins": [
       "expo-router",
@@ -51,9 +58,6 @@
           "color": "#6366f1"
         }
       ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }

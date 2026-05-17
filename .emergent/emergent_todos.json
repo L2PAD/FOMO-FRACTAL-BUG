@@ -1,26 +1,30 @@
 [
   {
-    "content": "TELEGRAM_BOT_TOKEN в backend/.env (@FOMO_mini_bot validated)",
+    "content": "All 4 API keys integrated (Telegram, Google, Infura, NowPayments)",
     "status": "completed"
   },
   {
-    "content": "GOOGLE_CLIENT_ID в backend/.env + /api/auth/gate выдаёт",
+    "content": "Infura on-chain data live (/api/onchain/{summary,whales,flows})",
     "status": "completed"
   },
   {
-    "content": "INFURA_KEY в backend/.env + ONCHAIN_ENABLED=true",
+    "content": "/api/v10/onchain-v2/* bridge → real Infura+DeFiLlama+OKX data",
     "status": "completed"
   },
   {
-    "content": "NOWPAYMENTS ключи в .env + в DB billing_config",
+    "content": "Expo Mobile app built + deployed at /m/ with native UI (Home/Feed/Observations/Edge/Trade)",
     "status": "completed"
   },
   {
-    "content": "/api/onchain/{summary,whales,flows} возвращают real Ethereum data через Infura",
+    "content": "Telegram MiniApp at /miniapp — fully rendered",
     "status": "completed"
   },
   {
-    "content": "/api/v10/onchain-v2/* endpoints (OnchainV3 page) - стабы, требуют отдельный индексер (next iter)",
-    "status": "pending"
+    "content": "Google Sign-In Client ID propagated via /api/auth/gate",
+    "status": "completed"
+  },
+  {
+    "content": "All 5 modules verified working (Fractal, Exchange, TA, On-chain, Sentiment) — testing_agent 100% Frontend / 95% Backend",
+    "status": "completed"
   }
 ]

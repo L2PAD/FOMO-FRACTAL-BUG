@@ -7668,6 +7668,15 @@ if os.path.isdir(ADMIN_BUILD):
     except Exception as _ta_err:
         print(f"[TARuntime] mount failed: {_ta_err!r}")
 
+    # On-chain v10 bridge — wires OnchainV3 page (`/api/v10/onchain-v2/*`) to real Infura/DeFiLlama data
+    # MUST be registered BEFORE legacy_compat (which has catch-all stub).
+    try:
+        from routes.onchain_v10_bridge import router as _onchain_v10_bridge_router
+        app.include_router(_onchain_v10_bridge_router)
+        print("[OnchainV10Bridge] mounted: /api/v10/onchain-v2/{lare-v2/latest,market/liquidity/series,stables/aggregate/latest,bridge/aggregate/latest,market/series,market/altflow,...}")
+    except Exception as _ov_err:
+        print(f"[OnchainV10Bridge] mount failed: {_ov_err!r}")
+
     # Exchange runtime endpoints (orderbook, funding, OI, anomalies, tickers, overview,
     # miniapp/exchange, admin/exchange/overview) — before legacy_compat
     try:
@@ -7732,10 +7741,14 @@ if os.path.isdir(ADMIN_BUILD):
             return FileResponse(f"{_MOBILE_DIST_PATH}/favicon.ico")
 
         @app.get("/api/app/", include_in_schema=False)
-        @app.get("/api/app", include_in_schema=False)
         async def _mobile_index():
             with open(f"{_MOBILE_DIST_PATH}/index.html", "r", encoding="utf-8") as f:
                 return HTMLResponse(content=_rewrite_mobile_html(f.read()))
+
+        @app.get("/api/app", include_in_schema=False)
+        async def _mobile_index_redirect():
+            from fastapi.responses import RedirectResponse
+            return RedirectResponse(url="/api/app/", status_code=302)
 
         @app.get("/api/app/{path:path}", include_in_schema=False)
         async def _mobile_route(path: str):
