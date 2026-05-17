@@ -364,7 +364,7 @@ const VerdictCard = ({ verdict, horizon, onHorizonChange }) => {
         <div>
           <p className="text-xs text-gray-400 uppercase mb-1">Expected (P50)</p>
           <p className={`text-xl font-bold ${verdict.expectedMoveP50 > 0 ? 'text-emerald-600' : verdict.expectedMoveP50 < 0 ? 'text-red-500' : 'text-gray-500'}`}>
-            {verdict.expectedMoveP50 > 0 ? '+' : ''}{verdict.expectedMoveP50}%
+            {verdict.expectedMoveP50 > 0 ? '+' : ''}{Number(verdict.expectedMoveP50).toFixed(2)}%
           </p>
         </div>
         
@@ -372,14 +372,14 @@ const VerdictCard = ({ verdict, horizon, onHorizonChange }) => {
         <div>
           <p className="text-xs text-gray-400 uppercase mb-1">Range (P10–P90)</p>
           <p className="text-sm font-medium text-gray-700">
-            {verdict.rangeP10}% – {verdict.rangeP90}%
+            {Number(verdict.rangeP10).toFixed(2)}% – {Number(verdict.rangeP90).toFixed(2)}%
           </p>
         </div>
         
         {/* Position Size */}
         <div>
           <p className="text-xs text-gray-400 uppercase mb-1">Position Size</p>
-          <p className="text-xl font-bold text-gray-900">{verdict.positionMultiplier}×</p>
+          <p className="text-xl font-bold text-gray-900">{Number(verdict.positionMultiplier).toFixed(1)}×</p>
         </div>
       </div>
       
