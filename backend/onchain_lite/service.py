@@ -194,7 +194,7 @@ async def get_summary(chain: str = "ethereum") -> dict:
     block_height = _hex(block_hex)
     gas_price = round(_wei_to_gwei(gas_hex), 2)
     tx_count = len(latest_block.get("transactions", [])) if latest_block else 0
-    block_ts = _hex(latest_block.get("timestamp", "0x0")) if latest_block else 0
+    block_ts_int = _hex(latest_block.get("timestamp", "0x0")) if latest_block else 0
     block_time = 12  # approx for Ethereum
 
     tps = round(tx_count / block_time, 2) if block_time > 0 else 0
@@ -207,6 +207,7 @@ async def get_summary(chain: str = "ethereum") -> dict:
 
     result = {
         "blockHeight": block_height,
+        "blockTimestamp": block_ts_int,
         "gasPrice": gas_price,
         "tps": tps,
         "activeAddresses24h": 0,
@@ -221,6 +222,14 @@ async def get_summary(chain: str = "ethereum") -> dict:
 
 
 async def get_flows(chain: str = "ethereum") -> dict:
+    """Stablecoin supply per chain from DefiLlama (REAL) + per-chain
+    bridge in/out from DefiLlama bridges (REAL).
+
+    NOTE on exchange CEX flows:  Light mode does NOT have address-level
+    indexing, so we CANNOT label tx as "exchange inflow/outflow" without
+    a labelled address book.  Returning honest `exchangeFlows.available:
+    false` with `reason: "needs_address_labels_or_indexer"` instead of
+    fabricating 50/50 splits."""
     if _mode_state["paused"]:
         return {"provider": "paused"}
 
@@ -229,52 +238,90 @@ async def get_flows(chain: str = "ethereum") -> dict:
     if cached:
         return cached
 
-    rpc_url = CHAIN_RPCS.get(chain, ETHEREUM_RPC)
-
-    # Stablecoin data from DefiLlama
+    # ── Stablecoin TOTAL on chain (REAL, DefiLlama) ──────────────────
     stablecoin_total = 0
+    stablecoin_meta = {"available": False, "reason": "defillama_fetch_failed"}
     try:
         async with httpx.AsyncClient(timeout=8) as client:
             resp = await client.get("https://stablecoins.llama.fi/stablecoinchains")
             chains = resp.json()
-            chain_names = {"ethereum": "Ethereum", "arbitrum": "Arbitrum", "optimism": "Optimism", "base": "Base"}
+            chain_names = {"ethereum": "Ethereum", "arbitrum": "Arbitrum",
+                           "optimism": "Optimism", "base": "Base"}
             target = chain_names.get(chain, "Ethereum")
             match = next((c for c in chains if c.get("name") == target), None)
             if match:
                 stablecoin_total = match.get("totalCirculatingUSD", {}).get("peggedUSD", 0)
-    except Exception:
-        pass
+                stablecoin_meta = {
+                    "available": True,
+                    "totalSupplyUsd": stablecoin_total,
+                    "source": "defillama_stablecoinchains",
+                }
+    except Exception as e:
+        stablecoin_meta["error"] = str(e)[:120]
 
-    # Estimate from latest block
-    latest_block = await _rpc_call(rpc_url, "eth_getBlockByNumber", ["latest", True])
-    txs = latest_block.get("transactions", []) if latest_block else []
+    # ── Bridge net flow per chain (REAL, DefiLlama bridges) ──────────
+    bridge_inflow = 0.0
+    bridge_outflow = 0.0
+    bridge_meta = {"available": False, "reason": "defillama_bridges_unavailable"}
+    chain_slug = {"ethereum": "Ethereum", "arbitrum": "Arbitrum",
+                  "optimism": "Optimism", "base": "Base"}.get(chain, "Ethereum")
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            r = await client.get(f"https://bridges.llama.fi/bridgevolume/{chain_slug}?id=all")
+            doc = r.json()
+            # The last entry has fields: depositUSD (in), withdrawUSD (out)
+            if isinstance(doc, list) and doc:
+                last = doc[-1]
+                bridge_inflow = float(last.get("depositUSD", 0) or 0)
+                bridge_outflow = float(last.get("withdrawUSD", 0) or 0)
+                bridge_meta = {
+                    "available": True,
+                    "source": "defillama_bridges",
+                    "windowDays": 1,
+                }
+    except Exception as e:
+        bridge_meta["error"] = str(e)[:120]
 
-    total_in = 0
-    total_out = 0
-    for tx in txs[:50]:
-        val = _wei_to_eth(tx.get("value", "0x0"))
-        if val > 10:
-            total_in += val * 0.5
-            total_out += val * 0.5
-
-    eth_price = await _get_eth_price()
+    # ── Exchange CEX flows — HONEST DISCLOSURE (Light Mode cannot label) ──
+    cex_meta = {
+        "available": False,
+        "reason": "needs_address_labels_or_indexer",
+        "detail": (
+            "Light Mode (Infura only) has no address book — labelling tx "
+            "as 'exchange inflow/outflow' would be fabricated.  Run the "
+            "full indexer (mode=indexer) to populate onchain_v2_address_labels."
+        ),
+    }
 
     result = {
-        "exchangeInflow24h": round(total_in * eth_price * 120),
-        "exchangeOutflow24h": round(total_out * eth_price * 120),
-        "exchangeNetflow24h": round((total_in - total_out) * eth_price * 120),
-        "stablecoinInflow24h": round(stablecoin_total * 0.001),
-        "stablecoinOutflow24h": round(stablecoin_total * 0.0009),
-        "stablecoinNetflow24h": round(stablecoin_total * 0.0001),
-        "chain": chain,
-        "provider": "infura-lite+defillama",
-        "updatedAt": int(time.time() * 1000),
+        "exchangeFlows":      cex_meta,
+        "stablecoin":         stablecoin_meta,
+        "bridge": {
+            **bridge_meta,
+            "inflowUsd":  round(bridge_inflow),
+            "outflowUsd": round(bridge_outflow),
+            "netflowUsd": round(bridge_inflow - bridge_outflow),
+        },
+        "chain":      chain,
+        "provider":   "infura-lite+defillama",
+        "updatedAt":  int(time.time() * 1000),
+        # Legacy-shape compatibility (UI cards):
+        "exchangeInflow24h":   None,
+        "exchangeOutflow24h":  None,
+        "exchangeNetflow24h":  None,
+        "stablecoinInflow24h": stablecoin_total,
+        "stablecoinOutflow24h": 0,
+        "stablecoinNetflow24h": 0,
     }
     _cache.set(key, result)
     return result
 
 
 async def get_whales(chain: str = "ethereum") -> dict:
+    """Large transfers from the LATEST block only (honest single-block
+    window — no `* 120` extrapolation that fakes 24h from one block).
+
+    For real 24h whale stats, run the indexer (mode=indexer)."""
     if _mode_state["paused"]:
         return {"provider": "paused", "topTransfers": []}
 
@@ -296,25 +343,33 @@ async def get_whales(chain: str = "ethereum") -> dict:
         val_usd = val_eth * eth_price
         if val_usd >= 100_000:
             large_txs.append({
-                "hash": tx.get("hash", ""),
-                "from": tx.get("from", ""),
-                "to": tx.get("to", "") or "0x0",
-                "valueEth": round(val_eth, 3),
-                "valueUsd": round(val_usd),
+                "hash":      tx.get("hash", ""),
+                "from":      tx.get("from", ""),
+                "to":        tx.get("to", "") or "0x0",
+                "valueEth":  round(val_eth, 3),
+                "valueUsd":  round(val_usd),
                 "timestamp": block_ts,
-                "block": block_num,
-                "chain": chain,
+                "block":     block_num,
+                "chain":     chain,
             })
 
     large_txs.sort(key=lambda t: t["valueUsd"], reverse=True)
 
     result = {
-        "largeTransfers24h": len(large_txs) * 120,
-        "topTransfers": large_txs[:10],
-        "totalWhaleVolume24h": sum(t["valueUsd"] for t in large_txs) * 120,
-        "chain": chain,
-        "provider": "infura-lite",
-        "updatedAt": int(time.time() * 1000),
+        # HONEST: only the latest block — no fake 24h extrapolation
+        "windowType":          "single_block",
+        "blockNumber":         block_num,
+        "blockTimestamp":      block_ts,
+        "largeTransfersInBlock": len(large_txs),
+        "topTransfers":        large_txs[:10],
+        "totalWhaleVolumeBlock": sum(t["valueUsd"] for t in large_txs),
+        "chain":               chain,
+        "provider":            "infura-lite",
+        "note":                "single_block_only_run_indexer_for_24h_window",
+        "updatedAt":           int(time.time() * 1000),
+        # Legacy-shape compat — set to None so UI doesn't render fake 24h numbers
+        "largeTransfers24h":     None,
+        "totalWhaleVolume24h":   None,
     }
     _cache.set(key, result)
     return result
@@ -355,8 +410,31 @@ async def get_activity(chain: str = "ethereum") -> dict:
             if not isinstance(dex_resp, Exception):
                 dex_data = dex_resp.json()
                 dex_volume = dex_data.get("total24h", 0)
-                protocols = dex_data.get("protocols", [])
-                top_pairs = [{"pair": p.get("name", "Unknown"), "volume": round(p.get("total24h", 0))} for p in protocols[:5]]
+                # DefiLlama uses different field names across endpoints —
+                # try `protocols`, then fall back to `chains` decomposition.
+                protocols = (dex_data.get("protocols") or
+                             dex_data.get("breakdown24h") or [])
+                if isinstance(protocols, list):
+                    top_pairs = [
+                        {"pair":   p.get("name") or p.get("displayName") or "Unknown",
+                         "volume": round(p.get("total24h") or p.get("dailyVolume") or 0)}
+                        for p in protocols[:10]
+                        if (p.get("total24h") or p.get("dailyVolume") or 0) > 0
+                    ]
+                # Last-resort: fetch top DEX protocols directly
+                if not top_pairs:
+                    try:
+                        r2 = await client.get("https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true")
+                        pdoc = r2.json()
+                        protos = (pdoc.get("protocols") or [])
+                        # Filter to protocols on target chain
+                        flt = [p for p in protos if target_name in (p.get("chains") or [])]
+                        flt.sort(key=lambda p: p.get("total24h") or 0, reverse=True)
+                        top_pairs = [{"pair": p.get("name"),
+                                      "volume": round(p.get("total24h") or 0)}
+                                     for p in flt[:10]]
+                    except Exception:
+                        pass
     except Exception:
         pass
 

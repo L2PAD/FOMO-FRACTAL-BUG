@@ -266,3 +266,12 @@ bash /app/scripts/cold_boot_exchange.sh || warn "Exchange cold-boot returned non
 echo ""
 echo "→ Exchange docs:       cat /app/EXCHANGE_API.md"
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 10) ON-CHAIN — Light Mode (Infura) cold-boot
+# ─────────────────────────────────────────────────────────────────────────────
+hdr "10. ON-CHAIN (Light Mode)"
+bash /app/scripts/cold_boot_onchain.sh || warn "On-chain cold-boot returned non-zero"
+
+echo ""
+echo "→ On-chain docs:       cat /app/ONCHAIN_API.md"
+

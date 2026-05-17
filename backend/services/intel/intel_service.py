@@ -2,7 +2,7 @@
 from services.ingestion import ensure_fresh_data
 from services.asset_registry import normalize_symbol
 from .exchange import build_exchange_intel
-from .onchain import build_onchain_intel
+from .onchain import build_onchain_intel, build_onchain_intel_async
 from .sentiment import build_sentiment_intel
 from .fractal import build_fractal_intel
 
@@ -27,8 +27,10 @@ async def get_exchange_intel(asset: str) -> dict:
 async def get_onchain_intel(asset: str) -> dict:
     features = await load_features(asset)
     if not features:
-        return {'error': 'Data unavailable'}
-    return build_onchain_intel(features)
+        # Honest empty fallback (no features = no price ctx) — still
+        # run on-chain async path which doesn't need price data.
+        features = {'asset': normalize_symbol(asset), 'change7d': 0, 'change30d': 0, 'sentimentUp': 50}
+    return await build_onchain_intel_async(features)
 
 
 async def get_sentiment_intel(asset: str) -> dict:
