@@ -140,6 +140,16 @@ except Exception as _rs_err:  # pragma: no cover
     print(f"[RollingSnapshots] import failed: {_rs_err!r}")
 
 
+# ── Meta Brain (real-data) ── (must be mounted BEFORE legacy_compat so
+# real handlers win over the legacy stubs.)
+try:
+    from routes.meta_brain_real import router as _meta_brain_real_router
+    app.include_router(_meta_brain_real_router)
+    print("[MetaBrainReal] mounted: /api/meta-brain-v2/{status,state,signals/aligned,drift,influence,performance,correlation,dataset/*} + /api/v10/meta-brain/snapshots")
+except Exception as _mbr_err:  # pragma: no cover
+    print(f"[MetaBrainReal] import failed: {_mbr_err!r}")
+
+
 # ── Stage A-4: Sentiment Runtime (events-based, LLM-independent) ──
 # Mounted BEFORE the trading-terminal gateway / node proxy so
 # /api/sentiment/runtime/* literal routes win over upstream-503 forwarders.

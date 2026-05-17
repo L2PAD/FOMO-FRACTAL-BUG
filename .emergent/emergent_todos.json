@@ -1,22 +1,22 @@
 [
   {
-    "content": "Создать backfill rolling forecasts (cosine-similarity walk-forward)",
+    "content": "Audit Meta Brain endpoints (status, state, signals, drift, influence, performance, correlation, dataset/*, snapshots)",
     "status": "completed"
   },
   {
-    "content": "Создать endpoint /api/prediction/snapshots (Python > Node, чтобы выигрывал)",
+    "content": "Replace 10 stubs with real-data implementations in /api/routes/meta_brain_real.py",
     "status": "completed"
   },
   {
-    "content": "Подключить router в server.py перед legacy_compat",
+    "content": "Wire router in server.py BEFORE legacy_compat",
     "status": "completed"
   },
   {
-    "content": "Bootstrap 365 дней истории прогнозов в Mongo",
+    "content": "Fix data structure mismatches (timestamp vs ts, actor_handle vs actor, flat close vs ohlcv.c)",
     "status": "completed"
   },
   {
-    "content": "Auto-update loop в supervisor (каждые 6 часов)",
+    "content": "Verify all endpoints return real-data with no 'stub_empty' note",
     "status": "completed"
   }
 ]
