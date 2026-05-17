@@ -1,30 +1,26 @@
 [
   {
-    "content": "All 4 API keys integrated (Telegram, Google, Infura, NowPayments)",
+    "content": "Verify all 5 modules via API (Fractal/Exchange/TA/Sentiment/Onchain)",
     "status": "completed"
   },
   {
-    "content": "Infura on-chain data live (/api/onchain/{summary,whales,flows})",
+    "content": "Verify Web /, Expo /m/, Telegram /miniapp URLs",
     "status": "completed"
   },
   {
-    "content": "/api/v10/onchain-v2/* bridge → real Infura+DeFiLlama+OKX data",
+    "content": "Verify Telegram bot menu button + API keys present",
     "status": "completed"
   },
   {
-    "content": "Expo Mobile app built + deployed at /m/ with native UI (Home/Feed/Observations/Edge/Trade)",
+    "content": "Take screenshots of main surfaces",
     "status": "completed"
   },
   {
-    "content": "Telegram MiniApp at /miniapp — fully rendered",
+    "content": "Start mbrain_verdicts consensus loop (skipped — route already active on-demand)",
     "status": "completed"
   },
   {
-    "content": "Google Sign-In Client ID propagated via /api/auth/gate",
-    "status": "completed"
-  },
-  {
-    "content": "All 5 modules verified working (Fractal, Exchange, TA, On-chain, Sentiment) — testing_agent 100% Frontend / 95% Backend",
-    "status": "completed"
+    "content": "Send final confirmation message to user in Russian",
+    "status": "in_progress"
   }
 ]
