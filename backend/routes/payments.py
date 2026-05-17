@@ -30,14 +30,15 @@ def _ensure_billing_config():
     if not existing:
         _db.billing_config.insert_one({
             "type": "pricing",
-            "billing_mode": "crypto",
+            "billing_mode": "free_trial",
             "provider": "nowpayments",
             "product_name": "FOMO Intelligence PRO",
             "monthly_price_usd": 19,
             "yearly_price_usd": 190,
             "yearly_discount_percent": 17,
-            "free_access_enabled": False,
-            "paywall_enabled": True,
+            "free_access_enabled": True,
+            "paywall_enabled": False,
+            "billing_mode": "free_trial",
             "features": [
                 "Real-time Exchange signals (BTC, ETH, SOL)",
                 "Multi-horizon forecasts (24H, 7D, 30D)",

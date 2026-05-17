@@ -418,11 +418,45 @@ def ui_overview(asset: str = Query("btc"), horizon: int = Query(90)):
         "inputsHash":    inputs_hash,
     }
 
+    # ── 9.5 Charts: actual + predicted series for LivePredictionChart ──
+    # actual = candles closes; predicted = linear projection over horizon based on overall_med (%)
+    actual_series: List[dict] = []
+    for c in candles:
+        t = c.get("t")
+        cl = c.get("close")
+        if t and cl is not None:
+            actual_series.append({"t": t, "v": float(cl)})
+
+    predicted_series: List[dict] = []
+    if actual_series:
+        last = actual_series[-1]
+        try:
+            last_t_dt = datetime.fromisoformat(str(last["t"]).replace("Z", "+00:00"))
+        except Exception:
+            last_t_dt = datetime.now(timezone.utc)
+        last_v = float(last["v"])
+        # anchor on last actual
+        predicted_series.append({"t": last["t"], "v": last_v})
+        # step daily across horizon
+        target_pct = overall_med / 100.0  # overall_med is in %
+        steps = max(1, h_int)
+        for i in range(1, steps + 1):
+            frac = i / steps
+            v = last_v * (1.0 + target_pct * frac)
+            ts = (last_t_dt + timedelta(days=i)).strftime("%Y-%m-%dT00:00:00Z")
+            predicted_series.append({"t": ts, "v": round(v, 2)})
+
+    charts_payload = {
+        "actual":    actual_series,
+        "predicted": predicted_series,
+    }
+
     return {
         "ok":         True,
         "asset":      sym,
         "horizon":    h_int,
         "candles":    candles,
+        "charts":     charts_payload,
         "fractal":    fractal,
         "verdict":    verdict,
         "reasons":    reasons,
