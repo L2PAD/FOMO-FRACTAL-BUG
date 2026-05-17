@@ -142,7 +142,9 @@ export default function SentimentForecastChart({
   useEffect(() => {
     if (!candleSeriesRef.current || !chartRef.current || !data) return;
 
-    const { chart: chartData, forecast, meta, reliability } = data;
+    const { chart: chartData, forecast, meta, reliability } = data || {};
+    if (!chartData || !forecast) return;
+    const safeMeta = meta || {};
 
     // Set candles
     const isLine = viewMode === 'line';
@@ -171,8 +173,9 @@ export default function SentimentForecastChart({
     }
 
     // Target price line
-    const formattedTarget = forecast.target.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    const targetColor = meta.safeMode 
+    if (forecast.target == null) return;
+    const formattedTarget = Number(forecast.target).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const targetColor = safeMeta.safeMode 
       ? 'rgba(156, 163, 175, 0.6)'
       : forecast.direction === 'LONG' 
         ? 'rgba(34, 197, 94, 0.6)' 
@@ -210,17 +213,17 @@ export default function SentimentForecastChart({
 
   const getDirectionIcon = () => {
     if (!data) return <MinusIcon className="w-4 h-4 text-gray-400" />;
-    if (data.meta.safeMode) return <ShieldAlert className="w-4 h-4 text-amber-500" />;
-    if (data.forecast.direction === 'LONG') return <TrendingUpIcon className="w-4 h-4 text-emerald-500" />;
-    if (data.forecast.direction === 'SHORT') return <TrendingDownIcon className="w-4 h-4 text-red-500" />;
+    if (data.meta?.safeMode) return <ShieldAlert className="w-4 h-4 text-amber-500" />;
+    if (data.forecast?.direction === 'LONG') return <TrendingUpIcon className="w-4 h-4 text-emerald-500" />;
+    if (data.forecast?.direction === 'SHORT') return <TrendingDownIcon className="w-4 h-4 text-red-500" />;
     return <MinusIcon className="w-4 h-4 text-gray-400" />;
   };
 
   const getDirectionColor = () => {
     if (!data) return 'text-gray-500';
-    if (data.meta.safeMode) return 'text-amber-600';
-    if (data.forecast.direction === 'LONG') return 'text-emerald-600';
-    if (data.forecast.direction === 'SHORT') return 'text-red-600';
+    if (data.meta?.safeMode) return 'text-amber-600';
+    if (data.forecast?.direction === 'LONG') return 'text-emerald-600';
+    if (data.forecast?.direction === 'SHORT') return 'text-red-600';
     return 'text-gray-500';
   };
 
@@ -258,7 +261,7 @@ export default function SentimentForecastChart({
     );
   }
 
-  const { meta, reliability, forecast } = data;
+  const { meta = {}, reliability = {}, forecast = {} } = data || {};
 
   return (
     <div 
@@ -290,7 +293,7 @@ export default function SentimentForecastChart({
               : 'HOLD'}
           </span>
           <span className="text-sm font-medium text-gray-500" data-testid="sentiment-chart-score">
-            {(reliability.rawConfidence * 100).toFixed(0)}%
+            {((reliability.rawConfidence ?? 0) * 100).toFixed(0)}%
           </span>
         </div>
         <div className="flex items-center gap-3">
@@ -335,10 +338,10 @@ export default function SentimentForecastChart({
       {/* Footer */}
       <div className="px-4 py-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400">
         <span>
-          Based on {horizon} sentiment • Confidence: {(reliability.finalConfidence * 100).toFixed(0)}%
+          Based on {horizon} sentiment • Confidence: {((reliability.finalConfidence ?? 0) * 100).toFixed(0)}%
         </span>
         <span>
-          Window: {horizon} • Current: ${forecast.entry.toLocaleString()}
+          Window: {horizon} • Current: ${(forecast.entry ?? 0).toLocaleString()}
         </span>
       </div>
     </div>

@@ -125,15 +125,17 @@ export default function MetaBrainCorePanel({ verdict, candidates, overlay, curre
   const conflict = computeConflict(rawSignals);
   const stability = computeStability(coverage, maxDrift, confidence);
 
-  /* Expected Range from candidates */
+  /* Expected Range from candidates (multi-horizon) */
   const price = currentPrice || 0;
-  const returns = (candidates || []).map(c => c.expectedReturn || 0);
+  const returns = (candidates || [])
+    .map(c => Number(c.expectedReturn))
+    .filter(v => Number.isFinite(v));
   const minReturn = returns.length ? Math.min(...returns) : 0;
   const maxReturn = returns.length ? Math.max(...returns) : 0;
   const baseReturn = candidates?.find(c => c.horizon === '7D')?.expectedReturn || 0;
   const rangeLow = price > 0 ? Math.round(price * (1 + minReturn)) : null;
   const rangeBase = price > 0 ? Math.round(price * (1 + baseReturn)) : null;
-  const rangeHigh = price > 0 ? Math.round(price * (1 + Math.abs(maxReturn))) : null;
+  const rangeHigh = price > 0 ? Math.round(price * (1 + maxReturn)) : null;
 
   /* Forecast freshness */
   const forecastTs = mbData?.signals?.durationMs ? Date.now() : rawSignals[0]?.asOfTs;

@@ -65,6 +65,38 @@ async function main() {
     // Continue — we'll try individual module mounts as fallback
   }
 
+  // ── Mount Sentiment UI V2 routes (existing logic from backend-src) ──
+  //   /api/market/chart/sentiment-v2
+  //   /api/market/sentiment/performance-v2
+  //   /api/market/sentiment/top-alts-v2
+  //   /api/market/sentiment/equity-v2
+  try {
+    const { registerSentimentUIV2Routes } = await import(
+      './backend-src/modules/sentiment-ml/chart/sentiment-ui-v2.routes.js'
+    );
+    await app.register(registerSentimentUIV2Routes);
+    console.log('[Sidecar] Sentiment UI V2 routes mounted');
+  } catch (e: any) {
+    console.error('[Sidecar] Sentiment UI V2 routes FAILED:', e?.message || e);
+    console.error(e?.stack);
+  }
+
+  // ── Mount Exchange UI V2 routes (existing logic from backend-src) ──
+  //   /api/market/chart/exchange-v2
+  //   /api/market/chart/exchange-v3
+  //   /api/market/exchange/performance-v2
+  //   /api/market/exchange/top-alts-v2
+  try {
+    const { registerExchangeUIV2Routes } = await import(
+      './backend-src/modules/exchange-ml/chart/exchange-ui-v2.routes.js'
+    );
+    await app.register(registerExchangeUIV2Routes);
+    console.log('[Sidecar] Exchange UI V2 routes mounted');
+  } catch (e: any) {
+    console.error('[Sidecar] Exchange UI V2 routes FAILED:', e?.message || e);
+    console.error(e?.stack);
+  }
+
   await app.listen({ port: PORT, host: HOST });
   console.log(`[Sidecar] Listening on http://${HOST}:${PORT}`);
 }

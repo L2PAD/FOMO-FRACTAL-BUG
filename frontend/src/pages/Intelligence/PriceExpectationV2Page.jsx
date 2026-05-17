@@ -887,15 +887,24 @@ function getClosestPrice(prices, ts) {
 function FutureForecastCard({ forecast, band, currentPrice, horizon = '1D', metaForecast }) {
   if (!forecast) return null;
   
-  // Calculate target time based on horizon
+  // Calculate target time based on horizon (null-safe: backend may not include `ts`)
   const horizonMs = {
     '1D': 24 * 60 * 60 * 1000,
     '7D': 7 * 24 * 60 * 60 * 1000,
     '30D': 30 * 24 * 60 * 60 * 1000,
   };
-  const targetTime = new Date(forecast.ts + (horizonMs[horizon] || horizonMs['1D']));
-  const isUp = forecast.direction === 'UP';
-  const isDown = forecast.direction === 'DOWN';
+  const baseTs = (typeof forecast.ts === 'number' && Number.isFinite(forecast.ts))
+    ? forecast.ts
+    : Date.now();
+  const targetTime = new Date(baseTs + (horizonMs[horizon] || horizonMs['1D']));
+  // Accept either targetPrice or price (backend lineage compat)
+  const targetPriceNum = (typeof forecast.targetPrice === 'number')
+    ? forecast.targetPrice
+    : (typeof forecast.price === 'number' ? forecast.price : null);
+  const expectedMove = Number.isFinite(forecast.expectedMovePct) ? forecast.expectedMovePct : 0;
+  const dirRaw = (forecast.direction || '').toUpperCase();
+  const isUp = dirRaw === 'UP' || dirRaw === 'LONG' || expectedMove > 0.5;
+  const isDown = dirRaw === 'DOWN' || dirRaw === 'SHORT' || expectedMove < -0.5;
   
   // Horizon label
   const horizonLabel = {
@@ -907,10 +916,16 @@ function FutureForecastCard({ forecast, band, currentPrice, horizon = '1D', meta
   // Block 31: Position Sizing Recommendation
   // Kelly Criterion simplified: f = (p * b - q) / b
   // where p = win rate (confidence), b = reward/risk ratio, q = 1 - p
-  const confidence = forecast.confidence;
-  const rewardRisk = Math.abs(forecast.expectedMovePct) / 2; // Assume 2:1 R/R
-  const kellyFraction = Math.max(0, (confidence * rewardRisk - (1 - confidence)) / rewardRisk);
-  const suggestedSize = Math.min(25, Math.round(kellyFraction * 100 * 0.5)); // Half-Kelly, max 25%
+  const confidence = Number.isFinite(forecast.confidence) ? forecast.confidence : 0;
+  const absMove = Math.abs(expectedMove);
+  const rewardRisk = absMove / 2; // Assume 2:1 R/R
+  // Avoid divide-by-zero: if there's no expected move, position size is 0
+  let kellyFraction = 0;
+  if (rewardRisk > 0 && Number.isFinite(confidence)) {
+    kellyFraction = Math.max(0, (confidence * rewardRisk - (1 - confidence)) / rewardRisk);
+  }
+  const suggestedSizeRaw = Math.round(kellyFraction * 100 * 0.5);
+  const suggestedSize = Number.isFinite(suggestedSizeRaw) ? Math.min(25, Math.max(0, suggestedSizeRaw)) : 0;
   
   // Risk level colors
   const riskColors = {
@@ -966,12 +981,12 @@ function FutureForecastCard({ forecast, band, currentPrice, horizon = '1D', meta
             {isDown && <TrendingDownIcon className="w-5 h-5 text-red-600" />}
             {!isUp && !isDown && <MinusIcon className="w-5 h-5 text-gray-400" />}
             <span className="metric-value metric-value-lg text-gray-900">
-              ${forecast.targetPrice?.toLocaleString()}
+              {targetPriceNum != null ? `$${Math.round(targetPriceNum).toLocaleString()}` : '—'}
             </span>
             <span className={`text-sm font-semibold ${
               isUp ? 'text-emerald-600' : isDown ? 'text-red-600' : 'text-gray-500'
             }`}>
-              {forecast.expectedMovePct > 0 ? '+' : ''}{forecast.expectedMovePct?.toFixed(2)}%
+              {expectedMove > 0 ? '+' : ''}{expectedMove.toFixed(2)}%
             </span>
           </div>
         </div>
@@ -980,7 +995,7 @@ function FutureForecastCard({ forecast, band, currentPrice, horizon = '1D', meta
           <div className="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-medium">CONFIDENCE</div>
           <div className="flex items-center gap-1.5 justify-end">
             <div className="metric-value metric-value-lg text-gray-900">
-              {(forecast.confidence * 100).toFixed(0)}%
+              {(confidence * 100).toFixed(0)}%
             </div>
             {isMetaAdjusted && rawConfidence && (
               <span className="text-[11px] text-gray-400 line-through">
@@ -990,13 +1005,13 @@ function FutureForecastCard({ forecast, band, currentPrice, horizon = '1D', meta
           </div>
         </div>
         
-        {band && (
+        {band && (band.lower || band.low || band.upper || band.high) && (
           <TooltipProvider delayDuration={0}>
             <Tooltip>
               <TooltipTrigger className="text-right">
                 <div className="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-medium">BAND</div>
                 <div className="text-sm text-gray-600 font-medium">
-                  ${band.lower?.toLocaleString()} — ${band.upper?.toLocaleString()}
+                  ${(band.lower ?? band.low)?.toLocaleString?.() ?? '—'} — ${(band.upper ?? band.high)?.toLocaleString?.() ?? '—'}
                 </div>
               </TooltipTrigger>
               <TooltipContent className="tooltip-dark">
@@ -1028,7 +1043,7 @@ function FutureForecastCard({ forecast, band, currentPrice, horizon = '1D', meta
         <div className="text-right">
           <div className="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-medium">EVALUATE AT</div>
           <div className="text-sm text-gray-600 font-medium">
-            {targetTime.toLocaleString()}
+            {Number.isFinite(targetTime.getTime?.()) ? targetTime.toLocaleString() : '—'}
           </div>
         </div>
       </div>

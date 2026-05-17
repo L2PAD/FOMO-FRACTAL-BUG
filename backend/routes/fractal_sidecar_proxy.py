@@ -124,3 +124,26 @@ def sidecar_health(request: Request):
 @router.get("/ui/brain/decision")
 def ui_overview(request: Request):
     return _proxy(request)
+
+
+# ── Sentiment UI V2 (existing TS module registerSentimentUIV2Routes) ──
+# Real handlers in /app/legacy/backend-src/modules/sentiment-ml/chart/*.
+# Must win over legacy_compat catch-all (which returns stub_empty).
+@router.get("/market/chart/sentiment-v2")
+@router.get("/market/sentiment/performance-v2")
+@router.get("/market/sentiment/top-alts-v2")
+@router.get("/market/sentiment/equity-v2")
+def sentiment_ui_v2(request: Request):
+    return _proxy(request)
+
+
+# ── Exchange UI V2 (existing TS module registerExchangeUIV2Routes) ────
+# Real handlers in /app/legacy/backend-src/modules/exchange-ml/chart/*.
+@router.get("/market/chart/exchange-v2")
+@router.get("/market/chart/exchange-v3")
+@router.get("/market/chart/forecast-evolution")
+@router.get("/market/exchange/performance-v2")
+@router.get("/market/exchange/top-alts-v2")
+@router.get("/market/exchange/equity-v2")
+def exchange_ui_v2(request: Request):
+    return _proxy(request)

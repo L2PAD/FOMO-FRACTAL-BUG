@@ -69,9 +69,10 @@ function getDateBucket(offsetDays) {
   return d.toISOString().slice(0, 10);
 }
 
-/** Find the best matching row for a given date bucket */
+/** Find the best matching row for a given date bucket (null-safe) */
 function findRowForDate(rows, dateBucket) {
-  return rows.find(r => (r.evaluateAt || '').slice(0, 10) === dateBucket) || null;
+  if (!Array.isArray(rows) || rows.length === 0) return null;
+  return rows.find(r => (r && (r.evaluateAt || '')).slice(0, 10) === dateBucket) || null;
 }
 
 export default function ExchangePerformanceTableV2({ symbol = 'BTC', horizon = '7D', limit = 30 }) {
@@ -92,9 +93,11 @@ export default function ExchangePerformanceTableV2({ symbol = 'BTC', horizon = '
 
   // Compute fixed top 3 rows and remaining pending
   const { topRows, pendingRest, summary } = useMemo(() => {
-    if (!data) return { topRows: [], pendingRest: [], summary: null };
+    const emptySummary = { winRate: 0, avgReturn: 0, evaluated: 0, total: 0, overdue: 0 };
+    if (!data) return { topRows: [], pendingRest: [], summary: emptySummary };
 
-    const { rows, summary } = data;
+    const rows = Array.isArray(data?.rows) ? data.rows : [];
+    const summary = (data && typeof data.summary === 'object' && data.summary) ? data.summary : emptySummary;
     const yesterdayBucket = getDateBucket(-1);
     const todayBucket = getDateBucket(0);
     const tomorrowBucket = getDateBucket(1);
@@ -114,7 +117,7 @@ export default function ExchangePerformanceTableV2({ symbol = 'BTC', horizon = '
 
     // Remaining pending rows (exclude top 3, sorted by evaluateAt ASC)
     const pendingRest = rows
-      .filter(r => r.outcome === 'PENDING' && !topEvalDates.has(r.evaluateAt))
+      .filter(r => r && r.outcome === 'PENDING' && !topEvalDates.has(r.evaluateAt))
       .sort((a, b) => new Date(a.evaluateAt) - new Date(b.evaluateAt));
 
     return { topRows, pendingRest, summary };
@@ -123,6 +126,12 @@ export default function ExchangePerformanceTableV2({ symbol = 'BTC', horizon = '
   if (loading) return <div className="text-center py-8" style={{ color: '#94a3b8', fontSize: 13 }}>Loading...</div>;
   if (!data) return <div className="text-center py-8" style={{ color: '#94a3b8', fontSize: 13 }}>No data</div>;
 
+  const sWinRate = Number.isFinite(summary?.winRate) ? summary.winRate : 0;
+  const sAvgReturn = Number.isFinite(summary?.avgReturn) ? summary.avgReturn : 0;
+  const sEvaluated = Number.isFinite(summary?.evaluated) ? summary.evaluated : 0;
+  const sTotal = Number.isFinite(summary?.total) ? summary.total : 0;
+  const sOverdue = Number.isFinite(summary?.overdue) ? summary.overdue : 0;
+
   return (
     <div data-testid="exchange-performance-table">
       {/* Summary bar */}
@@ -130,28 +139,28 @@ export default function ExchangePerformanceTableV2({ symbol = 'BTC', horizon = '
         <div className="flex items-center gap-1.5">
           <span style={{ color: '#64748b', fontSize: 12 }}>Win Rate</span>
           <span className="font-bold tabular-nums" data-testid="perf-win-rate"
-            style={{ fontSize: 15, color: summary.winRate >= 0.5 ? '#16a34a' : summary.winRate >= 0.3 ? '#d97706' : '#dc2626' }}>
-            {(summary.winRate * 100).toFixed(0)}%
+            style={{ fontSize: 15, color: sWinRate >= 0.5 ? '#16a34a' : sWinRate >= 0.3 ? '#d97706' : '#dc2626' }}>
+            {(sWinRate * 100).toFixed(0)}%
           </span>
         </div>
         <div className="flex items-center gap-1.5">
           <span style={{ color: '#64748b', fontSize: 12 }}>Avg Return</span>
           <span className="font-bold tabular-nums" data-testid="perf-avg-return"
-            style={{ fontSize: 15, color: summary.avgReturn >= 0 ? '#16a34a' : '#dc2626' }}>
-            {summary.avgReturn >= 0 ? '+' : ''}{(summary.avgReturn * 100).toFixed(2)}%
+            style={{ fontSize: 15, color: sAvgReturn >= 0 ? '#16a34a' : '#dc2626' }}>
+            {sAvgReturn >= 0 ? '+' : ''}{(sAvgReturn * 100).toFixed(2)}%
           </span>
         </div>
         <div className="flex items-center gap-1.5">
           <span style={{ color: '#64748b', fontSize: 12 }}>Evaluated</span>
           <span className="tabular-nums" style={{ fontSize: 13, color: '#0f172a' }}>
-            {summary.evaluated}/{summary.total}
+            {sEvaluated}/{sTotal}
           </span>
         </div>
-        {summary.overdue > 0 && (
+        {sOverdue > 0 && (
           <div className="flex items-center gap-1.5">
             <span style={{ color: '#b45309', fontSize: 12 }}>Overdue</span>
             <span className="tabular-nums" style={{ fontSize: 13, color: '#b45309' }}>
-              {summary.overdue}
+              {sOverdue}
             </span>
           </div>
         )}

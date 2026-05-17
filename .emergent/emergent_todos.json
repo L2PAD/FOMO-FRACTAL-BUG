@@ -1,26 +1,30 @@
 [
   {
-    "content": "Audit Exchange module — find all stubs",
+    "content": "Patch ExchangePerformanceTableV2 & SentimentPerformanceTableV3 null-safe (DONE)",
     "status": "completed"
   },
   {
-    "content": "Create exchange_extras_real.py covering 15 stubs (screener, segments, ops, registry)",
+    "content": "Add global ErrorBoundary (DONE)",
     "status": "completed"
   },
   {
-    "content": "Fix labs/service.py KeyError(totalRisk) bug",
+    "content": "Extend legacy_compat catch-all for /performance* (DONE)",
     "status": "completed"
   },
   {
-    "content": "Mount router BEFORE legacy_compat & verify 0 stubs remain",
+    "content": "Build real /api/market/exchange/performance-v2 + sentiment-v2/v3 (DONE — reads exchange_forecasts)",
     "status": "completed"
   },
   {
-    "content": "Create EXCHANGE_API.md + scripts/cold_boot_exchange.sh + extend bootstrap.sh",
+    "content": "Build /api/ui/telemetry/error to receive client-side crash reports (DONE)",
     "status": "completed"
   },
   {
-    "content": "Final RCA + summary message (Russian)",
+    "content": "Fix Alpha page NaN% / Invalid Date / Loading… / flat Expected Range from price-vs-expectation-v4 payload",
     "status": "in_progress"
+  },
+  {
+    "content": "Screenshot verification of Alpha + Exchange + Sentiment tabs (no overlay, no NaN, real numbers)",
+    "status": "pending"
   }
 ]

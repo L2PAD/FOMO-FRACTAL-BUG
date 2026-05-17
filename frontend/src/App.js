@@ -9,6 +9,7 @@ import { AuthProvider } from "./context/AuthContext";
 import AppLayout from "./layout/AppLayout";
 import { useDashboard } from "./hooks/useDashboard";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 // Loading component for Suspense fallback
 const PageLoader = () => (
@@ -416,6 +417,7 @@ function App() {
         <BrowserRouter>
         <AuthProvider>
           <Suspense fallback={<PageLoader />}>
+            <ErrorBoundary scope="app-router">
             <Routes>
               {/* Admin Panel Routes (standalone, no main layout) */}
               <Route path="/admin/login" element={<AdminLoginPage />} />
@@ -867,6 +869,7 @@ function App() {
               <Route path="/*" element={<Navigate to="/intelligence/price-expectation-v2" replace />} />
             </Route>
           </Routes>
+          </ErrorBoundary>
         </Suspense>
         <Toaster position="top-right" />
         </AuthProvider>

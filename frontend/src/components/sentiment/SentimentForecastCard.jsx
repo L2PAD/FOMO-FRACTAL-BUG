@@ -85,16 +85,22 @@ export default function SentimentForecastCard({
     );
   }
 
-  const { forecast, meta, reliability } = data;
-  const { safeMode, uriLevel } = meta;
-  const { rawConfidence, finalConfidence, uriMultiplier, calibrationMultiplier, capitalMultiplier } = reliability;
+  const { forecast = {}, meta = {}, reliability = {} } = data || {};
+  const { safeMode = false, uriLevel = null } = meta || {};
+  const {
+    rawConfidence = 0,
+    finalConfidence = 0,
+    uriMultiplier = 1,
+    calibrationMultiplier = 1,
+    capitalMultiplier = 1,
+  } = reliability || {};
   
   // Use horizon from API response for accurate label
-  const actualHorizon = meta.horizon || horizon;
+  const actualHorizon = meta?.horizon || horizon;
 
-  const isUp = forecast.direction === 'LONG';
-  const isDown = forecast.direction === 'SHORT';
-  const isNeutral = forecast.direction === 'NEUTRAL';
+  const isUp = forecast?.direction === 'LONG';
+  const isDown = forecast?.direction === 'SHORT';
+  const isNeutral = forecast?.direction === 'NEUTRAL';
 
   // Calculate target time
   const horizonMs = {
@@ -105,10 +111,16 @@ export default function SentimentForecastCard({
   const targetTime = new Date(Date.now() + (horizonMs[actualHorizon] || horizonMs['24H']));
 
   // Kelly-based position sizing
-  const confidence = finalConfidence;
-  const rewardRisk = Math.abs(forecast.expectedMovePct) / 0.02; // Assume 2% stop
-  const kellyFraction = Math.max(0, (confidence * rewardRisk - (1 - confidence)) / rewardRisk);
-  const suggestedSize = Math.min(25, Math.round(kellyFraction * 100 * 0.5)); // Half-Kelly, max 25%
+  const confidence = Number.isFinite(finalConfidence) ? finalConfidence : 0;
+  const moveAbs = Math.abs(Number(forecast?.expectedMovePct) || 0);
+  const rewardRisk = moveAbs / 0.02; // Assume 2% stop
+  const kellyFraction = rewardRisk > 0
+    ? Math.max(0, (confidence * rewardRisk - (1 - confidence)) / rewardRisk)
+    : 0;
+  const suggestedSizeRaw = Math.round(kellyFraction * 100 * 0.5);
+  const suggestedSize = Number.isFinite(suggestedSizeRaw)
+    ? Math.min(25, Math.max(0, suggestedSizeRaw))
+    : 0;
 
   // Direction badge color
   const directionColor = safeMode 
@@ -173,16 +185,18 @@ export default function SentimentForecastCard({
             {isDown && !safeMode && <TrendingDownIcon className="w-5 h-5 text-red-600" />}
             {(isNeutral || safeMode) && <MinusIcon className="w-5 h-5 text-gray-400" />}
             <span className="text-2xl font-bold text-gray-900">
-              ${forecast.target?.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+              {forecast?.target != null
+                ? `$${Number(forecast.target).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+                : '—'}
             </span>
             <span className={`text-sm font-semibold px-2 py-0.5 rounded-lg ${
-              forecast.expectedMovePct > 0 && !safeMode
+              (forecast?.expectedMovePct || 0) > 0 && !safeMode
                 ? 'text-emerald-600 bg-emerald-50' 
-                : forecast.expectedMovePct < 0 && !safeMode
+                : (forecast?.expectedMovePct || 0) < 0 && !safeMode
                   ? 'text-red-600 bg-red-50' 
                   : 'text-gray-500 bg-gray-50'
             }`}>
-              {forecast.expectedMovePct > 0 ? '+' : ''}{(forecast.expectedMovePct * 100).toFixed(2)}%
+              {(forecast?.expectedMovePct || 0) > 0 ? '+' : ''}{((forecast?.expectedMovePct || 0) * 100).toFixed(2)}%
             </span>
           </div>
         </div>
@@ -210,7 +224,9 @@ export default function SentimentForecastCard({
             <TooltipTrigger className="text-right">
               <div className="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-medium">BAND</div>
               <div className="text-sm text-gray-600 font-medium">
-                ${forecast.bandLow?.toLocaleString(undefined, { maximumFractionDigits: 0 })} — ${forecast.bandHigh?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                {forecast?.bandLow != null && forecast?.bandHigh != null
+                  ? `$${Number(forecast.bandLow).toLocaleString(undefined, { maximumFractionDigits: 0 })} — $${Number(forecast.bandHigh).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+                  : '—'}
               </div>
             </TooltipTrigger>
             <TooltipContent className="bg-gray-900 text-white border-gray-800">
@@ -242,7 +258,7 @@ export default function SentimentForecastCard({
         <div className="text-right">
           <div className="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-medium">EVALUATE AT</div>
           <div className="text-sm text-gray-600 font-medium">
-            {targetTime.toLocaleString()}
+            {Number.isFinite(targetTime.getTime?.()) ? targetTime.toLocaleString() : '—'}
           </div>
         </div>
       </div>
@@ -277,7 +293,7 @@ export default function SentimentForecastCard({
       {/* Footer */}
       <div className="mt-3 pt-2 border-t border-gray-200/30 text-[10px] text-gray-400 flex items-center justify-between">
         <span>Source: Sentiment Module</span>
-        <span>Current: ${currentPrice?.toLocaleString() || forecast.entry?.toLocaleString()}</span>
+        <span>Current: ${currentPrice?.toLocaleString?.() ?? forecast?.entry?.toLocaleString?.() ?? '—'}</span>
       </div>
     </div>
   );
