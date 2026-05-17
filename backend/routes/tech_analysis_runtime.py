@@ -699,6 +699,40 @@ def ta_engine_mtf(symbol: str, timeframes: str = Query("4H,1D,7D,30D,180D,1Y")):
 
     confidence = round(max(long_votes, short_votes) / total, 2)
 
+    # ── MetaBrain 5-module consensus (overrides TF-only consensus for
+    # final decision visibility).  Same logic as /api/meta-brain-v2/state
+    # — fuses TA + Sentiment + Fractal + Exchange + OnChain through
+    # services.trading_runtime.build_verdict.  Returns the same `action`
+    # contract: LONG / SHORT / WAIT.
+    metabrain_block: Dict[str, Any] = {"available": False}
+    try:
+        from services.trading_runtime import build_verdict  # type: ignore
+        v = build_verdict(canonical)
+        if v and isinstance(v, dict):
+            metabrain_block = {
+                "available":      True,
+                "action":         v.get("action"),
+                "confidence":     v.get("confidence"),
+                "alignment":      v.get("alignment"),
+                "moduleConfidence": v.get("moduleConfidence"),
+                "moduleDegraded": v.get("moduleDegraded"),
+                "reasons":        (v.get("reasons") or [])[:4],
+                "blockedBy":      v.get("blockedBy") or [],
+                "currentPrice":   v.get("currentPrice"),
+                "support":        v.get("support"),
+                "resistance":     v.get("resistance"),
+                "entry":          v.get("entry"),
+                "stop":           v.get("stop"),
+                "target":         v.get("target"),
+                "rr":             v.get("rr"),
+                "risk":           v.get("risk"),
+                "sizeUsd":        v.get("sizeUsd"),
+                "source":         v.get("source"),
+                "asOf":           v.get("asOf"),
+            }
+    except Exception as _mb_err:
+        metabrain_block = {"available": False, "error": repr(_mb_err)[:120]}
+
     return {
         "ok": True,
         "path": f"/api/ta-engine/mtf/{symbol}",
@@ -716,8 +750,10 @@ def ta_engine_mtf(symbol: str, timeframes: str = Query("4H,1D,7D,30D,180D,1Y")):
             "waitVotes": wait_votes,
             "reasons": all_reasons,
         },
+        # 5-module fusion (TA + Sentiment + Fractal + Exchange + OnChain)
+        "metaBrain": metabrain_block,
         "asOf": _now_iso(),
-        "source": "ta_engine_mtf_v1",
+        "source": "ta_engine_mtf_v1+metabrain_v3",
     }
 
 
@@ -947,6 +983,37 @@ def miniapp_tech_analysis(asset: str = Query("BTC"), timeframe: str = Query("4H"
         except Exception:
             pass
 
+    # ── MetaBrain 5-module consensus for mobile/miniapp surface ────
+    metabrain_brief: Dict[str, Any] = {"available": False}
+    try:
+        from services.trading_runtime import build_verdict  # type: ignore
+        v = build_verdict(canonical) or {}
+        a = v.get("alignment") or {}
+        metabrain_brief = {
+            "available":      True,
+            "action":         v.get("action"),
+            "confidence":     v.get("confidence"),
+            "votes": {
+                "long":  a.get("longVotes", 0),
+                "short": a.get("shortVotes", 0),
+                "wait":  a.get("waitVotes", 0),
+            },
+            "modules": {
+                "ta":        a.get("ta"),
+                "sentiment": a.get("sentiment"),
+                "fractal":   a.get("fractal"),
+                "exchange":  a.get("exchange"),
+                "onchain":   a.get("onchain"),
+            },
+            "moduleConfidence": v.get("moduleConfidence") or {},
+            "moduleDegraded":   v.get("moduleDegraded") or {},
+            "activeVotes":      a.get("activeVotes"),
+            "blockedBy":        (v.get("blockedBy") or [])[:2],
+            "reasons":          (v.get("reasons") or [])[:3],
+        }
+    except Exception as _mb_err:
+        metabrain_brief = {"available": False, "error": repr(_mb_err)[:80]}
+
     return {
         "ok": True,
         "asset": canonical,
@@ -965,6 +1032,8 @@ def miniapp_tech_analysis(asset: str = Query("BTC"), timeframe: str = Query("4H"
         "reason": compact.get("reason"),
         "mtf": mtf_brief,
         "tradeSetup": trade_setup,
+        # 5-module fusion — Mobile/MiniApp UI can render module-by-module bias
+        "metaBrain": metabrain_brief,
         "asOf": _now_iso(),
     }
 
