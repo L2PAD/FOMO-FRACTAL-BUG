@@ -113,3 +113,14 @@ def brain_v2(request: Request):
 @router.get("/sidecar/healthz")
 def sidecar_health(request: Request):
     return _proxy(request)
+
+
+# ── Overview UI (real fractal forecast curve from Node engine) ───────
+# IMPORTANT: this MUST take precedence over the Python legacy_compat
+# /api/ui/overview which returns a straight-line interpolation.  The Node
+# sidecar version returns the *real* analog-cohort forecast trajectory.
+@router.get("/ui/overview")
+@router.get("/ui/snapshot")
+@router.get("/ui/brain/decision")
+def ui_overview(request: Request):
+    return _proxy(request)
