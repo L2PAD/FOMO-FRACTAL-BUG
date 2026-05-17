@@ -32,7 +32,7 @@
     "status": "completed"
   },
   {
-    "content": "Seed news_sources (119) и прогнать RSS pipeline (ОК 1397 articles)",
+    "content": "Seed news_sources (119) и прогнать RSS pipeline (ОК 2773 articles)",
     "status": "completed"
   },
   {
@@ -44,7 +44,7 @@
     "status": "completed"
   },
   {
-    "content": "E2E тестирование backend через testing_agent",
-    "status": "in_progress"
+    "content": "E2E testing_agent backend: 100% (34/34 endpoints LIVE)",
+    "status": "completed"
   }
 ]
