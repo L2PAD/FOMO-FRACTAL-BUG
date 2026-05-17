@@ -73,7 +73,36 @@ export default function BtcForecastChart({ data, horizon, hideForecast, oneDayOv
     chartRef.current = chart;
 
     const { priceSeries, rollingForecasts, nowTs } = data;
-    const nowSec = Math.floor(nowTs / 1000);
+    const nowSec = Math.floor((Number(nowTs) || 0) / 1000);
+
+    // Defensive: filter out malformed price points (NaN time/value).
+    // priceSeries items can be either {t,p} (exchange/ta graph4) or
+    // {ts,price} (legacy shape).  We accept both, but require finite
+    // numbers for the lightweight-charts setData assertion.
+    const cleanPricePts = (priceSeries || [])
+      .map(pt => {
+        const tRaw = pt.t ?? pt.ts ?? pt.time;
+        const vRaw = pt.p ?? pt.price ?? pt.value;
+        const time = Math.floor(Number(tRaw) / 1000);
+        const value = Number(vRaw);
+        return { time, value };
+      })
+      .filter(pt => Number.isFinite(pt.time) && Number.isFinite(pt.value));
+
+    // Sort + dedupe by time so lightweight-charts strict asc-order assert passes
+    cleanPricePts.sort((a, b) => a.time - b.time);
+    const dedupedPrice = [];
+    for (const pt of cleanPricePts) {
+      if (dedupedPrice.length === 0 || dedupedPrice[dedupedPrice.length - 1].time !== pt.time) {
+        dedupedPrice.push(pt);
+      } else {
+        dedupedPrice[dedupedPrice.length - 1].value = pt.value;
+      }
+    }
+    if (dedupedPrice.length === 0) {
+      // Nothing real to draw — bail out instead of crashing the page.
+      return;
+    }
 
     // Price line (green)
     const priceLine = chart.addSeries(LineSeries, {
@@ -83,20 +112,26 @@ export default function BtcForecastChart({ data, horizon, hideForecast, oneDayOv
       lastValueVisible: true,
       crosshairMarkerVisible: true,
     });
-    priceLine.setData(priceSeries.map(pt => ({
-      time: Math.floor(pt.t / 1000),
-      value: pt.p,
-    })));
+    priceLine.setData(dedupedPrice);
 
     // Forecast curve (black) — normalized rolling expectations
     let forecastLineRef = null;
-    if (!hideForecast && rollingForecasts.length > 0) {
+    if (!hideForecast && Array.isArray(rollingForecasts) && rollingForecasts.length > 0) {
       // Build normalized points: x = madeAt + horizon, y = entryPrice * (1 + movePct/100)
       const rawPts = [];
       for (const f of rollingForecasts) {
-        const targetSec = Math.floor(f.madeAtTs / 1000) + f.horizonDays * DAY_SEC;
-        const normalizedY = f.entryPrice * (1 + f.expectedMovePct / 100);
-        if (normalizedY > 0) {
+        const madeAtMs = Number(f?.madeAtTs);
+        const horizonDays = Number(f?.horizonDays);
+        const entryPrice = Number(f?.entryPrice);
+        const movePct = Number(f?.expectedMovePct) || 0;
+        if (!Number.isFinite(madeAtMs) || madeAtMs <= 0 ||
+            !Number.isFinite(horizonDays) || horizonDays <= 0 ||
+            !Number.isFinite(entryPrice) || entryPrice <= 0) {
+          continue;  // skip malformed forecast row instead of poisoning the chart
+        }
+        const targetSec = Math.floor(madeAtMs / 1000) + horizonDays * DAY_SEC;
+        const normalizedY = entryPrice * (1 + movePct / 100);
+        if (Number.isFinite(targetSec) && Number.isFinite(normalizedY) && normalizedY > 0) {
           rawPts.push({ time: targetSec, value: normalizedY });
         }
       }

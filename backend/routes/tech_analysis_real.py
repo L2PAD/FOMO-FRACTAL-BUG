@@ -395,11 +395,15 @@ def ta_prediction_graph4(
         if ts is None or close is None:
             continue
         try:
-            price_series.append({"ts": int(ts), "price": float(close)})
-            now_ts = int(ts)
-            now_price = float(close)
+            ts_int = int(ts)
+            close_f = float(close)
         except Exception:
             continue
+        # Schema MUST match /api/prediction/exchange/graph4 → {t, p}
+        # so BtcForecastChart.jsx (Math.floor(pt.t / 1000)) works for both.
+        price_series.append({"t": ts_int, "p": close_f})
+        now_ts = ts_int
+        now_price = close_f
 
     ta = _call_native_ta(sym)
     rolling: List[Dict[str, Any]] = []
