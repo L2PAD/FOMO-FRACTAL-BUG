@@ -175,6 +175,20 @@ except Exception as _eer_err:  # pragma: no cover
     print(f"[ExchangeExtrasReal] import failed: {_eer_err!r}")
 
 
+# ── Intelligence / Alpha aggregator (real-data) ── (must be mounted
+# BEFORE legacy_compat).  Powers the Alpha page big payload
+# /api/market/chart/price-vs-expectation-v4 + the /api/intelligence/*
+# sub-cards + the /api/news/stories + /api/sentiment/{twitter,events}
+# feeds.  All backed by trading_runtime.build_verdict (5-module
+# MetaBrain) + exchange_forecasts + intel_news_stories + sentiment_events.
+try:
+    from routes.intelligence_real import router as _intelligence_real_router
+    app.include_router(_intelligence_real_router)
+    print("[IntelligenceReal] mounted: /api/market/chart/price-vs-expectation-v4 + /api/intelligence/{v3/alpha,alpha,system-health,decision-drivers,signal-drivers,expected-range} + /api/news/stories + /api/sentiment/{twitter,events}")
+except Exception as _ir_err:  # pragma: no cover
+    print(f"[IntelligenceReal] import failed: {_ir_err!r}")
+
+
 # ── Stage A-4: Sentiment Runtime (events-based, LLM-independent) ──
 # Mounted BEFORE the trading-terminal gateway / node proxy so
 # /api/sentiment/runtime/* literal routes win over upstream-503 forwarders.
