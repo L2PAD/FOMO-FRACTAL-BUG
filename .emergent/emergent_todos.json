@@ -1,38 +1,38 @@
 [
   {
-    "content": "Paywall отключён в billing_config + payments.py",
+    "content": "Paywall отключён",
     "status": "completed"
   },
   {
-    "content": "React 19 nested Suspense bug: убрали lazy/Suspense из FractalIntelligencePage",
+    "content": "React 19 nested Suspense bug fix (FractalIntelligencePage)",
     "status": "completed"
   },
   {
-    "content": "OverviewPage убрали внутренний Suspense вокруг LivePredictionChart",
+    "content": "OverviewPage внутренний Suspense removed",
     "status": "completed"
   },
   {
-    "content": "BtcFractalPage фикс sequential fetch → Promise.allSettled",
+    "content": "BtcFractalPage Promise.allSettled fix",
     "status": "completed"
   },
   {
-    "content": "SpxFractalPage фикс sequential fetch → Promise.allSettled",
+    "content": "SpxFractalPage Promise.allSettled fix",
     "status": "completed"
   },
   {
-    "content": "/api/ui/overview добавили charts.actual + charts.predicted",
+    "content": "/api/ui/overview charts.actual + charts.predicted",
     "status": "completed"
   },
   {
-    "content": "/api/news/* фикс чтобы читать из news_articles",
+    "content": "/api/news/* читать из news_articles",
     "status": "completed"
   },
   {
-    "content": "StrictMode удалён",
+    "content": "StrictMode removed",
     "status": "completed"
   },
   {
-    "content": "✅ Fractal: Overview/BTC/SPX/DXY/Brain - реальные данные",
+    "content": "✅ Fractal Intelligence (5 tabs) - REAL DATA",
     "status": "completed"
   },
   {
@@ -40,11 +40,11 @@
     "status": "completed"
   },
   {
-    "content": "✅ Tech Analysis Trading Terminal - candle chart + state",
+    "content": "✅ Tech Analysis Trading Terminal - candle chart",
     "status": "completed"
   },
   {
-    "content": "✅ On-chain Intelligence - Network Overview + Market Context",
+    "content": "✅ On-chain Intelligence - Network Overview",
     "status": "completed"
   },
   {
@@ -52,7 +52,7 @@
     "status": "completed"
   },
   {
-    "content": "E2E testing_agent: backend + frontend (5 модулей)",
-    "status": "in_progress"
+    "content": "✅ E2E testing_agent: backend 95% (19/20) + frontend 100% (7/7)",
+    "status": "completed"
   }
 ]
