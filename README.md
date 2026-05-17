@@ -22,6 +22,8 @@ bash /app/scripts/run_sentiment.sh
 | Документ | Что внутри |
 |---|---|
 | **[PROJECT.md](./PROJECT.md)** ⭐ | **Главный документ**: архитектура, 5 модулей, Sentiment, Google auth, Chrome Extension, deployment, validation checklist |
+| **[FRACTAL_API.md](./FRACTAL_API.md)** 🆕 | **Fractal & Meta Brain API**: endpoints, contracts, rolling-forecast pipeline, data sources |
+| **[FRACTAL_DEPLOYMENT.md](./FRACTAL_DEPLOYMENT.md)** 🆕 | **Fractal deployment**: все встреченные ошибки и фиксы, supervisor configs, troubleshooting |
 | **[MODULES.md](./MODULES.md)** | Детальное описание **5 модулей MetaBrain** с диаграммами зависимостей, файлами и endpoints |
 | **[MOBILE_AND_MINIAPP.md](./MOBILE_AND_MINIAPP.md)** ⭐ | **Mobile (Expo Android/iOS) + Telegram MiniApp**: структура, routing, auth flow, 57 MiniApp endpoints, связь Web↔Mobile↔MiniApp, acceptance checklist |
 | **[CODE_DIAGRAM.md](./CODE_DIAGRAM.md)** | Визуальные диаграммы: system, backend tree, frontend tree, data flow для Sentiment, Extension flow, router order |

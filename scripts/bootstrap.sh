@@ -229,3 +229,21 @@ echo "→ Web UI:   откройте preview URL"
 echo "→ Backend:  $BACKEND_URL/api/"
 echo "→ Logs:     tail -f /var/log/supervisor/backend.*.log"
 echo "→ Sentiment refresh:  bash /app/scripts/run_sentiment.sh"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 7) FRACTAL & META BRAIN — cold-boot extension
+# ─────────────────────────────────────────────────────────────────────────────
+hdr "7. FRACTAL & META BRAIN"
+if [ "$VERIFY_ONLY" = 1 ]; then
+  bash /app/scripts/cold_boot_fractal.sh --verify-only || warn "Fractal verify reported issues"
+else
+  if [ "$SKIP_SEED" = 1 ]; then
+    bash /app/scripts/cold_boot_fractal.sh --no-backfill || warn "Fractal cold-boot returned non-zero"
+  else
+    bash /app/scripts/cold_boot_fractal.sh || warn "Fractal cold-boot returned non-zero"
+  fi
+fi
+
+echo ""
+echo "→ Fractal docs:        cat /app/FRACTAL_API.md"
+echo "→ Fractal deployment:  cat /app/FRACTAL_DEPLOYMENT.md"
