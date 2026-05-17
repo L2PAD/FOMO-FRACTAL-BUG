@@ -119,6 +119,16 @@ except Exception as _lc_err:  # pragma: no cover
     print(f"[LegacyCompat] import failed: {_lc_err!r}")
 
 
+# ── Fractal Sidecar Proxy ── (MUST be mounted BEFORE legacy_compat
+# and fractal_ui_adapter so the real Node engine wins on collisions.)
+try:
+    from routes.fractal_sidecar_proxy import router as _fractal_sidecar_proxy_router
+    app.include_router(_fractal_sidecar_proxy_router)
+    print("[FractalSidecarProxy] mounted: /api/fractal/v2.1/*, /api/fractal/{spx,dxy}/*, /api/overlay/* -> :8003")
+except Exception as _fsp_err:  # pragma: no cover
+    print(f"[FractalSidecarProxy] import failed: {_fsp_err!r}")
+
+
 # ── Stage A-4: Sentiment Runtime (events-based, LLM-independent) ──
 # Mounted BEFORE the trading-terminal gateway / node proxy so
 # /api/sentiment/runtime/* literal routes win over upstream-503 forwarders.

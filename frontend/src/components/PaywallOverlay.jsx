@@ -85,6 +85,10 @@ export default function PaywallOverlay() {
   // Don't show if not authenticated, or is PRO, or free access, or paywall disabled, or on settings/admin page
   const isSettingsPage = location.pathname.startsWith('/settings');
   const isAdminPage = location.pathname.startsWith('/admin');
+  // FOMO: paywall globally bypassed by product decision (free_trial mode + paywall_enabled=false in billing_config).
+  // Keep the component mounted for plan fetch / promo flows, but never render the overlay UI.
+  return null;
+  // eslint-disable-next-line no-unreachable
   if (!isAuthenticated || isPro || freeAccess || !paywallEnabled || isSettingsPage || isAdminPage) return null;
 
   const plan = plans;

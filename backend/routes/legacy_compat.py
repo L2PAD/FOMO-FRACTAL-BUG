@@ -35,6 +35,47 @@ _client    = MongoClient(_mongo_url)
 _db        = _client[_db_name]
 
 
+# ── Node sidecar (Fractal v2.1 engine) ──────────────────────────────
+_NODE_SIDECAR_URL = os.environ.get("NODE_SIDECAR_URL", "http://127.0.0.1:8003")
+_node_client = httpx.Client(timeout=httpx.Timeout(30.0, connect=3.0))
+
+
+def _proxy_to_node_sidecar(request: Request):
+    """Transparent proxy to the Node sidecar that owns the real Fractal
+    v2.1 cosine-similarity engine, replay/synthetic/hybrid services, and
+    BTC × SPX overlay math.
+
+    Preserves path + query string, passes through JSON body for non-GET
+    if ever needed.  On sidecar failure returns honest 502 with a debug
+    envelope (never fabricates fractal data).
+    """
+    target = f"{_NODE_SIDECAR_URL}{request.url.path}"
+    if request.url.query:
+        target = f"{target}?{request.url.query}"
+    try:
+        r = _node_client.request(request.method, target)
+    except Exception as e:
+        return JSONResponse(
+            status_code=502,
+            content={
+                "ok": False,
+                "error": "node_sidecar_unreachable",
+                "detail": str(e),
+                "upstream": target,
+            },
+        )
+    # Pass body through verbatim; copy content-type
+    try:
+        body = r.json()
+        return JSONResponse(content=body, status_code=r.status_code)
+    except Exception:
+        return JSONResponse(
+            status_code=r.status_code or 502,
+            content={"ok": False, "error": "node_sidecar_bad_json",
+                     "upstream_status": r.status_code, "raw": r.text[:512]},
+        )
+
+
 # ── Helpers ────────────────────────────────────────────────────────
 _BINANCE_MAP = {"BTC": "BTCUSDT", "ETH": "ETHUSDT", "SOL": "SOLUSDT",
                 "SPX": None, "DXY": None}
@@ -1408,8 +1449,6 @@ def exchange_overview(asset: str = Query("BTC")):
 @router.get("/fractal/overview")
 @router.get("/fractal/snapshot")
 @router.get("/fractal/v2.1/snapshot")
-@router.get("/fractal/spx")
-@router.get("/fractal/dxy")
 @router.get("/fractal/v2")
 def fractal_overview(
     asset: str = Query("BTC"),
@@ -1418,7 +1457,10 @@ def fractal_overview(
     focus: Optional[str] = Query(None),
     request: Request = None,
 ):
-    # Auto-detect asset from path (/api/fractal/spx → SPX, /api/fractal/dxy → DXY)
+    # NOTE: /fractal/spx and /fractal/dxy moved to fractal_scope_proxy
+    # below (real Node sidecar engine).  This legacy DB-backed handler
+    # only covers the leftover /fractal/overview, /fractal/snapshot,
+    # /fractal/v2.1/snapshot and /fractal/v2 paths.
     sym = (symbol or asset or "BTC").upper()
     if request is not None:
         p = str(request.url.path).lower()
@@ -1466,50 +1508,7 @@ def fractal_overview(
     })
 
 
-@router.get("/fractal/v2.1/focus-pack")
-@router.get("/fractal/v2.1/overlay")
-@router.get("/fractal/v2.1/chart")
-def fractal_v21_packs(
-    symbol: str = Query("BTC"),
-    asset: Optional[str] = Query(None),
-    focus: str = Query("30d"),
-    horizon: Optional[str] = Query(None),
-    windowLen: Optional[int] = Query(None),
-    limit: int = Query(450),
-):
-    sym = (asset or symbol or "BTC").upper()
-    h_map = {"7d": "7D", "14d": "7D", "30d": "30D", "90d": "90D", "180d": "180D", "365d": "365D"}
-    h_key = h_map.get((focus or "30d").lower(), horizon or "30D")
-    col_name = f"{sym.lower()}_fractal_forecasts"
-    forecasts = []
-    try:
-        if col_name in _db.list_collection_names():
-            forecasts = list(_db[col_name].find(
-                {"source": "fractal_native_v1"},
-                {"_id": 0},
-            ).sort("createdAt", DESCENDING).limit(limit))
-    except Exception:
-        forecasts = []
-    headline = None
-    for f in forecasts:
-        if f.get("horizon") == h_key:
-            headline = f
-            break
-    candles = _binance_klines(sym, 365) or []
-    return _empty_ok({
-        "symbol":     sym,
-        "asset":      sym,
-        "focus":      focus,
-        "horizon":    h_key,
-        "headline":   headline,
-        "forecasts":  forecasts,
-        "overlay":    [{"t": f.get("createdAt") if isinstance(f.get("createdAt"), str) else (f.get("createdAt").isoformat() if f.get("createdAt") else None), "value": f.get("entryPrice")} for f in forecasts[:50]],
-        "candles":    candles,
-        "windowLen":  windowLen or 120,
-        "source":     "fractal_native_v1",
-    })
-
-
+@router.get("/fractal/btc/forecasts")
 @router.get("/fractal/spx/forecasts")
 @router.get("/fractal/dxy/forecasts")
 def fractal_scope_forecasts(
@@ -1517,8 +1516,12 @@ def fractal_scope_forecasts(
     limit: int = Query(20),
     request: Request = None,
 ):
-    sym = "SPX"
-    if request is not None and "/dxy" in str(request.url.path).lower():
+    """Legacy forecasts list (kept on Python side — DB-backed)."""
+    sym = "BTC"
+    path = str(request.url.path).lower() if request is not None else ""
+    if "/spx" in path:
+        sym = "SPX"
+    elif "/dxy" in path:
         sym = "DXY"
     col_name = f"{sym.lower()}_fractal_forecasts"
     try:

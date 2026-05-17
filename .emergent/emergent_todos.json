@@ -1,18 +1,30 @@
 [
   {
-    "content": "Add compute_native_forward_trajectory() to native_engine.py (real analog curve)",
+    "content": "Inspect /app/legacy/backend-src/ structure & entry point",
     "status": "completed"
   },
   {
-    "content": "Wire trajectory into /api/ui/overview predicted series (replace linear interpolation)",
+    "content": "Install Node deps + build TypeScript",
     "status": "completed"
   },
   {
-    "content": "Verify curve has real shape (not straight line)",
+    "content": "Configure Node sidecar on port 8003 via supervisor",
     "status": "completed"
   },
   {
-    "content": "Visual confirmation on /fractal/overview 365d",
+    "content": "Bootstrap BTC/SPX/DXY canonical data into fomo_mobile DB",
+    "status": "completed"
+  },
+  {
+    "content": "Wire Python proxy /api/fractal/v2.1/* /api/fractal/{spx,dxy}/* /api/overlay/* -> Node 8003",
+    "status": "completed"
+  },
+  {
+    "content": "Bypass paywall overlay (FOMO product decision)",
+    "status": "completed"
+  },
+  {
+    "content": "Verify real Replay/Synthetic/Hybrid/BTC∧SPX endpoints",
     "status": "completed"
   }
 ]
