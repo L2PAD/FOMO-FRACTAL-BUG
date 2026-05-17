@@ -419,7 +419,11 @@ def ui_overview(asset: str = Query("btc"), horizon: int = Query(90)):
     }
 
     # ── 9.5 Charts: actual + predicted series for LivePredictionChart ──
-    # actual = candles closes; predicted = linear projection over horizon based on overall_med (%)
+    # actual    = historical candle closes
+    # predicted = REAL daily forward trajectory built from top-K analog
+    #             cohort (median of historical paths) — NOT a linear
+    #             interpolation.  Falls back to median-anchored straight
+    #             line only if the native engine cannot find analogs.
     actual_series: List[dict] = []
     for c in candles:
         t = c.get("t")
@@ -435,16 +439,41 @@ def ui_overview(asset: str = Query("btc"), horizon: int = Query(90)):
         except Exception:
             last_t_dt = datetime.now(timezone.utc)
         last_v = float(last["v"])
-        # anchor on last actual
-        predicted_series.append({"t": last["t"], "v": last_v})
-        # step daily across horizon
-        target_pct = overall_med / 100.0  # overall_med is in %
-        steps = max(1, h_int)
-        for i in range(1, steps + 1):
-            frac = i / steps
-            v = last_v * (1.0 + target_pct * frac)
-            ts = (last_t_dt + timedelta(days=i)).strftime("%Y-%m-%dT00:00:00Z")
-            predicted_series.append({"t": ts, "v": round(v, 2)})
+
+        # --- Real fractal trajectory from analog cohort ---
+        traj_curve: List[float] = []
+        try:
+            from fractal_forecast.native_engine import (  # type: ignore
+                compute_native_forward_trajectory,
+            )
+            tj = compute_native_forward_trajectory(sym, h_int)
+            if tj.get("ok") and tj.get("trajectory"):
+                # Re-anchor the curve to the *latest candle close* so the
+                # predicted line continues seamlessly from the chart,
+                # while preserving the SHAPE of the historical median.
+                curve_prices = [float(p.get("price") or 0.0) for p in tj["trajectory"]]
+                if curve_prices and curve_prices[0] > 0:
+                    scale = last_v / curve_prices[0]
+                    traj_curve = [p * scale for p in curve_prices]
+        except Exception as _e:
+            traj_curve = []
+
+        if traj_curve and len(traj_curve) >= 2:
+            # Day 0 = anchor (today)
+            for i, v in enumerate(traj_curve):
+                ts = (last_t_dt + timedelta(days=i)).strftime("%Y-%m-%dT00:00:00Z")
+                predicted_series.append({"t": ts, "v": round(float(v), 2)})
+        else:
+            # Fallback: anchored straight line (legacy behaviour) if the
+            # native engine could not produce a trajectory.
+            predicted_series.append({"t": last["t"], "v": last_v})
+            target_pct = overall_med / 100.0
+            steps = max(1, h_int)
+            for i in range(1, steps + 1):
+                frac = i / steps
+                v = last_v * (1.0 + target_pct * frac)
+                ts = (last_t_dt + timedelta(days=i)).strftime("%Y-%m-%dT00:00:00Z")
+                predicted_series.append({"t": ts, "v": round(v, 2)})
 
     charts_payload = {
         "actual":    actual_series,

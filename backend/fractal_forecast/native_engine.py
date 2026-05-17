@@ -650,3 +650,162 @@ def compute_native_forecast(asset: str, horizons_days: Dict[str, int]) -> dict:
         "source":        "fractal_native_v1",
         "asOf":          now.isoformat(),
     }
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Public API: forward TRAJECTORY (daily curve) from analog cohort
+# ─────────────────────────────────────────────────────────────────────
+def compute_native_forward_trajectory(
+    asset: str,
+    horizon_days: int,
+) -> dict:
+    """Return the **daily median forward trajectory** built from the
+    top-K historical analogs that match the current 120-day window.
+
+    This is what powers the *curve* drawn on the Fractal overview chart:
+    instead of linearly interpolating from entry → target, we replay the
+    median normalized path of analog cohorts day by day.
+
+    Returns:
+        {
+          "ok": bool,
+          "asset": "BTC",
+          "currentPrice": float,
+          "horizonDays": int,
+          "trajectory": [
+              {"day": 0, "ratio": 1.0, "price": <currentPrice>},
+              {"day": 1, "ratio": <median ratio>, "price": <px>},
+              ...
+              {"day": H, "ratio": ..., "price": <targetPrice>}
+          ],
+          "analogCount": int,
+          "modelVersion": "fractal_native_v1",
+          "source": "fractal_native_v1",
+          "asOf": ISO,
+        }
+
+    On any failure → ok=False with degraded/reason fields and an empty
+    trajectory.  No silent fabrication.
+    """
+    asset = asset.upper()
+    now = datetime.now(timezone.utc)
+    horizon_days = max(1, int(horizon_days))
+
+    if yf is None or pd is None:
+        return {
+            "ok": False, "degraded": True,
+            "reason": "yfinance_or_pandas_unavailable",
+            "asset": asset, "horizonDays": horizon_days,
+            "trajectory": [], "analogCount": 0,
+            "modelVersion": "fractal_native_v1",
+            "source": "fractal_native_v1",
+            "asOf": now.isoformat(),
+        }
+
+    if asset not in YFINANCE_TICKERS:
+        return {
+            "ok": False, "degraded": True,
+            "reason": f"unsupported_asset_{asset}",
+            "asset": asset, "horizonDays": horizon_days,
+            "trajectory": [], "analogCount": 0,
+            "modelVersion": "fractal_native_v1",
+            "source": "fractal_native_v1",
+            "asOf": now.isoformat(),
+        }
+
+    asset_close = _fetch_close_series(asset)
+    if asset_close is None:
+        return {
+            "ok": False, "degraded": True,
+            "reason": "asset_history_unavailable",
+            "asset": asset, "horizonDays": horizon_days,
+            "trajectory": [], "analogCount": 0,
+            "modelVersion": "fractal_native_v1",
+            "source": "fractal_native_v1",
+            "asOf": now.isoformat(),
+        }
+
+    spx_close = _fetch_close_series("SPX")
+    dxy_close = _fetch_close_series("DXY")
+    asset_lr = _log_returns(asset_close)
+    analogs, _cur_regime = _find_analogs(asset_lr, spx_close, dxy_close, asset_close)
+
+    if not analogs:
+        return {
+            "ok": False, "degraded": True,
+            "reason": "no_analogs_found",
+            "asset": asset, "horizonDays": horizon_days,
+            "trajectory": [], "analogCount": 0,
+            "modelVersion": "fractal_native_v1",
+            "source": "fractal_native_v1",
+            "asOf": now.isoformat(),
+        }
+
+    arr = np.asarray(asset_close.values, dtype=float)
+    n = arr.size
+    current_price = float(arr[-1])
+
+    # Collect each analog's forward ratio path (length = horizon_days + 1).
+    #   ratio[d] = close[closeIdx + d] / close[closeIdx]
+    paths: List[np.ndarray] = []
+    for a in analogs:
+        ci = int(a.get("closeIdx") or 0)
+        if ci <= 0 or ci + horizon_days >= n:
+            continue
+        base = float(arr[ci])
+        if base <= 0:
+            continue
+        seg = arr[ci: ci + horizon_days + 1]
+        if seg.size != horizon_days + 1:
+            continue
+        ratios = seg / base
+        # Clip catastrophic single-analog moves so one outlier doesn't
+        # dominate the median curve.
+        ratios = np.clip(
+            ratios,
+            1.0 - ANALOG_RETURN_CLIP,
+            1.0 + ANALOG_RETURN_CLIP,
+        )
+        paths.append(ratios.astype(float))
+
+    if not paths:
+        return {
+            "ok": False, "degraded": True,
+            "reason": "no_complete_analog_paths",
+            "asset": asset, "horizonDays": horizon_days,
+            "trajectory": [], "analogCount": 0,
+            "modelVersion": "fractal_native_v1",
+            "source": "fractal_native_v1",
+            "asOf": now.isoformat(),
+        }
+
+    # Median across analogs at each forward day → preserves the
+    # characteristic SHAPE of historical cohorts (curves, drawdowns,
+    # mean-reversion bumps), not a straight line.
+    stack = np.vstack(paths)        # shape: (K, H+1)
+    median_curve = np.median(stack, axis=0)
+    # Anchor day 0 to exactly 1.0 (entry).
+    median_curve[0] = 1.0
+
+    trajectory: List[dict] = []
+    for d in range(horizon_days + 1):
+        ratio = float(median_curve[d])
+        trajectory.append({
+            "day":   int(d),
+            "ratio": round(ratio, 6),
+            "price": round(current_price * ratio, 4),
+        })
+
+    return {
+        "ok": True,
+        "degraded": False,
+        "reason": None,
+        "asset": asset,
+        "currentPrice": round(current_price, 4),
+        "horizonDays":  horizon_days,
+        "trajectory":   trajectory,
+        "analogCount":  int(len(paths)),
+        "modelVersion": "fractal_native_v1",
+        "source":       "fractal_native_v1",
+        "asOf":         now.isoformat(),
+    }

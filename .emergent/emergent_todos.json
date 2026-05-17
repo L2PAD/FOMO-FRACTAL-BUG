@@ -1,26 +1,18 @@
 [
   {
-    "content": "Verify all 5 modules via API (Fractal/Exchange/TA/Sentiment/Onchain)",
+    "content": "Add compute_native_forward_trajectory() to native_engine.py (real analog curve)",
     "status": "completed"
   },
   {
-    "content": "Verify Web /, Expo /m/, Telegram /miniapp URLs",
+    "content": "Wire trajectory into /api/ui/overview predicted series (replace linear interpolation)",
     "status": "completed"
   },
   {
-    "content": "Verify Telegram bot menu button + API keys present",
+    "content": "Verify curve has real shape (not straight line)",
     "status": "completed"
   },
   {
-    "content": "Take screenshots of main surfaces",
+    "content": "Visual confirmation on /fractal/overview 365d",
     "status": "completed"
-  },
-  {
-    "content": "Start mbrain_verdicts consensus loop (skipped — route already active on-demand)",
-    "status": "completed"
-  },
-  {
-    "content": "Send final confirmation message to user in Russian",
-    "status": "in_progress"
   }
 ]
