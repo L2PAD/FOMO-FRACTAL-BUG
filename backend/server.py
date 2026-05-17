@@ -129,6 +129,17 @@ except Exception as _fsp_err:  # pragma: no cover
     print(f"[FractalSidecarProxy] import failed: {_fsp_err!r}")
 
 
+# ── Rolling Forecast Snapshots ── (must be mounted BEFORE the Python
+# legacy_compat catch-all and BEFORE the sidecar's snapshots, so we
+# serve the historical walk-forward backfill the UI chart needs.)
+try:
+    from routes.rolling_snapshots import router as _rolling_snapshots_router
+    app.include_router(_rolling_snapshots_router)
+    print("[RollingSnapshots] mounted: /api/prediction/snapshots (walk-forward backfill)")
+except Exception as _rs_err:  # pragma: no cover
+    print(f"[RollingSnapshots] import failed: {_rs_err!r}")
+
+
 # ── Stage A-4: Sentiment Runtime (events-based, LLM-independent) ──
 # Mounted BEFORE the trading-terminal gateway / node proxy so
 # /api/sentiment/runtime/* literal routes win over upstream-503 forwarders.

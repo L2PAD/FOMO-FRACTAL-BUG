@@ -1,30 +1,22 @@
 [
   {
-    "content": "Inspect /app/legacy/backend-src/ structure & entry point",
+    "content": "Создать backfill rolling forecasts (cosine-similarity walk-forward)",
     "status": "completed"
   },
   {
-    "content": "Install Node deps + build TypeScript",
+    "content": "Создать endpoint /api/prediction/snapshots (Python > Node, чтобы выигрывал)",
     "status": "completed"
   },
   {
-    "content": "Configure Node sidecar on port 8003 via supervisor",
+    "content": "Подключить router в server.py перед legacy_compat",
     "status": "completed"
   },
   {
-    "content": "Bootstrap BTC/SPX/DXY canonical data into fomo_mobile DB",
+    "content": "Bootstrap 365 дней истории прогнозов в Mongo",
     "status": "completed"
   },
   {
-    "content": "Wire Python proxy /api/fractal/v2.1/* /api/fractal/{spx,dxy}/* /api/overlay/* -> Node 8003",
-    "status": "completed"
-  },
-  {
-    "content": "Bypass paywall overlay (FOMO product decision)",
-    "status": "completed"
-  },
-  {
-    "content": "Verify real Replay/Synthetic/Hybrid/BTC∧SPX endpoints",
+    "content": "Auto-update loop в supervisor (каждые 6 часов)",
     "status": "completed"
   }
 ]
