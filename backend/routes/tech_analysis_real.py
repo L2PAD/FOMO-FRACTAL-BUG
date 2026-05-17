@@ -461,13 +461,15 @@ def ta_prediction_graph4(
         "priceSeries":     price_series,
         "rollingForecasts": rolling,
         "historical":      [],  # native_ta_v1 has no historical predictions yet
-        "stats":           {"forecastCount": len(rolling),
-                            "evaluatedCount": 0,
-                            "source": "native_ta_v1"},
+        # `stats` MUST be null when no evaluations exist — otherwise the
+        # frontend renders the performance block and tries to call
+        # .toFixed() on undefined winRate/dirHit/avgDev.
+        "stats":           None,
         "latestForecastTs": now_ts,
-        "band":            band,
-        "riskProfile":     {},
-        "regime":          regime,
+        # `band` MUST be null (not {}) so 30D-band branch evaluates to false.
+        "band":            None,
+        "riskProfile":     None,
+        "regime":          regime or None,
         "etaToTargetDays": eta_days,
         "source":          "native_ta_v1",
         "note":            "ta_walk_forward_not_implemented_returning_current_snapshot_only",

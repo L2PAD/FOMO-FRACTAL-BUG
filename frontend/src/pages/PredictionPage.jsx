@@ -13,12 +13,13 @@ import BtcForecastChart from '../components/prediction/BtcForecastChart';
 const API = process.env.REACT_APP_BACKEND_URL;
 
 function fmt$(v) {
-  if (v == null) return '\u2014';
+  if (v == null || !Number.isFinite(Number(v))) return '\u2014';
   return `$${Number(v).toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
 }
 function fmtPct(v) {
-  if (v == null) return '\u2014';
-  return `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`;
+  if (v == null || !Number.isFinite(Number(v))) return '\u2014';
+  const n = Number(v);
+  return `${n >= 0 ? '+' : ''}${n.toFixed(2)}%`;
 }
 
 const DIR = {
@@ -145,8 +146,8 @@ export default function PredictionPage({ apiPath = 'exchange', asset = 'BTC', ti
             <div className="flex items-center gap-3">
               <Crosshair className="w-5 h-5 text-gray-400" />
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Prediction</h1>
-                <p className="text-sm text-gray-500">Bitcoin price prediction & forecasting</p>
+                <h1 className="text-xl font-bold text-gray-900">{title || 'Prediction'}</h1>
+                <p className="text-sm text-gray-500">{upperAsset} price prediction & forecasting {path === 'ta' ? '· TA' : '· Exchange'}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -353,19 +354,27 @@ export default function PredictionPage({ apiPath = 'exchange', asset = 'BTC', ti
         <div data-testid="forecast-performance-block" className="rounded-xl overflow-hidden"
           style={{ background: '#fff', border: '1px solid rgba(15,23,42,0.06)' }}>
 
-          {stats && (
+          {stats && (stats.winRate != null || stats.dirHit != null || stats.avgDev != null) && (
             <div className="flex items-center gap-6 px-4 py-2" data-testid="summary-bar"
               style={{ borderBottom: '1px solid rgba(15,23,42,0.06)' }}>
               <div className="flex items-center gap-2">
                 <BarChart3 className="w-3.5 h-3.5" style={{ color: '#64748b' }} />
                 <span className="text-xs font-bold" style={{ color: '#0f172a' }}>Performance</span>
               </div>
-              <Stat label="Win Rate" value={`${(stats.winRate * 100).toFixed(0)}%`}
-                color={stats.winRate >= 0.5 ? '#16a34a' : stats.winRate >= 0.3 ? '#d97706' : '#dc2626'} />
-              <Stat label="Dir Hit" value={`${(stats.dirHit * 100).toFixed(0)}%`}
-                color={stats.dirHit >= 0.5 ? '#16a34a' : '#d97706'} />
-              <Stat label="Avg Dev" value={`${stats.avgDev.toFixed(1)}%`} color="#0f172a" />
-              <Stat label="Eval" value={stats.evaluatedCount} color="#0f172a" />
+              {stats.winRate != null && (
+                <Stat label="Win Rate" value={`${(Number(stats.winRate) * 100).toFixed(0)}%`}
+                  color={stats.winRate >= 0.5 ? '#16a34a' : stats.winRate >= 0.3 ? '#d97706' : '#dc2626'} />
+              )}
+              {stats.dirHit != null && (
+                <Stat label="Dir Hit" value={`${(Number(stats.dirHit) * 100).toFixed(0)}%`}
+                  color={stats.dirHit >= 0.5 ? '#16a34a' : '#d97706'} />
+              )}
+              {stats.avgDev != null && (
+                <Stat label="Avg Dev" value={`${Number(stats.avgDev).toFixed(1)}%`} color="#0f172a" />
+              )}
+              {stats.evaluatedCount != null && (
+                <Stat label="Eval" value={stats.evaluatedCount} color="#0f172a" />
+              )}
               {stats.overdue > 0 && (
                 <div className="flex items-center gap-1">
                   <AlertTriangle className="w-3 h-3" style={{ color: '#d97706' }} />
@@ -425,7 +434,7 @@ export default function PredictionPage({ apiPath = 'exchange', asset = 'BTC', ti
                       <td className="py-1.5 px-3 text-right tabular-nums" style={{ color: '#0f172a', fontSize: 11 }}>{fmt$(f.entryPrice)}</td>
                       <td className="py-1.5 px-3 text-right tabular-nums font-medium" style={{ color: isUp ? '#16a34a' : '#dc2626', fontSize: 11 }}>{fmt$(f.targetPrice)}</td>
                       <td className="py-1.5 px-3 text-right tabular-nums" style={{ color: isUp ? '#16a34a' : '#dc2626', fontSize: 11 }}>{fmtPct(fMove)}</td>
-                      <td className="py-1.5 px-3 text-right tabular-nums" style={{ color: '#0f172a', fontSize: 11 }}>{Math.round(f.confidence * 100)}%</td>
+                      <td className="py-1.5 px-3 text-right tabular-nums" style={{ color: '#0f172a', fontSize: 11 }}>{Math.round((Number(f.confidence) || 0) * 100)}%</td>
                       <td className="py-1.5 px-3 text-right tabular-nums" style={{ color: '#0f172a', fontSize: 11 }}>
                         {f.outcome?.realPrice ? fmt$(f.outcome.realPrice) : '\u2014'}
                       </td>
