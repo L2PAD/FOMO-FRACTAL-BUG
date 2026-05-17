@@ -150,6 +150,19 @@ except Exception as _mbr_err:  # pragma: no cover
     print(f"[MetaBrainReal] import failed: {_mbr_err!r}")
 
 
+# ── Tech Analysis (real-data) ── (must be mounted BEFORE legacy_compat so
+# real handlers replace the `legacy_compat_stub_empty` responses on these
+# paths.  Backed by services.technical_analysis (native_ta_v1), the same
+# engine that powers /api/ta/basic + /api/ta/summary and the mobile
+# /api/miniapp/tech-analysis endpoint.)
+try:
+    from routes.tech_analysis_real import router as _tech_analysis_real_router
+    app.include_router(_tech_analysis_real_router)
+    print("[TechAnalysisReal] mounted: /api/ta-engine/mtf (query), /api/prediction/ta/{symbol}, /api/prediction/ta/snapshot, /api/v10/ta/{summary,snapshot,full}, /api/indicators/{all,symbol}")
+except Exception as _tar_err:  # pragma: no cover
+    print(f"[TechAnalysisReal] import failed: {_tar_err!r}")
+
+
 # ── Stage A-4: Sentiment Runtime (events-based, LLM-independent) ──
 # Mounted BEFORE the trading-terminal gateway / node proxy so
 # /api/sentiment/runtime/* literal routes win over upstream-503 forwarders.

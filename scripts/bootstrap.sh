@@ -247,3 +247,13 @@ fi
 echo ""
 echo "→ Fractal docs:        cat /app/FRACTAL_API.md"
 echo "→ Fractal deployment:  cat /app/FRACTAL_DEPLOYMENT.md"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 8) TECH ANALYSIS — cold-boot extension
+# ─────────────────────────────────────────────────────────────────────────────
+hdr "8. TECH ANALYSIS"
+bash /app/scripts/cold_boot_ta.sh || warn "TA cold-boot returned non-zero"
+
+echo ""
+echo "→ TA docs:             cat /app/TA_API.md"
+

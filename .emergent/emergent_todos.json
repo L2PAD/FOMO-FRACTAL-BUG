@@ -1,22 +1,34 @@
 [
   {
-    "content": "Audit Web SPA endpoints (use of real engine)",
+    "content": "Mount tech_analysis_real.py BEFORE legacy_compat in server.py",
     "status": "completed"
   },
   {
-    "content": "Audit Expo Mobile App endpoints (verdicts, positions, billing)",
+    "content": "Verify all stubbed TA endpoints now return real data (curl tests)",
     "status": "completed"
   },
   {
-    "content": "Fix /api/mbrain/verdicts/list (was failing - upstream dead)",
+    "content": "Fix PredictionPage.jsx hardcoded /api/prediction/exchange/* and BTC → respect apiPath + asset props",
     "status": "completed"
   },
   {
-    "content": "Audit Telegram MiniApp endpoints (core, search, polymarket)",
+    "content": "Screenshot Web TA tab + TA Prediction tab",
     "status": "completed"
   },
   {
-    "content": "Verify Telegram Bot integration with menu button",
+    "content": "Verify Mobile (/m/tech-analysis.html) renders with real data",
     "status": "completed"
+  },
+  {
+    "content": "Verify MiniApp /api/miniapp/* TA endpoints (already real per earlier curl)",
+    "status": "completed"
+  },
+  {
+    "content": "Document — create TA_API.md and scripts/cold_boot_ta.sh + add to bootstrap.sh",
+    "status": "completed"
+  },
+  {
+    "content": "Final RCA log + audit message for user (Russian)",
+    "status": "in_progress"
   }
 ]

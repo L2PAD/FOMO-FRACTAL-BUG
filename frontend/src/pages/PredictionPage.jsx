@@ -44,7 +44,7 @@ function convictionLabel(conf) {
   return 'Low';
 }
 
-export default function PredictionPage() {
+export default function PredictionPage({ apiPath = 'exchange', asset = 'BTC', title = null } = {}) {
   const [data, setData] = useState(null);
   const [heroForecasts, setHeroForecasts] = useState(null);
   const [livePrice, setLivePrice] = useState(null);
@@ -52,13 +52,22 @@ export default function PredictionPage() {
   const [horizon, setHorizon] = useState('7D');
   const priceInterval = useRef(null);
 
+  // ── Data-source mux ────────────────────────────────────────────────
+  // apiPath='exchange'  →  /api/prediction/exchange/* (exchange forecaster)
+  // apiPath='ta'        →  /api/prediction/ta/*       (native_ta_v1)
+  //
+  // Both source families expose the same `graph4`, `forecast` and
+  // `live-price` shapes so the rest of this component is identical.
+  const path = (apiPath === 'ta' ? 'ta' : 'exchange');
+  const upperAsset = String(asset || 'BTC').toUpperCase();
+
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const chartH = horizon === '1D' ? '7D' : horizon;
       const [gRes, fRes] = await Promise.all([
-        fetch(`${API}/api/prediction/exchange/graph4?asset=BTC&horizon=${chartH}`),
-        fetch(`${API}/api/prediction/exchange/forecast?asset=BTC`),
+        fetch(`${API}/api/prediction/${path}/graph4?asset=${upperAsset}&horizon=${chartH}`),
+        fetch(`${API}/api/prediction/${path}/forecast?asset=${upperAsset}`),
       ]);
       const gJson = gRes.ok ? await gRes.json() : null;
       const fJson = fRes.ok ? await fRes.json() : null;
@@ -72,15 +81,15 @@ export default function PredictionPage() {
       console.error('[Prediction] fetch error:', e);
     }
     setLoading(false);
-  }, [horizon]);
+  }, [horizon, path, upperAsset]);
 
   const fetchLivePrice = useCallback(async () => {
     try {
-      const r = await fetch(`${API}/api/prediction/exchange/live-price?asset=BTC`);
+      const r = await fetch(`${API}/api/prediction/${path}/live-price?asset=${upperAsset}`);
       const j = r.ok ? await r.json() : null;
       if (j?.ok) setLivePrice(j.price);
-    } catch {}
-  }, []);
+    } catch { /* swallow */ }
+  }, [path, upperAsset]);
 
   useEffect(() => { fetchData(); }, [fetchData]);
   useEffect(() => {
