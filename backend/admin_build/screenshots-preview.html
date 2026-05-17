@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOMO Extension Screenshots</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    
+    .screenshot-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .screenshot-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .screenshot-label {
+      color: #94a3b8;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Chrome Extension Frame */
+    .chrome-frame {
+      background: #2d2d3a;
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .chrome-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background: #1e1e28;
+      border-radius: 8px 8px 0 0;
+    }
+    
+    .chrome-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    
+    .chrome-dot.red { background: #ff5f56; }
+    .chrome-dot.yellow { background: #ffbd2e; }
+    .chrome-dot.green { background: #27ca40; }
+    
+    /* Popup Styles */
+    .popup {
+      width: 380px;
+      background: #f8fafc;
+      border-radius: 0 0 8px 8px;
+    }
+    
+    .container {
+      padding: 16px;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 16px;
+    }
+    
+    .header-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #f97316, #ef4444);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 11px;
+    }
+    
+    .header h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    
+    .section {
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    
+    /* Quality Card */
+    .quality-card {
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+    }
+    
+    .quality-card.success {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border: 1px solid #86efac;
+    }
+    
+    .quality-card.warning {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 1px solid #fcd34d;
+    }
+    
+    .quality-card.error {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border: 1px solid #fca5a5;
+    }
+    
+    .quality-card.info {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      border: 1px solid #93c5fd;
+    }
+    
+    .quality-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .quality-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+    
+    .quality-info {
+      flex: 1;
+    }
+    
+    .quality-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+    
+    .quality-message {
+      font-size: 12px;
+      color: #475569;
+    }
+    
+    /* Issues Section */
+    .issues-section {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .issues-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      color: #92400e;
+    }
+    
+    .issue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 0;
+      font-size: 12px;
+    }
+    
+    .issue-icon {
+      color: #d97706;
+      font-weight: bold;
+    }
+    
+    .issue-text {
+      color: #374151;
+      line-height: 1.4;
+    }
+    
+    /* Fix Steps */
+    .fix-steps {
+      margin-top: 12px;
+      padding: 10px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 8px;
+    }
+    
+    .fix-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+    
+    .fix-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 12px;
+      color: #374151;
+    }
+    
+    .fix-list li {
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    
+    /* Input Group */
+    .input-group {
+      margin-bottom: 12px;
+    }
+    
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 13px;
+      background: white;
+    }
+    
+    .input-group .hint {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+    
+    /* Buttons */
+    .btn {
+      width: 100%;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+    
+    .btn-primary:disabled {
+      background: #93c5fd;
+      cursor: not-allowed;
+    }
+    
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #475569;
+    }
+    
+    /* Account List */
+    .account-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    
+    .account-item.selected {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+    
+    .account-item .username {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1e293b;
+    }
+    
+    .account-item .status {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    
+    .account-item .status.ok {
+      background: #dcfce7;
+      color: #166534;
+    }
+    
+    .account-item .status.stale {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    
+    .account-item .status.no-session {
+      background: #e2e8f0;
+      color: #475569;
+    }
+    
+    /* Status Cards */
+    .status-card {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    
+    .status-card.success {
+      background: #dcfce7;
+      border: 1px solid #86efac;
+    }
+    
+    .status-card .title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #166534;
+    }
+    
+    .status-card .message {
+      font-size: 12px;
+      color: #374151;
+    }
+    
+    /* Action Buttons Row */
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .action-buttons .btn {
+      flex: 1;
+    }
+    
+    .action-buttons .btn-secondary {
+      flex: 0 0 auto;
+      width: auto;
+      padding: 10px 14px;
+    }
+    
+    /* Footer */
+    .footer {
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+    
+    .footer a {
+      font-size: 12px;
+      color: #3b82f6;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="screenshot-container">
+    
+    <!-- Screenshot 1: Initial State -->
+    <div class="screenshot-wrapper" id="state-initial">
+      <div class="screenshot-label">1. Initial State</div>
+      <div class="chrome-frame">
+        <div class="chrome-header">
+          <div class="chrome-dot red"></div>
+          <div class="chrome-dot yellow"></div>
+          <div class="chrome-dot green"></div>
+        </div>
+        <div class="popup">
+          <div class="container">
+            <div class="header">
+              <div class="header-logo">FOMO</div>
+              <h1>FOMO Twitter Connector</h1>
+            </div>
+            
+            <div class="quality-card info">
+              <div class="quality-header">
+                <span class="quality-icon">🔗</span>
+                <div class="quality-info">
+                  <div class="quality-title">Ready to Connect</div>
+                  <div class="quality-message">Enter your FOMO platform URL and API key to get started</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="section">
+              <div class="section-title">Configuration</div>
+              <div class="input-group">
+                <label>Platform URL</label>
+                <input type="text" placeholder="https://your-platform-url.com">
+                <div class="hint">Your FOMO platform URL</div>
+              </div>
+              <div class="input-group">
+                <label>API Key</label>
+                <input type="password" placeholder="usr_xxxxxxxxxxxxxxxx">
+                <div class="hint">Get your API key from Settings → API Keys</div>
+              </div>
+              <button class="btn btn-secondary">Save Configuration</button>
+            </div>
+            
+            <div class="footer">
+              <a href="#">Open FOMO Platform</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Screenshot 2: OK State -->
+    <div class="screenshot-wrapper" id="state-ok">
+      <div class="screenshot-label">2. Ready to Sync</div>
+      <div class="chrome-frame">
+        <div class="chrome-header">
+          <div class="chrome-dot red"></div>
+          <div class="chrome-dot yellow"></div>
+          <div class="chrome-dot green"></div>
+        </div>
+        <div class="popup">
+          <div class="container">
+            <div class="header">
+              <div class="header-logo">FOMO</div>
+              <h1>FOMO Twitter Connector</h1>
+            </div>
+            
+            <div class="quality-card success">
+              <div class="quality-header">
+                <span class="quality-icon">✅</span>
+                <div class="quality-info">
+                  <div class="quality-title">Session Ready</div>
+                  <div class="quality-message">Your Twitter cookies are valid and ready to sync</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="section">
+              <div class="section-title">Select Account</div>
+              <div class="account-item selected">
+                <span class="username">@crypto_analyst</span>
+                <span class="status no-session">No Session</span>
+              </div>
+              <div class="account-item">
+                <span class="username">@market_watcher</span>
+                <span class="status ok">Active</span>
+              </div>
+            </div>
+            
+            <div class="section">
+              <div class="action-buttons">
+                <button class="btn btn-primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                  </svg>
+                  Sync Cookies
+                </button>
+                <button class="btn btn-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <div class="footer">
+              <a href="#">Open FOMO Platform</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Screenshot 3: Warning State -->
+    <div class="screenshot-wrapper" id="state-warning">
+      <div class="screenshot-label">3. Warning State</div>
+      <div class="chrome-frame">
+        <div class="chrome-header">
+          <div class="chrome-dot red"></div>
+          <div class="chrome-dot yellow"></div>
+          <div class="chrome-dot green"></div>
+        </div>
+        <div class="popup">
+          <div class="container">
+            <div class="header">
+              <div class="header-logo">FOMO</div>
+              <h1>FOMO Twitter Connector</h1>
+            </div>
+            
+            <div class="quality-card warning">
+              <div class="quality-header">
+                <span class="quality-icon">⚠️</span>
+                <div class="quality-info">
+                  <div class="quality-title">Session May Be Unstable</div>
+                  <div class="quality-message">Some cookies may expire soon. Sync now to avoid interruption.</div>
+                </div>
+              </div>
+              
+              <div class="issues-section">
+                <div class="issues-title">Warnings</div>
+                <div class="issue-item">
+                  <span class="issue-icon">!</span>
+                  <span class="issue-text">auth_token expires in 2 days</span>
+                </div>
+                <div class="issue-item">
+                  <span class="issue-icon">!</span>
+                  <span class="issue-text">ct0 cookie missing SameSite attribute</span>
+                </div>
+              </div>
+              
+              <div class="fix-steps">
+                <div class="fix-title">How to fix:</div>
+                <ol class="fix-list">
+                  <li>Log out and log back into Twitter</li>
+                  <li>Clear browser cookies and re-authenticate</li>
+                </ol>
+              </div>
+            </div>
+            
+            <div class="section">
+              <div class="action-buttons">
+                <button class="btn btn-primary" style="background: #f59e0b;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                  </svg>
+                  Sync Anyway
+                </button>
+                <button class="btn btn-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <div class="footer">
+              <a href="#">Open FOMO Platform</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Screenshot 4: Success State -->
+    <div class="screenshot-wrapper" id="state-success">
+      <div class="screenshot-label">4. Sync Success</div>
+      <div class="chrome-frame">
+        <div class="chrome-header">
+          <div class="chrome-dot red"></div>
+          <div class="chrome-dot yellow"></div>
+          <div class="chrome-dot green"></div>
+        </div>
+        <div class="popup">
+          <div class="container">
+            <div class="header">
+              <div class="header-logo">FOMO</div>
+              <h1>FOMO Twitter Connector</h1>
+            </div>
+            
+            <div class="quality-card success">
+              <div class="quality-header">
+                <span class="quality-icon">🎉</span>
+                <div class="quality-info">
+                  <div class="quality-title">Sync Complete!</div>
+                  <div class="quality-message">Your Twitter session is now connected to FOMO platform</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="status-card success">
+              <div class="title">Session Active</div>
+              <div class="message">Session v3 created • Status: OK • 47 cookies synced</div>
+            </div>
+            
+            <div class="section">
+              <div class="section-title">Connected Account</div>
+              <div class="account-item selected">
+                <span class="username">@crypto_analyst</span>
+                <span class="status ok">Active</span>
+              </div>
+            </div>
+            
+            <div class="section">
+              <div class="action-buttons">
+                <button class="btn btn-primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                  </svg>
+                  Refresh Session
+                </button>
+                <button class="btn btn-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <div class="footer">
+              <a href="#">Open FOMO Platform</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

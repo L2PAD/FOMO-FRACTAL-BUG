@@ -1,0 +1,52 @@
+{
+  "summary": "Sprint T3 fix verification — CRITICAL bug from iteration_4 RESOLVED. The `asyncio.to_thread` wrapper around `enable_scheduler` / `disable_scheduler` was removed in /app/backend/routes/trading_runtime.py (those functions only set state and create_task — non-blocking, no need for to_thread). Full enable→disable→enable cycle now works correctly, idempotent flags fire (alreadyEnabled / alreadyDisabled), scheduler stays running after toggles, and run-once still produces valid results. All 25 backend tests PASS (22/23 previously, with one CRITICAL failure). Bootstrap on backend restart also verified: supervisorctl restart backend → /api/trading/paper/scheduler/status returns {enabled:true, running:true} after startup hook fires. T1/T2 regression suite, cognition rails (TA/sentiment/fractal), legacy /api/terminal honest-404, miniapp + admin SPAs all green.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "POST /api/trading/paper/submit (BTC/ETH/SOL)",
+        "issue": "Returns ok:false / error:'no_current_price' for ~20s immediately after backend restart while observation cache is repopulating (Binance returns HTTP 451 from pod region, so the runtime falls back to observation collection, which lags by one full cognition tick). Not a Sprint T3 regression — pre-existing latent issue documented in iteration_4. Tests are stable once price cache warms up."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_sprint_t3_scheduler.py",
+    "/app/test_reports/pytest/pytest_iter5.xml"
+  ],
+  "fix_verification_matrix": {
+    "POST /scheduler/disable → ok:true, disabled:true": "PASS (test_disable_then_enable_idempotent)",
+    "POST /scheduler/enable after disable → ok:true, enabled:true (was failing)": "PASS (test_disable_then_enable_idempotent) — RuntimeError 'no current event loop' GONE",
+    "/scheduler/status after re-enable shows enabled:true AND running:true": "PASS (test_disable_then_enable_idempotent final assertion + test_full_cycle)",
+    "Double-enable idempotent — alreadyEnabled:true": "PASS (test_disable_then_enable_idempotent)",
+    "Double-disable idempotent — alreadyDisabled:true": "PASS (test_disable_then_enable_idempotent)",
+    "Full disable→enable→disable→enable cycle + run-once still valid": "PASS (test_full_cycle_disable_enable_disable_enable_then_run_once — NEW)",
+    "Iteration_4 regression suite": "PASS (all 22 prior tests still green)",
+    "Backend restart → scheduler auto-bootstraps enabled+running": "PASS (test_bootstrap_enabled_at_startup — NEW, verified after `supervisorctl restart backend`)"
+  },
+  "action_items": [
+    "Sprint T3 fix is fully verified — main agent can close the CRITICAL bug from iteration_4. No further action required for the scheduler enable/disable cycle.",
+    "(Pre-existing, low priority) Consider warming the price/observation cache at startup so /api/trading/paper/submit doesn't briefly return 'no_current_price' for the first ~20s after backend restart. Optional — would only matter for tests that run immediately post-restart."
+  ],
+  "critical_code_review_comments": [
+    "Fix in /app/backend/routes/trading_runtime.py is minimal and correct: `enable_scheduler()` and `disable_scheduler()` now run directly on the FastAPI event loop, so `asyncio.get_running_loop()` / `loop.create_task()` inside the service work as intended. The comment block explaining WHY to_thread was removed is clear and prevents regression.",
+    "Note: paper_runtime_scheduler.py still uses `asyncio.get_event_loop()` internally — this is now safe because callers always invoke it from within the running loop. If someone later adds an `await asyncio.to_thread(sched.enable_scheduler)` call elsewhere, the bug returns. Worth a defensive guard or migration to `asyncio.get_running_loop()` in a future cleanup."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_sprint_t3_scheduler.py (added 2 new fix-verification tests: test_full_cycle_disable_enable_disable_enable_then_run_once and test_bootstrap_enabled_at_startup)"
+  ],
+  "success_rate": {
+    "backend": "100% (25/25)",
+    "frontend": "N/A (skipped per request)"
+  },
+  "seed_data_creation": "Tests open BTC/ETH paper positions on default-paper-account, force a stop hit by directly mutating stopPrice in MongoDB, and close all created positions at end of class. Backend was restarted once during testing to verify auto-bootstrap.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Sprint T3 is fully green. The fix in /app/backend/routes/trading_runtime.py (lines 137-149) is: scheduler_enable() and scheduler_disable() now return `sched.enable_scheduler()` / `sched.disable_scheduler()` directly without asyncio.to_thread wrapping. Run `pytest /app/backend/tests/test_sprint_t3_scheduler.py -v` to re-verify all 25 tests at any time. If run immediately after a backend restart, give the price cache ~20s to warm up (Binance HTTP 451 from pod region forces fallback to observation collection).",
+  "rca_of_issue": "RCA confirmed and resolved. Original bug: `await asyncio.to_thread(sched.enable_scheduler)` in the FastAPI route dispatched enable_scheduler() to a ThreadPoolExecutor worker, where the inner `asyncio.get_event_loop()` call raised RuntimeError on Python 3.11 (no loop bound to worker thread, deprecated implicit-creation behavior removed). Fix: dropped to_thread wrapper — enable_scheduler/disable_scheduler are non-blocking (state mutation + create_task), so they run safely on the FastAPI event loop. Verified with explicit full-cycle test and idempotency assertions. No side effects: T1/T2 regression suite, run-once evaluator, stop-hit auto-close, and multi-symbol scanner all still pass."
+}

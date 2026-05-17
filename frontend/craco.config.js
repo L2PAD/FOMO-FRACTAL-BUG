@@ -9,7 +9,17 @@ const isDevServer = process.env.NODE_ENV !== "production";
 // Environment variable overrides
 const config = {
   enableHealthCheck: process.env.ENABLE_HEALTH_CHECK === "true",
+  enableVisualEdits: false, // Disabled - plugin causes issues with complex code
 };
+
+// Conditionally load visual edits modules only in dev mode
+let setupDevServer;
+let babelMetadataPlugin;
+
+if (config.enableVisualEdits) {
+  setupDevServer = require("./plugins/visual-edits/dev-server-setup");
+  babelMetadataPlugin = require("./plugins/visual-edits/babel-metadata-plugin");
+}
 
 // Conditionally load health check modules only if enabled
 let WebpackHealthPlugin;
@@ -22,7 +32,7 @@ if (config.enableHealthCheck) {
   healthPluginInstance = new WebpackHealthPlugin();
 }
 
-let webpackConfig = {
+const webpackConfig = {
   eslint: {
     configure: {
       extends: ["plugin:react-hooks/recommended"],
@@ -37,6 +47,23 @@ let webpackConfig = {
       '@': path.resolve(__dirname, 'src'),
     },
     configure: (webpackConfig) => {
+
+      // KILL fork-ts-checker-webpack-plugin — saves ~700MB RAM
+      webpackConfig.plugins = webpackConfig.plugins.filter(
+        (p) => p.constructor.name !== 'ForkTsCheckerWebpackPlugin'
+      );
+
+      // Use lightweight source maps to reduce memory (eval-source-map → false)
+      if (process.env.NODE_ENV !== 'production') {
+        webpackConfig.devtool = false;
+      }
+
+      // Reduce optimization memory
+      if (webpackConfig.optimization) {
+        webpackConfig.optimization.removeAvailableModules = false;
+        webpackConfig.optimization.removeEmptyChunks = false;
+        webpackConfig.optimization.splitChunks = false;
+      }
 
       // Add ignored patterns to reduce watched directories
         webpackConfig.watchOptions = {
@@ -60,7 +87,19 @@ let webpackConfig = {
   },
 };
 
+// Only add babel metadata plugin during dev server
+if (config.enableVisualEdits && babelMetadataPlugin) {
+  webpackConfig.babel = {
+    plugins: [babelMetadataPlugin],
+  };
+}
+
 webpackConfig.devServer = (devServerConfig) => {
+  // Apply visual edits dev server setup only if enabled
+  if (config.enableVisualEdits && setupDevServer) {
+    devServerConfig = setupDevServer(devServerConfig);
+  }
+
   // Add health check endpoints if enabled
   if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
     const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
@@ -78,23 +117,29 @@ webpackConfig.devServer = (devServerConfig) => {
     };
   }
 
+  // Disable error overlay for MetaMask/extension errors
+  devServerConfig.client = {
+    ...devServerConfig.client,
+    overlay: {
+      errors: true,
+      warnings: false,
+      runtimeErrors: (error) => {
+        // Suppress MetaMask and browser extension errors
+        const msg = error?.message || '';
+        if (
+          msg.includes('MetaMask') ||
+          msg.includes('Failed to connect') ||
+          msg.includes('chrome-extension://') ||
+          msg.includes('inpage.js')
+        ) {
+          return false;
+        }
+        return true;
+      },
+    },
+  };
+
   return devServerConfig;
 };
-
-// Wrap with visual edits (automatically adds babel plugin, dev server, and overlay in dev mode)
-if (isDevServer) {
-  try {
-    const { withVisualEdits } = require("@emergentbase/visual-edits/craco");
-    webpackConfig = withVisualEdits(webpackConfig);
-  } catch (err) {
-    if (err.code === 'MODULE_NOT_FOUND' && err.message.includes('@emergentbase/visual-edits/craco')) {
-      console.warn(
-        "[visual-edits] @emergentbase/visual-edits not installed — visual editing disabled."
-      );
-    } else {
-      throw err;
-    }
-  }
-}
 
 module.exports = webpackConfig;

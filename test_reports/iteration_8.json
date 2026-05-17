@@ -1,0 +1,55 @@
+{
+  "summary": "Sprint T6 — Windowed Reliability (dual-memory calibration). FULL GREEN: 22/22 T6 tests PASS + 32/32 T4 regression PASS = 54/54 combined. All T6 acceptance criteria validated: report shape (lifetime + recent30d + recent90d), thresholds dict includes recent_min_sample=5 and recent_degradation_winrate=0.40, trading_calibration_recent_v1 has compound unique index on (symbol,side,alignmentBucket,risk,window), record_outcome writes BOTH lifetime AND both recent windows (3 docs per cell verified), verdict.calibration has recent30d subblock + regimeSignal, regime_hard_gate flips LONG→WAIT and clears entry/stop/target/rr/sizeUsd, regime_degradation_soft_adjust keeps action=LONG but reduces confidence 0.15 + bumps risk + preserves riskBeforeCalibration + contains 'lifetime held up' and 'recent follow-through deteriorated' phrases, minimum sample guard (recent<5 falls through to lifetime ladder), T4 lifetime hard_gate still fires when recent absent (regimeSignal=no_recent_sample), lazy refresh of stale buckets verified (TTL 10 min), LIFETIME IMMUTABILITY confirmed (sample/wins/winRate identical before and after recent-driven overlay).",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "backend_regression": {
+    "pytest_t6_full_suite": "22/22 PASSED (/app/backend/tests/test_sprint_t6_windowed_calibration.py)",
+    "pytest_t4_regression": "32/32 PASSED (/app/backend/tests/test_sprint_t4_calibration.py)",
+    "combined": "54/54 PASSED in 15.45s",
+    "GET /api/trading/intelligence/calibration?symbol=BTC": "200; keys=[ok,symbol,totalSample,totalWins,totalLosses,overallWinRate,reliability,buckets,recent30d,recent90d,warnings,thresholds,asOf]; thresholds include recent_min_sample=5, recent_degradation_winrate=0.4",
+    "GET /api/trading/verdict/BTC": "200; calibration block includes recent30d{sample,wins,losses,winRate,targetRate,reliability} + regimeSignal (one of 7 enumerated values)",
+    "regime_hard_gate path": "12 LOSSES @ closedAt=now → apply_to_verdict flips LONG→WAIT, appliedAdjustment=regime_hard_gate, regimeSignal=actively_hostile, blockedBy contains 'current_regime_hostile', entry/stop/target/rr/sizeUsd cleared, actionBeforeCalibration=LONG",
+    "regime_degradation_soft_adjust path": "20 WINS @ 120d ago + 6 LOSSES @ now → appliedAdjustment=regime_degradation_soft_adjust, regimeSignal=degrading, action stays LONG, confidence 0.8→0.65 (−0.15), risk LOW→MED, riskBeforeCalibration=LOW preserved, reasons contain 'lifetime held up' AND 'recent follow-through deteriorated'",
+    "minimum sample guard": "4 LOSSES @ now (recent sample=4<5) → falls through to lifetime ladder (sample=4, appliedAdjustment=observe_only, action=LONG unchanged, confidence unchanged)",
+    "lifetime hard_gate without recent": "30 LOSSES @ 120d ago → appliedAdjustment=hard_gate_wait (T4 path, NOT regime_hard_gate), regimeSignal=no_recent_sample",
+    "lazy refresh": "Mutating updatedAt to 1 hour ago + sample=999 → lookup_recent triggers refresh, returns sample=5 with fresh updatedAt (within last 60s)",
+    "LIFETIME IMMUTABILITY": "VERIFIED — trading_calibration_v2 sample/wins/winRate IDENTICAL before and after regime_degradation_soft_adjust apply_to_verdict call",
+    "compound index trading_calibration_recent_v1": "unique=True on (symbol,side,alignmentBucket,risk,window)",
+    "Expo bundle GET /": "200"
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_sprint_t6_windowed_calibration.py",
+    "/app/test_reports/pytest/pytest_iter8_t6.xml",
+    "/app/test_reports/pytest/pytest_iter8_final.xml"
+  ],
+  "action_items": [
+    "None. T6 acceptance is fully green across all 11 listed test scenarios. Zero regression vs T4/T5 (32/32 T4 still pass)."
+  ],
+  "critical_code_review_comments": [
+    "calibration.py priority hierarchy in apply_to_verdict (lines 495-529) is correctly ordered: hard-gate check (rec_sample>=10 AND rec_wr<0.35) FIRST, then degradation check (rec_sample>=5 AND rec_wr<0.40 AND sample>=10 AND wr>=0.50), then fallthrough to T4 lifetime ladder. Spec compliant.",
+    "_refresh_recent_window correctly uses closedAt>=cutoff filter for windowing — never reads/writes trading_calibration_v2 so lifetime immutability is structurally guaranteed.",
+    "lookup_recent's lazy-refresh-on-stale (TTL=600s, RECENT_REFRESH_TTL_SEC) is read-path triggered, which is the right design (no background sweep needed).",
+    "_seed_outcomes test helper correctly accepts age_days parameter — age_days=120 isolates lifetime, age_days=0 (default) puts data in 30d window, mixing both lets you exercise the priority hierarchy precisely.",
+    "Minor design note: when recent path triggers (regime_hard_gate or regime_degradation), the lifetime-only ladder annotation block (regimeSignal set at lines 575-584) is correctly skipped because the function returns early at lines 514 and 529. No bug, just worth noting that regimeSignal is set inline (lines 512, 523) on those paths.",
+    "calibration_block (line 401) does NOT include recent30d — that's only added in apply_to_verdict. This is the right separation: calibration_block is the lookup-only contract, apply_to_verdict is the full overlay."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_sprint_t6_windowed_calibration.py (NEW, 22 tests)"
+  ],
+  "success_rate": {
+    "backend": "100% (22/22 T6 + 32/32 T4 = 54/54 pytest)",
+    "frontend": "skipped per request (backend-only)"
+  },
+  "seed_data_creation": "Pytest seeds synthetic ZZT6WB/ZZT6HG/ZZT6DEG/ZZT6MIN/ZZT6LIFE/ZZT6LAZY outcome rows with _seedTag='T6_TEST'. Every test class cleans up its own symbol from trading_outcomes_v2, trading_calibration_v2, AND trading_calibration_recent_v1 in a try/finally block. No cross-test pollution.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "T6 dual-memory calibration is fully green. Test file at /app/backend/tests/test_sprint_t6_windowed_calibration.py — run with `PYTHONPATH=/app/backend pytest tests/test_sprint_t6_windowed_calibration.py` from /app/backend. The 22 tests cover all priority paths, immutability, lazy refresh, minimum sample guard, and regression. For T7 or beyond, key invariants to preserve: (1) trading_calibration_v2 is IMMUTABLE under any recent-driven overlay (use the test pattern: snapshot before, snapshot after, assert identical), (2) hard-gate threshold is rec_sample>=10 AND rec_wr<0.35 (not the same 0.40 as degradation), (3) lazy refresh TTL=600s in calibration.py constant RECENT_REFRESH_TTL_SEC."
+}

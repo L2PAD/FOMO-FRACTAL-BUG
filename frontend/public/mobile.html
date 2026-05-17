@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOMO Mobile App - Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .status {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .qr-container {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .qr-code {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .url-box {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .url-box:hover {
+            background: #374151;
+        }
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        .btn-secondary {
+            background: #10b981;
+        }
+        .btn-secondary:hover {
+            background: #059669;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        .instructions {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin: 20px 0;
+        }
+        .instructions h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            color: #1f2937;
+        }
+        .instructions li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .copy-btn {
+            background: #6b7280;
+            font-size: 12px;
+            padding: 8px 15px;
+        }
+        .copy-btn:hover {
+            background: #4b5563;
+        }
+        @media (max-width: 640px) {
+            .container {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 FOMO Mobile App</h1>
+        <p class="subtitle">iOS & Android Preview</p>
+        <div class="status">✅ Dev Server Running</div>
+
+        <div class="qr-container">
+            <h3 style="color: #374151; margin-bottom: 15px;">Expo Go QR Code</h3>
+            <div class="qr-code" id="qrcode"></div>
+            <p style="color: #6b7280; font-size: 14px;">Отсканируйте в Expo Go app</p>
+        </div>
+
+        <div class="instructions">
+            <h3>📲 Как подключиться:</h3>
+            <ol>
+                <li>Установить <strong>Expo Go</strong> на телефон:
+                    <br><a href="https://apps.apple.com/app/expo-go/id982107779" target="_blank" style="color: #3b82f6;">iOS App Store</a> | 
+                    <a href="https://play.google.com/store/apps/details?id=host.exp.exponent" target="_blank" style="color: #3b82f6;">Google Play</a>
+                </li>
+                <li>Отсканировать QR код выше в приложении</li>
+                <li>Или ввести URL вручную в Expo Go</li>
+            </ol>
+        </div>
+
+        <div class="url-box" onclick="copyToClipboard(this.innerText)" title="Нажмите чтобы скопировать">
+            exp://full-stack-deploy-62.preview.emergentagent.com:8081
+        </div>
+
+        <div class="links">
+            <a href="http://localhost:8081" class="btn btn-secondary" target="_blank">
+                🌐 Открыть Web Preview
+            </a>
+            <button class="btn copy-btn" onclick="copyUrl()">
+                📋 Скопировать URL
+            </button>
+        </div>
+
+        <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid #e5e7eb;">
+            <h3 style="color: #374151; margin-bottom: 15px;">🔗 Backend API</h3>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://full-stack-deploy-62.preview.emergentagent.com/api/mobile/assets" class="btn" target="_blank">
+                    Test API
+                </a>
+                <a href="https://full-stack-deploy-62.preview.emergentagent.com/health" class="btn" target="_blank">
+                    Health Check
+                </a>
+            </div>
+        </div>
+
+        <p style="margin-top: 30px; color: #9ca3af; font-size: 14px;">
+            💡 Для разработки: изменения в коде применяются автоматически (hot reload)
+        </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        // Generate QR code
+        const expoUrl = 'exp://full-stack-deploy-62.preview.emergentagent.com:8081';
+        QRCode.toCanvas(document.getElementById('qrcode'), expoUrl, {
+            width: 250,
+            margin: 2,
+            color: {
+                dark: '#000000',
+                light: '#ffffff'
+            }
+        });
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ URL скопирован!');
+            });
+        }
+
+        function copyUrl() {
+            copyToClipboard(expoUrl);
+        }
+
+        // Check backend status
+        fetch('https://full-stack-deploy-62.preview.emergentagent.com/health')
+            .then(r => r.json())
+            .then(data => {
+                console.log('Backend health:', data);
+            })
+            .catch(e => console.error('Backend check failed:', e));
+    </script>
+</body>
+</html>

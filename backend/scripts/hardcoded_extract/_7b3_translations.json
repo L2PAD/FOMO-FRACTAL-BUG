@@ -1,0 +1,607 @@
+{
+  "intel.marketTensionEngine": {
+    "en": "Market tension engine",
+    "ru": "Движок рыночного давления",
+    "uk": "Рушій ринкового тиску"
+  },
+  "intel.seeSetupsFormingNow": {
+    "en": "See structures forming now",
+    "ru": "Структуры в реальном времени",
+    "uk": "Структури в реальному часі"
+  },
+  "intel.noEventsInThisCategory": {
+    "en": "No events in this category.",
+    "ru": "Событий в этой категории нет.",
+    "uk": "Подій у цій категорії немає."
+  },
+  "intel.exploreSetups": {
+    "en": "Explore structures",
+    "ru": "Обзор структур",
+    "uk": "Огляд структур"
+  },
+  "intel.relatedToYourRecentActivity": {
+    "en": "Related to your recent activity",
+    "ru": "По вашей активности",
+    "uk": "За вашою активністю"
+  },
+  "intel.whyItMatters": {
+    "en": "Why it matters",
+    "ru": "Почему это важно",
+    "uk": "Чому це важливо"
+  },
+  "intel.marketReaction": {
+    "en": "Market reaction",
+    "ru": "Реакция рынка",
+    "uk": "Реакція ринку"
+  },
+  "intel.confirmedMoves": {
+    "en": "Confirmed moves",
+    "ru": "Подтверждённые движения",
+    "uk": "Підтверджені рухи"
+  },
+  "intel.earlySignalsForming": {
+    "en": "Early structures forming",
+    "ru": "Формирующиеся структуры",
+    "uk": "Структури, що формуються"
+  },
+  "intel.highestAlphaEvents": {
+    "en": "Highest clarity events",
+    "ru": "События с высокой ясностью",
+    "uk": "Події з високою ясністю"
+  },
+  "intel.sentimentPressure24H": {
+    "en": "Sentiment pressure · 24H",
+    "ru": "Давление настроений · 24ч",
+    "uk": "Тиск настроїв · 24г"
+  },
+  "intelPrediction.failedToLoad": {
+    "en": "Failed to load",
+    "ru": "Ошибка загрузки",
+    "uk": "Помилка завантаження"
+  },
+  "intelPrediction.btcPrediction": {
+    "en": "BTC Observation",
+    "ru": "BTC наблюдение",
+    "uk": "BTC спостереження"
+  },
+  "intelPrediction.marketState": {
+    "en": "MARKET STATE",
+    "ru": "СОСТОЯНИЕ РЫНКА",
+    "uk": "СТАН РИНКУ"
+  },
+  "intelPrediction.moduleBreakdown": {
+    "en": "MODULE BREAKDOWN",
+    "ru": "ДЕКОМПОЗИЦИЯ МОДУЛЕЙ",
+    "uk": "ДЕКОМПОЗИЦІЯ МОДУЛІВ"
+  },
+  "intelPrediction.nextMoveLevels": {
+    "en": "Next Move Levels",
+    "ru": "Уровни следующего движения",
+    "uk": "Рівні наступного руху"
+  },
+  "intelPrediction.stateTrackRecord": {
+    "en": "State Track Record",
+    "ru": "История состояний",
+    "uk": "Історія станів"
+  },
+  "intelPrediction.whatModelSeesNow": {
+    "en": "What model sees now",
+    "ru": "Что видит модель",
+    "uk": "Що бачить модель"
+  },
+  "intelPrediction.signalConnection": {
+    "en": "Structure Connection",
+    "ru": "Связь структуры",
+    "uk": "Зв'язок структури"
+  },
+  "intelPrediction.signalStage": {
+    "en": "Observation stage",
+    "ru": "Стадия наблюдения",
+    "uk": "Стадія спостереження"
+  },
+  "intelPrediction.entryWindow": {
+    "en": "Alignment window",
+    "ru": "Окно выравнивания",
+    "uk": "Вікно вирівнювання"
+  },
+  "intelPrediction.historicalAccuracy": {
+    "en": "Historical Accuracy",
+    "ru": "Историческая точность",
+    "uk": "Історична точність"
+  },
+  "app.positionsRuntime": {
+    "en": "Positions Runtime",
+    "ru": "Время работы позиций",
+    "uk": "Час роботи позицій"
+  },
+  "app.avoidedLoss": {
+    "en": "AVOIDED LOSS",
+    "ru": "ИЗБЕЖАННЫЙ УБЫТОК",
+    "uk": "УНИКНЕНИЙ ЗБИТОК"
+  },
+  "app.missedGain": {
+    "en": "MISSED GAIN",
+    "ru": "УПУЩЕННЫЙ РОСТ",
+    "uk": "ВТРАЧЕНЕ ЗРОСТАННЯ"
+  },
+  "app.timelineReplayTopStories": {
+    "en": "Timeline replay · top stories",
+    "ru": "Повтор таймлайна · главное",
+    "uk": "Повтор таймлайну · головне"
+  },
+  "app.parallelUniverseHeadline": {
+    "en": "Parallel-universe headline",
+    "ru": "Заголовок параллельной вселенной",
+    "uk": "Заголовок паралельного всесвіту"
+  },
+  "app.suppressedAlpha": {
+    "en": "SUPPRESSED CONTEXT",
+    "ru": "ПОДАВЛЕННЫЙ КОНТЕКСТ",
+    "uk": "ПРИДУШЕНИЙ КОНТЕКСТ"
+  },
+  "app.killedToHold": {
+    "en": "KILLED TO HOLD",
+    "ru": "УБИТО ДЛЯ УДЕРЖАНИЯ",
+    "uk": "ВБИТО ДЛЯ УТРИМАННЯ"
+  },
+  "app.threePortfolios": {
+    "en": "Three portfolios",
+    "ru": "Три портфеля",
+    "uk": "Три портфелі"
+  },
+  "app.activePnl": {
+    "en": "Active PnL",
+    "ru": "Активный PnL",
+    "uk": "Активний PnL"
+  },
+  "app.meanPos": {
+    "en": "Mean / pos",
+    "ru": "Средн. / поз.",
+    "uk": "Серед. / поз."
+  },
+  "app.winRate": {
+    "en": "Win rate",
+    "ru": "Частота успеха",
+    "uk": "Частота успіху"
+  },
+  "intel.loadingIntelligence": {
+    "en": "Loading intelligence...",
+    "ru": "Загрузка данных...",
+    "uk": "Завантаження даних..."
+  },
+  "intel.goBack": {
+    "en": "Go back",
+    "ru": "Назад",
+    "uk": "Назад"
+  },
+  "intel.whyNow": {
+    "en": "WHY NOW",
+    "ru": "ПОЧЕМУ СЕЙЧАС",
+    "uk": "ЧОМУ ЗАРАЗ"
+  },
+  "intel.tradeSetup": {
+    "en": "DEPLOYMENT STRUCTURE",
+    "ru": "СТРУКТУРА РАЗВЁРТЫВАНИЯ",
+    "uk": "СТРУКТУРА РОЗГОРТАННЯ"
+  },
+  "intel.signalBreakdown": {
+    "en": "OBSERVATION BREAKDOWN",
+    "ru": "АНАЛИЗ НАБЛЮДЕНИЯ",
+    "uk": "АНАЛІЗ СПОСТЕРЕЖЕННЯ"
+  },
+  "intel.roleInPortfolio": {
+    "en": "ROLE IN PORTFOLIO",
+    "ru": "РОЛЬ В ПОРТФЕЛЕ",
+    "uk": "РОЛЬ У ПОРТФЕЛІ"
+  },
+  "intel.portfolioRoleHidden": {
+    "en": "Portfolio role hidden",
+    "ru": "Роль в портфеле скрыта",
+    "uk": "Роль у портфелі приховано"
+  },
+  "intel.unlockFullAccess": {
+    "en": "UNLOCK FULL ACCESS",
+    "ru": "ОТКРЫТЬ ПОЛНЫЙ ДОСТУП",
+    "uk": "ВІДКРИТИ ПОВНИЙ ДОСТУП"
+  },
+  "intel.trackThisSetup": {
+    "en": "Track this structure",
+    "ru": "Отслеживать структуру",
+    "uk": "Відстежувати структуру"
+  },
+  "intel.openInTradeTerminal": {
+    "en": "Open in Trade Terminal",
+    "ru": "Открыть в торговом терминале",
+    "uk": "Відкрити в торговому терміналі"
+  },
+  "intelDeep.marketRegime": {
+    "en": "Market Regime",
+    "ru": "Режим рынка",
+    "uk": "Режим ринку"
+  },
+  "intelDeep.structureAlignment": {
+    "en": "Structure Alignment",
+    "ru": "Выравнивание структуры",
+    "uk": "Вирівнювання структури"
+  },
+  "intelDeep.keyLevels": {
+    "en": "Key Levels",
+    "ru": "Ключевые уровни",
+    "uk": "Ключові рівні"
+  },
+  "intelDeep.breakoutZone": {
+    "en": "Breakout Zone",
+    "ru": "Зона прорыва",
+    "uk": "Зона прориву"
+  },
+  "intelDeep.breakAboveThisZoneOpens": {
+    "en": "Break above this zone opens continuation path",
+    "ru": "Прорыв выше этой зоны открывает путь продолжения",
+    "uk": "Прорив вище цієї зони відкриває шлях продовження"
+  },
+  "intelDeep.lossOfStructuralSupportWeakens": {
+    "en": "Loss of structural support weakens bullish thesis",
+    "ru": "Потеря структурной поддержки ослабляет бычий тезис",
+    "uk": "Втрата структурної підтримки послаблює бичачу тезу"
+  },
+  "intelDeep.pathScenarios": {
+    "en": "Path Scenarios",
+    "ru": "Сценарии развития",
+    "uk": "Сценарії розвитку"
+  },
+  "intelDeep.volatilityCompression": {
+    "en": "Volatility / Compression",
+    "ru": "Волатильность / Сжатие",
+    "uk": "Волатильність / Стиснення"
+  },
+  "intelDeep.expansionRisk": {
+    "en": "Expansion Risk",
+    "ru": "Риск расширения",
+    "uk": "Ризик розширення"
+  },
+  "tradePortfolio.aiPortfolioState": {
+    "en": "AI PORTFOLIO STATE",
+    "ru": "СОСТОЯНИЕ ПОРТФЕЛЯ AI",
+    "uk": "СТАН ПОРТФЕЛЯ AI"
+  },
+  "tradePortfolio.openedBecause": {
+    "en": "OPENED BECAUSE",
+    "ru": "ОТКРЫТО ПОТОМУ ЧТО",
+    "uk": "ВІДКРИТО ТОМУ ЩО"
+  },
+  "tradePortfolio.whyExitMayCome": {
+    "en": "WHY EXIT MAY COME",
+    "ru": "ПОЧЕМУ ВЫХОД ВОЗМОЖЕН",
+    "uk": "ЧОМУ ВИХІД МОЖЛИВИЙ"
+  },
+  "tradePortfolio.closePosition": {
+    "en": "Close position",
+    "ru": "Закрыть позицию",
+    "uk": "Закрити позицію"
+  },
+  "tradePortfolio.avoidedLoss": {
+    "en": "AVOIDED LOSS",
+    "ru": "ИЗБЕЖАННЫЙ УБЫТОК",
+    "uk": "УНИКНЕНИЙ ЗБИТОК"
+  },
+  "tradePortfolio.missedGain": {
+    "en": "MISSED GAIN",
+    "ru": "УПУЩЕННЫЙ РОСТ",
+    "uk": "ВТРАЧЕНЕ ЗРОСТАННЯ"
+  },
+  "tradePortfolio.capitalMemoryTimeline": {
+    "en": "CAPITAL MEMORY TIMELINE",
+    "ru": "ВРЕМЕННАЯ ЛИНИЯ ПАМЯТИ КАПИТАЛА",
+    "uk": "ЧАСОВА ЛІНІЯ ПАМ'ЯТІ КАПІТАЛУ"
+  },
+  "tradePortfolio.capitalMemory": {
+    "en": "CAPITAL MEMORY",
+    "ru": "ПАМЯТЬ КАПИТАЛА",
+    "uk": "ПАМ'ЯТЬ КАПІТАЛУ"
+  },
+  "intelFeed.noPortfolioStrategyAvailable": {
+    "en": "No portfolio strategy available",
+    "ru": "Стратегия портфеля недоступна",
+    "uk": "Стратегія портфеля недоступна"
+  },
+  "intelFeed.backToFeed": {
+    "en": "Back to Feed",
+    "ru": "Назад к ленте",
+    "uk": "Назад до стрічки"
+  },
+  "intelFeed.portfolioStrategy": {
+    "en": "Portfolio Strategy",
+    "ru": "Стратегия портфеля",
+    "uk": "Стратегія портфеля"
+  },
+  "intelFeed.capitalRotation": {
+    "en": "CAPITAL ROTATION",
+    "ru": "РОТАЦИЯ КАПИТАЛА",
+    "uk": "РОТАЦІЯ КАПІТАЛУ"
+  },
+  "intelFeed.whatCanGoWrong": {
+    "en": "WHAT CAN GO WRONG",
+    "ru": "ЧТО МОЖЕТ ПОЙТИ НЕ ТАК",
+    "uk": "ЩО МОЖЕ ПІТИ НЕ ТАК"
+  },
+  "intelFeed.whyThisWorks": {
+    "en": "WHY THIS WORKS",
+    "ru": "ПОЧЕМУ ЭТО РАБОТАЕТ",
+    "uk": "ЧОМУ ЦЕ ПРАЦЮЄ"
+  },
+  "intelFeed.followThisPositioning": {
+    "en": "Follow this positioning",
+    "ru": "Следовать этому размещению",
+    "uk": "Слідувати цьому розміщенню"
+  },
+  "tradeTrade.aiTradeSetup": {
+    "en": "AI OBSERVATION STRUCTURE",
+    "ru": "СТРУКТУРА НАБЛЮДЕНИЯ AI",
+    "uk": "СТРУКТУРА СПОСТЕРЕЖЕННЯ AI"
+  },
+  "tradeTrade.whySelected": {
+    "en": "WHY SELECTED",
+    "ru": "ПОЧЕМУ ВЫБРАНО",
+    "uk": "ЧОМУ ОБРАНО"
+  },
+  "tradeTrade.whyBlocked": {
+    "en": "WHY BLOCKED",
+    "ru": "ПОЧЕМУ ЗАБЛОКИРОВАНО",
+    "uk": "ЧОМУ ЗАБЛОКОВАНО"
+  },
+  "tradeTrade.triggerInvalidationRisk": {
+    "en": "TRIGGER · INVALIDATION · RISK",
+    "ru": "ТРИГГЕР · АННУЛИРОВАНИЕ · РИСК",
+    "uk": "ТРИГЕР · АНУЛЮВАННЯ · РИЗИК"
+  },
+  "tradeTrade.otherVerdictsTapToInspect": {
+    "en": "OTHER VERDICTS · tap to inspect",
+    "ru": "ДРУГИЕ ВЕРДИКТЫ · нажмите для проверки",
+    "uk": "ІНШІ ВЕРДИКТИ · натисніть для перевірки"
+  },
+  "tradeTrade.rulesFired": {
+    "en": "RULES FIRED",
+    "ru": "ПРАВИЛА СРАБОТАЛИ",
+    "uk": "ПРАВИЛА СПРАЦЮВАЛИ"
+  },
+  "intelProfile.telegramConnected": {
+    "en": "Telegram connected",
+    "ru": "Telegram подключен",
+    "uk": "Telegram підключено"
+  },
+  "intelProfile.yourProAccessHasExpired": {
+    "en": "Your PRO access has expired",
+    "ru": "Ваш доступ PRO истёк",
+    "uk": "Ваш доступ PRO закінчився"
+  },
+  "intelProfile.accessEndedRestoreToContinue": {
+    "en": "Access ended. Restore to continue using PRO features.",
+    "ru": "Доступ завершён. Восстановите для продолжения использования функций PRO.",
+    "uk": "Доступ завершено. Відновіть для продовження використання функцій PRO."
+  },
+  "intelProfile.restoreProAccess": {
+    "en": "Restore PRO Access",
+    "ru": "Восстановить доступ PRO",
+    "uk": "Відновити доступ PRO"
+  },
+  "intelProfile.growthLeaderboard": {
+    "en": "Growth & Leaderboard",
+    "ru": "Рост и рейтинг",
+    "uk": "Зростання та рейтинг"
+  },
+  "intelProfile.operatorObservatory": {
+    "en": "Operator Observatory",
+    "ru": "Обсерватория оператора",
+    "uk": "Обсерваторія оператора"
+  },
+  "intelDeep.sentimentScore": {
+    "en": "Sentiment Score",
+    "ru": "Оценка настроений",
+    "uk": "Оцінка настроїв"
+  },
+  "intelDeep.socialVolume": {
+    "en": "Social Volume",
+    "ru": "Социальный объём",
+    "uk": "Соціальний обсяг"
+  },
+  "intelDeep.twitterVelocity": {
+    "en": "Twitter Velocity",
+    "ru": "Скорость Twitter",
+    "uk": "Швидкість Twitter"
+  },
+  "intelDeep.dominantNarrative": {
+    "en": "Dominant Narrative",
+    "ru": "Доминирующий нарратив",
+    "uk": "Домінуючий наратив"
+  },
+  "intelDeep.crowdPositioning": {
+    "en": "Crowd Positioning",
+    "ru": "Позиционирование толпы",
+    "uk": "Позиціонування натовпу"
+  },
+  "intelDeep.fearGreedIndex": {
+    "en": "Fear & Greed Index",
+    "ru": "Индекс страха и жадности",
+    "uk": "Індекс страху та жадібності"
+  },
+  "intelDeep.exchangeNetflow": {
+    "en": "Exchange Netflow",
+    "ru": "Чистый поток бирж",
+    "uk": "Чистий потік бірж"
+  },
+  "intelDeep.whaleActivity": {
+    "en": "Whale Activity",
+    "ru": "Активность китов",
+    "uk": "Активність китів"
+  },
+  "intelDeep.supplyOnExchanges": {
+    "en": "Supply on Exchanges",
+    "ru": "Предложение на биржах",
+    "uk": "Пропозиція на біржах"
+  },
+  "intelDeep.longTermHolders": {
+    "en": "Long-term Holders",
+    "ru": "Долгосрочные держатели",
+    "uk": "Довгострокові власники"
+  },
+  "intelDeep.networkActivity": {
+    "en": "Network Activity",
+    "ru": "Активность сети",
+    "uk": "Активність мережі"
+  },
+  "intelDeep.activeAddresses": {
+    "en": "Active Addresses",
+    "ru": "Активные адреса",
+    "uk": "Активні адреси"
+  },
+  "app.realizedAttribution": {
+    "en": "Realized Attribution",
+    "ru": "Реализованная атрибуция",
+    "uk": "Реалізована атрибуція"
+  },
+  "app.openPositions": {
+    "en": "Open Positions",
+    "ru": "Открытые позиции",
+    "uk": "Відкриті позиції"
+  },
+  "app.rawDirectional": {
+    "en": "RAW directional",
+    "ru": "Сырое направление",
+    "uk": "Сире спрямування"
+  },
+  "app.finalDirectional": {
+    "en": "FINAL directional",
+    "ru": "Итоговое направление",
+    "uk": "Підсумкове спрямування"
+  },
+  "intelIntel.loadingIntelligence": {
+    "en": "Loading intelligence...",
+    "ru": "Загрузка данных...",
+    "uk": "Завантаження даних..."
+  },
+  "intelIntel.failedToLoadData": {
+    "en": "Failed to load data",
+    "ru": "Не удалось загрузить данные",
+    "uk": "Не вдалося завантажити дані"
+  },
+  "intelIntel.overallVerdict": {
+    "en": "OVERALL VERDICT",
+    "ru": "ОБЩИЙ ВЕРДИКТ",
+    "uk": "ЗАГАЛЬНИЙ ВЕРДИКТ"
+  },
+  "intelIntel.intelligenceModules": {
+    "en": "INTELLIGENCE MODULES",
+    "ru": "МОДУЛИ АНАЛИТИКИ",
+    "uk": "МОДУЛІ АНАЛІТИКИ"
+  },
+  "intelIntel.comingSoon": {
+    "en": "COMING SOON",
+    "ru": "СКОРО",
+    "uk": "НЕЗАБАРОМ"
+  },
+  "intelDeep.shortLiq": {
+    "en": "Short Liq",
+    "ru": "Ликвидация шортов",
+    "uk": "Ліквідація шортів"
+  },
+  "intelDeep.longLiq": {
+    "en": "Long Liq",
+    "ru": "Ликвидация лонгов",
+    "uk": "Ліквідація лонгів"
+  },
+  "intelDeep.orderFlow": {
+    "en": "Order Flow",
+    "ru": "Поток ордеров",
+    "uk": "Потік ордерів"
+  },
+  "intelDeep.fundingRate": {
+    "en": "Funding Rate",
+    "ru": "Ставка финансирования",
+    "uk": "Ставка фінансування"
+  },
+  "intelDeep.openInterest": {
+    "en": "Open Interest",
+    "ru": "Открытый интерес",
+    "uk": "Відкритий інтерес"
+  },
+  "trade.executionConsole": {
+    "en": "EXECUTION CONSOLE",
+    "ru": "КОНСОЛЬ ВЫПОЛНЕНИЯ",
+    "uk": "КОНСОЛЬ ВИКОНАННЯ"
+  },
+  "trade.finalDecision": {
+    "en": "FINAL DECISION",
+    "ru": "ИТОГОВОЕ РЕШЕНИЕ",
+    "uk": "ПІДСУМКОВЕ РІШЕННЯ"
+  },
+  "trade.howAiArrivedHere": {
+    "en": "HOW AI ARRIVED HERE",
+    "ru": "КАК AI ПРИШЁЛ К ЭТОМУ",
+    "uk": "ЯК AI ДІЙШОВ ДО ЦЬОГО"
+  },
+  "trade.fomoIntelligence": {
+    "en": "FOMO Intelligence",
+    "ru": "FOMO Intelligence",
+    "uk": "FOMO Intelligence"
+  },
+  "trade.quickSignals": {
+    "en": "QUICK OBSERVATIONS",
+    "ru": "БЫСТРЫЕ НАБЛЮДЕНИЯ",
+    "uk": "ШВИДКІ СПОСТЕРЕЖЕННЯ"
+  },
+  "tradeMarkets.topMovers": {
+    "en": "TOP MOVERS",
+    "ru": "ЛИДЕРЫ ДВИЖЕНИЯ",
+    "uk": "ЛІДЕРИ РУХУ"
+  },
+  "tradeMarkets.allMarkets": {
+    "en": "ALL MARKETS",
+    "ru": "ВСЕ РЫНКИ",
+    "uk": "УСІ РИНКИ"
+  },
+  "trade.marketPerception": {
+    "en": "MARKET PERCEPTION",
+    "ru": "ВОСПРИЯТИЕ РЫНКА",
+    "uk": "СПРИЙНЯТТЯ РИНКУ"
+  },
+  "trade.opportunityField": {
+    "en": "Observation Field",
+    "ru": "Поле наблюдения",
+    "uk": "Поле спостереження"
+  },
+  "intel.readAll": {
+    "en": "Read all",
+    "ru": "Прочитать всё",
+    "uk": "Прочитати все"
+  },
+  "intel.noSignalsYet": {
+    "en": "No observations yet",
+    "ru": "Наблюдений пока нет",
+    "uk": "Спостережень поки немає"
+  },
+  "intelSignals.scanningMarkets": {
+    "en": "Scanning markets...",
+    "ru": "Сканирование рынков...",
+    "uk": "Сканування ринків..."
+  },
+  "intelSignals.noSignalsForThisFilter": {
+    "en": "No observations for this filter",
+    "ru": "Нет наблюдений для этого фильтра",
+    "uk": "Немає спостережень для цього фільтра"
+  },
+  "app.finalAction": {
+    "en": "Final action",
+    "ru": "Итоговое действие",
+    "uk": "Підсумкова дія"
+  },
+  "app.rulesFired": {
+    "en": "Rules fired",
+    "ru": "Сработавшие правила",
+    "uk": "Спрацьовані правила"
+  },
+  "auth.devLogin": {
+    "en": "Dev Login",
+    "ru": "Вход для разработчика",
+    "uk": "Dev Login"
+  }
+}

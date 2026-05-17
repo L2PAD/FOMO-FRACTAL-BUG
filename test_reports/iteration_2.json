@@ -1,0 +1,41 @@
+{
+  "summary": "Sprint T1 — Native Trading Runtime backend testing complete. 25/25 pytest tests passed against the public EXPO_PUBLIC_BACKEND_URL. Verdict fusion (TA + sentiment + fractal), opportunities scan, paper-trading book (submit/duplicate-guard/positions/orders/events/close/evaluate-hits/account-update), legacy /api/terminal/* honest-404, and existing cognition endpoints (TA/sentiment/fractal/miniapp/panel) all behave per spec.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_trading_runtime_t1.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "trading_runtime.py reads cognition layers in-process (no HTTP loop-back) — matches sprint contract.",
+    "Verdict engine excludes Mongo _id via projection on every read — no ObjectId leakage.",
+    "Duplicate position guard works (returns ok:false / error='position_already_open').",
+    "Override flow correctly derives entry/stop/target from current price + support/resistance even when underlying verdict is WAIT.",
+    "Events ledger captures both ORDER_FILLED and POSITION_CLOSED with timestamps.",
+    "Account stats (totalTrades, wins, losses, balanceUsd, realizedPnlUsd) updated atomically on close.",
+    "Legacy /api/terminal/* and /api/terminal-app/* return honest 404 (sidecar properly retired).",
+    "Module size: trading_runtime.py is ~670 lines — borderline against 700-line guideline; consider splitting verdict engine and paper book into sub-modules in a future sprint (NOT blocking).",
+    "No async/await issues — all blocking pymongo calls correctly wrapped with asyncio.to_thread in routes layer."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_trading_runtime_t1.py"
+  ],
+  "success_rate": {
+    "backend": "100% (25/25 tests passing)",
+    "frontend": "N/A (backend-only sprint per request)"
+  },
+  "seed_data_creation": "Used a dedicated test account 'TEST_t1_paper_acct' (auto-created by _ensure_account). One LONG BTC position opened/closed during the run; cleanup helper closes any leftover OPEN positions before the flow.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Trading Runtime T1 is stable. Test file at /app/backend/tests/test_trading_runtime_t1.py covers status, verdict (BTC/ETH/SOL), opportunities, account, full paper flow (submit/duplicate/positions/orders/evaluate-hits/close/account-update/closed-listing/events), legacy 404, and cognition surfaces. Re-run via: EXPO_PUBLIC_BACKEND_URL=<url> pytest /app/backend/tests/test_trading_runtime_t1.py -v. Frontend skipped per request — UI for trading verdict/paper book has not been built yet.",
+  "rca_of_issue": "N/A — no failures."
+}

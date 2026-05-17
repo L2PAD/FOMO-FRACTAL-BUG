@@ -1,0 +1,600 @@
+[
+  {
+    "label": "unlocks",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:02:29.242677+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "unlocks",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:02:52.622836+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "funding",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:02:52.622959+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "unlocks",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:08.427144+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "funding",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:08.427229+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "investors",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:08.427291+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ico",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:08.427372+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "unlocks",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:22.529539+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "funding",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:22.529912+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "investors",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:22.530084+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ico",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:22.530499+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ieo",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:22.530690+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "unlocks",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:32.943207+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "funding",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:32.943365+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "investors",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:32.943457+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ico",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:32.943519+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ieo",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:32.943574+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ido",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:04:32.943634+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "unlocks",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:05:50.342942+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "funding",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:05:50.343005+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "investors",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:05:50.343058+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ico",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:05:50.343107+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ieo",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:05:50.343155+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "ido",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:05:50.343202+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "categories",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:05:50.343266+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  },
+  {
+    "label": "coins",
+    "url": "https://api2.dropstab.com/portfolio/api/markets/recentSearchItems",
+    "type": "investors",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "undefined",
+      "referer": "https://dropstab.com/",
+      "accept-language": "en-US",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "timestamp": "2026-03-05T11:05:50.343355+00:00",
+    "data": {
+      "markets": [],
+      "exchanges": [],
+      "investors": [],
+      "categories": []
+    }
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "trailingSlash": false,
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/admin", "destination": "/api/panel/admin", "type": 308 },
+    { "source": "/admin/", "destination": "/api/panel/admin", "type": 308 },
+    { "source": "/admin/:path*", "destination": "/api/panel/admin", "type": 308 },
+    { "source": "/operator", "destination": "/api/panel/admin", "type": 308 },
+    { "source": "/operator/", "destination": "/api/panel/admin", "type": 308 },
+    { "source": "/operator/:path*", "destination": "/api/panel/admin", "type": 308 }
+  ],
+  "renderSingle": false,
+  "directoryListing": false,
+  "headers": [
+    {
+      "source": "**/*.@(js|css)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+    }
+  ]
+}

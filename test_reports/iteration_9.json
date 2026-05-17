@@ -1,0 +1,74 @@
+{
+  "summary": "T10.2E Governance Ledger — Full Reintegration Regression Sweep. Backend: 24/24 PASS. Frontend (Playwright via public k8s ingress): all 4 inject tabs (Billing/Attribution/Execution/Governance) coexist correctly. Governance HIGH-friction backend invariants verified end-to-end. Capability resolver consistency verified (override revoke beats grant-live-authority). NO router hijack — path stays /api/panel/admin/billing across tab switches. NO commerce vocab in Governance. NO retry/resubmit/replay/resend words anywhere in injects. Teardown verified — clicking native sidebar removes governance panel. Single source of truth: no duplicate sidebar entries (each nav id count=1).",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "GET /api/admin/billing/admin/reconciliation/summary",
+        "issue": "Path in original task spec had double '/admin' (typo). Actual canonical path is /api/admin/billing/reconciliation/summary — verified working with admin JWT (200) and unauth (401). Test was corrected."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": [],
+    "pre_existing_unrelated": [
+      {
+        "component": "admin SPA main.ea5744e4.js",
+        "issue": "Mixed Content error: page loaded over HTTPS but attempts WebSocket connection to ws://api/ws (insecure). SecurityError logged on every page load. NOT introduced by governance-inject — pre-existing admin SPA bug. Inject tabs still function via fetch (HTTPS) so this does not block T10.2E. Recommend fixing the WS endpoint URL builder in the compiled SPA to use wss:// + window.location.host."
+      }
+    ]
+  },
+  "backend_test_results": {
+    "pytest_t10_2e_sweep": "24/24 PASSED in 4.36s (/app/backend/tests/test_t10_2e_governance_sweep.py)",
+    "smoke": "GET /api/health 200 ok=true; POST /api/admin/auth/login admin/admin12345 → 200 ok=true token; wrong pwd → 401",
+    "inject_auth_gates": "All 4 endpoints return 401 unauth and 200 with admin JWT: /api/admin/billing/reconciliation/summary, /api/admin/attribution/summary?window=7d, /api/admin/execution/testnet/config, /api/admin/operator-access/list",
+    "governance_mutation_chain": "set-tier→200; grant paper→200 approved; grant-live-authority typed='WRONG'→400 TYPED_CONFIRMATION_MISMATCH expected='GRANT LIVE TRADING'; grant-live-authority no reason→422; grant-live-authority valid→200 operatorAccess.liveAuthority.granted=true; audit-timeline contains set-tier+grant+grant-live-authority; override-capability liveTrading=revoked→200 effective=false; revoke-live-authority no reason→422",
+    "capability_resolver_consistency": "After override revoke of liveTrading, GET /api/admin/operator-access/list?q=<user> returns capabilities.structured.liveTrading.effective=false — matches override (revoke beats grant-live-authority). Single source of truth confirmed.",
+    "execution_invariants": "TESTNET_ONLY=true, MAX_NOTIONAL_USD=25.0, retryForbidden=true, appendOnly=true, autoResubmit=false (nested under body.invariants)",
+    "execution_immutability": "POST /api/admin/execution/testnet/submit with duplicate lineageId → 409 RECEIPT_EXISTS",
+    "admin_spa_html": "GET /api/panel/admin returns HTML containing all 4 inject script tags (billing-inject, attribution-inject, execution-inject, governance-inject)"
+  },
+  "frontend_test_results": {
+    "login_flow": "Filled admin/admin12345 in Cyrillic 'Войти' form → landed on /api/panel/admin/system-overview",
+    "nav_visible": "data-testid count=1 for each: admin-nav-billing, admin-nav-attribution, admin-nav-execution, admin-nav-governance (NO duplicates)",
+    "panel_mount": "fomo-attribution-panel, fomo-execution-panel, fomo-governance-panel all mount on tap. (billing path navigates to native /billing route — that's the inject's by-design handoff to native billing screen)",
+    "no_router_hijack": "Across all 4 tab activations after first nav, window.location.pathname stays at /api/panel/admin/billing — no pushState by inject tabs",
+    "governance_panel_content": "Header 'Управление' visible; 'Commerce ≠ governance' separation banner visible; Operators table renders (6 rows including seeded test_sweep_<ts> users with TRADER tier, PAPER mode, GRANTED live authority, 1 override badge); Capability Matrix section present with placeholder text; Audit Timeline section present (NOT collapsed)",
+    "execution_panel_content": "Execution panel mounts with 'immutable' framing phrase present. Zero occurrences of Retry/Resubmit/Replay/Resend in panel DOM.",
+    "commerce_vocab_audit": "Zero occurrences of 'enable live', 'activate trader', 'unlock trading', 'boost permissions' in governance panel (case-insensitive scan)",
+    "teardown": "Clicking a native sidebar item removed #fomo-governance-panel from DOM (teardown_governance_removed=true)",
+    "jwt_propagation": "Single login authenticated all 4 tabs (no re-login when switching) — confirmed by no 401s after switching tabs",
+    "orphan_expo_admin": "GET /admin still served (200), but admin work flow canonically lives on /api/panel/admin"
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_t10_2e_governance_sweep.py",
+    "/app/test_reports/pytest/pytest_iter9_governance.xml"
+  ],
+  "action_items": [
+    "NONE for T10.2E governance ledger — surface is integration-clean.",
+    "Optional (out of scope of this sweep): fix admin SPA Mixed Content WebSocket bug — replace 'ws://api/ws' with 'wss://<host>/api/ws' in the compiled main.ea5744e4.js source. This is a pre-existing admin SPA realtime bug unrelated to inject scripts; inject tabs work fine without WS."
+  ],
+  "critical_code_review_comments": [
+    "_rewrite_admin_html in server.py correctly injects all 4 *-inject.js scripts before </body> only for non-miniapp admin routes — verified by HTML grep on /api/panel/admin (200, contains billing/attribution/execution/governance inject markers).",
+    "operator_access.py grant-live-authority correctly enforces the dual gate: typedConfirmation MUST equal 'GRANT LIVE TRADING' (case-sensitive) AND reason is mandatory (422 on missing reason, 400 with detail.error='TYPED_CONFIRMATION_MISMATCH' + detail.expected='GRANT LIVE TRADING' on wrong phrase).",
+    "override-capability with value='revoked' on liveTrading correctly takes precedence over grant-live-authority — capability resolver returns effective=false after override even though liveAuthority.granted=true. Single source of truth (backend) preserved.",
+    "Audit timeline records ALL mutations append-only with proper severity bucketing (set-tier=info, grant=elevated, grant-live-authority=critical, override-capability=critical).",
+    "Inject scripts use distinct vanilla-DOM testIDs (admin-nav-billing/attribution/execution/governance) on plain <button> nodes — single count per nav id (no duplicate-mount race), confirming the createSidebarTab primitive guards against re-injection.",
+    "Path-stability check passed: even after clicking governance-inject tab, window.location.pathname did NOT change — inject panels mount/unmount in-place without history.pushState (no router hijack)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_t10_2e_governance_sweep.py (NEW, 24 tests covering smoke + auth gates + governance mutation chain + execution ledger invariants + admin SPA HTML inject markers)"
+  ],
+  "success_rate": {
+    "backend": "100% (24/24 pytest passed)",
+    "frontend": "100% on critical T10.2E acceptance assertions (nav presence, single-instance, panel mount, path stability, commerce vocab absent, retry words absent, teardown, JWT propagation)"
+  },
+  "seed_data_creation": "Test fixture creates user_id='test_sweep_<ts>' in MongoDB via the governance mutation chain (set-tier→trader, grant paper, grant-live-authority granted, override-capability liveTrading→revoked). Two such users visible in the Operators table screenshot. These are isolated test records and do not pollute production governance state; recommend periodic cleanup of test_sweep_* userIds.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "T10.2E Governance Ledger is contract-locked and fully integration-clean. To re-run the regression sweep: `PYTHONPATH=/app/backend pytest tests/test_t10_2e_governance_sweep.py -v` from /app/backend (24 tests). Public base URL is in BASE_URL constant. Admin auth is admin/admin12345. Live authority typed phrase is 'GRANT LIVE TRADING' (case-sensitive). The four inject testIDs are admin-nav-billing/attribution/execution/governance with panel mount IDs fomo-{billing|attribution|execution|governance}-panel. The pre-existing ws://api/ws Mixed Content bug in admin SPA is NOT a T10.2E regression — track separately.",
+  "rca_of_issue": "N/A — no functional regressions found. The only test failures during initial run were test-spec issues (wrong path '/api/admin/billing/admin/reconciliation/summary' in spec; expected flat keys but execution config nests under 'invariants') — corrected in the test file. The actual backend contract is correct and matches T10.2E expectations."
+}

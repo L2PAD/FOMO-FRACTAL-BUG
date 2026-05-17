@@ -1,0 +1,78 @@
+{
+  "moduleName": "sentiment-ml",
+  "version": "1.0.0",
+  "buildHash": "RUNTIME",
+  "frozen": true,
+  "frozenAt": "2025-12-17T02:00:00.000Z",
+  "freezeAuditVerdict": "PASS",
+  "decisionPolicyVersion": "sent.rule.v1",
+  "featureMode": "CORE_ONLY",
+  "featureModeNote": "Connections layer unavailable - model operates on core features only (bias, absBias, confidence, eventsCountLog)",
+  "dataset": {
+    "labelVersion": 1,
+    "windowTypes": ["24H", "7D", "30D"]
+  },
+  "drift": {
+    "baselineVersion": "auto",
+    "emaAlpha": 0.2,
+    "persistWarn": 3,
+    "persistDegraded": 2,
+    "persistCritical": 1
+  },
+  "risk": {
+    "regimeFilterVersion": "regime.v1.1",
+    "chopThresholds": {
+      "atrPercentileFloor": 0.25,
+      "volumePercentileFloor": 0.20,
+      "rangePercentileFloor": 0.20
+    }
+  },
+  "lifecycle": {
+    "promotionRulesVersion": "life.v1",
+    "cooldownDays": 56,
+    "sustainedWindows": 3,
+    "minEdgeDelta": 0.02
+  },
+  "reliability": {
+    "uriWeights": {
+      "dataHealth": 0.30,
+      "driftHealth": 0.25,
+      "capitalHealth": 0.25,
+      "calibrationHealth": 0.20
+    },
+    "thresholds": {
+      "OK": 0.75,
+      "WARN": 0.60,
+      "DEGRADED": 0.40
+    }
+  },
+  "capitalGates": {
+    "promotion": {
+      "minCapitalHealth": 0.70,
+      "maxDD": 0.15,
+      "minExpectancy": 0,
+      "minSharpe": 0.10,
+      "minURI": 0.60
+    },
+    "rollback": {
+      "maxDD": 0.20,
+      "maxCapitalHealth": 0.50
+    }
+  },
+  "flags": {
+    "WORKERS_ENABLED": true,
+    "TRAINING_ENABLED": false,
+    "PROMOTION_ENABLED": false,
+    "AUTO_BASELINE_ENABLED": false
+  },
+  "driftMonitoring": {
+    "enabled": true,
+    "features": ["bias", "absBias", "confidence", "eventsCountLog"],
+    "weights": {
+      "bias": 0.40,
+      "absBias": 0.15,
+      "confidence": 0.30,
+      "eventsCountLog": 0.10
+    }
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOMO Extension States Preview</title>
+  <style>
+    body {
+      background: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px;
+    }
+    h2 {
+      color: #f1f5f9;
+      font-size: 24px;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+    .preview-container {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .preview-box {
+      text-align: center;
+    }
+    .preview-box h3 {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .browser-frame {
+      background: #2d2d44;
+      border-radius: 12px;
+      padding: 6px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    iframe {
+      border: none;
+      border-radius: 8px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h2>FOMO X Connect v1.3.0 — UI States</h2>
+  <div class="preview-container">
+    <div class="preview-box">
+      <h3>Connected State</h3>
+      <div class="browser-frame">
+        <iframe src="/chrome-extension-preview.html" width="380" height="520"></iframe>
+      </div>
+    </div>
+    <div class="preview-box">
+      <h3>Setup Needed State</h3>
+      <div class="browser-frame">
+        <iframe src="/chrome-extension-preview-setup.html" width="380" height="520"></iframe>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

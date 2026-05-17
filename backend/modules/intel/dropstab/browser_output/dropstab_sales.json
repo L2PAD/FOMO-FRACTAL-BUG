@@ -1,0 +1,602 @@
+[
+  {
+    "label": "unlocks",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fico&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A657186902%3Az%3A-300%3Ai%3A20260305060408%3Aet%3A1772708649%3Ac%3A1%3Arn%3A46059970%3Arqn%3A5%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A500%3Awv%3A2%3Ads%3A0%2C0%2C333%2C63%2C%2C0%2C%2C27%2C0%2C801%2C801%2C0%2C426%3Aco%3A0%3Antf%3A1%3Ans%3A1772708647622%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708649%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:08.756249+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "GLeXAfUP0rq5CXVftOs7EYBUOFDuzhQcFSVS/bU3Uz3kQmuQg697cm3VpS9bCpnu",
+          "b": "MAoF2croWCoxMG9v/EQz2nSHfEgHG6FMhDmcjAkYJm7iN09ikdwb1Xz2vWQUvZzn"
+        },
+        "eu": 2,
+        "hittoken": "1772708648_4d65ec995052fb48cdc204be50da0073cc25dc2f65e21a80101b1a3263d80bd9",
+        "wstoken": "10961.MhF1mHhm9yr1SUvK8gciqITQ8tIlByyqQ-6gBSmEW764LySrxY35x93DWlT2-NraN3465drceGXbyFIzeGmdIJTLXEI6aScgqhzhFFEsK-g,.uXG9a3TgswwO4C5efepMGjqToq4,",
+        "hidv2": "1007012719959736393",
+        "ymclid": "1007012719959736393"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "funding",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fico&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A657186902%3Az%3A-300%3Ai%3A20260305060408%3Aet%3A1772708649%3Ac%3A1%3Arn%3A46059970%3Arqn%3A5%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A500%3Awv%3A2%3Ads%3A0%2C0%2C333%2C63%2C%2C0%2C%2C27%2C0%2C801%2C801%2C0%2C426%3Aco%3A0%3Antf%3A1%3Ans%3A1772708647622%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708649%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:08.756430+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "GLeXAfUP0rq5CXVftOs7EYBUOFDuzhQcFSVS/bU3Uz3kQmuQg697cm3VpS9bCpnu",
+          "b": "MAoF2croWCoxMG9v/EQz2nSHfEgHG6FMhDmcjAkYJm7iN09ikdwb1Xz2vWQUvZzn"
+        },
+        "eu": 2,
+        "hittoken": "1772708648_4d65ec995052fb48cdc204be50da0073cc25dc2f65e21a80101b1a3263d80bd9",
+        "wstoken": "10961.MhF1mHhm9yr1SUvK8gciqITQ8tIlByyqQ-6gBSmEW764LySrxY35x93DWlT2-NraN3465drceGXbyFIzeGmdIJTLXEI6aScgqhzhFFEsK-g,.uXG9a3TgswwO4C5efepMGjqToq4,",
+        "hidv2": "1007012719959736393",
+        "ymclid": "1007012719959736393"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "investors",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fico&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A657186902%3Az%3A-300%3Ai%3A20260305060408%3Aet%3A1772708649%3Ac%3A1%3Arn%3A46059970%3Arqn%3A5%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A500%3Awv%3A2%3Ads%3A0%2C0%2C333%2C63%2C%2C0%2C%2C27%2C0%2C801%2C801%2C0%2C426%3Aco%3A0%3Antf%3A1%3Ans%3A1772708647622%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708649%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:08.756514+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "GLeXAfUP0rq5CXVftOs7EYBUOFDuzhQcFSVS/bU3Uz3kQmuQg697cm3VpS9bCpnu",
+          "b": "MAoF2croWCoxMG9v/EQz2nSHfEgHG6FMhDmcjAkYJm7iN09ikdwb1Xz2vWQUvZzn"
+        },
+        "eu": 2,
+        "hittoken": "1772708648_4d65ec995052fb48cdc204be50da0073cc25dc2f65e21a80101b1a3263d80bd9",
+        "wstoken": "10961.MhF1mHhm9yr1SUvK8gciqITQ8tIlByyqQ-6gBSmEW764LySrxY35x93DWlT2-NraN3465drceGXbyFIzeGmdIJTLXEI6aScgqhzhFFEsK-g,.uXG9a3TgswwO4C5efepMGjqToq4,",
+        "hidv2": "1007012719959736393",
+        "ymclid": "1007012719959736393"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "ico",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fico&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A657186902%3Az%3A-300%3Ai%3A20260305060408%3Aet%3A1772708649%3Ac%3A1%3Arn%3A46059970%3Arqn%3A5%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A500%3Awv%3A2%3Ads%3A0%2C0%2C333%2C63%2C%2C0%2C%2C27%2C0%2C801%2C801%2C0%2C426%3Aco%3A0%3Antf%3A1%3Ans%3A1772708647622%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708649%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:08.756573+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "GLeXAfUP0rq5CXVftOs7EYBUOFDuzhQcFSVS/bU3Uz3kQmuQg697cm3VpS9bCpnu",
+          "b": "MAoF2croWCoxMG9v/EQz2nSHfEgHG6FMhDmcjAkYJm7iN09ikdwb1Xz2vWQUvZzn"
+        },
+        "eu": 2,
+        "hittoken": "1772708648_4d65ec995052fb48cdc204be50da0073cc25dc2f65e21a80101b1a3263d80bd9",
+        "wstoken": "10961.MhF1mHhm9yr1SUvK8gciqITQ8tIlByyqQ-6gBSmEW764LySrxY35x93DWlT2-NraN3465drceGXbyFIzeGmdIJTLXEI6aScgqhzhFFEsK-g,.uXG9a3TgswwO4C5efepMGjqToq4,",
+        "hidv2": "1007012719959736393",
+        "ymclid": "1007012719959736393"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "unlocks",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fieo&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A164155747%3Az%3A-300%3Ai%3A20260305060422%3Aet%3A1772708662%3Ac%3A1%3Arn%3A252196584%3Arqn%3A6%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A336%3Awv%3A2%3Ads%3A0%2C0%2C207%2C33%2C0%2C0%2C%2C71%2C0%2C612%2C612%2C0%2C312%3Aco%3A0%3Antf%3A1%3Ans%3A1772708661423%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708662%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:22.531967+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "0SGEX8uPLvMfXfMOCp8PN6pgi03h/kQ6yWHVfI7/qFu6G+uye13TNUNwfkGEKkSE",
+          "b": "7doHFEukhDuIdsyWJP4LBKbLDFSCLSrxe9ZaGogvlSxRneC1YdaonHYQl5nsf0Te"
+        },
+        "eu": 2,
+        "hittoken": "1772708662_b4e823ea38e3cdb5f24e6259835415d9a15293487916d1a20fae20eb8842c1b9",
+        "wstoken": "10961.9heGIm2vdPnGHLRRt9UY8zZ5d3SRICYj09JOtYcfHF90LFtrCoaFOEZtQdlu_DHCYaBSAoE4wI36CGCqQRG4ZciFwFOn_4zdsCuHi7YXhdE,.z8Vi0aaTExG_V8S5ag4hMuK5xZk,",
+        "hidv2": "1007016293428363455",
+        "ymclid": "1007016293428363455"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "funding",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fieo&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A164155747%3Az%3A-300%3Ai%3A20260305060422%3Aet%3A1772708662%3Ac%3A1%3Arn%3A252196584%3Arqn%3A6%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A336%3Awv%3A2%3Ads%3A0%2C0%2C207%2C33%2C0%2C0%2C%2C71%2C0%2C612%2C612%2C0%2C312%3Aco%3A0%3Antf%3A1%3Ans%3A1772708661423%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708662%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:22.532161+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "0SGEX8uPLvMfXfMOCp8PN6pgi03h/kQ6yWHVfI7/qFu6G+uye13TNUNwfkGEKkSE",
+          "b": "7doHFEukhDuIdsyWJP4LBKbLDFSCLSrxe9ZaGogvlSxRneC1YdaonHYQl5nsf0Te"
+        },
+        "eu": 2,
+        "hittoken": "1772708662_b4e823ea38e3cdb5f24e6259835415d9a15293487916d1a20fae20eb8842c1b9",
+        "wstoken": "10961.9heGIm2vdPnGHLRRt9UY8zZ5d3SRICYj09JOtYcfHF90LFtrCoaFOEZtQdlu_DHCYaBSAoE4wI36CGCqQRG4ZciFwFOn_4zdsCuHi7YXhdE,.z8Vi0aaTExG_V8S5ag4hMuK5xZk,",
+        "hidv2": "1007016293428363455",
+        "ymclid": "1007016293428363455"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "investors",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fieo&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A164155747%3Az%3A-300%3Ai%3A20260305060422%3Aet%3A1772708662%3Ac%3A1%3Arn%3A252196584%3Arqn%3A6%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A336%3Awv%3A2%3Ads%3A0%2C0%2C207%2C33%2C0%2C0%2C%2C71%2C0%2C612%2C612%2C0%2C312%3Aco%3A0%3Antf%3A1%3Ans%3A1772708661423%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708662%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:22.532263+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "0SGEX8uPLvMfXfMOCp8PN6pgi03h/kQ6yWHVfI7/qFu6G+uye13TNUNwfkGEKkSE",
+          "b": "7doHFEukhDuIdsyWJP4LBKbLDFSCLSrxe9ZaGogvlSxRneC1YdaonHYQl5nsf0Te"
+        },
+        "eu": 2,
+        "hittoken": "1772708662_b4e823ea38e3cdb5f24e6259835415d9a15293487916d1a20fae20eb8842c1b9",
+        "wstoken": "10961.9heGIm2vdPnGHLRRt9UY8zZ5d3SRICYj09JOtYcfHF90LFtrCoaFOEZtQdlu_DHCYaBSAoE4wI36CGCqQRG4ZciFwFOn_4zdsCuHi7YXhdE,.z8Vi0aaTExG_V8S5ag4hMuK5xZk,",
+        "hidv2": "1007016293428363455",
+        "ymclid": "1007016293428363455"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "ico",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fieo&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A164155747%3Az%3A-300%3Ai%3A20260305060422%3Aet%3A1772708662%3Ac%3A1%3Arn%3A252196584%3Arqn%3A6%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A336%3Awv%3A2%3Ads%3A0%2C0%2C207%2C33%2C0%2C0%2C%2C71%2C0%2C612%2C612%2C0%2C312%3Aco%3A0%3Antf%3A1%3Ans%3A1772708661423%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708662%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:22.532405+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "0SGEX8uPLvMfXfMOCp8PN6pgi03h/kQ6yWHVfI7/qFu6G+uye13TNUNwfkGEKkSE",
+          "b": "7doHFEukhDuIdsyWJP4LBKbLDFSCLSrxe9ZaGogvlSxRneC1YdaonHYQl5nsf0Te"
+        },
+        "eu": 2,
+        "hittoken": "1772708662_b4e823ea38e3cdb5f24e6259835415d9a15293487916d1a20fae20eb8842c1b9",
+        "wstoken": "10961.9heGIm2vdPnGHLRRt9UY8zZ5d3SRICYj09JOtYcfHF90LFtrCoaFOEZtQdlu_DHCYaBSAoE4wI36CGCqQRG4ZciFwFOn_4zdsCuHi7YXhdE,.z8Vi0aaTExG_V8S5ag4hMuK5xZk,",
+        "hidv2": "1007016293428363455",
+        "ymclid": "1007016293428363455"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "ieo",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fieo&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A164155747%3Az%3A-300%3Ai%3A20260305060422%3Aet%3A1772708662%3Ac%3A1%3Arn%3A252196584%3Arqn%3A6%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A336%3Awv%3A2%3Ads%3A0%2C0%2C207%2C33%2C0%2C0%2C%2C71%2C0%2C612%2C612%2C0%2C312%3Aco%3A0%3Antf%3A1%3Ans%3A1772708661423%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708662%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:22.532696+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "0SGEX8uPLvMfXfMOCp8PN6pgi03h/kQ6yWHVfI7/qFu6G+uye13TNUNwfkGEKkSE",
+          "b": "7doHFEukhDuIdsyWJP4LBKbLDFSCLSrxe9ZaGogvlSxRneC1YdaonHYQl5nsf0Te"
+        },
+        "eu": 2,
+        "hittoken": "1772708662_b4e823ea38e3cdb5f24e6259835415d9a15293487916d1a20fae20eb8842c1b9",
+        "wstoken": "10961.9heGIm2vdPnGHLRRt9UY8zZ5d3SRICYj09JOtYcfHF90LFtrCoaFOEZtQdlu_DHCYaBSAoE4wI36CGCqQRG4ZciFwFOn_4zdsCuHi7YXhdE,.z8Vi0aaTExG_V8S5ag4hMuK5xZk,",
+        "hidv2": "1007016293428363455",
+        "ymclid": "1007016293428363455"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "unlocks",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fido&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A991170320%3Az%3A-300%3Ai%3A20260305060433%3Aet%3A1772708673%3Ac%3A1%3Arn%3A141000466%3Arqn%3A7%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A536%3Awv%3A2%3Ads%3A0%2C0%2C390%2C33%2C0%2C0%2C%2C90%2C0%2C819%2C819%2C0%2C514%3Aco%3A0%3Antf%3A1%3Ans%3A1772708672114%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708673%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:33.317210+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "BkfIcYh7fYhIr13Q+HnsEKD8W/MLzSU1aMT4l0qV0VBcycYpOjrwG4mE1mgT+ezX",
+          "b": "zMY6zzFrCbxNb86w2tn3tRyEHqOvZchNgDZSuUwDttSow15kbYD2p2xsF6W7Ay5t"
+        },
+        "eu": 2,
+        "hittoken": "1772708673_0b0e95b42e959d77450b95098af62cd65a8e92de74853b176d1fa95a9f7f1c50",
+        "wstoken": "10961.94dg699VMzz6s5nC14sN47oDyurJRk3WX2n2kOBMOHr2pwAd_xPvqG7r9OV_rvU5x6XmqCTcUt-xjnjK48WfWlE_L4XZrv5cURMp29Tvufo,.xXulQla0wxxg3I72298Hs4nALPw,",
+        "hidv2": "1007019159059955903",
+        "ymclid": "1007019159059955903"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "funding",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fido&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A991170320%3Az%3A-300%3Ai%3A20260305060433%3Aet%3A1772708673%3Ac%3A1%3Arn%3A141000466%3Arqn%3A7%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A536%3Awv%3A2%3Ads%3A0%2C0%2C390%2C33%2C0%2C0%2C%2C90%2C0%2C819%2C819%2C0%2C514%3Aco%3A0%3Antf%3A1%3Ans%3A1772708672114%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708673%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:33.317411+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "BkfIcYh7fYhIr13Q+HnsEKD8W/MLzSU1aMT4l0qV0VBcycYpOjrwG4mE1mgT+ezX",
+          "b": "zMY6zzFrCbxNb86w2tn3tRyEHqOvZchNgDZSuUwDttSow15kbYD2p2xsF6W7Ay5t"
+        },
+        "eu": 2,
+        "hittoken": "1772708673_0b0e95b42e959d77450b95098af62cd65a8e92de74853b176d1fa95a9f7f1c50",
+        "wstoken": "10961.94dg699VMzz6s5nC14sN47oDyurJRk3WX2n2kOBMOHr2pwAd_xPvqG7r9OV_rvU5x6XmqCTcUt-xjnjK48WfWlE_L4XZrv5cURMp29Tvufo,.xXulQla0wxxg3I72298Hs4nALPw,",
+        "hidv2": "1007019159059955903",
+        "ymclid": "1007019159059955903"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "investors",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fido&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A991170320%3Az%3A-300%3Ai%3A20260305060433%3Aet%3A1772708673%3Ac%3A1%3Arn%3A141000466%3Arqn%3A7%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A536%3Awv%3A2%3Ads%3A0%2C0%2C390%2C33%2C0%2C0%2C%2C90%2C0%2C819%2C819%2C0%2C514%3Aco%3A0%3Antf%3A1%3Ans%3A1772708672114%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708673%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:33.317808+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "BkfIcYh7fYhIr13Q+HnsEKD8W/MLzSU1aMT4l0qV0VBcycYpOjrwG4mE1mgT+ezX",
+          "b": "zMY6zzFrCbxNb86w2tn3tRyEHqOvZchNgDZSuUwDttSow15kbYD2p2xsF6W7Ay5t"
+        },
+        "eu": 2,
+        "hittoken": "1772708673_0b0e95b42e959d77450b95098af62cd65a8e92de74853b176d1fa95a9f7f1c50",
+        "wstoken": "10961.94dg699VMzz6s5nC14sN47oDyurJRk3WX2n2kOBMOHr2pwAd_xPvqG7r9OV_rvU5x6XmqCTcUt-xjnjK48WfWlE_L4XZrv5cURMp29Tvufo,.xXulQla0wxxg3I72298Hs4nALPw,",
+        "hidv2": "1007019159059955903",
+        "ymclid": "1007019159059955903"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "ico",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fido&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A991170320%3Az%3A-300%3Ai%3A20260305060433%3Aet%3A1772708673%3Ac%3A1%3Arn%3A141000466%3Arqn%3A7%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A536%3Awv%3A2%3Ads%3A0%2C0%2C390%2C33%2C0%2C0%2C%2C90%2C0%2C819%2C819%2C0%2C514%3Aco%3A0%3Antf%3A1%3Ans%3A1772708672114%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708673%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:33.318015+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "BkfIcYh7fYhIr13Q+HnsEKD8W/MLzSU1aMT4l0qV0VBcycYpOjrwG4mE1mgT+ezX",
+          "b": "zMY6zzFrCbxNb86w2tn3tRyEHqOvZchNgDZSuUwDttSow15kbYD2p2xsF6W7Ay5t"
+        },
+        "eu": 2,
+        "hittoken": "1772708673_0b0e95b42e959d77450b95098af62cd65a8e92de74853b176d1fa95a9f7f1c50",
+        "wstoken": "10961.94dg699VMzz6s5nC14sN47oDyurJRk3WX2n2kOBMOHr2pwAd_xPvqG7r9OV_rvU5x6XmqCTcUt-xjnjK48WfWlE_L4XZrv5cURMp29Tvufo,.xXulQla0wxxg3I72298Hs4nALPw,",
+        "hidv2": "1007019159059955903",
+        "ymclid": "1007019159059955903"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "ieo",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fido&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A991170320%3Az%3A-300%3Ai%3A20260305060433%3Aet%3A1772708673%3Ac%3A1%3Arn%3A141000466%3Arqn%3A7%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A536%3Awv%3A2%3Ads%3A0%2C0%2C390%2C33%2C0%2C0%2C%2C90%2C0%2C819%2C819%2C0%2C514%3Aco%3A0%3Antf%3A1%3Ans%3A1772708672114%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708673%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:33.318098+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "BkfIcYh7fYhIr13Q+HnsEKD8W/MLzSU1aMT4l0qV0VBcycYpOjrwG4mE1mgT+ezX",
+          "b": "zMY6zzFrCbxNb86w2tn3tRyEHqOvZchNgDZSuUwDttSow15kbYD2p2xsF6W7Ay5t"
+        },
+        "eu": 2,
+        "hittoken": "1772708673_0b0e95b42e959d77450b95098af62cd65a8e92de74853b176d1fa95a9f7f1c50",
+        "wstoken": "10961.94dg699VMzz6s5nC14sN47oDyurJRk3WX2n2kOBMOHr2pwAd_xPvqG7r9OV_rvU5x6XmqCTcUt-xjnjK48WfWlE_L4XZrv5cURMp29Tvufo,.xXulQla0wxxg3I72298Hs4nALPw,",
+        "hidv2": "1007019159059955903",
+        "ymclid": "1007019159059955903"
+      },
+      "userData": {}
+    }
+  },
+  {
+    "label": "ido",
+    "url": "https://mc.yandex.com/watch/95700251?wmode=7&page-url=https%3A%2F%2Fdropstab.com%2Fido&charset=utf-8&uah=chu%0A%22Not%3AA-Brand%22%3Bv%3D%2299%22%2C%22HeadlessChrome%22%3Bv%3D%22145%22%2C%22Chromium%22%3Bv%3D%22145%22%0Acha%0Ax86%0Achb%0A64%0Achf%0A145.0.7632.0%0Achl%0A%22Not%3AA-Brand%22%3Bv%3D%2299.0.0.0%22%2C%22HeadlessChrome%22%3Bv%3D%22145.0.7632.0%22%2C%22Chromium%22%3Bv%3D%22145.0.7632.0%22%0Achm%0A%3F0%0Achp%0AWindows%0Achv%0A10.0&browser-info=pv%3A1%3Avf%3A6g20vg83qczf8he8e6rm6azi046aj%3Afu%3A0%3Aen%3Autf-8%3Ala%3Aen-US%3Av%3A2401%3Acn%3A1%3Adp%3A0%3Als%3A1537047527716%3Ahid%3A991170320%3Az%3A-300%3Ai%3A20260305060433%3Aet%3A1772708673%3Ac%3A1%3Arn%3A141000466%3Arqn%3A7%3Au%3A1772708550210956605%3Aw%3A1920x1080%3As%3A1920x1080x24%3Ask%3A1%3Afp%3A536%3Awv%3A2%3Ads%3A0%2C0%2C390%2C33%2C0%2C0%2C%2C90%2C0%2C819%2C819%2C0%2C514%3Aco%3A0%3Antf%3A1%3Ans%3A1772708672114%3Agi%3AR0ExLjEuOTg1ODQwMTY3LjE3NzI3MDg1NDk%3D%3Aadb%3A2%3Arqnl%3A1%3Ast%3A1772708673%3At%3A&t=gdpr(14)clc(0-0-0)rqnt(1)aw(1)rcm(0)cdl(na)eco(83952132)ti(1)",
+    "type": "sales",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://dropstab.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "accept-language": "en-US",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "timestamp": "2026-03-05T11:04:33.318158+00:00",
+    "data": {
+      "settings": {
+        "auto_goals": 1,
+        "button_goals": 0,
+        "c_recp": "1.00000",
+        "form_goals": 1,
+        "pcs": "1",
+        "webvisor": {
+          "arch_type": "none",
+          "date": "2026-03-04 23:24:40",
+          "forms": 1,
+          "recp": "0.70870"
+        },
+        "sbp": {
+          "a": "BkfIcYh7fYhIr13Q+HnsEKD8W/MLzSU1aMT4l0qV0VBcycYpOjrwG4mE1mgT+ezX",
+          "b": "zMY6zzFrCbxNb86w2tn3tRyEHqOvZchNgDZSuUwDttSow15kbYD2p2xsF6W7Ay5t"
+        },
+        "eu": 2,
+        "hittoken": "1772708673_0b0e95b42e959d77450b95098af62cd65a8e92de74853b176d1fa95a9f7f1c50",
+        "wstoken": "10961.94dg699VMzz6s5nC14sN47oDyurJRk3WX2n2kOBMOHr2pwAd_xPvqG7r9OV_rvU5x6XmqCTcUt-xjnjK48WfWlE_L4XZrv5cURMp29Tvufo,.xXulQla0wxxg3I72298Hs4nALPw,",
+        "hidv2": "1007019159059955903",
+        "ymclid": "1007019159059955903"
+      },
+      "userData": {}
+    }
+  }
+]

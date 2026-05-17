@@ -1,0 +1,28 @@
+import React, { useEffect } from 'react';
+import { View, ActivityIndicator, Platform, StyleSheet } from 'react-native';
+
+/**
+ * /terminal — short-URL shim.
+ * The real Trading Terminal SPA lives at /api/terminal-app/ (served by the
+ * FastAPI backend, which proxies the F-TRADE-MODULE React build through
+ * Kubernetes ingress). On Web we redirect immediately, preserving any
+ * URL search/hash for deep-linking. On native this is a no-op.
+ */
+export default function TerminalRedirect() {
+  useEffect(() => {
+    if (Platform.OS !== 'web') return;
+    const hash = typeof window !== 'undefined' ? window.location.hash || '' : '';
+    const search = typeof window !== 'undefined' ? window.location.search || '' : '';
+    window.location.replace('/api/terminal-app/' + search + hash);
+  }, []);
+
+  return (
+    <View style={styles.root}>
+      <ActivityIndicator color="#2FE6A6" size="large" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  root: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#0B0F14' },
+});

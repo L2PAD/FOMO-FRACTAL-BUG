@@ -1,0 +1,46 @@
+{
+  "summary": "Sprint T3 (Continuous Paper Runtime) — 22/23 tests PASS. Scheduler bootstraps at startup (PAPER_EVAL_ENABLED=true), runs at 60s interval, auto-closes OPEN positions on stop/target hits via tick fallback (Binance returns HTTP 451 from pod region, so detectionMode='tick'), updates account/events/positions correctly, and is idempotent (no duplicate closes). One CRITICAL bug found: POST /api/trading/paper/scheduler/enable cannot re-enable the scheduler after it has been disabled — route uses asyncio.to_thread which strands enable_scheduler() in a worker thread that has no event loop, causing RuntimeError. All T1/T2 endpoints, cognition rails (TA/sentiment/fractal), legacy /api/terminal honest-404, and miniapp+admin SPAs verified non-regressed.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/trading/paper/scheduler/enable",
+        "issue": "After disable, re-enable via API fails with `start_failed: RuntimeError('There is no current event loop in thread asyncio_N')`. Route wraps sched.enable_scheduler in asyncio.to_thread, then enable_scheduler() calls asyncio.get_event_loop() inside the worker thread (Python 3.11 raises). Net effect: once disabled via API, scheduler can only be revived by backend restart. Breaks acceptance criterion #3 (disable→enable cycle idempotent).",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_sprint_t3_scheduler.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix scheduler enable race: in /app/backend/routes/trading_runtime.py drop `asyncio.to_thread` for the enable endpoint and `await sched.enable_scheduler()` directly (or refactor enable_scheduler to accept an injected loop captured at bootstrap and use loop.call_soon_threadsafe to schedule task creation).",
+    "Alternative fix in /app/backend/services/paper_runtime_scheduler.py: at bootstrap() store the running event loop in _state.loop, and inside enable_scheduler() use that stored loop reference + asyncio.run_coroutine_threadsafe / loop.call_soon_threadsafe to create the task, instead of asyncio.get_event_loop() (which fails in worker threads on Py 3.10+).",
+    "Optional: rename _closing_lock $unset clause to use $set:{_closing_lock:False} or similar for audit traceability — currently it's removed on close so you cannot tell from the doc whether atomic guard fired."
+  ],
+  "critical_code_review_comments": [
+    "paper_runtime_scheduler.enable_scheduler uses asyncio.get_event_loop() which is deprecated/raises on Py 3.10+ when no running loop is present in the current thread. Combined with the route's asyncio.to_thread wrapper, this is the proximate cause of the enable-after-disable failure.",
+    "trading_runtime.evaluate_stop_target_hits uses a two-step atomic guard (update_one set _closing_lock then close). Works correctly under contention in this test, but the _closing_lock field never persists post-close (cleared via $unset), so duplicate-fire detection in audit logs relies entirely on the POSITION_CLOSED event ledger — which is fine but worth documenting.",
+    "bar_data.fetch_recent_1m_bars correctly swallows the Binance 451 and returns [] — evaluator falls back to tick path as designed. Verified via real network failures in this pod's region.",
+    "submit_paper_order returns ok=false with error='no_current_price' for SOL (no observation/forecast data in this DB). Not a Sprint T3 regression, but a latent gap in seed data for symbols beyond BTC/ETH."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_sprint_t3_scheduler.py"
+  ],
+  "success_rate": {
+    "backend": "95.7% (22/23)",
+    "frontend": "N/A (skipped per request)"
+  },
+  "seed_data_creation": "Test opens BTC and ETH paper positions on default-paper-account and closes them; mutates stopPrice via direct MongoDB write to force a LONG stop hit. All test-created positions are closed at end of class or via the scheduler.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Run `pytest /app/backend/tests/test_sprint_t3_scheduler.py -v` to validate the enable-after-disable fix. The single failing test is TestSchedulerEndpoints::test_disable_then_enable_idempotent — after the fix it should report `ok:true, alreadyEnabled:true` on the second enable call. To force a stop hit deterministically without Binance access: open a LONG, then `db.paper_positions_v2.update_one({positionId:X, status:'OPEN'}, {$set:{stopPrice: <entry*1.5>}})` and call /api/trading/paper/scheduler/run-once — the position closes with closeReason='stop' and detectionMode='tick'. Backend was restarted at end of test run so scheduler is currently enabled & running.",
+  "rca_of_issue": "RCA — Scheduler re-enable failure: routes/trading_runtime.py:scheduler_enable does `await asyncio.to_thread(sched.enable_scheduler)`. asyncio.to_thread dispatches to the default ThreadPoolExecutor; worker threads do NOT have an asyncio event loop attached. Inside enable_scheduler(): `loop = asyncio.get_event_loop()` — on Python 3.10+ this raises RuntimeError('There is no current event loop in thread X') when called from a thread that has no loop AND no loop was set via set_event_loop. The except block catches it and returns `{ok:false, reason:'start_failed: RuntimeError(...)'}`. Reproduction: POST /api/trading/paper/scheduler/disable (succeeds, alreadyDisabled on 2nd call ✓), then POST /api/trading/paper/scheduler/enable → ok:false. Mitigation: either drop the to_thread wrapper in the route (enable_scheduler is non-blocking — no DB I/O), or capture the FastAPI loop at bootstrap and use asyncio.run_coroutine_threadsafe / loop.call_soon_threadsafe from the worker thread."
+}

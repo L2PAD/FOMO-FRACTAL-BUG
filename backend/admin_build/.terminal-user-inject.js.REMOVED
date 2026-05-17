@@ -1,0 +1,223 @@
+/* FOMO Web Platform (USER) — "Terminal" sidebar item with EMBEDDED render
+ * ------------------------------------------------------------------------
+ * Adds ONE "Terminal" item right after "Sentiment" in the user sidebar.
+ *
+ * BEHAVIOUR (different from previous version):
+ *   * Click does NOT navigate the whole tab.
+ *   * Click overlays an <iframe> on the right side of the FOMO layout
+ *     (FOMO sidebar STAYS visible on the left). The iframe loads the
+ *     ready-made TerminalWorkspacePage from F-TRADE-MODULE:
+ *       /api/terminal-app/terminal?embed=1
+ *     (?embed=1 hides the side-car's own sidebar/topbar).
+ *   * Clicking ANY other sidebar item removes the overlay so the user
+ *     returns to the regular FOMO route.
+ *
+ * Idempotent. MutationObserver re-injects after React re-renders.
+ */
+(function () {
+  if (window.__terminalUserInjected) return;
+  window.__terminalUserInjected = true;
+
+  var INJECTED_FLAG = 'data-terminal-injected';
+  var SIBLING_LABELS = ['Sentiment', 'sentiment', 'СЕНТИМЕНТ', 'Сентимент'];
+  var TARGET_HREF = '/api/terminal-app/terminal?embed=1';
+  var TARGET_LABEL = 'Terminal';
+  var FRAME_ID = '__fomo_terminal_iframe__';
+
+  var ICON_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">' +
+    '<polyline points="4 17 10 11 4 5"></polyline>' +
+    '<line x1="12" y1="19" x2="20" y2="19"></line>' +
+    '</svg>';
+
+  // ── Overlay management ────────────────────────────────────────────────
+  function findSidebar() {
+    // FOMO admin SPA sidebar is the only fixed left-side <aside> at first
+    // depth. Fall back to common layout selectors.
+    var aside = document.querySelector('aside');
+    if (aside) return aside;
+    return document.querySelector('[class*="sidebar"]:not([class*="right"])');
+  }
+
+  function ensureFrame() {
+    var f = document.getElementById(FRAME_ID);
+    if (f) return f;
+    f = document.createElement('iframe');
+    f.id = FRAME_ID;
+    f.src = TARGET_HREF;
+    f.setAttribute('allow', 'clipboard-read; clipboard-write');
+    f.style.cssText = [
+      'position:fixed',
+      'top:0',
+      'right:0',
+      'bottom:0',
+      'left:0',
+      'height:100vh',
+      'border:0',
+      'background:#ffffff',
+      'z-index:40',
+      'display:none',
+      'margin:0',
+      'padding:0',
+    ].join(';');
+    document.body.appendChild(f);
+    // Continuously sync left offset to current sidebar width (handles
+    // collapse / responsive resize).
+    var sync = function () {
+      var sb = findSidebar();
+      var w = 0;
+      if (sb) {
+        var rect = sb.getBoundingClientRect();
+        if (rect.left < 50) w = rect.width;
+      }
+      f.style.left = w + 'px';
+      f.style.width = (window.innerWidth - w) + 'px';
+      f.style.height = window.innerHeight + 'px';
+    };
+    sync();
+    window.addEventListener('resize', sync);
+    setInterval(sync, 600);
+    return f;
+  }
+
+  function showOverlay() {
+    var f = ensureFrame();
+    f.style.display = 'block';
+    document.body.setAttribute('data-fomo-terminal-active', '1');
+    try { window.history.pushState({ fomoTerminal: true }, '', '/dashboard/terminal'); } catch (e) {}
+  }
+
+  function hideOverlay() {
+    var f = document.getElementById(FRAME_ID);
+    if (f) f.style.display = 'none';
+    document.body.removeAttribute('data-fomo-terminal-active');
+  }
+
+  // Install global listener: ANY sidebar click that's NOT our terminal
+  // item closes the overlay (so navigation back to FOMO routes works).
+  function installAutoHide() {
+    document.addEventListener('click', function (ev) {
+      var target = ev.target;
+      if (!target || target.nodeType !== 1) return;
+      var node = target;
+      while (node && node !== document.body) {
+        if (node.getAttribute && node.getAttribute('data-terminal-link') === 'user-terminal') return;
+        node = node.parentNode;
+      }
+      // Not our injected item — if click happened inside the sidebar,
+      // close the overlay so the user sees the FOMO route they clicked.
+      var sb = findSidebar();
+      if (sb && sb.contains(target)) {
+        hideOverlay();
+      }
+    }, true);
+    window.addEventListener('popstate', function () {
+      // If the route is no longer /dashboard/terminal close the overlay.
+      if (location.pathname.indexOf('/dashboard/terminal') !== 0) hideOverlay();
+    });
+  }
+
+  // ── Sidebar item injection ────────────────────────────────────────────
+  function findSentimentNode(root) {
+    if (!root) return null;
+    var candidates = root.querySelectorAll('a, button, [role="link"], [role="menuitem"], li, div');
+    for (var i = 0; i < candidates.length; i++) {
+      var el = candidates[i];
+      if (el.hasAttribute(INJECTED_FLAG)) continue;
+      var txt = (el.textContent || '').trim();
+      if (!txt) continue;
+      if (el.children.length > 6 || txt.length > 40) continue;
+      for (var k = 0; k < SIBLING_LABELS.length; k++) {
+        if (txt === SIBLING_LABELS[k] || txt.indexOf(SIBLING_LABELS[k]) === 0) {
+          return el.closest('a, [role="link"], li, [class*="sidebar"], [class*="nav"]') || el;
+        }
+      }
+    }
+    return null;
+  }
+
+  function buildNode(template) {
+    var clone = template.cloneNode(true);
+    clone.setAttribute(INJECTED_FLAG, '1');
+    clone.setAttribute('data-terminal-link', 'user-terminal');
+    if (clone.tagName === 'A') {
+      clone.setAttribute('href', '/dashboard/terminal');
+      clone.removeAttribute('target');
+    } else {
+      clone.style.cursor = 'pointer';
+    }
+    clone.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      showOverlay();
+    });
+
+    var firstSvg = clone.querySelector('svg');
+    if (firstSvg) {
+      var holder = document.createElement('span');
+      holder.innerHTML = ICON_SVG;
+      var newSvg = holder.firstChild;
+      try {
+        if (firstSvg.getAttribute('class')) newSvg.setAttribute('class', firstSvg.getAttribute('class'));
+        if (firstSvg.getAttribute('style')) newSvg.setAttribute('style', firstSvg.getAttribute('style'));
+      } catch (e) {}
+      firstSvg.parentNode.replaceChild(newSvg, firstSvg);
+    }
+
+    function rewriteLabel(node) {
+      if (node.nodeType === 3) {
+        var t = node.nodeValue;
+        for (var k = 0; k < SIBLING_LABELS.length; k++) {
+          if (t.indexOf(SIBLING_LABELS[k]) >= 0) {
+            node.nodeValue = t.replace(SIBLING_LABELS[k], TARGET_LABEL);
+            return true;
+          }
+        }
+      } else if (node.childNodes && node.childNodes.length) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+          if (rewriteLabel(node.childNodes[i])) return true;
+        }
+      }
+      return false;
+    }
+    rewriteLabel(clone);
+
+    return clone;
+  }
+
+  function tryInject() {
+    if (document.querySelector('[data-terminal-link="user-terminal"]')) return true;
+    var anchor = findSentimentNode(document);
+    if (!anchor || !anchor.parentNode) return false;
+    var node = buildNode(anchor);
+    if (anchor.nextSibling) anchor.parentNode.insertBefore(node, anchor.nextSibling);
+    else anchor.parentNode.appendChild(node);
+    return true;
+  }
+
+  function start() {
+    installAutoHide();
+    // Restore overlay state if user landed directly on /dashboard/terminal.
+    if (location.pathname.indexOf('/dashboard/terminal') === 0) {
+      setTimeout(showOverlay, 800);
+    }
+    if (tryInject()) return;
+    var attempts = 0;
+    var iv = setInterval(function () {
+      attempts++;
+      if (tryInject() || attempts >= 80) clearInterval(iv);
+    }, 500);
+    try {
+      var mo = new MutationObserver(function () {
+        if (!document.querySelector('[data-terminal-link="user-terminal"]')) tryInject();
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    } catch (e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();

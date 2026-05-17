@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"/>
+<title>FOMO</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#09090b;--surface:#18181b;--card:#18181b;--text:#fafafa;--secondary:#a1a1aa;--muted:#52525b;--border:#27272a;--accent:#6366f1;--stat-bg:rgba(39,39,42,0.4);--bar-bg:rgba(255,255,255,0.06);--buy:#22c55e;--sell:#ef4444;--warn:#f59e0b;--radius:14px}
+.light{--bg:#f0f0f3;--surface:#fff;--card:#fff;--text:#0f172a;--secondary:#334155;--muted:#64748b;--border:#cbd5e1;--stat-bg:rgba(0,0,0,0.04);--bar-bg:rgba(0,0,0,0.06);--buy:#16a34a;--sell:#dc2626;--warn:#d97706}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro',system-ui,sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
+.app{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--border)}
+.hdr h1{font-size:15px;font-weight:700}
+.pill{display:flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);border-radius:18px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer}
+.cnt{flex:1;overflow-y:auto;padding:12px 16px 90px;-webkit-overflow-scrolling:touch}
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--border);padding:6px 0 env(safe-area-inset-bottom,6px);z-index:100}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 0;background:none;border:none;color:var(--muted);font-size:10px;cursor:pointer;transition:.15s}
+.nb.on{color:var(--accent)}
+.nb svg{width:20px;height:20px}
+.cd{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.ct{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.row:last-child{border:none}
+.lbl{font-size:13px;color:var(--muted)}.val{font-size:13px;font-weight:600}
+.tag{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:600}
+.ld{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+.scr{display:none}.scr.on{display:block}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;width:100%}
+.btn:active{opacity:.85}
+/* Growth sub-tabs */
+.gtabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:14px}
+.gtab{flex:1;text-align:center;padding:10px 0;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:.15s}
+.gtab.on{color:var(--accent);border-bottom-color:var(--accent)}
+.conf-bar{height:4px;background:var(--border);border-radius:2px;margin:10px 0;overflow:hidden}
+.conf-fill{height:100%;border-radius:2px}
+.sg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.sb{text-align:center;padding:10px;background:var(--stat-bg);border-radius:10px}
+.sb .sv{font-size:18px;font-weight:700}.sb .sl{font-size:10px;color:var(--muted);margin-top:2px}
+.ms-row{display:flex;align-items:center;gap:10px;padding:8px 0}
+.ms-icon{font-size:16px;width:24px;text-align:center}
+.ms-txt{flex:1;font-size:13px}.ms-rw{font-size:12px;font-weight:600}
+.lb-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.lb-rk{width:30px;height:30px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;background:var(--stat-bg)}
+.lb-nm{flex:1;font-size:13px;font-weight:500}.lb-sc{font-size:14px;font-weight:700;color:var(--accent)}
+.lb-you{background:var(--accent);color:#fff;border-radius:3px;padding:1px 5px;font-size:8px;font-weight:700;margin-left:4px}
+.prog-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin:8px 0}
+.prog-fill{height:100%;border-radius:3px;background:var(--accent);transition:width .5s}
+.code-box{font-family:monospace;font-size:20px;font-weight:800;letter-spacing:1px;flex:1}
+.code-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.copy-btn{padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer}
+.apply-row{display:flex;gap:8px}
+.apply-in{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-size:13px;outline:none}
+.apply-btn{padding:10px 16px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer}
+.season-rw{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.badge-row{display:flex;align-items:center;gap:6px;margin-top:10px;padding:6px 10px;background:var(--accent);border-radius:8px;align-self:flex-start}
+.badge-row span{font-size:12px;font-weight:600;color:#fff}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="hdr">
+  <h1>FOMO</h1>
+  <div class="pill" onclick="openSearch()"><span id="cur-asset">BTC</span><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+</div>
+<div class="cnt" id="cnt">
+  <div class="scr on" id="s-home"><div class="ld">Loading...</div></div>
+  <div class="scr" id="s-feed"><div class="ld">Loading feed...</div></div>
+  <div class="scr" id="s-edge"><div class="ld">Loading edge...</div></div>
+  <div class="scr" id="s-search"><input class="apply-in" id="si" placeholder="Search asset..." oninput="doSearch(this.value)" style="width:100%;margin-bottom:12px"/><div id="sr"></div></div>
+  <div class="scr" id="s-profile"><div class="ld">Loading...</div></div>
+</div>
+<div class="nav">
+  <button class="nb on" data-t="home" onclick="sw('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+  <button class="nb" data-t="feed" onclick="sw('feed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>Feed</button>
+  <button class="nb" data-t="edge" onclick="sw('edge')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Edge</button>
+  <button class="nb" data-t="profile" onclick="sw('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</button>
+</div>
+</div>
+<script>
+var A='/api/miniapp',G='/api/growth',asset='BTC',tg=null,gView='profile';
+if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();var u=Telegram.WebApp.initDataUnsafe?.user;if(u){tg=u;syncU(u)}if(Telegram.WebApp.colorScheme==='light')document.documentElement.classList.add('light')}
+var p=new URLSearchParams(location.search);if(p.get('asset')){asset=p.get('asset').toUpperCase();document.getElementById('cur-asset').textContent=asset}
+if(p.get('tab'))sw(p.get('tab'));if(p.get('theme')==='light')document.documentElement.classList.add('light');
+if(p.get('ref'))applyRef(p.get('ref'));
+async function syncU(u){try{await fetch(A+'/sync-telegram-user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({telegram_id:String(u.id),first_name:u.first_name||'',last_name:u.last_name||'',username:u.username||'',photo_url:u.photo_url||''})})}catch(e){}}
+async function applyRef(c){try{await fetch(G+'/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:c,telegram_id:String(tg?.id||'')})})}catch(e){}}
+function sw(t){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));var s=document.getElementById('s-'+t);if(s)s.classList.add('on');var b=document.querySelector('.nb[data-t="'+t+'"]');if(b)b.classList.add('on');if(t==='home')loadHome();if(t==='feed')loadFeed();if(t==='edge')loadEdge();if(t==='profile')loadProfile()}
+function openSearch(){sw('search');document.getElementById('si').focus()}
+function selAsset(a){asset=a.toUpperCase();document.getElementById('cur-asset').textContent=asset;sw('home')}
+
+// HOME
+async function loadHome(){var el=document.getElementById('s-home');try{var r=await fetch('/api/mobile/signals/'+asset+'?horizon=swing');var d=await r.json();if(!d.ok||!d.signal){el.innerHTML='<div class="ld">No data</div>';return}var s=d.signal,act=(s.action||'WAIT').toUpperCase(),cls=act==='BUY'?'buy':act==='SELL'?'sell':'warn',c=Math.round((s.confidence||0)*100),pr=s.price||0;var h='<div class="cd" style="text-align:center;padding:24px 16px">';if(s.stateLabel){h+='<div style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;background:var(--'+cls+');font-size:9px;font-weight:700;color:#fff;letter-spacing:1px">'+(s.isNew?'NEW SIGNAL':s.stateLabel)+'</div>'}if(s.eventTitle&&act!=='WAIT')h+='<div style="font-size:15px;font-weight:700;margin-top:8px">'+s.eventTitle+'</div>';h+='<div style="font-size:48px;font-weight:800;color:var(--'+cls+');letter-spacing:2px;margin:8px 0">'+act+'</div>';if(s.confInterpretation)h+='<div style="font-size:12px;font-weight:600;color:var(--'+cls+')">'+s.confInterpretation+'</div>';h+='<div class="conf-bar"><div class="conf-fill" style="width:'+c+'%;background:var(--'+cls+')"></div></div>';h+='<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>Confidence</span><span style="font-weight:600;color:var(--text)">'+c+'%</span></div>';if(pr>0)h+='<div style="font-size:22px;font-weight:700;margin-top:8px">$'+Number(pr).toLocaleString()+'</div>';if(s.scarcityText&&act!=='WAIT')h+='<div style="font-size:10px;color:var(--muted);font-style:italic;margin-top:6px">'+s.scarcityText+'</div>';if(s.lossText&&act!=='WAIT')h+='<div style="font-size:10px;color:var(--sell);font-style:italic;margin-top:4px">'+s.lossText+'</div>';h+='</div>';var dr=s.drivers||[];if(dr.length){h+='<div class="cd"><div class="ct">Drivers</div>';for(var i=0;i<dr.length;i++){var p2=dr[i],dc=p2.direction==='Bullish'?'var(--buy)':p2.direction==='Bearish'?'var(--sell)':'var(--muted)';h+='<div class="row"><span class="lbl">'+(p2.name||p2.module)+'</span><span class="val" style="color:'+dc+'">'+p2.direction+'</span></div>'}h+='</div>'}if(s.summary)h+='<div class="cd"><div class="ct">Key Insight</div><div style="font-size:13px;color:var(--secondary);line-height:1.5">'+s.summary+'</div></div>';el.innerHTML=h}catch(e){el.innerHTML='<div class="ld">Failed to load</div>'}}
+
+// FEED
+async function loadFeed(){var el=document.getElementById('s-feed');try{var r=await fetch(A+'/feed?limit=30');var d=await r.json();if(!d.ok||!d.groups?.length){el.innerHTML='<div class="ld">No signals yet</div>';return}var h='';for(var g of d.groups){h+='<div style="font-size:12px;font-weight:600;color:var(--accent);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.5px">'+g.label+'</div>';for(var it of(g.items||[])){var c=it.direction==='BULLISH'?'tag-buy':it.direction==='BEARISH'?'tag-sell':'';h+='<div class="cd" style="padding:12px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-weight:600;font-size:13px">'+(it.asset||asset)+'</span><span class="tag" style="background:var(--stat-bg);color:var(--secondary)">'+(it.direction||'—')+'</span></div><div style="font-size:12px;margin-bottom:3px">'+(it.title||it.headline||'')+'</div><div style="font-size:11px;color:var(--muted)">'+(it.source||'')+' · '+(it.timestamp||'')+'</div></div>'}}el.innerHTML=h}catch(e){el.innerHTML='<div class="ld">Failed to load</div>'}}
+
+// EDGE
+async function loadEdge(){var el=document.getElementById('s-edge');try{var[eR,pR]=await Promise.all([fetch(A+'/edge').then(r=>r.json()).catch(()=>({edges:[]})),fetch(A+'/polymarket').then(r=>r.json()).catch(()=>({markets:[]}))]);var h='';var mk=pR.markets||[];if(mk.length){h+='<div class="cd"><div class="ct">Prediction Markets</div>';for(var m of mk.slice(0,10)){var pb=Math.round((m.probability||0)*100);h+='<div style="padding:10px 0;border-bottom:1px solid var(--border)"><div style="font-size:13px;font-weight:600;margin-bottom:4px">'+m.question+'</div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted)"><span>Probability</span><span style="font-weight:600;color:var(--text)">'+pb+'%</span></div></div>'}h+='</div>'}if(!h)h='<div class="ld">No edge data yet</div>';el.innerHTML=h}catch(e){el.innerHTML='<div class="ld">Failed to load</div>'}}
+
+// SEARCH
+async function doSearch(q){var el=document.getElementById('sr');if(!q){el.innerHTML='';return}try{var r=await fetch(A+'/search?q='+encodeURIComponent(q));var d=await r.json();if(!d.ok||!d.results?.length){el.innerHTML='<div class="ld">No results</div>';return}el.innerHTML=d.results.map(a=>'<div class="cd" style="padding:12px;cursor:pointer" onclick="selAsset(\''+(a.symbol||a.asset||a)+'\')"><span style="font-weight:600">'+(a.symbol||a.asset||a)+'</span> <span style="font-size:12px;color:var(--muted)">'+(a.name||'')+'</span></div>').join('')}catch(e){el.innerHTML=''}}
+
+// PROFILE — Full Growth OS (same logic as Expo GrowthScreen)
+async function loadProfile(){var el=document.getElementById('s-profile');var tid=tg?.id||'';try{var[profR,growR,lbR]=await Promise.all([fetch(A+'/profile?telegram_id='+tid).then(r=>r.json()).catch(()=>({})),fetch(G+'/me?telegram_id='+tid).then(r=>r.json()).catch(()=>null),fetch(G+'/leaderboard').then(r=>r.json()).catch(()=>({entries:[]}))]);var usr=profR.user||{};var gr=profR.growth||growR||{};var lb=lbR.entries||lbR||[];var stats=gr.stats||{};var rank=gr.rank||0;var score=gr.seasonScore||0;var season=gr.season?.name||'Season 1';var delta=gr.rankDelta||0;var code=gr.code||usr.referralCode||'';var milestones=gr.milestones||[];var paid=stats.paidConfirmed||0;var nextMs=gr.nextMilestone;var h='';
+
+// Sub-tabs: Profile | Leaderboard
+h+='<div class="gtabs"><div class="gtab '+(gView==='profile'?'on':'')+'" onclick="gView=\'profile\';loadProfile()">Profile</div><div class="gtab '+(gView==='leaderboard'?'on':'')+'" onclick="gView=\'leaderboard\';loadProfile()">Leaderboard</div></div>';
+
+if(gView==='profile'){
+// Identity + Rank
+h+='<div class="cd"><div style="display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;border-radius:22px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff">'+(tg?.first_name||usr.name||'U')[0].toUpperCase()+'</div><div style="flex:1"><div style="font-size:15px;font-weight:700">'+(tg?.first_name||usr.name||'User')+' '+(tg?.last_name||'')+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:2px"><span style="font-size:12px;color:var(--muted)">Rank</span><span style="font-size:15px;font-weight:800;color:'+(rank<=3?'var(--warn)':rank<=10?'var(--accent)':'var(--text)')+'">#'+(rank||'—')+'</span>';
+if(delta!==0){var dCol=delta>0?'var(--buy)':'var(--sell)';h+='<span style="font-size:11px;font-weight:700;color:'+dCol+'">'+(delta>0?'↑':'↓')+Math.abs(delta)+'</span>'}
+h+='</div></div><div style="text-align:center"><div style="font-size:22px;font-weight:800">'+score+'</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Score</div></div></div>';
+h+='<div style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:5px 10px;background:var(--accent);border-radius:8px"><span style="font-size:12px;font-weight:600;color:#fff">'+season+'</span></div></div>';
+
+// Next Reward
+if(nextMs){var pTarget=milestones.find(m=>paid<m.paid);var pPct=pTarget?Math.min(100,Math.round(paid/pTarget.paid*100)):100;
+h+='<div class="cd"><div class="ct">NEXT REWARD</div><div style="font-size:14px;font-weight:600">'+(nextMs.need||0)+' more paid referral'+(nextMs.need>1?'s':'')+'</div><div style="font-size:13px;font-weight:700;color:var(--accent);margin-top:2px">→ '+(nextMs.label||'')+'</div><div class="prog-bar"><div class="prog-fill" style="width:'+pPct+'%"></div></div><div style="font-size:11px;color:var(--muted);text-align:right">'+pPct+'%</div></div>'}
+
+// Referral Code
+h+='<div class="cd"><div class="ct">YOUR REFERRAL CODE</div><div class="code-row"><span class="code-box">'+code+'</span><button class="copy-btn" onclick="copyCode(\''+code+'\')">Copy</button></div><button class="btn" onclick="shareCode(\''+code+'\',\''+(gr.shareUrl||gr.telegramLink||'')+'\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>Share Invite Link</button></div>';
+
+// Leaderboard preview
+h+='<div class="cd"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div class="ct" style="margin:0">TOP THIS SEASON</div><span style="font-size:12px;font-weight:600;color:var(--accent);cursor:pointer" onclick="gView=\'leaderboard\';loadProfile()">View all →</span></div>';
+if(lb.length){for(var i=0;i<Math.min(5,lb.length);i++){var e=lb[i];h+='<div class="lb-row"><span style="font-size:13px;font-weight:700;width:28px;color:'+(e.rank<=3?'var(--warn)':'var(--muted)')+'">#'+e.rank+'</span><span class="lb-nm" style="font-weight:600">'+(e.name||'User')+'</span><span class="lb-sc">'+e.score+'</span></div>'}}else{h+='<div class="ld" style="padding:16px">No entries yet. Be the first!</div>'}h+='</div>';
+
+// Reward Ladder
+h+='<div class="cd"><div class="ct">REWARD LADDER</div>';
+for(var i=0;i<milestones.length;i++){var m=milestones[i],done=paid>=m.paid;h+='<div class="ms-row"><span class="ms-icon">'+(done?'✅':'○')+'</span><span class="ms-txt" style="color:'+(done?'var(--buy)':'var(--text)')+'">'+m.paid+' referral'+(m.paid>1?'s':'')+'</span><span class="ms-rw" style="color:'+(done?'var(--buy)':'var(--accent)')+'">'+m.reward+'</span></div>'}h+='</div>';
+
+// Stats
+h+='<div class="cd"><div class="ct">YOUR STATS</div><div class="sg"><div class="sb"><div class="sv">'+(stats.clicks||0)+'</div><div class="sl">Clicks</div></div><div class="sb"><div class="sv">'+(stats.signups||0)+'</div><div class="sl">Signups</div></div><div class="sb"><div class="sv" style="color:var(--buy)">'+(stats.paidConfirmed||0)+'</div><div class="sl">Paid</div></div></div></div>';
+
+// Apply code
+h+='<div class="cd"><div class="ct">APPLY REFERRAL / PROMO CODE</div><div class="apply-row"><input class="apply-in" id="promo-in" placeholder="Enter code"/><button class="apply-btn" onclick="applyPromo()">Apply</button></div><div id="promo-msg" style="font-size:12px;margin-top:6px"></div></div>';
+
+} else {
+// LEADERBOARD VIEW
+h+='<div class="cd"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">🏆</span><span style="font-size:18px;font-weight:800">'+season+'</span></div><div style="font-size:12px;color:var(--muted);margin-top:4px">Season leaderboard — top performers win PRO access</div></div>';
+
+// Your position
+h+='<div class="cd" style="border-color:var(--accent);background:var(--accent)08"><div style="display:flex;justify-content:space-between"><div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Your Rank</div><div style="display:flex;align-items:center;gap:6px"><span style="font-size:26px;font-weight:800;color:var(--accent)">#'+(rank||'—')+'</span>';
+if(delta!==0){var dCol=delta>0?'var(--buy)':'var(--sell)';h+='<span style="font-size:12px;font-weight:700;color:'+dCol+'">'+(delta>0?'↑':'↓')+Math.abs(delta)+'</span>'}
+h+='</div></div><div style="text-align:right"><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Score</div><div style="font-size:26px;font-weight:800">'+score+'</div></div></div>';
+if(nextMs)h+='<div style="font-size:12px;font-weight:600;color:var(--accent);margin-top:8px">+'+(nextMs.need||0)+' paid → '+(nextMs.label||'')+'</div>';
+h+='</div>';
+
+// Full board
+h+='<div class="cd">';
+if(lb.length){var tid2=String(tg?.id||'');for(var i=0;i<lb.length;i++){var e=lb[i],isMe=e.user_id===tid2;var mc=e.rank===1?'var(--warn)':e.rank===2?'#94a3b8':e.rank===3?'#cd7f32':null;h+='<div class="lb-row" style="background:'+(isMe?'var(--accent)08':'transparent')+';border-radius:'+(isMe?'8px':'0')+'"><div class="lb-rk" style="'+(mc?'background:'+mc+'20;color:'+mc:'')+'">'+e.rank+'</div><span class="lb-nm" style="font-weight:'+(isMe?'700':'500')+'">'+(e.name||'User')+(isMe?'<span class="lb-you">YOU</span>':'')+'</span><span class="lb-sc">'+e.score+'</span></div>'}}else{h+='<div class="ld" style="padding:24px">No entries yet<br><span style="font-size:12px">Invite users to climb the leaderboard</span></div>'}h+='</div>';
+
+// Season rewards
+h+='<div class="cd"><div class="ct">SEASON REWARDS</div>';
+[{r:'Top 1',rw:'1 year PRO',b:'Champion',c:'var(--warn)'},{r:'Top 3',rw:'90 days PRO',b:'Smart Money',c:'#94a3b8'},{r:'Top 10',rw:'30 days PRO',b:'Top Performer',c:'#cd7f32'}].forEach(function(sr){h+='<div class="season-rw"><span style="font-size:16px;color:'+sr.c+'">🏅</span><div style="flex:1"><div style="font-size:13px;font-weight:700">'+sr.r+'</div><div style="font-size:11px;color:var(--muted)">'+sr.rw+' · '+sr.b+'</div></div></div>'});
+h+='</div>';
+
+// CTA
+h+='<button class="btn" style="margin-top:4px" onclick="shareCode(\''+code+'\',\''+(gr.shareUrl||'')+'\')"><span>🚀</span>Invite more → climb leaderboard</button>';
+}
+el.innerHTML=h}catch(e){el.innerHTML='<div class="ld">Failed to load profile</div>'}}
+
+function copyCode(c){if(navigator.clipboard)navigator.clipboard.writeText(c);var btn=event.target;btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',1500)}
+function shareCode(code,url){var su=url||'https://t.me/FOMO_mini_bot?start='+code;var t='Join FOMO — crypto decision layer.\nCode: '+code+'\n'+su;if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink('https://t.me/share/url?url='+encodeURIComponent(su)+'&text='+encodeURIComponent(t))}else if(navigator.share){navigator.share({title:'FOMO',text:t,url:su}).catch(function(){})}else if(navigator.clipboard){navigator.clipboard.writeText(su)}}
+async function applyPromo(){var inp=document.getElementById('promo-in');var msg=document.getElementById('promo-msg');var c=inp.value.trim();if(!c)return;try{var r=await fetch(G+'/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:c,telegram_id:String(tg?.id||'')})});var d=await r.json();msg.style.color=d.ok?'var(--buy)':'var(--sell)';msg.textContent=d.ok?(d.message||'Applied!'):(d.error||'Invalid code');if(d.ok){inp.value='';loadProfile()}}catch(e){msg.style.color='var(--sell)';msg.textContent='Error'}}
+loadHome();
+</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+{
+  "homeIntel.loadingIntelligence": {
+    "en": "Loading intelligence...",
+    "ru": "Загрузка данных...",
+    "uk": "Завантаження даних..."
+  },
+  "homeIntel.noSignalData": {
+    "en": "No observation data",
+    "ru": "Нет данных наблюдения",
+    "uk": "Немає даних спостереження"
+  },
+  "homeIntel.predictionSnapshot": {
+    "en": "STRUCTURE SNAPSHOT",
+    "ru": "СРЕЗ СТРУКТУРЫ",
+    "uk": "ЗРІЗ СТРУКТУРИ"
+  },
+  "homeIntel.yourPortfolio": {
+    "en": "YOUR PORTFOLIO",
+    "ru": "ВАШ ПОРТФЕЛЬ",
+    "uk": "ВАШ ПОРТФЕЛЬ"
+  },
+  "homeIntel.tradeSetup": {
+    "en": "ALIGNMENT CONTEXT",
+    "ru": "КОНТЕКСТ ВЫРАВНИВАНИЯ",
+    "uk": "КОНТЕКСТ ВИРІВНЮВАННЯ"
+  },
+  "homeIntel.noEntryYetMarketPreparing": {
+    "en": "No alignment yet. Market preparing shift.",
+    "ru": "Выравнивание не сформировано. Рынок готовит сдвиг.",
+    "uk": "Вирівнювання не сформоване. Ринок готує зрушення."
+  },
+  "homeIntel.keyInsight": {
+    "en": "KEY INSIGHT",
+    "ru": "КЛЮЧЕВОЕ НАБЛЮДЕНИЕ",
+    "uk": "КЛЮЧОВЕ СПОСТЕРЕЖЕННЯ"
+  },
+  "homeIntel.systemPerformance": {
+    "en": "SYSTEM PERFORMANCE",
+    "ru": "РАБОТА СИСТЕМЫ",
+    "uk": "РОБОТА СИСТЕМИ"
+  },
+  "homeIntel.missedSignal": {
+    "en": "MISSED OBSERVATION",
+    "ru": "ПРОПУЩЕННОЕ НАБЛЮДЕНИЕ",
+    "uk": "ПРОПУЩЕНЕ СПОСТЕРЕЖЕННЯ"
+  },
+  "homeIntel.whatSDrivingTheMarket": {
+    "en": "WHAT'S DRIVING THE MARKET",
+    "ru": "ЧТО ДВИЖЕТ РЫНКОМ",
+    "uk": "ЩО РУХАЄ РИНКОМ"
+  },
+  "homeIntel.viewFullSignal": {
+    "en": "View Full Context",
+    "ru": "Полный контекст",
+    "uk": "Повний контекст"
+  },
+  "homeIntel.earlyEdge": {
+    "en": "Early Edge",
+    "ru": "Ранняя ясность",
+    "uk": "Рання ясність"
+  },
+  "homeIntel.openTerminal": {
+    "en": "Open Terminal",
+    "ru": "Открыть терминал",
+    "uk": "Відкрити термінал"
+  },
+  "homeIntel.whyThisAiMatters": {
+    "en": "WHY THIS AI MATTERS",
+    "ru": "ПОЧЕМУ ЭТО ВАЖНО",
+    "uk": "ЧОМУ ЦЕ ВАЖЛИВО"
+  },
+  "homeTrade.aiCurrentlyBelieves": {
+    "en": "AI CURRENTLY OBSERVES",
+    "ru": "AI НАБЛЮДАЕТ СЕЙЧАС",
+    "uk": "AI СПОСТЕРІГАЄ ЗАРАЗ"
+  },
+  "homeTrade.waitingFor": {
+    "en": "WAITING FOR",
+    "ru": "ОЖИДАНИЕ",
+    "uk": "ОЧІКУВАННЯ"
+  },
+  "homeTrade.whyThisAiMatters": {
+    "en": "WHY THIS AI MATTERS",
+    "ru": "ПОЧЕМУ ЭТОТ ИИ ВАЖЕН",
+    "uk": "ЧОМУ ЦЕЙ AI ВАЖЛИВИЙ"
+  },
+  "homeTrade.highAttention": {
+    "en": "HIGH ATTENTION",
+    "ru": "ВЫСОКОЕ ВНИМАНИЕ",
+    "uk": "ВИСОКА УВАГА"
+  },
+  "feed.scanningForBlindSpots": {
+    "en": "Scanning for blind spots...",
+    "ru": "Сканування слепих зон...",
+    "uk": "Сканування сліпих зон..."
+  },
+  "feed.whereTheMarketIsWrong": {
+    "en": "Where The Market Is Wrong",
+    "ru": "Где рынок ошибается",
+    "uk": "Де Ринок Помиляється"
+  },
+  "feed.altcoinsStartingToMoveCapital": {
+    "en": "Altcoins starting to move. Capital rotating.",
+    "ru": "Альткоины начинают движение. Ротация капитала.",
+    "uk": "Альткоїни починають рух. Ротація капіталу."
+  },
+  "feed.capitalRotation": {
+    "en": "CAPITAL ROTATION",
+    "ru": "РОТАЦИЯ КАПИТАЛА",
+    "uk": "РОТАЦІЯ КАПІТАЛУ"
+  },
+  "feed.viewEarlyEdgeOpportunities": {
+    "en": "View Early Edge Opportunities",
+    "ru": "Смотреть ранние возможности",
+    "uk": "Переглянути Ранні Можливості Edge"
+  },
+  "feed.theCrowd": {
+    "en": "THE CROWD",
+    "ru": "ТОЛПА",
+    "uk": "НАТОВП"
+  },
+  "feed.blindSpot": {
+    "en": "BLIND SPOT",
+    "ru": "СЛЕПАЯ ЗОНА",
+    "uk": "СЛІПА ЗОНА"
+  },
+  "feed.portfolioSetup": {
+    "en": "PORTFOLIO SETUP",
+    "ru": "СТРУКТУРА ПОРТФЕЛЯ",
+    "uk": "НАЛАШТУВАННЯ ПОРТФЕЛЮ"
+  },
+  "feed.viewStrategy": {
+    "en": "View Strategy",
+    "ru": "Смотреть стратегию",
+    "uk": "Переглянути Стратегію"
+  },
+  "feed.aiValueMoments": {
+    "en": "AI VALUE MOMENTS",
+    "ru": "ЦЕННЫЕ МОМЕНТЫ ИИ",
+    "uk": "AI МОМЕНТИ ЦІННОСТІ"
+  },
+  "growth.failedToLoadGrowthData": {
+    "en": "Failed to load growth data",
+    "ru": "Не удалось загрузить данные роста",
+    "uk": "Не вдалося завантажити дані зростання"
+  },
+  "growth.nextReward": {
+    "en": "NEXT REWARD",
+    "ru": "СЛЕДУЮЩАЯ НАГРАДА",
+    "uk": "НАСТУПНА ВИНАГОРОДА"
+  },
+  "growth.allMilestonesReached": {
+    "en": "All milestones reached",
+    "ru": "Все вехи достигнуты",
+    "uk": "Усі віхи досягнуто"
+  },
+  "growth.yourReferralCode": {
+    "en": "YOUR REFERRAL CODE",
+    "ru": "ВАШ РЕФЕРАЛЬНЫЙ КОД",
+    "uk": "ВАШ РЕФЕРАЛЬНИЙ КОД"
+  },
+  "growth.shareInviteLink": {
+    "en": "Share Invite Link",
+    "ru": "Поделиться ссылкой",
+    "uk": "Поділитися посиланням"
+  },
+  "growth.topThisSeason": {
+    "en": "TOP THIS SEASON",
+    "ru": "ТОП ЭТОГО СЕЗОНА",
+    "uk": "ТОП ЦЬОГО СЕЗОНУ"
+  },
+  "growth.noEntriesYetBeThe": {
+    "en": "No entries yet. Be the first",
+    "ru": "Пока никого нет. Будьте первым",
+    "uk": "Записів ще немає. Будьте першим"
+  },
+  "growth.rewardLadder": {
+    "en": "REWARD LADDER",
+    "ru": "ЛЕСТНИЦА НАГРАД",
+    "uk": "ДРАБИНА ВИНАГОРОД"
+  },
+  "growth.yourStats": {
+    "en": "YOUR STATS",
+    "ru": "ВАША СТАТИСТИКА",
+    "uk": "ВАША СТАТИСТИКА"
+  },
+  "growth.applyReferralPromoCode": {
+    "en": "APPLY REFERRAL / PROMO CODE",
+    "ru": "ПРИМЕНИТЬ РЕФЕРАЛЬНЫЙ / ПРОМОКОД",
+    "uk": "ЗАСТОСУВАТИ РЕФЕРАЛЬНИЙ / ПРОМО КОД"
+  },
+  "growth.yourRank": {
+    "en": "Your Rank",
+    "ru": "Ваш ранг",
+    "uk": "Ваш ранг"
+  },
+  "growth.noEntriesYet": {
+    "en": "No entries yet",
+    "ru": "Пока никого нет",
+    "uk": "Записів ще немає"
+  },
+  "growth.inviteUsersToClimbThe": {
+    "en": "Invite users to climb the leaderboard",
+    "ru": "Приглашайте пользователей для подъёма в рейтинге",
+    "uk": "Запросіть користувачів, щоб піднятися в таблиці"
+  },
+  "growth.seasonRewards": {
+    "en": "SEASON REWARDS",
+    "ru": "НАГРАДЫ СЕЗОНА",
+    "uk": "СЕЗОННІ ВИНАГОРОДИ"
+  },
+  "growth.enterCode": {
+    "en": "Enter code",
+    "ru": "Введите код",
+    "uk": "Введіть код"
+  }
+}

@@ -1,10 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# IDE and editors
+# ─── IDE / editors ───────────────────────────────────────────────────────
 .idea/
 .vscode/
 
-# Dependencies
+# ─── Dependencies ────────────────────────────────────────────────────────
 node_modules/
 /node_modules
 /.pnp
@@ -16,55 +16,64 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
-# Testing
+# ─── Testing ─────────────────────────────────────────────────────────────
 /coverage
 
-# Next.js
+# ─── Next.js / Build output ──────────────────────────────────────────────
 /.next/
 /out/
 next-env.d.ts
 *.tsbuildinfo
-
-# Production builds
 /build
 dist/
 dist
 
-# Environment files (comprehensive coverage)
-
+# ─── Environment & secrets (DO NOT COMMIT) ───────────────────────────────
+# Real env files stay local; commit only *.example
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
 *token.json*
 *credentials.json*
+credentials.json
+*.pem
+*.key
+.credentials
 
-# Logs and debug files
+# ─── Logs ────────────────────────────────────────────────────────────────
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 dump.rdb
 
-# System files
+# ─── System ──────────────────────────────────────────────────────────────
 .DS_Store
-*.pem
 
-# Python
+# ─── Python ──────────────────────────────────────────────────────────────
 __pycache__/
-*pyc*
+*.pyc
+*.pyo
 venv/
 .venv/
 
-# Development tools
+# ─── Dev tooling ─────────────────────────────────────────────────────────
 chainlit.md
 .chainlit
 .ipynb_checkpoints/
 .ac
 
-# Deployment
+# ─── Vercel ──────────────────────────────────────────────────────────────
 .vercel
 
-# Data and databases
+# ─── Misc data / archives ────────────────────────────────────────────────
+# Архив старых аудитов/handoff'ов/клонов — НЕ должен попадать в коммит
+_archive_2026-05/
+_audit_repos/
+*.pack
 agenthub/agents/youtube/db
-
-# Archive files and large assets
 **/*.zip
 **/*.tar.gz
 **/*.tar
@@ -72,11 +81,138 @@ agenthub/agents/youtube/db
 *.pack
 *.deb
 *.dylib
-
-# Build caches
 .cache/
+.metro-cache/
 
+# ─── Phase E1: i18n generated snapshot ───────────────────────────────────
+# backend/services/i18n_dictionary.json is REGENERATED from
+# frontend/src/core/i18n.ts via `node frontend/scripts/generate-i18n-json.cjs`
+# (or `scripts/cold_boot.sh`). It is committed for first-paint determinism
+# on cold deployments, but contributors should not hand-edit it.
+
+# ─── Memory & test credentials (sensitive) ───────────────────────────────
 memory/test_credentials.md
 
-# Mobile development
+# ─── Mobile dev artifacts ────────────────────────────────────────────────
 android-sdk/
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+frontend/node_modules/.cache/default-development/1.pack
+frontend/node_modules/.cache/default-development/1.pack
+frontend/node_modules/.cache/default-development/1.pack
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+frontend/node_modules/.cache/default-development/0.pack
+_audit_repos/APP-Marge-v1/.git/objects/pack/pack-d5f77353a41d09aee0a0f20d010349cf7ed1cbe3.pack
+_audit_repos/audit-MBRAIN_ARCHITECTURE_AUDIT/.git/objects/pack/pack-cdab1cce652f7d4f5250d2410c33557f2a53475a.pack
+_audit_repos/audit/.git/objects/pack/pack-ba7663541a35fb52747715a0534410e9efac9718.pack
+_audit_repos/TA-Marge/.git/objects/pack/pack-9b13464fa567b65b871675df02ad03c10aa20437.pack
+frontend/node_modules/.cache/default-development/4.pack
+_archive_2026-05/audit_repos_2GB/APP-Marge-v1/.git/objects/pack/pack-d5f77353a41d09aee0a0f20d010349cf7ed1cbe3.pack
+_archive_2026-05/audit_repos_2GB/audit-MBRAIN_ARCHITECTURE_AUDIT/.git/objects/pack/pack-cdab1cce652f7d4f5250d2410c33557f2a53475a.pack
+_archive_2026-05/audit_repos_2GB/audit/.git/objects/pack/pack-ba7663541a35fb52747715a0534410e9efac9718.pack
+_archive_2026-05/audit_repos_2GB/TA-Marge/.git/objects/pack/pack-9b13464fa567b65b871675df02ad03c10aa20437.pack
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials

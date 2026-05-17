@@ -1,0 +1,66 @@
+{
+  "summary": "Sprint T4 — Feedback/Calibration Runtime tested via /app/backend/tests/test_sprint_t4_calibration.py (32 tests, 31 PASS / 1 FAIL). All acceptance criteria green EXCEPT one real bug in apply_to_verdict(): when verdict.action='WAIT', calibration_block() correctly sets appliedAdjustment='none_wait_verdict', but apply_to_verdict() then unconditionally overwrites it with 'observe_only' because the sample<5 branch fires without first checking for WAIT. Writeback (manual + scheduler paths), idempotency, unique index, reliability ladder (4/7/15/30 thresholds), graduated adjustments (observe_only<5, warn_only 5-9, soft_adjust 10-24 with conf-0.1 + risk bump, hard_gate_wait≥25 with action→WAIT + blockedBy + actionBeforeCalibration preserved), single-cell lookup, empty/insufficient-data shape, unknown-symbol graceful handling, and full T1/T2/T3 regression are all verified passing. Scheduler auto-close also correctly writes outcomes via the tick fallback path. Binance HTTP 451 fallback to observation collection still works as documented.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "GET /api/trading/verdict/{symbol} (calibration block, WAIT case)",
+        "issue": "When verdict.action='WAIT', the returned calibration.appliedAdjustment is 'observe_only' instead of 'none_wait_verdict'. Root cause: services/calibration.py::apply_to_verdict() reads block = calibration_block(verdict), then hits the `if sample < 5: block['appliedAdjustment'] = 'observe_only'` branch unconditionally and stomps over the 'none_wait_verdict' that calibration_block correctly set on line 280 for WAIT verdicts. Fix: short-circuit apply_to_verdict() when action not in ('LONG','SHORT') — return verdict (with the block already correctly populated) before the ladder runs. The 'note' field is preserved which proves calibration_block ran correctly; only the overwrite is wrong."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_sprint_t4_calibration.py",
+    "/app/test_reports/pytest/pytest_iter6_t4.xml"
+  ],
+  "acceptance_criteria_matrix": {
+    "GET /calibration?symbol=INVALIDXYZ → totalSample:0, reliability:weak_sample, warnings:['no_outcomes_yet'], thresholds present": "PASS",
+    "Open+close BTC paper position → outcome row with all required fields (positionId, orderId, symbol, side, entry, close, closeReason, outcome, pnlPct, pnlUsd, barsHeld, alignmentScore, alignmentBucket, risk, rr, verdictSnapshot)": "PASS",
+    "/calibration?symbol=BTC shows sample≥1 after close": "PASS",
+    "Idempotency: closing same positionId twice → second call fails, outcomes count stays at 1": "PASS",
+    "trading_calibration_v2 unique compound index on (symbol, side, alignmentBucket, risk) — no duplicate bucket docs": "PASS",
+    "/verdict/BTC includes calibration block with sample/reliability/alignmentBucket/appliedAdjustment": "PASS (block exists)",
+    "WAIT verdict → calibration.appliedAdjustment='none_wait_verdict'": "FAIL (returns 'observe_only' — see backend_issues.minor)",
+    "GET /calibration/cell with all params returns found:true after seeded cell": "PASS",
+    "Scheduler auto-close (forced stop via Mongo mutation) writes outcome row to trading_outcomes_v2": "PASS",
+    "Reliability ladder: sample=4→weak_sample, 7→emerging, 15→usable, 30→strong": "PASS (all 4 parametrised)",
+    "Graduated soft_adjust at sample=12, winRate=0: confidence -0.10, risk LOW→MED, reason note appended": "PASS",
+    "Graduated hard_gate at sample=30, winRate=0: action→WAIT, actionBeforeCalibration preserves LONG, entry/stop/target/rr/sizeUsd nulled, blockedBy contains 'historically_unprofitable_at_this_alignment'": "PASS",
+    "observe_only when sample<5: action/confidence/risk unchanged": "PASS",
+    "warn_only when 5≤sample<9: confidence/risk unchanged, 'emerging sample' reason added": "PASS",
+    "Regression: verdict keys (action/entry/stop/target/rr/risk/sizeUsd/confidence/reasons/blockedBy/alignment/currentPrice/support/resistance/moduleConfidence/asOf/source/calibration) all present": "PASS",
+    "Regression: scheduler enabled+running": "PASS",
+    "Regression: paper/account/positions/orders/events all 200": "PASS",
+    "Regression: /api/terminal/* still 404": "PASS",
+    "Regression: /api/miniapp/lite + /api/panel/admin 200": "PASS"
+  },
+  "action_items": [
+    "Fix services/calibration.py::apply_to_verdict() — add early return for non-LONG/SHORT actions so calibration_block's 'none_wait_verdict' is not overwritten. Suggested patch:\n```python\ndef apply_to_verdict(verdict):\n    block = calibration_block(verdict)\n    action = (verdict.get('action') or '').upper()\n    if action not in ('LONG', 'SHORT'):\n        verdict['calibration'] = block  # block already has appliedAdjustment='none_wait_verdict'\n        return verdict\n    sample = block['sample']\n    ...\n```\nThis is a 3-line fix and is the ONLY blocker for full Sprint T4 acceptance.",
+    "(Optional) The 'thresholds' dict in /calibration report uses observe_only_max=5, warn_only_max=10, soft_adjust_max=25, hard_gate_min=25 — values are documented in code but consider exposing them in a way that matches the runtime ladder boundaries exactly (currently warn_only is sample in [5,10), but warn_only_max=10 reads ambiguously)."
+  ],
+  "critical_code_review_comments": [
+    "services/calibration.py is clean, well-structured, idempotent via upsert+unique-index pattern. Use of _refresh_bucket() instead of full-table sweep on each writeback is good for scalability.",
+    "BUG in apply_to_verdict() (line 313-318): the `if sample < 5: block['appliedAdjustment'] = 'observe_only'` clause runs even when action='WAIT', overwriting the correct 'none_wait_verdict' set on line 280. WAIT path must short-circuit.",
+    "Minor: services/calibration.py loads dotenv with MONGO_URL default 'mongodb://localhost:27017' — safe but should use os.environ.get('MONGO_URL') without default for fail-fast (consistent with project guidance to avoid fallback URLs). Not blocking.",
+    "Both close paths (manual close at trading_runtime.py:615 and scheduler stop/target close at line 825) call _calib.record_outcome — good coverage, scheduler test confirms writeback fires from auto-close.",
+    "Test fixture covers writeback, idempotency, scheduler-path writeback, reliability ladder (4 parametrised values), all 4 graduated adjustment thresholds, regression, and unknown-symbol graceful handling — comprehensive."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_sprint_t4_calibration.py (new, 32 tests)"
+  ],
+  "success_rate": {
+    "backend": "97% (31/32)",
+    "frontend": "N/A (skipped per request)"
+  },
+  "seed_data_creation": "Tests seed synthetic outcome rows tagged _seedTag='T4_TEST' under symbols ZZTEST/ZZSOFT/ZZHARD/ZZOBS/ZZWARN, all cleaned up via fixture teardown. Live BTC/ETH paper positions opened and closed during writeback + scheduler tests; one BTC close left in outcomes_v2 (intentional — verifies persistence).",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Sprint T4 is 31/32 PASS. Only blocker: services/calibration.py::apply_to_verdict() must short-circuit on WAIT verdicts so calibration_block's 'none_wait_verdict' is not overwritten. After main agent applies the 3-line fix, re-run `pytest /app/backend/tests/test_sprint_t4_calibration.py -v` and the one failing test (TestVerdictCalibrationBlock::test_verdict_has_calibration) should turn green. All other tests including reliability ladder, graduated adjustments (soft/hard), scheduler writeback, idempotency, unique index, and full T1/T2/T3 regression are stable. Note: test sometimes flakily skips TestSchedulerWriteback for ~20s after backend restart while price cache warms — just retry.",
+  "rca_of_issue": "Bug: WAIT-verdict calibration block returns wrong appliedAdjustment. Reproduction: `curl /api/trading/verdict/BTC` (currently action=WAIT in this region) → response.calibration.appliedAdjustment = 'observe_only' (wrong), but note='verdict is WAIT — no calibration lookup' (right). RCA: In services/calibration.py, calibration_block() correctly returns {appliedAdjustment: 'none_wait_verdict'} when side_for_lookup is None (action ∉ {LONG,SHORT}). Then apply_to_verdict() takes that block and runs the ladder; the first `if sample < 5` branch fires (sample=0 for WAIT since no lookup happened) and overwrites appliedAdjustment to 'observe_only'. Mitigation: short-circuit apply_to_verdict() at the top when action not in ('LONG','SHORT'): just set verdict['calibration']=block and return. This preserves the WAIT path's intent and aligns with the acceptance criterion 'When verdict.action is WAIT, calibration.appliedAdjustment=none_wait_verdict with note'."
+}

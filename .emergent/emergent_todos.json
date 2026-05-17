@@ -1,0 +1,50 @@
+[
+  {
+    "content": "Изучить структуру репозитория и последние коммиты",
+    "status": "completed"
+  },
+  {
+    "content": "Скопировать репозиторий в /app, сохраняя .env файлы",
+    "status": "completed"
+  },
+  {
+    "content": "Создать backend/.env с fomo_mobile DB и EMERGENT_LLM_KEY",
+    "status": "completed"
+  },
+  {
+    "content": "Установить Python зависимости",
+    "status": "completed"
+  },
+  {
+    "content": "Установить frontend зависимости (yarn)",
+    "status": "completed"
+  },
+  {
+    "content": "Запустить backend в supervisor + проверить логи",
+    "status": "completed"
+  },
+  {
+    "content": "Исправить /api/news/* эндпоинты (читать из news_articles)",
+    "status": "completed"
+  },
+  {
+    "content": "Создать supervisor конфиг для news_substrate",
+    "status": "completed"
+  },
+  {
+    "content": "Seed news_sources (119) и прогнать RSS pipeline (ОК 1397 articles)",
+    "status": "completed"
+  },
+  {
+    "content": "Deep parser cycle (ОК 87 projects, 204 funding rounds, 649 persons)",
+    "status": "completed"
+  },
+  {
+    "content": "Проверить 5 модулей: TA, Fractal, OnChain, Exchange, Sentiment",
+    "status": "completed"
+  },
+  {
+    "content": "E2E тестирование backend через testing_agent",
+    "status": "in_progress"
+  }
+]

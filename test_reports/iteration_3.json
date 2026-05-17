@@ -1,0 +1,39 @@
+{
+  "summary": "Sprint T2 backend regression — 26/26 pytest tests PASSED against the public EXPO_PUBLIC_BACKEND_URL. All /api/trading/* endpoints (runtime/status, verdict BTC/ETH/SOL, opportunities, paper account/positions/orders/events, submit LONG override with sizeUsd=1500, duplicate-guard, close with pnlUsd/pnlPct, evaluate-hits, account stats update) still behave identically to Sprint T1. Cognition surfaces (/api/ta/basic/BTC, /api/sentiment/runtime/BTC, /api/fractal/runtime/BTC), /api/miniapp/lite and /api/panel/admin still return 200. Legacy /api/terminal/* and /api/terminal-app/* still honest-404. Expo web shell at GET / serves 200 with the expected bundle markers.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_trading_runtime_t1.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "No backend Python files were modified in Sprint T2 — frontend-only wiring. Regression confirms zero behavioral drift on /api/trading/* and cognition surfaces.",
+    "Submit endpoint (POST /api/trading/paper/submit) with override LONG and sizeUsd=1500 correctly returns ok:true with orderId, positionId, entry, stop, target (stop < entry < target invariant verified).",
+    "Close endpoint (POST /api/trading/paper/close) returns ok:true with pnlUsd, pnlPct, and reason='manual'.",
+    "OPEN positions listing includes live unrealizedPnlUsd, unrealizedPnlPct, currentPrice (frontend Exposure screen can render these directly).",
+    "After close, position is reflected in CLOSED listing with closePrice and closeReason populated; events ledger contains ORDER_FILLED and POSITION_CLOSED entries.",
+    "Verdict payload includes blockedBy[] reasons (frontend can surface these on the Deployment screen when action=WAIT).",
+    "Backend logs are clean — only benign FastAPI duplicate-operation-id warnings for unrelated telegram stub (pre-existing, not introduced by T2)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_trading_runtime_t1.py (added TestExpoWebBundle for GET / regression)"
+  ],
+  "success_rate": {
+    "backend": "100% (26/26 tests passing)",
+    "frontend": "N/A (skipped per request — T2 UI is gated behind app-mode + operator capability flow)"
+  },
+  "seed_data_creation": "Uses the dedicated test account 'TEST_t1_paper_acct' (auto-created by _ensure_account). A single LONG BTC position is opened and then closed during the flow; pre-flow cleanup helper closes any leftover OPEN positions on that account so the suite is idempotent. Production 'default-paper-account' is untouched.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Trading Runtime backend is stable across T1 (iteration_2) and T2 (iteration_3). The regression file /app/backend/tests/test_trading_runtime_t1.py now also pings the Expo web root (GET /) to catch frontend bundle regressions. Re-run with: EXPO_PUBLIC_BACKEND_URL=<public-url> pytest /app/backend/tests/test_trading_runtime_t1.py -v. When the main agent requests a frontend pass on TRADE/PORTFOLIO screens, the testIDs and selectors will need to be added to TradeScreen.tsx and PortfolioScreen.tsx first — current screens were skipped per the agent_to_agent_context_note for this iteration.",
+  "rca_of_issue": "N/A — no failures."
+}

@@ -1,0 +1,382 @@
+[
+  {
+    "url": "https://api.cryptorank.io/v0/funding-rounds-widgets/hot-rounds",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "Bearer null",
+      "referer": "https://cryptorank.io/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "content-type": "application/json",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "data": [
+      {
+        "raise": 75000000,
+        "coinKey": "novig",
+        "coinName": "Novig",
+        "coinImage": "https://img.cryptorank.io/coins/60x60.novig1771421560185.png",
+        "funds": [
+          {
+            "slug": "pantera-capital",
+            "logo": "https://img.cryptorank.io/funds/60x60.pantera capital1648480190185.png"
+          },
+          {
+            "slug": "multicoin-capital",
+            "logo": "https://img.cryptorank.io/funds/60x60.multicoin_capital1675419937276.png"
+          },
+          {
+            "slug": "makers-fund",
+            "logo": "https://img.cryptorank.io/funds/60x60.makers_fund1657892642960.png"
+          }
+        ],
+        "isHidden": false
+      },
+      {
+        "raise": 150000000,
+        "coinKey": "gold-com",
+        "coinName": "Gold.com",
+        "coinImage": "https://img.cryptorank.io/coins/60x60.gold_com1770363224833.png",
+        "funds": [
+          {
+            "slug": "tether",
+            "logo": "https://img.cryptorank.io/funds/60x60.tether1744732327320.png"
+          }
+        ],
+        "isHidden": false
+      },
+      {
+        "raise": 200000000,
+        "coinKey": "whop",
+        "coinName": "Whop",
+        "coinImage": "https://img.cryptorank.io/coins/60x60.whop1772028621819.png",
+        "funds": [
+          {
+            "slug": "tether",
+            "logo": "https://img.cryptorank.io/funds/60x60.tether1744732327320.png"
+          }
+        ],
+        "isHidden": false
+      }
+    ]
+  },
+  {
+    "url": "https://api.cryptorank.io/v0/banners/funding-rounds?locale=en",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "Bearer null",
+      "referer": "https://cryptorank.io/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "content-type": "application/json",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "data": []
+  },
+  {
+    "url": "https://api.cryptorank.io/v0/funding-rounds-widgets/total-funding-overview?locale=en",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "Bearer null",
+      "referer": "https://cryptorank.io/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "content-type": "application/json",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "data": {
+      "fundingRoundsTotal": 88,
+      "fundingRoundsTotalChange": -4.35,
+      "totalInvestments": 1074770000,
+      "totalInvestmentsChange": -48.52,
+      "investmentsFocus": {
+        "id": 17,
+        "name": "Payments",
+        "description": "Projects that enable payments or create infrastructure for payments"
+      },
+      "avgRoundSize": {
+        "raise_from": 3000000,
+        "raise_to": 10000000
+      },
+      "investmentStage": "STRATEGIC"
+    }
+  },
+  {
+    "url": "https://api.cryptorank.io/v0/funding-rounds-widgets/fundraising-digest?locale=en",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "authorization": "Bearer null",
+      "referer": "https://cryptorank.io/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "content-type": "application/json",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "data": [
+      {
+        "title": "Bitcoin investors may not need altcoins to diversify if tokenized stocks move on-chain",
+        "publishDate": "2026-03-05T13:45:21.000Z",
+        "url": "1d6bb-bitcoin-investors-may-not-need-altcoins-to-diversify-if-tokenized-stocks-move-on-chain",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investments",
+            "name": "Investments"
+          }
+        ]
+      },
+      {
+        "title": "Bitcoin Soars: BTC Price Surges Past $73,000 Milestone in Major Rally",
+        "publishDate": "2026-03-05T10:40:11.000Z",
+        "url": "7b772-bitcoin-price-surpasses-73000-milestone",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "Gold Price Surge: Unyielding Safe-Haven Demand Amid Middle East War Tensions",
+        "publishDate": "2026-03-05T09:10:11.000Z",
+        "url": "f207a-gold-price-safe-haven-middle-east",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investing",
+            "name": "Investing"
+          }
+        ]
+      },
+      {
+        "title": "1inch Network Token (1INCH) Price Prediction 2026-2030: The Astonishing DeFi Resurgence Potential",
+        "publishDate": "2026-03-05T08:10:10.000Z",
+        "url": "b54b0-1inch-network-token-price-prediction-2026-2030",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "Silver Price Forecast: XAG/USD Plummets to Near $82 as Resurgent Dollar Crushes Metals Rally",
+        "publishDate": "2026-03-05T07:25:11.000Z",
+        "url": "795d9-silver-price-forecast-xagusd-decline",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investing",
+            "name": "Investing"
+          }
+        ]
+      },
+      {
+        "title": "Gold Price Surge: Soaring Safe-Haven Demand as Iran Conflict Escalates",
+        "publishDate": "2026-03-05T07:20:11.000Z",
+        "url": "b3cff-gold-price-surge-iran-conflict-safe-haven-2",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investing",
+            "name": "Investing"
+          }
+        ]
+      },
+      {
+        "title": "India Gold Price Today Soars: Bitcoin World Data Reveals Significant Rise Amid Market Shifts",
+        "publishDate": "2026-03-05T05:30:11.000Z",
+        "url": "53ee0-india-gold-price-rises-today-6",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "Gold Price Surge: Stunning Rally to $5,200 as Iran War Ignites Historic Safe-Haven Rush",
+        "publishDate": "2026-03-05T05:15:11.000Z",
+        "url": "c96e2-gold-price-surge-iran-war-safe-haven",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investing",
+            "name": "Investing"
+          }
+        ]
+      },
+      {
+        "title": "Ethereum ETF Inflows Surge: U.S. Spot Funds Rebound with $169M Stunning Influx",
+        "publishDate": "2026-03-05T04:40:11.000Z",
+        "url": "2ad59-ethereum-etf-inflows-march-2025",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "Spot Bitcoin ETFs Achieve Remarkable Third Day of Net Inflows, Signaling Sustained Investor Confidence",
+        "publishDate": "2026-03-05T04:30:11.000Z",
+        "url": "80ce3-spot-bitcoin-etfs-third-day-inflows-2",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "Gold Price Surge: Safe-Haven Demand Skyrockets Amid Iran Conflict Fears",
+        "publishDate": "2026-03-05T04:15:11.000Z",
+        "url": "a8064-gold-price-surge-iran-conflict-safe-haven",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investing",
+            "name": "Investing"
+          }
+        ]
+      },
+      {
+        "title": "American Bitcoin Soars: Trump-Backed Miner Now Holds Over 6,500 BTC in Strategic Power Move",
+        "publishDate": "2026-03-05T01:15:11.000Z",
+        "url": "8b231-american-bitcoin-trump-holdings-2025",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "A16z Crypto\u2019s Monumental $2 Billion Fund Signals Unwavering Confidence in Blockchain\u2019s Future",
+        "publishDate": "2026-03-04T22:40:12.000Z",
+        "url": "02976-a16z-crypto-2-billion-fund",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "Scotiabank and 3iQ Launch Pioneering Multi-Crypto ETF in Canada, Unlocking Mainstream Access",
+        "publishDate": "2026-03-04T21:50:28.000Z",
+        "url": "006ed-scotiabank-3iq-multi-crypto-etf",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "US Stocks Surge Higher: Major Indices Post Robust Gains Amid Market Optimism",
+        "publishDate": "2026-03-04T21:47:32.000Z",
+        "url": "44fe9-us-stocks-close-higher-gains-3",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investing",
+            "name": "Investing"
+          }
+        ]
+      },
+      {
+        "title": "Gold Price Surge Skyrockets Past $5,100 as Middle East Turmoil Ignites Fierce Haven Demand",
+        "publishDate": "2026-03-04T19:25:12.000Z",
+        "url": "6d99a-gold-price-surge-middle-east-demand",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investing",
+            "name": "Investing"
+          }
+        ]
+      },
+      {
+        "title": "Silver Price Forecast: XAG/USD Soars as Middle East Turmoil Ignites Safe-Haven Rush",
+        "publishDate": "2026-03-04T18:10:11.000Z",
+        "url": "0d855-silver-price-forecast-middle-east-safe-haven",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investing",
+            "name": "Investing"
+          }
+        ]
+      },
+      {
+        "title": "Matrixport Whale\u2019s Astounding $22 Million Unrealized Profit Signals Major Market Confidence",
+        "publishDate": "2026-03-04T16:40:12.000Z",
+        "url": "9f798-matrixport-whale-unrealized-profit-analysis",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "Rockefeller Capital Management\u2019s Strategic Surge: A 146% Stake Increase in Strategy Signals Major Confidence",
+        "publishDate": "2026-03-04T16:30:11.000Z",
+        "url": "fd06c-rockefeller-capital-strategy-stake-increase",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "title": "On-Chain IPO Service: Backpack\u2019s Revolutionary Leap into Tokenized Equity Markets",
+        "publishDate": "2026-03-04T15:25:13.000Z",
+        "url": "e154d-backpack-on-chain-ipo-service-launch",
+        "type": "news",
+        "subtype": null,
+        "tags": [
+          {
+            "key": "investment",
+            "name": "investment"
+          }
+        ]
+      }
+    ]
+  }
+]

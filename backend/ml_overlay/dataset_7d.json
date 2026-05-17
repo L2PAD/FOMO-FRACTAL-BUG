@@ -1,0 +1,258 @@
+{
+  "ok": true,
+  "n_rows": 161,
+  "feature_names": [
+    "horizon_days",
+    "confidence",
+    "confidence_raw",
+    "expected_move_pct",
+    "direction_encoded",
+    "confidence_gap",
+    "orderflow_imbalance",
+    "orderflow_dominance",
+    "aggressor_encoded",
+    "cascade_active",
+    "liq_long_volume",
+    "liq_short_volume",
+    "liq_ratio",
+    "absorption_active",
+    "absorption_side_encoded",
+    "funding_score",
+    "funding_trend",
+    "volume_delta",
+    "oi_delta_pct",
+    "price_volatility",
+    "price_change_5m",
+    "price_change_15m",
+    "regime_encoded",
+    "regime_confidence",
+    "tactical_score",
+    "tactical_bias_encoded",
+    "tactical_signal_strength",
+    "tactical_bearish_count",
+    "tactical_bullish_count",
+    "has_obs",
+    "has_funding"
+  ],
+  "stats": {
+    "n_rows": 161,
+    "time_range": {
+      "start": "2025-10-05T00:00:00+00:00",
+      "end": "2026-03-12T00:06:01.309000+00:00",
+      "days": 158
+    },
+    "labels": {
+      "error_risk": {
+        "positive": 119,
+        "negative": 42,
+        "rate_pct": 73.9
+      },
+      "catastrophic_risk": {
+        "positive": 65,
+        "negative": 96,
+        "rate_pct": 40.4
+      }
+    },
+    "observation_coverage": {
+      "with_obs": 13,
+      "with_funding": 32,
+      "obs_pct": 8.1,
+      "funding_pct": 19.9
+    },
+    "split": {
+      "train_size": 128,
+      "test_size": 33,
+      "train_error_rate": 75.0,
+      "test_error_rate": 69.7,
+      "split_date": "2026-02-10T00:00:00+00:00"
+    },
+    "feature_stats": {
+      "horizon_days": {
+        "min": 7,
+        "max": 7,
+        "mean": 7.0,
+        "nonzero_pct": 100.0
+      },
+      "confidence": {
+        "min": 0.1,
+        "max": 0.4464,
+        "mean": 0.4276,
+        "nonzero_pct": 100.0
+      },
+      "confidence_raw": {
+        "min": 0.2323,
+        "max": 0.6844,
+        "mean": 0.4383,
+        "nonzero_pct": 100.0
+      },
+      "expected_move_pct": {
+        "min": 0.07,
+        "max": 10.71,
+        "mean": 0.5806,
+        "nonzero_pct": 100.0
+      },
+      "direction_encoded": {
+        "min": 0,
+        "max": 1,
+        "mean": 0.0062,
+        "nonzero_pct": 0.6
+      },
+      "confidence_gap": {
+        "min": -0.3,
+        "max": 0.0,
+        "mean": -0.0107,
+        "nonzero_pct": 6.8
+      },
+      "orderflow_imbalance": {
+        "min": -0.4266,
+        "max": 0.8573,
+        "mean": -0.0037,
+        "nonzero_pct": 8.1
+      },
+      "orderflow_dominance": {
+        "min": 0.5,
+        "max": 0.8103,
+        "mean": 0.5111,
+        "nonzero_pct": 100.0
+      },
+      "aggressor_encoded": {
+        "min": -1,
+        "max": 1,
+        "mean": -0.0248,
+        "nonzero_pct": 6.2
+      },
+      "cascade_active": {
+        "min": 0,
+        "max": 0,
+        "mean": 0.0,
+        "nonzero_pct": 0.0
+      },
+      "liq_long_volume": {
+        "min": 0,
+        "max": 444557.0363,
+        "mean": 2761.2238,
+        "nonzero_pct": 0.6
+      },
+      "liq_short_volume": {
+        "min": 0,
+        "max": 438903.7449,
+        "mean": 2726.1102,
+        "nonzero_pct": 0.6
+      },
+      "liq_ratio": {
+        "min": 0.5,
+        "max": 0.5032,
+        "mean": 0.5,
+        "nonzero_pct": 100.0
+      },
+      "absorption_active": {
+        "min": 0,
+        "max": 1,
+        "mean": 0.0311,
+        "nonzero_pct": 3.1
+      },
+      "absorption_side_encoded": {
+        "min": -1,
+        "max": 1,
+        "mean": 0.0435,
+        "nonzero_pct": 8.1
+      },
+      "funding_score": {
+        "min": -0.3231,
+        "max": 0.3237,
+        "mean": 0.0067,
+        "nonzero_pct": 19.9
+      },
+      "funding_trend": {
+        "min": -0.0034,
+        "max": 0.0018,
+        "mean": -0.0,
+        "nonzero_pct": 6.2
+      },
+      "volume_delta": {
+        "min": -8.5313,
+        "max": 15.1531,
+        "mean": -0.0867,
+        "nonzero_pct": 8.1
+      },
+      "oi_delta_pct": {
+        "min": -2.6441,
+        "max": 0.0,
+        "mean": -0.0164,
+        "nonzero_pct": 0.6
+      },
+      "price_volatility": {
+        "min": 0.0,
+        "max": 0.0128,
+        "mean": 0.0004,
+        "nonzero_pct": 8.1
+      },
+      "price_change_5m": {
+        "min": -0.1283,
+        "max": 0.5663,
+        "mean": 0.0033,
+        "nonzero_pct": 8.1
+      },
+      "price_change_15m": {
+        "min": -0.2566,
+        "max": 0.7012,
+        "mean": 0.0031,
+        "nonzero_pct": 8.1
+      },
+      "regime_encoded": {
+        "min": 1,
+        "max": 1,
+        "mean": 1.0,
+        "nonzero_pct": 100.0
+      },
+      "regime_confidence": {
+        "min": 0.5,
+        "max": 0.8152,
+        "mean": 0.5243,
+        "nonzero_pct": 100.0
+      },
+      "tactical_score": {
+        "min": -1.7,
+        "max": 1.8,
+        "mean": 0.0087,
+        "nonzero_pct": 6.8
+      },
+      "tactical_bias_encoded": {
+        "min": -1,
+        "max": 1,
+        "mean": 0.0,
+        "nonzero_pct": 5.0
+      },
+      "tactical_signal_strength": {
+        "min": 0.0,
+        "max": 0.4,
+        "mean": 0.0168,
+        "nonzero_pct": 6.8
+      },
+      "tactical_bearish_count": {
+        "min": 0,
+        "max": 2,
+        "mean": 0.0621,
+        "nonzero_pct": 5.6
+      },
+      "tactical_bullish_count": {
+        "min": 0,
+        "max": 2,
+        "mean": 0.0683,
+        "nonzero_pct": 5.0
+      },
+      "has_obs": {
+        "min": 0,
+        "max": 1,
+        "mean": 0.0807,
+        "nonzero_pct": 8.1
+      },
+      "has_funding": {
+        "min": 0,
+        "max": 1,
+        "mean": 0.1988,
+        "nonzero_pct": 19.9
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "paywall.lastSessionHighlights": "Last session highlights",
+  "paywall.proUsersSee": "PRO users see",
+  "paywall.lockedRightNow": "Locked right now",
+  "paywall.supportingSentimentOnChain": "Supporting: Sentiment, On-chain",
+  "paywall.whatYouUnlock": "What you unlock",
+  "paywall.payWithCrypto": "Pay with crypto",
+  "paywall.setupMayTrigger": "Setup may trigger",
+  "paywall.notNow": "Not now",
+  "paywall.userSessionNotFoundPlease": "User session not found. Please restart the app.",
+  "paywall.stillProcessing": "Still Processing",
+  "paywall.yourPaymentIsBeingConfirmed": "Your payment is being confirmed. Access will unlock automatically once confirmed."
+}

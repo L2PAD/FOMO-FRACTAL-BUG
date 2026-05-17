@@ -1,0 +1,3608 @@
+[
+  {
+    "url": "https://api.cryptorank.io/v0/funding-rounds-widgets/total-funding-overview?locale=en",
+    "data": {
+      "fundingRoundsTotal": 88,
+      "fundingRoundsTotalChange": -4.35,
+      "totalInvestments": 1074770000,
+      "totalInvestmentsChange": -48.52,
+      "investmentsFocus": {
+        "id": 17,
+        "name": "Payments",
+        "description": "Projects that enable payments or create infrastructure for payments"
+      },
+      "avgRoundSize": {
+        "raise_from": 3000000,
+        "raise_to": 10000000
+      },
+      "investmentStage": "STRATEGIC"
+    }
+  },
+  {
+    "url": "https://api.cryptorank.io/v0/funds/widgets/investment-activity",
+    "data": {
+      "activity": -30
+    }
+  },
+  {
+    "url": "https://api.cryptorank.io/v0/funds/table?limit=20&offset=0",
+    "data": {
+      "data": [
+        {
+          "slug": "y-combinator",
+          "name": "Y Combinator",
+          "logo": "https://img.cryptorank.io/funds/60x60.y_combinator1664271737650.png",
+          "tier": 1,
+          "type": "Incubator",
+          "location": "United States",
+          "latestDeal": {
+            "key": "qfex",
+            "name": "QFEX",
+            "icon": "https://img.cryptorank.io/coins/60x60.qfex1772716138274.png",
+            "date": "2026-03-05T00:00:00.000Z",
+            "raise": 9500000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 80,
+          "portfolioData": [
+            {
+              "key": "coinbase",
+              "name": "Coinbase",
+              "icon": "https://img.cryptorank.io/coins/60x60.coinbase1666618146857.png"
+            },
+            {
+              "key": "cointracker",
+              "name": "CoinTracker",
+              "icon": "https://img.cryptorank.io/coins/60x60.coin_tracker1670825956526.png"
+            },
+            {
+              "key": "proxy-identity",
+              "name": "Proxy",
+              "icon": "https://img.cryptorank.io/coins/60x60.proxy1674809198096.png"
+            },
+            {
+              "key": "filecoin",
+              "name": "Filecoin",
+              "icon": "https://img.cryptorank.io/coins/60x60.filecoin1602761898881.png"
+            },
+            {
+              "key": "blockstack",
+              "name": "Stacks",
+              "icon": "https://img.cryptorank.io/coins/60x60.stacks1711010314382.png"
+            }
+          ],
+          "retailRoi": 0.398332926188666,
+          "focusArea": "Payments",
+          "focusAreaData": [
+            {
+              "tag": "Payments",
+              "count": 7,
+              "percent": 29.17
+            },
+            {
+              "tag": "Portfolio Management",
+              "count": 4,
+              "percent": 16.67
+            },
+            {
+              "tag": "API",
+              "count": 4,
+              "percent": 16.67
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 3,
+              "percent": 12.5
+            },
+            {
+              "tag": "Data Service",
+              "count": 2,
+              "percent": 8.33
+            },
+            {
+              "tag": "Bitcoin Scaling",
+              "count": 2,
+              "percent": 8.33
+            },
+            {
+              "tag": "NFT Elements",
+              "count": 2,
+              "percent": 8.33
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 40
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 0,
+              "raiseTo": 1000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 20
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 40
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 25
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 10
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 60,
+              "type": "SEED"
+            },
+            {
+              "percent": 20,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 5,
+              "type": "PRE SEED"
+            },
+            {
+              "percent": 5,
+              "type": "Incubation"
+            }
+          ],
+          "fundingRounds": 94,
+          "leadInvestments": 19,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 16
+            },
+            {
+              "country": "France",
+              "count": 2
+            },
+            {
+              "country": "Singapore",
+              "count": 1
+            },
+            {
+              "country": "Brazil",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "ycombinator",
+            "twitterScore": 10975,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 115498,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "sequoia-capital",
+          "name": "Sequoia Capital",
+          "logo": "https://img.cryptorank.io/funds/60x60.sequoia capital1648566014366.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "dolarapp",
+            "name": "ARQ (prev. DolarApp)",
+            "icon": "https://img.cryptorank.io/coins/60x60.arq_prev_dolar_app1772610105190.png",
+            "date": "2026-03-03T00:00:00.000Z",
+            "raise": 70000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 78,
+          "portfolioData": [
+            {
+              "key": "robinhood",
+              "name": "Robinhood",
+              "icon": "https://img.cryptorank.io/coins/60x60.robinhood1666957522152.png"
+            },
+            {
+              "key": "kalshi",
+              "name": "Kalshi",
+              "icon": "https://img.cryptorank.io/coins/60x60.kalshi1750924050786.png"
+            },
+            {
+              "key": "ftx-token",
+              "name": "FTX Token",
+              "icon": "https://img.cryptorank.io/coins/60x60.ftx token1604331985959.png"
+            },
+            {
+              "key": "citadel-securities",
+              "name": "Citadel Securities",
+              "icon": "https://img.cryptorank.io/coins/60x60.citadel_securities1665494083529.png"
+            },
+            {
+              "key": "trade-republic",
+              "name": "Trade Republic",
+              "icon": "https://img.cryptorank.io/coins/60x60.trade_republic1666019115974.png"
+            }
+          ],
+          "retailRoi": 0.343492922142988,
+          "focusArea": "API",
+          "focusAreaData": [
+            {
+              "tag": "API",
+              "count": 6,
+              "percent": 23.08
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 5,
+              "percent": 19.23
+            },
+            {
+              "tag": "Payments",
+              "count": 4,
+              "percent": 15.38
+            },
+            {
+              "tag": "Prediction Markets",
+              "count": 3,
+              "percent": 11.54
+            },
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 3,
+              "percent": 11.54
+            },
+            {
+              "tag": "Binance Alpha",
+              "count": 3,
+              "percent": 11.54
+            },
+            {
+              "tag": "Neobank",
+              "count": 2,
+              "percent": 7.69
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 50000000,
+            "raiseTo": null,
+            "percent": 35
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 30
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 20
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 35
+            }
+          ],
+          "preferredStage": "SERIES A",
+          "preferredStageData": [
+            {
+              "percent": 40,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 25,
+              "type": "SEED"
+            },
+            {
+              "percent": 15,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES C"
+            },
+            {
+              "percent": 5,
+              "type": "SERIES D"
+            },
+            {
+              "percent": 5,
+              "type": null
+            }
+          ],
+          "fundingRounds": 96,
+          "leadInvestments": 34,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 15
+            },
+            {
+              "country": "China",
+              "count": 1
+            },
+            {
+              "country": "Hong Kong",
+              "count": 1
+            },
+            {
+              "country": "Mexico",
+              "count": 1
+            },
+            {
+              "country": "India",
+              "count": 1
+            },
+            {
+              "country": "Canada",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "sequoia",
+            "twitterScore": 10264,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 117525,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "coinbase-ventures",
+          "name": "Coinbase Ventures",
+          "logo": "https://img.cryptorank.io/funds/60x60.coinbase ventures1648494875227.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "bluprynt",
+            "name": "Bluprynt",
+            "icon": "https://img.cryptorank.io/coins/60x60.bluprynt1772111707368.png",
+            "date": "2026-02-26T00:00:00.000Z",
+            "raise": 4250000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 493,
+          "portfolioData": [
+            {
+              "key": "deribit",
+              "name": "Deribit",
+              "icon": "https://img.cryptorank.io/coins/60x60.deribit1664268493992.png"
+            },
+            {
+              "key": "ftx-token",
+              "name": "FTX Token",
+              "icon": "https://img.cryptorank.io/coins/60x60.ftx token1604331985959.png"
+            },
+            {
+              "key": "yuga-labs",
+              "name": "Yuga Labs",
+              "icon": "https://img.cryptorank.io/coins/60x60.yuga_labs1667832024730.png"
+            },
+            {
+              "key": "echodotxyz",
+              "name": "Echo",
+              "icon": "https://img.cryptorank.io/coins/60x60.echo1761042765124.png"
+            },
+            {
+              "key": "amber-group",
+              "name": "Amber Group",
+              "icon": "https://img.cryptorank.io/coins/60x60.amber_group1666607456481.png"
+            }
+          ],
+          "retailRoi": 1.26339050521616,
+          "focusArea": "Perpetuals",
+          "focusAreaData": [
+            {
+              "tag": "Perpetuals",
+              "count": 4,
+              "percent": 21.05
+            },
+            {
+              "tag": "Prediction Markets",
+              "count": 3,
+              "percent": 15.79
+            },
+            {
+              "tag": "DEX",
+              "count": 3,
+              "percent": 15.79
+            },
+            {
+              "tag": "Payments",
+              "count": 3,
+              "percent": 15.79
+            },
+            {
+              "tag": "Portfolio Management",
+              "count": 2,
+              "percent": 10.53
+            },
+            {
+              "tag": "Trading Strategies",
+              "count": 2,
+              "percent": 10.53
+            },
+            {
+              "tag": "Yield Farming",
+              "count": 2,
+              "percent": 10.53
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 10000000,
+            "raiseTo": 20000000,
+            "percent": 40
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 35
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 40
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 10
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 40,
+              "type": "SEED"
+            },
+            {
+              "percent": 25,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 15,
+              "type": "M&A"
+            },
+            {
+              "percent": 10,
+              "type": "Extended Series A"
+            },
+            {
+              "percent": 5,
+              "type": "SERIES C"
+            },
+            {
+              "percent": 5,
+              "type": null
+            }
+          ],
+          "fundingRounds": 483,
+          "leadInvestments": 30,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 17
+            },
+            {
+              "country": "Brazil",
+              "count": 1
+            },
+            {
+              "country": "Hong Kong",
+              "count": 1
+            },
+            {
+              "country": "India",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "cbventures",
+            "twitterScore": 9081,
+            "followersCount": 39541,
+            "latestFollowings": [],
+            "twitterAccountId": 25457,
+            "topFollowers": [
+              {
+                "id": 509,
+                "name": "Kyle Samani",
+                "image": "https://pbs.twimg.com/profile_images/1858578125870809088/sfUhlDBd_normal.jpg",
+                "username": "KyleSamani",
+                "twitterScore": 24673,
+                "relatedEntity": null,
+                "followersCount": 174813
+              },
+              {
+                "id": 5050,
+                "name": "jesse.base.eth",
+                "image": "https://pbs.twimg.com/profile_images/1879556312822120448/QngrqCSC_normal.jpg",
+                "username": "jessepollak",
+                "twitterScore": 30475,
+                "relatedEntity": {
+                  "coin": "jesse-base"
+                },
+                "followersCount": 236636
+              }
+            ]
+          }
+        },
+        {
+          "slug": "spartan-group",
+          "name": "The Spartan Group",
+          "logo": "https://img.cryptorank.io/funds/60x60.the_spartan_group1729584485534.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "Hong Kong",
+          "latestDeal": {
+            "key": "kash",
+            "name": "Kash",
+            "icon": "https://img.cryptorank.io/coins/60x60.kash1771946131367.png",
+            "date": "2026-02-24T00:00:00.000Z",
+            "raise": 2000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 230,
+          "portfolioData": [
+            {
+              "key": "matic-network",
+              "name": "Polygon",
+              "icon": "https://img.cryptorank.io/coins/60x60.polygon1698243029264.png"
+            },
+            {
+              "key": "bit-dao",
+              "name": "BitDAO",
+              "icon": "https://img.cryptorank.io/coins/60x60.bit_dao1660819257511.png"
+            },
+            {
+              "key": "consensys",
+              "name": "ConsenSys",
+              "icon": "https://img.cryptorank.io/coins/60x60.consen_sys1689061650473.png"
+            },
+            {
+              "key": "sentient",
+              "name": "Sentient",
+              "icon": "https://img.cryptorank.io/coins/60x60.sentient1758104120151.png"
+            },
+            {
+              "key": "fuel-labs",
+              "name": "Fuel Network",
+              "icon": "https://img.cryptorank.io/coins/60x60.fuel_network1679998086098.png"
+            }
+          ],
+          "retailRoi": 5.40268362617984,
+          "focusArea": "Binance Alpha",
+          "focusAreaData": [
+            {
+              "tag": "Binance Alpha",
+              "count": 5,
+              "percent": 19.23
+            },
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 4,
+              "percent": 15.38
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 4,
+              "percent": 15.38
+            },
+            {
+              "tag": "Play to Earn (P2E)",
+              "count": 4,
+              "percent": 15.38
+            },
+            {
+              "tag": "DePIN",
+              "count": 3,
+              "percent": 11.54
+            },
+            {
+              "tag": "EVM",
+              "count": 3,
+              "percent": 11.54
+            },
+            {
+              "tag": "Gaming Studio",
+              "count": 3,
+              "percent": 11.54
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 60
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 60
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 25
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 35,
+              "type": "SEED"
+            },
+            {
+              "percent": 30,
+              "type": "PRE SEED"
+            },
+            {
+              "percent": 20,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 15,
+              "type": "STRATEGIC"
+            }
+          ],
+          "fundingRounds": 225,
+          "leadInvestments": 38,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 6
+            },
+            {
+              "country": "Germany",
+              "count": 2
+            },
+            {
+              "country": "Estonia",
+              "count": 1
+            },
+            {
+              "country": "Australia",
+              "count": 1
+            },
+            {
+              "country": "Cayman Islands",
+              "count": 1
+            },
+            {
+              "country": "China",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "TheSpartanGroup",
+            "twitterScore": 10086,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 118657,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "pantera-capital",
+          "name": "Pantera Capital",
+          "logo": "https://img.cryptorank.io/funds/60x60.pantera capital1648480190185.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "based-omni-trading",
+            "name": "Based",
+            "icon": "https://img.cryptorank.io/coins/60x60.based1757331183920.png",
+            "date": "2026-02-23T00:00:00.000Z",
+            "raise": 11500000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 241,
+          "portfolioData": [
+            {
+              "key": "verb-technology",
+              "name": "Verb Technology (TON Strategy Co.)",
+              "icon": "https://img.cryptorank.io/coins/60x60.verb_technology1754396884919.png"
+            },
+            {
+              "key": "alchemy-dev",
+              "name": "Alchemy",
+              "icon": "https://img.cryptorank.io/coins/60x60.alchemy1669278161900.png"
+            },
+            {
+              "key": "helius-medical-tech",
+              "name": "Solana Company (prev. Helius Medical Technologies)",
+              "icon": "https://img.cryptorank.io/coins/60x60.solana_company_prev_helius_medical_technologies1767713807176.png"
+            },
+            {
+              "key": "ripple",
+              "name": "XRP",
+              "icon": "https://img.cryptorank.io/coins/60x60.xrp1634717634479.png"
+            },
+            {
+              "key": "bakkt",
+              "name": "Bakkt",
+              "icon": "https://img.cryptorank.io/coins/60x60.bakkt1666772334156.png"
+            }
+          ],
+          "retailRoi": 1.22799042372605,
+          "focusArea": "Artificial Intelligence (AI)",
+          "focusAreaData": [
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 4,
+              "percent": 22.22
+            },
+            {
+              "tag": "Data Service",
+              "count": 4,
+              "percent": 22.22
+            },
+            {
+              "tag": "Payments",
+              "count": 4,
+              "percent": 22.22
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "Treasury Management",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "Yield Aggregator",
+              "count": 1,
+              "percent": 5.56
+            },
+            {
+              "tag": "Staking",
+              "count": 1,
+              "percent": 5.56
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 50000000,
+            "raiseTo": null,
+            "percent": 35
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 35
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 35
+            }
+          ],
+          "preferredStage": "SERIES A",
+          "preferredStageData": [
+            {
+              "percent": 20,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 20,
+              "type": "PIPE"
+            },
+            {
+              "percent": 20,
+              "type": "SEED"
+            },
+            {
+              "percent": 20,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 10,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 10,
+              "type": null
+            }
+          ],
+          "fundingRounds": 246,
+          "leadInvestments": 116,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 15
+            },
+            {
+              "country": "Hong Kong",
+              "count": 2
+            },
+            {
+              "country": "Bermuda",
+              "count": 1
+            },
+            {
+              "country": "Czech Republic",
+              "count": 1
+            },
+            {
+              "country": "France",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "PanteraCapital",
+            "twitterScore": 15199,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 115770,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "dragon-fly-capital",
+          "name": "Dragonfly",
+          "logo": "https://img.cryptorank.io/funds/60x60.dragon_fly_capital1660640000289.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "rhythmic",
+            "name": "Rhythmic",
+            "icon": "https://img.cryptorank.io/coins/60x60.rhythmic1771836047216.png",
+            "date": "2026-02-20T00:00:00.000Z",
+            "raise": 4000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 180,
+          "portfolioData": [
+            {
+              "key": "near-protocol",
+              "name": "Near Protocol",
+              "icon": "https://img.cryptorank.io/coins/60x60.near_protocol1704147268278.png"
+            },
+            {
+              "key": "avalanche",
+              "name": "Avalanche",
+              "icon": "https://img.cryptorank.io/coins/60x60.avalanche1629705441155.png"
+            },
+            {
+              "key": "matic-network",
+              "name": "Polygon",
+              "icon": "https://img.cryptorank.io/coins/60x60.polygon1698243029264.png"
+            },
+            {
+              "key": "secret",
+              "name": "Secret Network",
+              "icon": "https://img.cryptorank.io/coins/60x60.secret_network1732626984692.png"
+            },
+            {
+              "key": "stablecoinx",
+              "name": "StablecoinX",
+              "icon": "https://img.cryptorank.io/coins/60x60.stablecoin_x1753105791560.png"
+            }
+          ],
+          "retailRoi": 2.63758042443608,
+          "focusArea": "Payments",
+          "focusAreaData": [
+            {
+              "tag": "Payments",
+              "count": 9,
+              "percent": 37.5
+            },
+            {
+              "tag": "Stablecoin Protocol",
+              "count": 3,
+              "percent": 12.5
+            },
+            {
+              "tag": "Yield Farming",
+              "count": 3,
+              "percent": 12.5
+            },
+            {
+              "tag": "Perpetuals",
+              "count": 3,
+              "percent": 12.5
+            },
+            {
+              "tag": "Wallet",
+              "count": 2,
+              "percent": 8.33
+            },
+            {
+              "tag": "DEX",
+              "count": 2,
+              "percent": 8.33
+            },
+            {
+              "tag": "API",
+              "count": 2,
+              "percent": 8.33
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 30
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 30
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 25
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 20
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 20
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 35,
+              "type": "SEED"
+            },
+            {
+              "percent": 25,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES C"
+            },
+            {
+              "percent": 10,
+              "type": "Private Token Sale"
+            },
+            {
+              "percent": 10,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 10,
+              "type": null
+            }
+          ],
+          "fundingRounds": 202,
+          "leadInvestments": 87,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 18
+            },
+            {
+              "country": "Mexico",
+              "count": 1
+            },
+            {
+              "country": "Singapore",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "dragonfly_xyz",
+            "twitterScore": 14052,
+            "followersCount": 93868,
+            "latestFollowings": [],
+            "twitterAccountId": 3579,
+            "topFollowers": [
+              {
+                "id": 526,
+                "name": "Andrew Kang",
+                "image": "https://pbs.twimg.com/profile_images/1929878475739107328/80DEpCOa_normal.jpg",
+                "username": "Rewkang",
+                "twitterScore": 30097,
+                "relatedEntity": {
+                  "fund": "andrew-kang"
+                },
+                "followersCount": 390097
+              },
+              {
+                "id": 901,
+                "name": "H.E. Justin Sun 🍌",
+                "image": "https://pbs.twimg.com/profile_images/1905328711660175362/woLkMlCv_normal.jpg",
+                "username": "justinsuntron",
+                "twitterScore": 27336,
+                "relatedEntity": {
+                  "fund": "justin-sun"
+                },
+                "followersCount": 3820719
+              },
+              {
+                "id": 1123,
+                "name": "CL",
+                "image": "https://pbs.twimg.com/profile_images/1868745836777312256/XsNk1YlU_normal.jpg",
+                "username": "CL207",
+                "twitterScore": 28981,
+                "relatedEntity": null,
+                "followersCount": 249398
+              }
+            ]
+          }
+        },
+        {
+          "slug": "multicoin-capital",
+          "name": "Multicoin Capital",
+          "logo": "https://img.cryptorank.io/funds/60x60.multicoin_capital1675419937276.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "novig",
+            "name": "Novig",
+            "icon": "https://img.cryptorank.io/coins/60x60.novig1771421560185.png",
+            "date": "2026-02-18T00:00:00.000Z",
+            "raise": 75000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 152,
+          "portfolioData": [
+            {
+              "key": "forward-industries",
+              "name": "Forward Industries",
+              "icon": "https://img.cryptorank.io/coins/60x60.forward_industries1757327653069.png"
+            },
+            {
+              "key": "ftx-token",
+              "name": "FTX Token",
+              "icon": "https://img.cryptorank.io/coins/60x60.ftx token1604331985959.png"
+            },
+            {
+              "key": "ftx-us",
+              "name": "FTX US",
+              "icon": "https://img.cryptorank.io/coins/60x60.ftx_us1671718795426.png"
+            },
+            {
+              "key": "aptos",
+              "name": "Aptos",
+              "icon": "https://img.cryptorank.io/coins/60x60.aptos1760622422254.png"
+            },
+            {
+              "key": "solana",
+              "name": "Solana",
+              "icon": "https://img.cryptorank.io/coins/60x60.solana1606979093056.png"
+            }
+          ],
+          "retailRoi": 10.7228996319944,
+          "focusArea": "DePIN",
+          "focusAreaData": [
+            {
+              "tag": "DePIN",
+              "count": 5,
+              "percent": 21.74
+            },
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 5,
+              "percent": 21.74
+            },
+            {
+              "tag": "Binance Alpha",
+              "count": 3,
+              "percent": 13.04
+            },
+            {
+              "tag": "Prediction Markets",
+              "count": 3,
+              "percent": 13.04
+            },
+            {
+              "tag": "API",
+              "count": 3,
+              "percent": 13.04
+            },
+            {
+              "tag": "DAO",
+              "count": 2,
+              "percent": 8.7
+            },
+            {
+              "tag": "Data Service",
+              "count": 2,
+              "percent": 8.7
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 40
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 40
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 20
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 15
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 30,
+              "type": "SEED"
+            },
+            {
+              "percent": 20,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 15,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 10,
+              "type": "Private Token Sale"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 15,
+              "type": null
+            }
+          ],
+          "fundingRounds": 153,
+          "leadInvestments": 73,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 14
+            },
+            {
+              "country": "Switzerland",
+              "count": 1
+            },
+            {
+              "country": "British Virgin Islands",
+              "count": 1
+            },
+            {
+              "country": "Colombia",
+              "count": 1
+            },
+            {
+              "country": "Estonia",
+              "count": 1
+            },
+            {
+              "country": "Germany",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "multicoin",
+            "twitterScore": 9987,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 122231,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "consensys",
+          "name": "ConsenSys",
+          "logo": "https://img.cryptorank.io/funds/60x60.consen_sys1689061685748.png",
+          "tier": 1,
+          "type": "Corporation",
+          "location": "United States",
+          "latestDeal": {
+            "key": "myx-finance",
+            "name": "MYX Finance",
+            "icon": "https://img.cryptorank.io/coins/60x60.myx_finance1701176371968.png",
+            "date": "2026-02-18T00:00:00.000Z",
+            "raise": null,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 75,
+          "portfolioData": [
+            {
+              "key": "sharplink",
+              "name": "SharpLink",
+              "icon": "https://img.cryptorank.io/coins/60x60.sharp_link1748878650242.png"
+            },
+            {
+              "key": "front-finance",
+              "name": "Mesh",
+              "icon": "https://img.cryptorank.io/coins/60x60.mesh1766502488799.png"
+            },
+            {
+              "key": "blockfi",
+              "name": "BlockFi",
+              "icon": "https://img.cryptorank.io/coins/60x60.block_fi1665501556053.png"
+            },
+            {
+              "key": "coinhouse",
+              "name": "Coinhouse",
+              "icon": "https://img.cryptorank.io/coins/60x60.coinhouse1666712847412.png"
+            },
+            {
+              "key": "sardine",
+              "name": "Sardine",
+              "icon": "https://img.cryptorank.io/coins/60x60.sardine1663689218476.png"
+            }
+          ],
+          "retailRoi": 4.13420598235456,
+          "focusArea": "Binance Alpha",
+          "focusAreaData": [
+            {
+              "tag": "Binance Alpha",
+              "count": 8,
+              "percent": 36.36
+            },
+            {
+              "tag": "Data Service",
+              "count": 3,
+              "percent": 13.64
+            },
+            {
+              "tag": "LSDfi",
+              "count": 3,
+              "percent": 13.64
+            },
+            {
+              "tag": "DAO",
+              "count": 2,
+              "percent": 9.09
+            },
+            {
+              "tag": "Digital Identity",
+              "count": 2,
+              "percent": 9.09
+            },
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 2,
+              "percent": 9.09
+            },
+            {
+              "tag": "Portfolio Management",
+              "count": 2,
+              "percent": 9.09
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 50
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 20
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 50
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 10
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 30,
+              "type": "SEED"
+            },
+            {
+              "percent": 30,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 20,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 10,
+              "type": "M&A"
+            },
+            {
+              "percent": 5,
+              "type": "Post-IPO"
+            },
+            {
+              "percent": 5,
+              "type": null
+            }
+          ],
+          "fundingRounds": 81,
+          "leadInvestments": 11,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 10
+            },
+            {
+              "country": "France",
+              "count": 3
+            },
+            {
+              "country": "Singapore",
+              "count": 2
+            },
+            {
+              "country": "Puerto Rico",
+              "count": 1
+            },
+            {
+              "country": "Cayman Islands",
+              "count": 1
+            },
+            {
+              "country": "Italy",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "ConsenSys",
+            "twitterScore": 17847,
+            "followersCount": 338117,
+            "latestFollowings": [],
+            "twitterAccountId": 8646,
+            "topFollowers": [
+              {
+                "id": 526,
+                "name": "Andrew Kang",
+                "image": "https://pbs.twimg.com/profile_images/1929878475739107328/80DEpCOa_normal.jpg",
+                "username": "Rewkang",
+                "twitterScore": 30097,
+                "relatedEntity": {
+                  "fund": "andrew-kang"
+                },
+                "followersCount": 390097
+              },
+              {
+                "id": 830,
+                "name": "Solana",
+                "image": "https://pbs.twimg.com/profile_images/1472933274209107976/6u-LQfjG_normal.jpg",
+                "username": "solana",
+                "twitterScore": 41262,
+                "relatedEntity": {
+                  "coin": "solana"
+                },
+                "followersCount": 3467590
+              }
+            ]
+          }
+        },
+        {
+          "slug": "galaxy-digital",
+          "name": "Galaxy",
+          "logo": "https://img.cryptorank.io/funds/60x60.galaxy1758275887686.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "levl",
+            "name": "Levl",
+            "icon": "https://img.cryptorank.io/coins/60x60.levl1770888814354.png",
+            "date": "2026-02-11T00:00:00.000Z",
+            "raise": 7000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 147,
+          "portfolioData": [
+            {
+              "key": "forward-industries",
+              "name": "Forward Industries",
+              "icon": "https://img.cryptorank.io/coins/60x60.forward_industries1757327653069.png"
+            },
+            {
+              "key": "ripple",
+              "name": "XRP",
+              "icon": "https://img.cryptorank.io/coins/60x60.xrp1634717634479.png"
+            },
+            {
+              "key": "matic-network",
+              "name": "Polygon",
+              "icon": "https://img.cryptorank.io/coins/60x60.polygon1698243029264.png"
+            },
+            {
+              "key": "mill-city-ventures",
+              "name": "SUI Group Holdings (Prev. Mill City Venture)",
+              "icon": "https://img.cryptorank.io/coins/60x60.sui_group_holdings_prev_mill_city_venture1756479673669.png"
+            },
+            {
+              "key": "sharplink",
+              "name": "SharpLink",
+              "icon": "https://img.cryptorank.io/coins/60x60.sharp_link1748878650242.png"
+            }
+          ],
+          "retailRoi": 3.96182708759212,
+          "focusArea": "Payments",
+          "focusAreaData": [
+            {
+              "tag": "Payments",
+              "count": 6,
+              "percent": 33.33
+            },
+            {
+              "tag": "Treasury Management",
+              "count": 3,
+              "percent": 16.67
+            },
+            {
+              "tag": "RWA",
+              "count": 3,
+              "percent": 16.67
+            },
+            {
+              "tag": "Mining Solutions",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "API",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "Staking",
+              "count": 1,
+              "percent": 5.56
+            },
+            {
+              "tag": "Layer 2 (L2)",
+              "count": 1,
+              "percent": 5.56
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 50000000,
+            "raiseTo": null,
+            "percent": 45
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 40
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 45
+            }
+          ],
+          "preferredStage": "STRATEGIC",
+          "preferredStageData": [
+            {
+              "percent": 25,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 25,
+              "type": "SEED"
+            },
+            {
+              "percent": 15,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 10,
+              "type": "Post-IPO"
+            },
+            {
+              "percent": 10,
+              "type": "PIPE"
+            },
+            {
+              "percent": 15,
+              "type": null
+            }
+          ],
+          "fundingRounds": 167,
+          "leadInvestments": 54,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 16
+            },
+            {
+              "country": "Hong Kong",
+              "count": 2
+            },
+            {
+              "country": "UAE",
+              "count": 1
+            },
+            {
+              "country": "China",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "GalaxyHQ",
+            "twitterScore": 8374,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 118670,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "black-rock",
+          "name": "BlackRock",
+          "logo": "https://img.cryptorank.io/funds/60x60.black_rock1666798363655.png",
+          "tier": 1,
+          "type": "Corporation",
+          "location": "United States",
+          "latestDeal": {
+            "key": "uniswap",
+            "name": "Uniswap",
+            "icon": "https://img.cryptorank.io/coins/60x60.uniswap1720803010318.png",
+            "date": "2026-02-11T00:00:00.000Z",
+            "raise": null,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 9,
+          "portfolioData": [
+            {
+              "key": "epic-games",
+              "name": "Epic Games",
+              "icon": "https://img.cryptorank.io/coins/60x60.epic_games1672042899933.png"
+            },
+            {
+              "key": "rapyd",
+              "name": "Rapyd",
+              "icon": "https://img.cryptorank.io/coins/60x60.rapyd1757605281812.png"
+            },
+            {
+              "key": "ftx-token",
+              "name": "FTX Token",
+              "icon": "https://img.cryptorank.io/coins/60x60.ftx token1604331985959.png"
+            },
+            {
+              "key": "circle",
+              "name": "Circle",
+              "icon": "https://img.cryptorank.io/coins/60x60.circle1667905986821.png"
+            },
+            {
+              "key": "scalable-capital",
+              "name": "Scalable Capital",
+              "icon": "https://img.cryptorank.io/coins/60x60.scalable_capital1748959825837.png"
+            }
+          ],
+          "retailRoi": 0.425630539145714,
+          "focusArea": "Portfolio Management",
+          "focusAreaData": [
+            {
+              "tag": "Portfolio Management",
+              "count": 4,
+              "percent": 23.53
+            },
+            {
+              "tag": "API",
+              "count": 3,
+              "percent": 17.65
+            },
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 3,
+              "percent": 17.65
+            },
+            {
+              "tag": "Trading Strategies",
+              "count": 3,
+              "percent": 17.65
+            },
+            {
+              "tag": "Payments",
+              "count": 2,
+              "percent": 11.76
+            },
+            {
+              "tag": "DAO",
+              "count": 1,
+              "percent": 5.88
+            },
+            {
+              "tag": "US Coins",
+              "count": 1,
+              "percent": 5.88
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 50000000,
+            "raiseTo": null,
+            "percent": 81.82
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 18.18
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 81.82
+            }
+          ],
+          "preferredStage": "STRATEGIC",
+          "preferredStageData": [
+            {
+              "percent": 33.33,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 22.22,
+              "type": "Extended Series B"
+            },
+            {
+              "percent": 11.11,
+              "type": "SERIES D"
+            },
+            {
+              "percent": 11.11,
+              "type": "SERIES C"
+            },
+            {
+              "percent": 11.11,
+              "type": "Series E"
+            },
+            {
+              "percent": 11.11,
+              "type": null
+            }
+          ],
+          "fundingRounds": 12,
+          "leadInvestments": 2,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 7
+            },
+            {
+              "country": "Germany",
+              "count": 3
+            },
+            {
+              "country": "United Kingdom",
+              "count": 1
+            },
+            {
+              "country": "France",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "blackrock",
+            "twitterScore": 14771,
+            "followersCount": 990283,
+            "latestFollowings": [],
+            "twitterAccountId": 28955,
+            "topFollowers": [
+              {
+                "id": 1123,
+                "name": "CL",
+                "image": "https://pbs.twimg.com/profile_images/1868745836777312256/XsNk1YlU_normal.jpg",
+                "username": "CL207",
+                "twitterScore": 28981,
+                "relatedEntity": null,
+                "followersCount": 249398
+              }
+            ]
+          }
+        },
+        {
+          "slug": "blockchain-capital",
+          "name": "Blockchain Capital",
+          "logo": "https://img.cryptorank.io/funds/60x60.blockchain_capital1749658103404.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "trm-labs",
+            "name": "TRM Labs",
+            "icon": "https://img.cryptorank.io/coins/60x60.trm_labs1668069176777.png",
+            "date": "2026-02-04T00:00:00.000Z",
+            "raise": 70000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 133,
+          "portfolioData": [
+            {
+              "key": "anchorage-digital",
+              "name": "Anchorage Digital",
+              "icon": "https://img.cryptorank.io/coins/60x60.anchorage_digital1691070614087.png"
+            },
+            {
+              "key": "polymarket",
+              "name": "Polymarket",
+              "icon": "https://img.cryptorank.io/coins/60x60.polymarket1671006384460.png"
+            },
+            {
+              "key": "zksync",
+              "name": "zkSync",
+              "icon": "https://img.cryptorank.io/coins/60x60.zk_sync1689072711750.png"
+            },
+            {
+              "key": "trm-labs",
+              "name": "TRM Labs",
+              "icon": "https://img.cryptorank.io/coins/60x60.trm_labs1668069176777.png"
+            },
+            {
+              "key": "world-coin",
+              "name": "World",
+              "icon": "https://img.cryptorank.io/coins/60x60.worldcoin1685021642487.png"
+            }
+          ],
+          "retailRoi": 4.66303955313953,
+          "focusArea": "Layer 1 (L1)",
+          "focusAreaData": [
+            {
+              "tag": "Layer 1 (L1)",
+              "count": 3,
+              "percent": 18.75
+            },
+            {
+              "tag": "Bitcoin Scaling",
+              "count": 3,
+              "percent": 18.75
+            },
+            {
+              "tag": "Perpetuals",
+              "count": 2,
+              "percent": 12.5
+            },
+            {
+              "tag": "Prediction Markets",
+              "count": 2,
+              "percent": 12.5
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 2,
+              "percent": 12.5
+            },
+            {
+              "tag": "DEX",
+              "count": 2,
+              "percent": 12.5
+            },
+            {
+              "tag": "EVM",
+              "count": 2,
+              "percent": 12.5
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 30
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 30
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 20
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 25
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 20
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 35,
+              "type": "SEED"
+            },
+            {
+              "percent": 35,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES C"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 5,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 5,
+              "type": null
+            }
+          ],
+          "fundingRounds": 129,
+          "leadInvestments": 51,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 14
+            },
+            {
+              "country": "Cyprus",
+              "count": 1
+            },
+            {
+              "country": "Hong Kong",
+              "count": 1
+            },
+            {
+              "country": "Japan",
+              "count": 1
+            },
+            {
+              "country": "South Korea",
+              "count": 1
+            },
+            {
+              "country": "United Kingdom",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "blockchaincap",
+            "twitterScore": 7194,
+            "followersCount": 72424,
+            "latestFollowings": [],
+            "twitterAccountId": 6132,
+            "topFollowers": [
+              {
+                "id": 505,
+                "name": "Stani.eth",
+                "image": "https://pbs.twimg.com/profile_images/1880993699661852672/RzdhDkv2_normal.jpg",
+                "username": "StaniKulechov",
+                "twitterScore": 26305,
+                "relatedEntity": {
+                  "fund": "stani-kulechov"
+                },
+                "followersCount": 268495
+              },
+              {
+                "id": 526,
+                "name": "Andrew Kang",
+                "image": "https://pbs.twimg.com/profile_images/1929878475739107328/80DEpCOa_normal.jpg",
+                "username": "Rewkang",
+                "twitterScore": 30097,
+                "relatedEntity": {
+                  "fund": "andrew-kang"
+                },
+                "followersCount": 390097
+              },
+              {
+                "id": 1123,
+                "name": "CL",
+                "image": "https://pbs.twimg.com/profile_images/1868745836777312256/XsNk1YlU_normal.jpg",
+                "username": "CL207",
+                "twitterScore": 28981,
+                "relatedEntity": null,
+                "followersCount": 249398
+              }
+            ]
+          }
+        },
+        {
+          "slug": "andreessen-horowitz",
+          "name": "Andreessen Horowitz (a16z crypto)",
+          "logo": "https://img.cryptorank.io/funds/60x60.andreessen_horowitz_a_16_z_crypto1753210602877.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "kairos-trade",
+            "name": "Kairos",
+            "icon": "https://img.cryptorank.io/coins/60x60.kairos1767603349441.png",
+            "date": "2026-02-03T00:00:00.000Z",
+            "raise": 2500000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 187,
+          "portfolioData": [
+            {
+              "key": "robinhood",
+              "name": "Robinhood",
+              "icon": "https://img.cryptorank.io/coins/60x60.robinhood1666957522152.png"
+            },
+            {
+              "key": "kalshi",
+              "name": "Kalshi",
+              "icon": "https://img.cryptorank.io/coins/60x60.kalshi1750924050786.png"
+            },
+            {
+              "key": "forte",
+              "name": "Forte",
+              "icon": "https://img.cryptorank.io/coins/60x60.forte1758020545404.png"
+            },
+            {
+              "key": "cross-river",
+              "name": "Cross River",
+              "icon": "https://img.cryptorank.io/coins/60x60.cross_river1668589915713.png"
+            },
+            {
+              "key": "flow",
+              "name": "Flow",
+              "icon": "https://img.cryptorank.io/coins/60x60.flow1600856785709.png"
+            }
+          ],
+          "retailRoi": 22.340615111218,
+          "focusArea": "Artificial Intelligence (AI)",
+          "focusAreaData": [
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 5,
+              "percent": 27.78
+            },
+            {
+              "tag": "Prediction Markets",
+              "count": 3,
+              "percent": 16.67
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "API",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "LSDfi",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "Payments",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "US Coins",
+              "count": 2,
+              "percent": 11.11
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 10000000,
+            "raiseTo": 20000000,
+            "percent": 35
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 35
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 25
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 25
+            }
+          ],
+          "preferredStage": "STRATEGIC",
+          "preferredStageData": [
+            {
+              "percent": 20,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 20,
+              "type": "SEED"
+            },
+            {
+              "percent": 20,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 10,
+              "type": "Private Token Sale"
+            },
+            {
+              "percent": 20,
+              "type": null
+            }
+          ],
+          "fundingRounds": 260,
+          "leadInvestments": 151,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 17
+            },
+            {
+              "country": "United Kingdom",
+              "count": 2
+            },
+            {
+              "country": "Canada",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "a16zcrypto",
+            "twitterScore": 17324,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 117058,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "paradigm",
+          "name": "Paradigm",
+          "logo": "https://img.cryptorank.io/funds/60x60.paradigm capital1648561644615.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "front-finance",
+            "name": "Mesh",
+            "icon": "https://img.cryptorank.io/coins/60x60.mesh1766502488799.png",
+            "date": "2026-01-27T00:00:00.000Z",
+            "raise": 75000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 118,
+          "portfolioData": [
+            {
+              "key": "kalshi",
+              "name": "Kalshi",
+              "icon": "https://img.cryptorank.io/coins/60x60.kalshi1750924050786.png"
+            },
+            {
+              "key": "ftx-token",
+              "name": "FTX Token",
+              "icon": "https://img.cryptorank.io/coins/60x60.ftx token1604331985959.png"
+            },
+            {
+              "key": "citadel-securities",
+              "name": "Citadel Securities",
+              "icon": "https://img.cryptorank.io/coins/60x60.citadel_securities1665494083529.png"
+            },
+            {
+              "key": "moonpay",
+              "name": "MoonPay",
+              "icon": "https://img.cryptorank.io/coins/60x60.moon_pay1668496356608.png"
+            },
+            {
+              "key": "genesis-digital-assets",
+              "name": "Genesis Digital Assets",
+              "icon": "https://img.cryptorank.io/coins/60x60.genesis_digital_assets1668075364724.png"
+            }
+          ],
+          "retailRoi": 3.05454319705227,
+          "focusArea": "DEX",
+          "focusAreaData": [
+            {
+              "tag": "DEX",
+              "count": 4,
+              "percent": 21.05
+            },
+            {
+              "tag": "Prediction Markets",
+              "count": 4,
+              "percent": 21.05
+            },
+            {
+              "tag": "Payments",
+              "count": 3,
+              "percent": 15.79
+            },
+            {
+              "tag": "Stablecoin Protocol",
+              "count": 2,
+              "percent": 10.53
+            },
+            {
+              "tag": "Launchpad",
+              "count": 2,
+              "percent": 10.53
+            },
+            {
+              "tag": "Lending",
+              "count": 2,
+              "percent": 10.53
+            },
+            {
+              "tag": "Perpetuals",
+              "count": 2,
+              "percent": 10.53
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 50
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 50
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 20
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 40,
+              "type": "SEED"
+            },
+            {
+              "percent": 30,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES C"
+            },
+            {
+              "percent": 5,
+              "type": "OTC Purchase"
+            },
+            {
+              "percent": 5,
+              "type": "Incubation"
+            },
+            {
+              "percent": 10,
+              "type": null
+            }
+          ],
+          "fundingRounds": 138,
+          "leadInvestments": 86,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 19
+            },
+            {
+              "country": "Brazil",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "paradigm",
+            "twitterScore": 24104,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 119873,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "binance-labs",
+          "name": "YZi Labs (Prev. Binance Labs)",
+          "logo": "https://img.cryptorank.io/funds/60x60.y_zi_labs_prev_binance_labs1737641288277.png",
+          "tier": 1,
+          "type": "Incubator",
+          "location": "Malta",
+          "latestDeal": {
+            "key": "bitgo",
+            "name": "BitGo",
+            "icon": "https://img.cryptorank.io/coins/60x60.bit_go1666712617909.png",
+            "date": "2026-01-22T00:00:00.000Z",
+            "raise": 212800000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 285,
+          "portfolioData": [
+            {
+              "key": "stablecoinx",
+              "name": "StablecoinX",
+              "icon": "https://img.cryptorank.io/coins/60x60.stablecoin_x1753105791560.png"
+            },
+            {
+              "key": "sui",
+              "name": "Sui",
+              "icon": "https://img.cryptorank.io/coins/60x60.sui1750268474192.png"
+            },
+            {
+              "key": "bitgo",
+              "name": "BitGo",
+              "icon": "https://img.cryptorank.io/coins/60x60.bit_go1666712617909.png"
+            },
+            {
+              "key": "forbes",
+              "name": "Forbes",
+              "icon": "https://img.cryptorank.io/coins/60x60.frobes1663921377680.png"
+            },
+            {
+              "key": "mythical-games",
+              "name": "Mythical Games",
+              "icon": "https://img.cryptorank.io/coins/60x60.mythical_games1667830971628.png"
+            }
+          ],
+          "retailRoi": 1.56164218285192,
+          "focusArea": "Binance Alpha",
+          "focusAreaData": [
+            {
+              "tag": "Binance Alpha",
+              "count": 5,
+              "percent": 21.74
+            },
+            {
+              "tag": "Governance",
+              "count": 4,
+              "percent": 17.39
+            },
+            {
+              "tag": "Synthetic Assets",
+              "count": 3,
+              "percent": 13.04
+            },
+            {
+              "tag": "Stablecoin Protocol",
+              "count": 3,
+              "percent": 13.04
+            },
+            {
+              "tag": "Payments",
+              "count": 3,
+              "percent": 13.04
+            },
+            {
+              "tag": "Yield Farming",
+              "count": 3,
+              "percent": 13.04
+            },
+            {
+              "tag": "Node",
+              "count": 2,
+              "percent": 8.7
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 50
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 0,
+              "raiseTo": 1000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 50
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 15
+            }
+          ],
+          "preferredStage": "Incubation",
+          "preferredStageData": [
+            {
+              "percent": 35,
+              "type": "Incubation"
+            },
+            {
+              "percent": 30,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 20,
+              "type": "SEED"
+            },
+            {
+              "percent": 5,
+              "type": "ANGEL"
+            },
+            {
+              "percent": 5,
+              "type": "IPO"
+            },
+            {
+              "percent": 5,
+              "type": null
+            }
+          ],
+          "fundingRounds": 242,
+          "leadInvestments": 78,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 12
+            },
+            {
+              "country": "Singapore",
+              "count": 5
+            },
+            {
+              "country": "Hong Kong",
+              "count": 2
+            },
+            {
+              "country": "Sweden",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "yzilabs",
+            "twitterScore": 16312,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 118838,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "a16z-csx",
+          "name": "a16z CSX",
+          "logo": "https://img.cryptorank.io/funds/60x60.a_16_z_csx1731497293907.png",
+          "tier": 1,
+          "type": "Incubator",
+          "location": null,
+          "latestDeal": {
+            "key": "cork-protocol",
+            "name": "Cork Protocol",
+            "icon": "https://img.cryptorank.io/coins/60x60.cork_protocol1725958364471.png",
+            "date": "2026-01-21T00:00:00.000Z",
+            "raise": 5500000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 42,
+          "portfolioData": [
+            {
+              "key": "inference-lmm",
+              "name": "Inference (Prev. Kuzco)",
+              "icon": "https://img.cryptorank.io/coins/60x60.inference1760529431221.png"
+            },
+            {
+              "key": "opacity-network",
+              "name": "Opacity Network",
+              "icon": "https://img.cryptorank.io/coins/60x60.opacity_network1729068794559.png"
+            },
+            {
+              "key": "neynar",
+              "name": "Neynar",
+              "icon": "https://img.cryptorank.io/coins/60x60.neynar1717083674862.png"
+            },
+            {
+              "key": "prisma-x",
+              "name": "PrismaX",
+              "icon": "https://img.cryptorank.io/coins/60x60.prisma_x1750144566189.png"
+            },
+            {
+              "key": "pin-ai",
+              "name": "PIN AI",
+              "icon": "https://img.cryptorank.io/coins/60x60.pin_ai1725968428618.png"
+            }
+          ],
+          "retailRoi": null,
+          "focusArea": "Artificial Intelligence (AI)",
+          "focusAreaData": [
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 8,
+              "percent": 34.78
+            },
+            {
+              "tag": "Data Service",
+              "count": 4,
+              "percent": 17.39
+            },
+            {
+              "tag": "API",
+              "count": 3,
+              "percent": 13.04
+            },
+            {
+              "tag": "Payments",
+              "count": 2,
+              "percent": 8.7
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 2,
+              "percent": 8.7
+            },
+            {
+              "tag": "Wallet",
+              "count": 2,
+              "percent": 8.7
+            },
+            {
+              "tag": "Watch to Earn",
+              "count": 2,
+              "percent": 8.7
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 75
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 0,
+              "raiseTo": 1000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 75
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 10
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 60,
+              "type": "SEED"
+            },
+            {
+              "percent": 25,
+              "type": "Incubation"
+            },
+            {
+              "percent": 10,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 5,
+              "type": "PRE SEED"
+            }
+          ],
+          "fundingRounds": 53,
+          "leadInvestments": 16,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 6
+            },
+            {
+              "country": "United Kingdom",
+              "count": 2
+            },
+            {
+              "country": "Bulgaria",
+              "count": 1
+            }
+          ],
+          "twitterData": null
+        },
+        {
+          "slug": "balaji-srinivasan",
+          "name": "Balaji Srinivasan",
+          "logo": "https://img.cryptorank.io/funds/60x60.balaji_srinivasan1666791966754.png",
+          "tier": 1,
+          "type": "Angel Investor",
+          "location": "United States",
+          "latestDeal": {
+            "key": "project-11",
+            "name": "Project 11",
+            "icon": "https://img.cryptorank.io/coins/60x60.project_111750342765390.png",
+            "date": "2026-01-14T00:00:00.000Z",
+            "raise": 20000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 153,
+          "portfolioData": [
+            {
+              "key": "alliance-dao",
+              "name": "Alliance DAO",
+              "icon": "https://img.cryptorank.io/coins/60x60.alliance_dao1678195396088.png"
+            },
+            {
+              "key": "nxyz",
+              "name": "nxyz",
+              "icon": "https://img.cryptorank.io/coins/60x60.nxyz1665574276477.png"
+            },
+            {
+              "key": "celestia",
+              "name": "Celestia",
+              "icon": "https://img.cryptorank.io/coins/60x60.celestia1666255234398.png"
+            },
+            {
+              "key": "proof-of-play-1",
+              "name": "Proof of Play",
+              "icon": "https://img.cryptorank.io/coins/60x60.proof_of_play1761837814994.png"
+            },
+            {
+              "key": "farcaster",
+              "name": "Farcaster",
+              "icon": "https://img.cryptorank.io/coins/60x60.farcaster1761317045445.png"
+            }
+          ],
+          "retailRoi": 1.20284552022682,
+          "focusArea": "Artificial Intelligence (AI)",
+          "focusAreaData": [
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 4,
+              "percent": 22.22
+            },
+            {
+              "tag": "Security",
+              "count": 3,
+              "percent": 16.67
+            },
+            {
+              "tag": "DEX",
+              "count": 3,
+              "percent": 16.67
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "zk-Proofs (ZKP)",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "Bitcoin Scaling",
+              "count": 2,
+              "percent": 11.11
+            },
+            {
+              "tag": "Payments",
+              "count": 2,
+              "percent": 11.11
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 60
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 0,
+              "raiseTo": 1000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 60
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 5
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 55,
+              "type": "SEED"
+            },
+            {
+              "percent": 15,
+              "type": "PRE SEED"
+            },
+            {
+              "percent": 10,
+              "type": "Extended Seed"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 5,
+              "type": "ANGEL"
+            },
+            {
+              "percent": 5,
+              "type": null
+            }
+          ],
+          "fundingRounds": 155,
+          "leadInvestments": 1,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 13
+            },
+            {
+              "country": "Singapore",
+              "count": 3
+            },
+            {
+              "country": "Canada",
+              "count": 1
+            },
+            {
+              "country": "India",
+              "count": 1
+            },
+            {
+              "country": "Israel",
+              "count": 1
+            },
+            {
+              "country": "Switzerland",
+              "count": 1
+            }
+          ],
+          "twitterData": null
+        },
+        {
+          "slug": "vaneck",
+          "name": "VanEck",
+          "logo": "https://img.cryptorank.io/funds/60x60.van_eck1666794430785.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "architect",
+            "name": "Architect",
+            "icon": "https://img.cryptorank.io/coins/60x60.architect1766563323648.png",
+            "date": "2025-12-23T00:00:00.000Z",
+            "raise": 35000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 23,
+          "portfolioData": [
+            {
+              "key": "ftx-token",
+              "name": "FTX Token",
+              "icon": "https://img.cryptorank.io/coins/60x60.ftx token1604331985959.png"
+            },
+            {
+              "key": "binance-us",
+              "name": "Binance.US",
+              "icon": "https://img.cryptorank.io/coins/60x60.binance_us1670944581843.png"
+            },
+            {
+              "key": "1inch",
+              "name": "1",
+              "icon": "https://img.cryptorank.io/coins/60x60.1_inch1759396500622.png"
+            },
+            {
+              "key": "parallel-life",
+              "name": "Parallel",
+              "icon": "https://img.cryptorank.io/coins/60x60.parallel1676558134074.png"
+            },
+            {
+              "key": "architect",
+              "name": "Architect",
+              "icon": "https://img.cryptorank.io/coins/60x60.architect1766563323648.png"
+            }
+          ],
+          "retailRoi": 0.435274099600635,
+          "focusArea": "Payments",
+          "focusAreaData": [
+            {
+              "tag": "Payments",
+              "count": 6,
+              "percent": 35.29
+            },
+            {
+              "tag": "Data Service",
+              "count": 2,
+              "percent": 11.76
+            },
+            {
+              "tag": "RWA",
+              "count": 2,
+              "percent": 11.76
+            },
+            {
+              "tag": "Neobank",
+              "count": 2,
+              "percent": 11.76
+            },
+            {
+              "tag": "Wallet",
+              "count": 2,
+              "percent": 11.76
+            },
+            {
+              "tag": "DePIN",
+              "count": 2,
+              "percent": 11.76
+            },
+            {
+              "tag": "Perpetuals",
+              "count": 1,
+              "percent": 5.88
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 30
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 25
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 30
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 15
+            }
+          ],
+          "preferredStage": "STRATEGIC",
+          "preferredStageData": [
+            {
+              "percent": 35,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 25,
+              "type": "SEED"
+            },
+            {
+              "percent": 15,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 10,
+              "type": "PRE SEED"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 5,
+              "type": null
+            }
+          ],
+          "fundingRounds": 23,
+          "leadInvestments": 6,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 6
+            },
+            {
+              "country": "Argentina",
+              "count": 1
+            },
+            {
+              "country": "Germany",
+              "count": 1
+            },
+            {
+              "country": "Russia",
+              "count": 1
+            },
+            {
+              "country": "United Kingdom",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "vaneck_us",
+            "twitterScore": 18009,
+            "followersCount": 107554,
+            "latestFollowings": [],
+            "twitterAccountId": 24458,
+            "topFollowers": [
+              {
+                "id": 595,
+                "name": "Ansem",
+                "image": "https://pbs.twimg.com/profile_images/1909437863592132608/R14kQm8j_normal.jpg",
+                "username": "blknoiz06",
+                "twitterScore": 36515,
+                "relatedEntity": {
+                  "fund": "ansem"
+                },
+                "followersCount": 744072
+              },
+              {
+                "id": 830,
+                "name": "Solana",
+                "image": "https://pbs.twimg.com/profile_images/1472933274209107976/6u-LQfjG_normal.jpg",
+                "username": "solana",
+                "twitterScore": 41262,
+                "relatedEntity": {
+                  "coin": "solana"
+                },
+                "followersCount": 3467590
+              }
+            ]
+          }
+        },
+        {
+          "slug": "polychain-capital",
+          "name": "Polychain Capital",
+          "logo": "https://img.cryptorank.io/funds/60x60.polychain_capital1680073683609.png",
+          "tier": 1,
+          "type": "Venture",
+          "location": "United States",
+          "latestDeal": {
+            "key": "andrena",
+            "name": "Andrena (DAWN)",
+            "icon": "https://img.cryptorank.io/coins/60x60.andrena_dawn1745583654467.png",
+            "date": "2025-12-18T00:00:00.000Z",
+            "raise": 13000000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 218,
+          "portfolioData": [
+            {
+              "key": "tharimmune",
+              "name": "Tharimmune",
+              "icon": "https://img.cryptorank.io/coins/60x60.tharimmune1762250317302.png"
+            },
+            {
+              "key": "ethzillacorp",
+              "name": "ETHZilla",
+              "icon": "https://img.cryptorank.io/coins/60x60.eth_zilla1754989562596.png"
+            },
+            {
+              "key": "solana",
+              "name": "Solana",
+              "icon": "https://img.cryptorank.io/coins/60x60.solana1606979093056.png"
+            },
+            {
+              "key": "coinbase",
+              "name": "Coinbase",
+              "icon": "https://img.cryptorank.io/coins/60x60.coinbase1666618146857.png"
+            },
+            {
+              "key": "coindcx",
+              "name": "CoinDCX",
+              "icon": "https://img.cryptorank.io/coins/60x60.coin_dcx1760517365878.png"
+            }
+          ],
+          "retailRoi": 9.28359914167092,
+          "focusArea": "Privacy",
+          "focusAreaData": [
+            {
+              "tag": "Privacy",
+              "count": 4,
+              "percent": 20
+            },
+            {
+              "tag": "Treasury Management",
+              "count": 3,
+              "percent": 15
+            },
+            {
+              "tag": "Layer 1 (L1)",
+              "count": 3,
+              "percent": 15
+            },
+            {
+              "tag": "Stablecoin Protocol",
+              "count": 3,
+              "percent": 15
+            },
+            {
+              "tag": "Binance Alpha",
+              "count": 3,
+              "percent": 15
+            },
+            {
+              "tag": "Security",
+              "count": 2,
+              "percent": 10
+            },
+            {
+              "tag": "Marketplace",
+              "count": 2,
+              "percent": 10
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 35
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 35
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 25
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 25
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 25,
+              "type": "SEED"
+            },
+            {
+              "percent": 20,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 10,
+              "type": "PIPE"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES B"
+            },
+            {
+              "percent": 10,
+              "type": "SERIES A"
+            },
+            {
+              "percent": 25,
+              "type": null
+            }
+          ],
+          "fundingRounds": 257,
+          "leadInvestments": 141,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 17
+            },
+            {
+              "country": "Singapore",
+              "count": 2
+            },
+            {
+              "country": "Germany",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "polychain",
+            "twitterScore": 9542,
+            "followersCount": null,
+            "latestFollowings": [],
+            "twitterAccountId": 115916,
+            "topFollowers": []
+          }
+        },
+        {
+          "slug": "anatoly-yakovenko",
+          "name": "Anatoly Yakovenko",
+          "logo": "https://img.cryptorank.io/funds/60x60.anatoly_yakovenko1685631625114.png",
+          "tier": 1,
+          "type": "Angel Investor",
+          "location": null,
+          "latestDeal": {
+            "key": "worm-wtf",
+            "name": "worm.wtf",
+            "icon": "https://img.cryptorank.io/coins/60x60.worm_wtf1760712808691.png",
+            "date": "2025-12-16T00:00:00.000Z",
+            "raise": 4500000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 50,
+          "portfolioData": [
+            {
+              "key": "zama",
+              "name": "Zama",
+              "icon": "https://img.cryptorank.io/coins/60x60.zama1709809713933.png"
+            },
+            {
+              "key": "infinex",
+              "name": "Infinex",
+              "icon": "https://img.cryptorank.io/coins/60x60.infinex1770019949965.png"
+            },
+            {
+              "key": "chaos-labs",
+              "name": "Chaos Labs",
+              "icon": "https://img.cryptorank.io/coins/60x60.chaos_labs1723732076161.png"
+            },
+            {
+              "key": "io-net",
+              "name": "io.net",
+              "icon": "https://img.cryptorank.io/coins/60x60.io_net1709655090399.png"
+            },
+            {
+              "key": "oobit",
+              "name": "Oobit (old)",
+              "icon": "https://img.cryptorank.io/coins/60x60.oobit1666271057007.png"
+            }
+          ],
+          "retailRoi": 0.596066399394497,
+          "focusArea": "DEX",
+          "focusAreaData": [
+            {
+              "tag": "DEX",
+              "count": 4,
+              "percent": 21.05
+            },
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 3,
+              "percent": 15.79
+            },
+            {
+              "tag": "Wallet",
+              "count": 3,
+              "percent": 15.79
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 3,
+              "percent": 15.79
+            },
+            {
+              "tag": "Perpetuals",
+              "count": 2,
+              "percent": 10.53
+            },
+            {
+              "tag": "API",
+              "count": 2,
+              "percent": 10.53
+            },
+            {
+              "tag": "Yield Farming",
+              "count": 2,
+              "percent": 10.53
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 60
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 0,
+              "raiseTo": 1000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 15
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 60
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 5
+            },
+            {
+              "raiseFrom": 50000000,
+              "raiseTo": null,
+              "percent": 5
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 60,
+              "type": "SEED"
+            },
+            {
+              "percent": 15,
+              "type": "PRE SEED"
+            },
+            {
+              "percent": 10,
+              "type": "ANGEL"
+            },
+            {
+              "percent": 5,
+              "type": "STRATEGIC"
+            },
+            {
+              "percent": 5,
+              "type": "Extended Seed"
+            },
+            {
+              "percent": 5,
+              "type": null
+            }
+          ],
+          "fundingRounds": 53,
+          "leadInvestments": 0,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 7
+            },
+            {
+              "country": "Switzerland",
+              "count": 2
+            },
+            {
+              "country": "Israel",
+              "count": 1
+            },
+            {
+              "country": "Japan",
+              "count": 1
+            },
+            {
+              "country": "Canada",
+              "count": 1
+            },
+            {
+              "country": "Taiwan",
+              "count": 1
+            }
+          ],
+          "twitterData": null
+        },
+        {
+          "slug": "santiago-roel-santos",
+          "name": "Santiago Roel Santos",
+          "logo": "https://img.cryptorank.io/funds/60x60.santiago_roel_santos1761132577332.png",
+          "tier": 1,
+          "type": "Angel Investor",
+          "location": "United Kingdom",
+          "latestDeal": {
+            "key": "testmachine",
+            "name": "TestMachine",
+            "icon": "https://img.cryptorank.io/coins/60x60.testmachine1765528287171.png",
+            "date": "2025-12-11T00:00:00.000Z",
+            "raise": 6500000,
+            "showOnlyYear": false,
+            "isHidden": false
+          },
+          "portfolio": 80,
+          "portfolioData": [
+            {
+              "key": "near-protocol",
+              "name": "Near Protocol",
+              "icon": "https://img.cryptorank.io/coins/60x60.near_protocol1704147268278.png"
+            },
+            {
+              "key": "layerzero",
+              "name": "LayerZero",
+              "icon": "https://img.cryptorank.io/coins/60x60.layer_zero1668092808242.png"
+            },
+            {
+              "key": "alliance-dao",
+              "name": "Alliance DAO",
+              "icon": "https://img.cryptorank.io/coins/60x60.alliance_dao1678195396088.png"
+            },
+            {
+              "key": "movement-labs",
+              "name": "Movement",
+              "icon": "https://img.cryptorank.io/coins/60x60.movement1733750235084.png"
+            },
+            {
+              "key": "huma-finance",
+              "name": "Huma Finance",
+              "icon": "https://img.cryptorank.io/coins/60x60.huma_finance1677227102089.png"
+            }
+          ],
+          "retailRoi": 0.453971583669638,
+          "focusArea": "Artificial Intelligence (AI)",
+          "focusAreaData": [
+            {
+              "tag": "Artificial Intelligence (AI)",
+              "count": 6,
+              "percent": 30
+            },
+            {
+              "tag": "DePIN",
+              "count": 4,
+              "percent": 20
+            },
+            {
+              "tag": "Healthcare",
+              "count": 2,
+              "percent": 10
+            },
+            {
+              "tag": "Developer Tools",
+              "count": 2,
+              "percent": 10
+            },
+            {
+              "tag": "RWA",
+              "count": 2,
+              "percent": 10
+            },
+            {
+              "tag": "Data Service",
+              "count": 2,
+              "percent": 10
+            },
+            {
+              "tag": "Perpetuals",
+              "count": 2,
+              "percent": 10
+            }
+          ],
+          "avgRoundRaise": {
+            "raiseFrom": 3000000,
+            "raiseTo": 10000000,
+            "percent": 45
+          },
+          "avgRoundRaiseData": [
+            {
+              "raiseFrom": 1000000,
+              "raiseTo": 3000000,
+              "percent": 40
+            },
+            {
+              "raiseFrom": 3000000,
+              "raiseTo": 10000000,
+              "percent": 45
+            },
+            {
+              "raiseFrom": 10000000,
+              "raiseTo": 20000000,
+              "percent": 10
+            },
+            {
+              "raiseFrom": 20000000,
+              "raiseTo": 50000000,
+              "percent": 5
+            }
+          ],
+          "preferredStage": "SEED",
+          "preferredStageData": [
+            {
+              "percent": 65,
+              "type": "SEED"
+            },
+            {
+              "percent": 25,
+              "type": "PRE SEED"
+            },
+            {
+              "percent": 5,
+              "type": "Extended Seed"
+            },
+            {
+              "percent": 5,
+              "type": "SERIES A"
+            }
+          ],
+          "fundingRounds": 81,
+          "leadInvestments": 0,
+          "mainFundingCountry": "United States",
+          "mainFundingCountryData": [
+            {
+              "country": "United States",
+              "count": 11
+            },
+            {
+              "country": "Canada",
+              "count": 1
+            },
+            {
+              "country": "Cayman Islands",
+              "count": 1
+            },
+            {
+              "country": "Finland",
+              "count": 1
+            },
+            {
+              "country": "Hong Kong",
+              "count": 1
+            },
+            {
+              "country": "India",
+              "count": 1
+            }
+          ],
+          "twitterData": {
+            "twitterUsername": "santiagoroel",
+            "twitterScore": 22752,
+            "followersCount": 127749,
+            "latestFollowings": [],
+            "twitterAccountId": 1290,
+            "topFollowers": [
+              {
+                "id": 595,
+                "name": "Ansem",
+                "image": "https://pbs.twimg.com/profile_images/1909437863592132608/R14kQm8j_normal.jpg",
+                "username": "blknoiz06",
+                "twitterScore": 36515,
+                "relatedEntity": {
+                  "fund": "ansem"
+                },
+                "followersCount": 744072
+              },
+              {
+                "id": 830,
+                "name": "Solana",
+                "image": "https://pbs.twimg.com/profile_images/1472933274209107976/6u-LQfjG_normal.jpg",
+                "username": "solana",
+                "twitterScore": 41262,
+                "relatedEntity": {
+                  "coin": "solana"
+                },
+                "followersCount": 3467590
+              },
+              {
+                "id": 974,
+                "name": "CZ 🔶 BNB",
+                "image": "https://pbs.twimg.com/profile_images/1930881353899479040/_es75ZP1_normal.jpg",
+                "username": "cz_binance",
+                "twitterScore": 40203,
+                "relatedEntity": null,
+                "followersCount": 10068691
+              },
+              {
+                "id": 8283,
+                "name": "Cobie",
+                "image": "https://pbs.twimg.com/profile_images/1928166304441323523/J7cFXHjB_normal.jpg",
+                "username": "cobie",
+                "twitterScore": 37280,
+                "relatedEntity": {
+                  "fund": "cobie"
+                },
+                "followersCount": 806463
+              }
+            ]
+          }
+        }
+      ],
+      "count": 12221
+    }
+  }
+]

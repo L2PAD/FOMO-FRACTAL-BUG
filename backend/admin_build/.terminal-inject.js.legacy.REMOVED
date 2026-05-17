@@ -1,0 +1,132 @@
+/* FOMO Web Platform — Terminal sidebar injector
+ * Adds ONE "Terminal" item right after "Sentiment" in the FOMO admin sidebar.
+ * Click navigates to /api/terminal-app/trading?embed=1 — that path renders
+ * the Trading Terminal page (Analysis | Action | Prediction | Ideas | Trade
+ * | Positions | Decisions | Performance) WITHOUT the side-car's own sidebar
+ * because the embed=1 flag tells AppLayout.jsx to drop its own chrome.
+ *
+ * Mirrors the existing inject-script pattern (growth-os, truth, metabrain).
+ * Idempotent: MutationObserver guards against React re-renders.
+ */
+(function () {
+  if (window.__terminalInjected) return;
+  window.__terminalInjected = true;
+
+  var INJECTED_FLAG = 'data-terminal-injected';
+  var SIBLING_LABELS = ['Sentiment', 'sentiment', 'СЕНТИМЕНТ', 'Сентимент'];
+  // embed=1 hides the side-car's Sidebar so the page reads as a native
+  // FOMO admin sub-page. Build was made with basename="/api/terminal-app".
+  var TERMINAL_HREF = '/api/terminal-app/trading?embed=1';
+  var TERMINAL_LABEL = 'Terminal';
+
+  // Inline SVG icon — terminal/cli style, stroke matches sidebar items.
+  var TERMINAL_ICON_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">' +
+    '<polyline points="4 17 10 11 4 5"></polyline>' +
+    '<line x1="12" y1="19" x2="20" y2="19"></line>' +
+    '</svg>';
+
+  function findSentimentNode(root) {
+    if (!root) return null;
+    var candidates = root.querySelectorAll('a, button, [role="link"], [role="menuitem"], li, div');
+    for (var i = 0; i < candidates.length; i++) {
+      var el = candidates[i];
+      if (el.hasAttribute(INJECTED_FLAG)) continue;
+      var txt = (el.textContent || '').trim();
+      if (!txt) continue;
+      if (el.children.length > 6 || txt.length > 40) continue;
+      for (var k = 0; k < SIBLING_LABELS.length; k++) {
+        if (txt === SIBLING_LABELS[k] || txt.indexOf(SIBLING_LABELS[k]) === 0) {
+          var row = el.closest('a, [role="link"], li, [class*="sidebar"], [class*="nav"]') || el;
+          return row;
+        }
+      }
+    }
+    return null;
+  }
+
+  function buildTerminalNode(template) {
+    var clone = template.cloneNode(true);
+    clone.setAttribute(INJECTED_FLAG, '1');
+    clone.setAttribute('data-terminal-link', '1');
+    if (clone.tagName === 'A') {
+      clone.setAttribute('href', TERMINAL_HREF);
+      clone.removeAttribute('target');
+    } else {
+      clone.style.cursor = 'pointer';
+    }
+    clone.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      window.location.href = TERMINAL_HREF;
+    });
+
+    var firstSvg = clone.querySelector('svg');
+    if (firstSvg) {
+      var holder = document.createElement('span');
+      holder.innerHTML = TERMINAL_ICON_SVG;
+      var newSvg = holder.firstChild;
+      try {
+        if (firstSvg.getAttribute('class')) newSvg.setAttribute('class', firstSvg.getAttribute('class'));
+        if (firstSvg.getAttribute('style')) newSvg.setAttribute('style', firstSvg.getAttribute('style'));
+      } catch (e) {}
+      firstSvg.parentNode.replaceChild(newSvg, firstSvg);
+    }
+
+    function rewriteLabel(node) {
+      if (node.nodeType === 3) {
+        var t = node.nodeValue;
+        for (var k = 0; k < SIBLING_LABELS.length; k++) {
+          if (t.indexOf(SIBLING_LABELS[k]) >= 0) {
+            node.nodeValue = t.replace(SIBLING_LABELS[k], TERMINAL_LABEL);
+            return true;
+          }
+        }
+      } else if (node.childNodes && node.childNodes.length) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+          if (rewriteLabel(node.childNodes[i])) return true;
+        }
+      }
+      return false;
+    }
+    rewriteLabel(clone);
+
+    return clone;
+  }
+
+  function tryInject(root) {
+    var existing = (root || document).querySelector('[data-terminal-link="1"]');
+    if (existing) return true;
+    var sentiment = findSentimentNode(root || document);
+    if (!sentiment) return false;
+    var node = buildTerminalNode(sentiment);
+    if (sentiment.parentNode) {
+      if (sentiment.nextSibling) sentiment.parentNode.insertBefore(node, sentiment.nextSibling);
+      else sentiment.parentNode.appendChild(node);
+      return true;
+    }
+    return false;
+  }
+
+  function start() {
+    if (tryInject(document)) return;
+    var attempts = 0;
+    var iv = setInterval(function () {
+      attempts++;
+      if (tryInject(document) || attempts >= 80) clearInterval(iv);
+    }, 500);
+    try {
+      var mo = new MutationObserver(function () {
+        var present = document.querySelector('[data-terminal-link="1"]');
+        if (!present) tryInject(document);
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    } catch (e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();

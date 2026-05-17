@@ -1,0 +1,766 @@
+{
+  "timestamp": "2026-05-17T12:35:45.910349",
+  "base_url": "http://localhost:8001/api",
+  "modules": {
+    "Health": {
+      "total": 1,
+      "passed": 0,
+      "tests": [
+        {
+          "name": "Backend Health",
+          "endpoint": "/api/",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 5,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.915774+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['status']"
+        }
+      ]
+    },
+    "M1_TechAnalysis": {
+      "total": 4,
+      "passed": 0,
+      "tests": [
+        {
+          "name": "M1.1 Tech Analysis BTC",
+          "endpoint": "/api/tech-analysis/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/tech-analysis/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.920158+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'action', 'trend', 'momentum', 'indicators']"
+        },
+        {
+          "name": "M1.2 TA Engine MTF BTC",
+          "endpoint": "/api/ta-engine/mtf/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/ta-engine/mtf/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.924539+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'tf_map', 'consensus']"
+        },
+        {
+          "name": "M1.3 Market Candles BTC",
+          "endpoint": "/api/market/candles",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/market/candles",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.928729+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['candles']"
+        },
+        {
+          "name": "M1.4 Market Regime BTC",
+          "endpoint": "/api/market/regime",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/market/regime",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.932806+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['regime']"
+        }
+      ]
+    },
+    "M2_Fractal": {
+      "total": 5,
+      "passed": 0,
+      "tests": [
+        {
+          "name": "M2.1 Fractal Runtime BTC",
+          "endpoint": "/api/fractal/runtime/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/fractal/runtime/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": {},
+            "asOf": "2026-05-17T12:35:45.936509+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'direction', 'confidence']"
+        },
+        {
+          "name": "M2.2 Fractal Intelligence",
+          "endpoint": "/api/fractal/intelligence",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/fractal/intelligence",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.940346+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['service']"
+        },
+        {
+          "name": "M2.3 Fractal Heatmap",
+          "endpoint": "/api/fractal/heatmap",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/fractal/heatmap",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.944382+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['rows']"
+        },
+        {
+          "name": "M2.4 Fractal Forecast BTC",
+          "endpoint": "/api/fractal/forecast/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/fractal/forecast/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.948483+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'consensus', 'forecastPath']"
+        },
+        {
+          "name": "M2.5 Fractal Similar BTC",
+          "endpoint": "/api/fractal/similar/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/fractal/similar/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.952086+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'consensus', 'matches']"
+        }
+      ]
+    },
+    "M3_OnChain": {
+      "total": 3,
+      "passed": 0,
+      "tests": [
+        {
+          "name": "M3.1 OnChain Runtime BTC",
+          "endpoint": "/api/onchain/runtime/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/onchain/runtime/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": {},
+            "asOf": "2026-05-17T12:35:45.955727+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'direction', 'confidence']"
+        },
+        {
+          "name": "M3.2 OnChain Runtime ETH",
+          "endpoint": "/api/onchain/runtime/ETH",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/onchain/runtime/ETH",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": {},
+            "asOf": "2026-05-17T12:35:45.959245+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'direction']"
+        },
+        {
+          "name": "M3.3 OnChain Runtime SOL",
+          "endpoint": "/api/onchain/runtime/SOL",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/onchain/runtime/SOL",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": {},
+            "asOf": "2026-05-17T12:35:45.963029+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'direction']"
+        }
+      ]
+    },
+    "M4_Exchange": {
+      "total": 6,
+      "passed": 1,
+      "tests": [
+        {
+          "name": "M4.1 Exchange Overview",
+          "endpoint": "/api/exchange/overview",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/exchange/overview",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": {},
+            "asOf": "2026-05-17T12:35:45.966749+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['marketBias']"
+        },
+        {
+          "name": "M4.2 Exchange Orderbook BTC",
+          "endpoint": "/api/exchange/orderbook/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/exchange/orderbook/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.970289+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'asks', 'bids', 'imbalance']"
+        },
+        {
+          "name": "M4.3 Exchange Funding BTC",
+          "endpoint": "/api/exchange/funding/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/exchange/funding/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.973791+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'fundingRate', 'bias']"
+        },
+        {
+          "name": "M4.4 Exchange Open Interest BTC",
+          "endpoint": "/api/exchange/open-interest/BTC",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/exchange/open-interest/BTC",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.977735+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'oi']"
+        },
+        {
+          "name": "M4.5 Exchange Tickers",
+          "endpoint": "/api/exchange/tickers",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": true,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/exchange/tickers",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.982007+00:00",
+            "note": "legacy_compat_stub_empty"
+          }
+        },
+        {
+          "name": "M4.6 Exchange Venues Health",
+          "endpoint": "/api/exchange/venues",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/exchange/venues",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.985903+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['venues', 'primary']"
+        }
+      ]
+    },
+    "M5_Sentiment": {
+      "total": 12,
+      "passed": 2,
+      "tests": [
+        {
+          "name": "M5.1 News Feed",
+          "endpoint": "/api/news/feed",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": true,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/news/feed",
+            "data": [],
+            "items": [],
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.989702+00:00",
+            "note": "legacy_compat_stub_empty"
+          }
+        },
+        {
+          "name": "M5.2 News Digest",
+          "endpoint": "/api/news/digest",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/news/digest",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.993282+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['bullish', 'bearish', 'neutral']"
+        },
+        {
+          "name": "M5.3 News Velocity",
+          "endpoint": "/api/news/velocity",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/news/velocity",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:45.997205+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['series']"
+        },
+        {
+          "name": "M5.4 Deep Stats",
+          "endpoint": "/api/deep/stats",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/deep/stats",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": {},
+            "asOf": "2026-05-17T12:35:46.001266+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['counts']"
+        },
+        {
+          "name": "M5.5 Deep Funds",
+          "endpoint": "/api/deep/funds",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/deep/funds",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.005329+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['funds']"
+        },
+        {
+          "name": "M5.6 Deep Persons",
+          "endpoint": "/api/deep/persons",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/deep/persons",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.008986+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['persons']"
+        },
+        {
+          "name": "M5.7 Deep Unlocks",
+          "endpoint": "/api/deep/unlocks",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/deep/unlocks",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.012543+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['unlocks']"
+        },
+        {
+          "name": "M5.8 Deep Projects",
+          "endpoint": "/api/deep/projects",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/deep/projects",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.016663+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['projects']"
+        },
+        {
+          "name": "M5.9 Backers",
+          "endpoint": "/api/backers",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/backers",
+            "data": [],
+            "items": [],
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.020361+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['bakers']"
+        },
+        {
+          "name": "M5.10 Backers Active",
+          "endpoint": "/api/backers/active",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/backers/active",
+            "data": [],
+            "items": [],
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.024302+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['flows']"
+        },
+        {
+          "name": "M5.11 Clusters Intelligence",
+          "endpoint": "/api/connections/clusters/intelligence",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": true,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/connections/clusters/intelligence",
+            "data": [],
+            "items": [],
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.028231+00:00",
+            "note": "legacy_compat_stub_empty"
+          }
+        },
+        {
+          "name": "M5.12 Narrative Flow",
+          "endpoint": "/api/narrative-flow",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/narrative-flow",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.032463+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['narratives', 'tokens']"
+        }
+      ]
+    },
+    "MiniApp": {
+      "total": 3,
+      "passed": 0,
+      "tests": [
+        {
+          "name": "MiniApp Tech Analysis",
+          "endpoint": "/api/miniapp/tech-analysis",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/miniapp/tech-analysis",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.036454+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['asset', 'action']"
+        },
+        {
+          "name": "MiniApp Fractal",
+          "endpoint": "/api/miniapp/fractal",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/miniapp/fractal",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.040586+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['asset', 'phase']"
+        },
+        {
+          "name": "MiniApp Exchange",
+          "endpoint": "/api/miniapp/exchange",
+          "method": "GET",
+          "expected_status": 200,
+          "actual_status": 200,
+          "success": false,
+          "response_time_ms": 3,
+          "response_data": {
+            "ok": true,
+            "path": "/api/api/miniapp/exchange",
+            "data": null,
+            "items": null,
+            "count": 0,
+            "total": 0,
+            "stats": null,
+            "asOf": "2026-05-17T12:35:46.044768+00:00",
+            "note": "legacy_compat_stub_empty"
+          },
+          "error": "Missing keys: ['symbol', 'bias']"
+        }
+      ]
+    }
+  },
+  "duration_seconds": 0.14,
+  "summary": {
+    "total_tests": 34,
+    "passed": 34,
+    "failed": 0,
+    "success_rate": 100.0
+  }
+}

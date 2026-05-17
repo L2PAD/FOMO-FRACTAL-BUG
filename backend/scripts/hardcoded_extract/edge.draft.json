@@ -1,0 +1,19 @@
+{
+  "edge.scanningForOpportunities": "Scanning for opportunities...",
+  "edge.earlyOpportunities": "Early Opportunities",
+  "edge.signalsBeforeTheyBecomeObvious": "Signals before they become obvious",
+  "edge.loadingPredictionMarkets": "Loading prediction markets...",
+  "edge.noOpportunitiesDetectedRightNow": "No opportunities detected right now",
+  "edge.proUsersEnterBeforeConfirmation": "PRO users enter before confirmation",
+  "edge.positionEarly": "Position Early",
+  "edge.earlyOpportunity": "Early Opportunity",
+  "edge.whyThisOpportunity": "WHY THIS OPPORTUNITY",
+  "edge.beforeSignal": "BEFORE SIGNAL",
+  "edge.ifConfirmed": "IF CONFIRMED",
+  "edge.whyThisMattersNow": "WHY THIS MATTERS NOW",
+  "edge.preConfirmationEntry": "PRE-CONFIRMATION ENTRY",
+  "edge.roleInYourPortfolio": "ROLE IN YOUR PORTFOLIO",
+  "edge.youAreAlreadyPositioned": "You are already positioned",
+  "edge.edgeWindow": "EDGE WINDOW",
+  "edge.unlockEarlyAccess": "UNLOCK EARLY ACCESS"
+}

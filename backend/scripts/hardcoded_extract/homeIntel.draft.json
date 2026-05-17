@@ -1,0 +1,16 @@
+{
+  "homeIntel.loadingIntelligence": "Loading intelligence...",
+  "homeIntel.noSignalData": "No signal data",
+  "homeIntel.predictionSnapshot": "PREDICTION SNAPSHOT",
+  "homeIntel.yourPortfolio": "YOUR PORTFOLIO",
+  "homeIntel.tradeSetup": "TRADE SETUP",
+  "homeIntel.noEntryYetMarketPreparing": "No entry yet. Market preparing move.",
+  "homeIntel.keyInsight": "KEY INSIGHT",
+  "homeIntel.systemPerformance": "SYSTEM PERFORMANCE",
+  "homeIntel.missedSignal": "MISSED SIGNAL",
+  "homeIntel.whatSDrivingTheMarket": "WHAT'S DRIVING THE MARKET",
+  "homeIntel.viewFullSignal": "View Full Signal",
+  "homeIntel.earlyEdge": "Early Edge",
+  "homeIntel.openTerminal": "Open Terminal",
+  "homeIntel.whyThisAiMatters": "WHY THIS AI MATTERS"
+}

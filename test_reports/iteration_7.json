@@ -1,0 +1,61 @@
+{
+  "summary": "Sprint T5 — UI Calibration Layer + Epistemic Transparency. Frontend-only sprint (new IntelligenceScreen + CalibrationSection in DeploymentScreen/TradeScreen + intel toggle in TradingHeader). Per request, backend regression was the primary validation. RESULT: 32/32 PASS on /app/backend/tests/test_sprint_t4_calibration.py (PYTHONPATH=/app/backend pytest) — including the previously-failing TestVerdictCalibrationBlock::test_verdict_has_calibration which now correctly returns appliedAdjustment='none_wait_verdict' for WAIT verdicts. All T1/T2/T3/T4 endpoints 200, terminal honest-404, miniapp/admin 200, scheduler running. All 8 frontend artifact checks PASS — strict vocabulary respected (zero forbidden words), correct DOM/JSX layering (CalibrationSection between MODULE ALIGNMENT and EXECUTION STRUCTURE), IntelligenceScreen has the 3 mandated SectionHeader titles, TradingShell routes 'INTELLIGENCE' tab, TradingHeader has school-icon toggle with correct testID, app-mode.store TradingTab includes 'INTELLIGENCE', and trading-runtime-api.ts TradingVerdict.calibration interface contains every required subfield. Expo bundle HTTP 200.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "frontend_artifact_checks": {
+    "IntelligenceScreen.tsx vocabulary (good/bad/accuracy/strong signal/high probability)": "PASS — only match is the FORBIDDEN list inside the file's own header docstring (lines 7-10), which is a rule definition, not a descriptive usage. All status strings use allowed phrases: 'sample still limited', 'reliability emerging', 'historically weak follow-through', 'historical instability', 'mixed historical follow-through', 'historical follow-through has held up'. RELIABILITY_LABEL map uses: 'weak sample', 'emerging reliability', 'usable reliability', 'strong historical reliability'.",
+    "TradeScreen.tsx CalibrationSection vocabulary": "PASS — zero forbidden words anywhere in file.",
+    "IntelligenceScreen.tsx 3 SectionHeader titles": "PASS — lines 182, 196, 210: 'A · HISTORICAL RELIABILITY', 'B · TOXIC STRUCTURES', 'C · STABLE STRUCTURES'.",
+    "TradeScreen.tsx CalibrationSection JSX position": "PASS — TradeScreen.tsx:163 MODULE ALIGNMENT block, :179 CalibrationSection rendered, :185 EXECUTION STRUCTURE block, :201 BLOCKED block. Order is correct.",
+    "TradingShell.tsx imports + routes INTELLIGENCE tab": "PASS — line 12 imports IntelligenceScreen; lines 47-48 route case 'INTELLIGENCE' → <IntelligenceScreen />.",
+    "app-mode.store.ts TradingTab includes 'INTELLIGENCE'": "PASS — line 17: TradingTab = 'COMMAND' | 'MARKET' | 'EXECUTION' | 'TRADE' | 'PORTFOLIO' | 'INTELLIGENCE'.",
+    "TradingHeader.tsx intel-btn with school icon": "PASS — line 59 onPress toggles tradingTab COMMAND↔INTELLIGENCE; line 62 testID='trading-header-intel-btn'; line 65 icon='school' (active) / 'school-outline' (inactive).",
+    "trading-runtime-api.ts TradingVerdict.calibration interface": "PASS — lines 42-60: contains sample, wins, losses, winRate, targetRate, stopRate, avgPnlPct, avgBarsHeld, reliability, alignmentBucket, risk, appliedAdjustment, note. All required fields present."
+  },
+  "backend_regression": {
+    "pytest_t4_full_suite": "32/32 PASSED (was 31/32 in iter6 — WAIT bug fixed)",
+    "GET /api/trading/verdict/BTC": "200, calibration block present with sample=0, reliability=weak_sample, bucket=0.33_0.67, appliedAdjustment=none_wait_verdict (correct for WAIT)",
+    "GET /api/trading/intelligence/calibration?symbol=BTC": "200, totalSample=6, reliability=emerging, warnings=['insufficient_data (sample=6/10)'], thresholds={observe_only_max:5, warn_only_max:10, soft_adjust_max:25, hard_gate_min:25}, buckets_count=1",
+    "GET /api/trading/intelligence/calibration/cell?symbol=BTC&side=LONG&bucket=0.33_0.67&risk=N/A": "200, found=true, cell populated",
+    "GET /api/trading/paper/scheduler/status": "200, running=true, enabled=true",
+    "GET /api/terminal/status": "404 (honest, as expected)",
+    "GET /api/miniapp/lite": "200",
+    "GET /api/panel/admin": "200",
+    "GET / (Expo bundle)": "200"
+  },
+  "test_report_links": [
+    "/app/test_reports/pytest/pytest_iter7_t4.xml",
+    "/app/backend/tests/test_sprint_t4_calibration.py"
+  ],
+  "action_items": [
+    "None. T5 acceptance is fully green. Backend has zero regression vs T4; the iter6 WAIT-verdict bug has been fixed (verdict.calibration.appliedAdjustment now correctly returns 'none_wait_verdict' for WAIT verdicts). All 8 frontend artifact checks pass with strict vocabulary compliance.",
+    "(Optional, non-blocking) When running the T4 pytest suite, use `PYTHONPATH=/app/backend pytest backend/tests/test_sprint_t4_calibration.py` — the test file does `from services import calibration as _calib` which only resolves with the backend on PYTHONPATH. Consider adding a conftest.py at /app/backend/tests/ that prepends /app/backend to sys.path, so the suite is portable from any CWD."
+  ],
+  "critical_code_review_comments": [
+    "IntelligenceScreen.tsx is well-designed: pure function of /api/trading/intelligence/calibration response, refresh-controlled, error-state handled, empty-state handled per section, dashed empty boxes, sample-gated tone (warn/ok), and importantly the BucketCard status line uses ONLY allowed vocabulary based on sample/winRate thresholds (lines 264-277).",
+    "TradingHeader school-icon toggle is wired correctly via tradingTab state. testID is present.",
+    "TradeScreen.tsx CalibrationSection ordering in JSX (lines 163→179→185→201) matches the spec: MODULE ALIGNMENT → CALIBRATION LAYER → EXECUTION STRUCTURE → BLOCKED.",
+    "trading-runtime-api.ts calibration interface covers all 8 required appliedAdjustment string-union variants including 'none_wait_verdict' and 'pending' — defensive against backend evolution.",
+    "RELIABILITY_LABEL map (IntelligenceScreen.tsx:63-68) is the single source of truth for reliability strings shown to user — clean.",
+    "Minor concern: IntelligenceScreen.tsx makeStyles() colors.textMuted is referenced but if useColors() doesn't provide it, will fall through to undefined string — falls back gracefully because of the `|| '#888'` defaults inside reliabilityColor(). Not blocking.",
+    "Sprint T4 backend hard-gate path (apply_to_verdict) — the WAIT short-circuit fix is now in place; suite is fully green."
+  ],
+  "updated_files": [],
+  "success_rate": {
+    "backend": "100% (32/32 pytest + 9/9 curl smoke)",
+    "frontend": "100% artifact checks (8/8); UI navigation flow not tested per request (gated behind app-mode + capability switch)"
+  },
+  "seed_data_creation": "Pytest suite seeds synthetic TEST_/ZZTEST/ZZSOFT/ZZHARD/ZZOBS/ZZWARN outcome rows with _seedTag='T4_TEST' and cleans up via teardown fixtures. One real BTC outcome remains in trading_outcomes_v2 from the writeback test (intentional). No new seeding done by this iteration.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Sprint T5 is fully green. Backend has zero regression — all 32 T4 pytest tests pass, the iter6 WAIT-verdict appliedAdjustment bug is FIXED. All 8 frontend artifact checks pass with strict vocabulary compliance. For any future testing of the IntelligenceScreen UI itself (Playwright), note that it sits behind the TradingShell tradingTab='INTELLIGENCE' state which is reached via TradingHeader testID='trading-header-intel-btn', AFTER the user has already entered TRADING mode from INTELLIGENCE mode via the app-mode switch. Easiest Playwright entry is to mutate the Zustand store directly via `page.evaluate(() => window.__APP_MODE__.setMode('TRADING'))` then toggle the intel btn — but that's overkill for T5 since IntelligenceScreen is purely a function of /api/trading/intelligence/calibration which T4 already validates.",
+  "rca_of_issue": "N/A — no issues found in this iteration. The iter6 WAIT-verdict bug (apply_to_verdict overwriting 'none_wait_verdict' with 'observe_only') has been fixed by main agent between iter6 and iter7; verdict/BTC now correctly returns appliedAdjustment='none_wait_verdict' when action='WAIT'."
+}

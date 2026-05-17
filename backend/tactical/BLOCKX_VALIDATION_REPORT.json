@@ -1,0 +1,49 @@
+{
+  "block": "X",
+  "phase": "X.B",
+  "task": "Tactical Layer Validation",
+  "status": "COMPLETE",
+  "calibration_changes": {
+    "signal_builder": {
+      "aggressor_mapping": "SELL/BUY now recognized (was BEAR/BULL only)",
+      "funding_score_threshold": "\u00b10.20/0.25 (was \u00b10.6)",
+      "funding_labels": "Added SHORT_COVER, LONG_UNWIND (was only BULLISH/BEARISH_EXTREME)",
+      "cascade_phases": "Added ACTIVE (was only START/PEAK)",
+      "liq_volume_threshold": "10K (was 50K)",
+      "liq_ratio_threshold": "0.65/0.35 (was 0.7/0.3)"
+    },
+    "fusion_engine": {
+      "bias_threshold": "\u00b11.0 (was \u00b11.5)",
+      "max_possible_score": "4.5 (was 8.0)"
+    },
+    "advisor": {
+      "strength_gate": "Removed for directional bias (was 0.3)",
+      "trade_quality": "Recalibrated thresholds"
+    }
+  },
+  "kpi": {
+    "n_cases": 62,
+    "bias_distribution": {
+      "neutral": 53.2,
+      "bullish": 30.6,
+      "bearish": 16.1
+    },
+    "activation_rate_pct": 46.8,
+    "bias_accuracy_pct": 48.3,
+    "avg_move_when_bearish": -2.33,
+    "avg_move_when_bullish": 0.93,
+    "avg_move_when_neutral": 1.61,
+    "caution_vs_normal_ratio": 1.58,
+    "catastrophic_catch_rate_pct": 14.3,
+    "signal_frequency": {
+      "bearish_orderflow": 38.7,
+      "bullish_orderflow": 33.9,
+      "seller_exhaustion": 29.0,
+      "crowded_shorts": 22.6,
+      "buyer_exhaustion": 21.0,
+      "crowded_longs": 8.1
+    }
+  },
+  "unit_tests": "21/21 passed",
+  "verdict_recommendation": "HOLD/PASS - Layer shows meaningful signal separation, bearish bias predicts negative moves (avg -2.33%). Ready for exposure phase."
+}

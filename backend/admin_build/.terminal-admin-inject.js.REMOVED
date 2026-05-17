@@ -1,0 +1,214 @@
+/* FOMO Admin Panel — "Tech Analysis" sidebar item with EMBEDDED render
+ * ------------------------------------------------------------------------
+ * Adds ONE "Tech Analysis" item right after "Sentiment" in the admin sidebar.
+ *
+ * BEHAVIOUR (same pattern as terminal-user-inject.js):
+ *   * Click does NOT navigate the whole tab.
+ *   * Click overlays an <iframe> on the right side of the FOMO admin layout
+ *     (admin sidebar STAYS visible on the left). Iframe loads:
+ *       /api/terminal-app/admin/tech-analysis?embed=1
+ *     (?embed=1 hides the side-car's own sidebar/topbar so the page reads
+ *     as a native FOMO admin sub-page).
+ *   * Clicking ANY other admin sidebar item removes the overlay so the
+ *     admin returns to the regular FOMO route.
+ *
+ * Side-car admin auth (admin / admin123) is handled by the page itself.
+ */
+(function () {
+  if (window.__terminalAdminInjected) return;
+  window.__terminalAdminInjected = true;
+
+  var INJECTED_FLAG = 'data-terminal-injected';
+  var SIBLING_LABELS = ['Sentiment', 'sentiment', 'СЕНТИМЕНТ', 'Сентимент'];
+  var TARGET_HREF = '/api/terminal-app/admin/tech-analysis?embed=1';
+  var TARGET_LABEL = 'Tech Analysis';
+  var FRAME_ID = '__fomo_techanalysis_iframe__';
+
+  // Chart-up icon — matches reference screenshot.
+  var ICON_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">' +
+    '<path d="M3 3v18h18"></path>' +
+    '<path d="M7 17l3-5 3 3 4-7"></path>' +
+    '</svg>';
+
+  // ── Overlay management ────────────────────────────────────────────────
+  function findSidebar() {
+    var aside = document.querySelector('aside');
+    if (aside) return aside;
+    return document.querySelector('[class*="sidebar"]:not([class*="right"])');
+  }
+
+  function ensureFrame() {
+    var f = document.getElementById(FRAME_ID);
+    if (f) return f;
+    f = document.createElement('iframe');
+    f.id = FRAME_ID;
+    f.src = TARGET_HREF;
+    f.setAttribute('allow', 'clipboard-read; clipboard-write');
+    f.style.cssText = [
+      'position:fixed',
+      'top:0',
+      'right:0',
+      'bottom:0',
+      'width:auto',
+      'height:100vh',
+      'border:0',
+      'background:#ffffff',
+      'z-index:40',
+      'display:none',
+      'margin:0',
+      'padding:0',
+    ].join(';');
+    document.body.appendChild(f);
+    var sync = function () {
+      var sb = findSidebar();
+      var w = 0;
+      if (sb) {
+        var rect = sb.getBoundingClientRect();
+        if (rect.left < 50) w = rect.width;
+      }
+      f.style.left = w + 'px';
+      f.style.width = (window.innerWidth - w) + 'px';
+      f.style.height = window.innerHeight + 'px';
+    };
+    sync();
+    window.addEventListener('resize', sync);
+    setInterval(sync, 600);
+    return f;
+  }
+
+  function showOverlay() {
+    var f = ensureFrame();
+    f.style.display = 'block';
+    document.body.setAttribute('data-fomo-techanalysis-active', '1');
+    try { window.history.pushState({ fomoTechAnalysis: true }, '', '/admin/tech-analysis'); } catch (e) {}
+  }
+
+  function hideOverlay() {
+    var f = document.getElementById(FRAME_ID);
+    if (f) f.style.display = 'none';
+    document.body.removeAttribute('data-fomo-techanalysis-active');
+  }
+
+  function installAutoHide() {
+    document.addEventListener('click', function (ev) {
+      var target = ev.target;
+      if (!target || target.nodeType !== 1) return;
+      var node = target;
+      while (node && node !== document.body) {
+        if (node.getAttribute && node.getAttribute('data-terminal-link') === 'admin-tech-analysis') return;
+        node = node.parentNode;
+      }
+      var sb = findSidebar();
+      if (sb && sb.contains(target)) {
+        hideOverlay();
+      }
+    }, true);
+    window.addEventListener('popstate', function () {
+      if (location.pathname.indexOf('/admin/tech-analysis') !== 0) hideOverlay();
+    });
+  }
+
+  // ── Sidebar item injection ────────────────────────────────────────────
+  function findSentimentNode(root) {
+    if (!root) return null;
+    var candidates = root.querySelectorAll('a, button, [role="link"], [role="menuitem"], li, div');
+    for (var i = 0; i < candidates.length; i++) {
+      var el = candidates[i];
+      if (el.hasAttribute(INJECTED_FLAG)) continue;
+      var txt = (el.textContent || '').trim();
+      if (!txt) continue;
+      if (el.children.length > 6 || txt.length > 40) continue;
+      for (var k = 0; k < SIBLING_LABELS.length; k++) {
+        if (txt === SIBLING_LABELS[k] || txt.indexOf(SIBLING_LABELS[k]) === 0) {
+          return el.closest('a, [role="link"], li, [class*="sidebar"], [class*="nav"]') || el;
+        }
+      }
+    }
+    return null;
+  }
+
+  function buildNode(template) {
+    var clone = template.cloneNode(true);
+    clone.setAttribute(INJECTED_FLAG, '1');
+    clone.setAttribute('data-terminal-link', 'admin-tech-analysis');
+    if (clone.tagName === 'A') {
+      clone.setAttribute('href', '/admin/tech-analysis');
+      clone.removeAttribute('target');
+    } else {
+      clone.style.cursor = 'pointer';
+    }
+    clone.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      showOverlay();
+    });
+
+    var firstSvg = clone.querySelector('svg');
+    if (firstSvg) {
+      var holder = document.createElement('span');
+      holder.innerHTML = ICON_SVG;
+      var newSvg = holder.firstChild;
+      try {
+        if (firstSvg.getAttribute('class')) newSvg.setAttribute('class', firstSvg.getAttribute('class'));
+        if (firstSvg.getAttribute('style')) newSvg.setAttribute('style', firstSvg.getAttribute('style'));
+      } catch (e) {}
+      firstSvg.parentNode.replaceChild(newSvg, firstSvg);
+    }
+
+    function rewriteLabel(node) {
+      if (node.nodeType === 3) {
+        var t = node.nodeValue;
+        for (var k = 0; k < SIBLING_LABELS.length; k++) {
+          if (t.indexOf(SIBLING_LABELS[k]) >= 0) {
+            node.nodeValue = t.replace(SIBLING_LABELS[k], TARGET_LABEL);
+            return true;
+          }
+        }
+      } else if (node.childNodes && node.childNodes.length) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+          if (rewriteLabel(node.childNodes[i])) return true;
+        }
+      }
+      return false;
+    }
+    rewriteLabel(clone);
+
+    return clone;
+  }
+
+  function tryInject() {
+    if (document.querySelector('[data-terminal-link="admin-tech-analysis"]')) return true;
+    var anchor = findSentimentNode(document);
+    if (!anchor || !anchor.parentNode) return false;
+    var node = buildNode(anchor);
+    if (anchor.nextSibling) anchor.parentNode.insertBefore(node, anchor.nextSibling);
+    else anchor.parentNode.appendChild(node);
+    return true;
+  }
+
+  function start() {
+    installAutoHide();
+    if (location.pathname.indexOf('/admin/tech-analysis') === 0) {
+      setTimeout(showOverlay, 800);
+    }
+    if (tryInject()) return;
+    var attempts = 0;
+    var iv = setInterval(function () {
+      attempts++;
+      if (tryInject() || attempts >= 80) clearInterval(iv);
+    }, 500);
+    try {
+      var mo = new MutationObserver(function () {
+        if (!document.querySelector('[data-terminal-link="admin-tech-analysis"]')) tryInject();
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    } catch (e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();

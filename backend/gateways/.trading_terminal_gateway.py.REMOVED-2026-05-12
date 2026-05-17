@@ -1,0 +1,323 @@
+"""
+Trading Terminal Gateway
+========================
+
+Transparent reverse-proxy for the Trading Terminal side-car subsystem
+running on http://localhost:8002 (DB = trading_os, freeze = FREEZE_CORE7.v1).
+
+This file owns ALL routing of /api/ta/*, /api/terminal/* and the related
+subsystem prefixes. server.py only does `app.include_router(...)` once.
+
+CONTRACT:
+- We MUST NOT import any module from /app/F-TRADE-MODULE/.
+- We MUST NOT read or write the trading_os database.
+- We forward HTTP only — request body, query params, selected headers,
+  HTTP method. Response body is streamed back as-is.
+- Headers explicitly forwarded:
+    authorization, cookie, x-forwarded-for, x-forwarded-host,
+    x-forwarded-proto, x-real-ip, x-request-id, accept, content-type,
+    user-agent
+- Hop-by-hop headers stripped per RFC 7230.
+- Timeouts: 5s connect, 120s read (TA endpoints can be heavy).
+
+EXPOSED PREFIXES (16, per docs/11_MODULE_MANIFEST.md §3):
+    /api/ta/*
+    /api/ta-engine/*
+    /api/ta-prediction-intelligence/*    (alias /api/ta-prediction-intel/*)
+    /api/prediction/ta/*
+    /api/terminal/*
+    /api/control/*
+    /api/positions
+    /api/trading/*
+    /api/runtime/*
+    /api/audit/*
+    /api/protection/*
+    /api/analytics/*
+    /api/dynamic-risk/*
+    /api/calibration/*
+    /api/exchange-intelligence/*
+    /api/v1/fractal/*
+"""
+
+from __future__ import annotations
+
+import logging
+import os
+from typing import Iterable
+
+import httpx
+from fastapi import APIRouter, Request, Response
+from fastapi.responses import JSONResponse
+
+logger = logging.getLogger("gateways.trading_terminal")
+
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
+
+# Upstream side-car backend (NOT publicly exposed).
+TRADING_TERMINAL_UPSTREAM: str = os.environ.get(
+    "TRADING_TERMINAL_UPSTREAM", "http://localhost:8002"
+).rstrip("/")
+
+# Conservative timeouts: TA-engine endpoints can take ~30-60s on cold cache.
+GATEWAY_TIMEOUT = httpx.Timeout(connect=5.0, read=120.0, write=30.0, pool=5.0)
+
+# Headers we explicitly forward upstream.
+_FORWARDED_REQUEST_HEADERS: set[str] = {
+    "authorization",
+    "cookie",
+    "x-forwarded-for",
+    "x-forwarded-host",
+    "x-forwarded-proto",
+    "x-real-ip",
+    "x-request-id",
+    "accept",
+    "accept-language",
+    "content-type",
+    "user-agent",
+    "if-none-match",
+    "if-modified-since",
+}
+
+# Headers we strip from upstream response before returning to client
+# (hop-by-hop per RFC 7230 + transfer-encoding which httpx already handled).
+_HOP_BY_HOP_RESPONSE_HEADERS: set[str] = {
+    "connection",
+    "keep-alive",
+    "proxy-authenticate",
+    "proxy-authorization",
+    "te",
+    "trailers",
+    "transfer-encoding",
+    "upgrade",
+    "content-encoding",  # httpx auto-decompresses
+    "content-length",    # let Starlette recompute
+}
+
+# Public list of prefixes this gateway claims. Listed both in plural pattern
+# (with trailing /{path:path}) and singular form (no trailing slash) where the
+# upstream service mounts a fixed endpoint (e.g. /api/positions).
+PROXIED_PREFIXES: tuple[tuple[str, bool], ...] = (
+    # (mount_prefix, has_subpath)
+    ("/api/ta", True),
+    ("/api/ta-engine", True),
+    ("/api/ta-prediction-intelligence", True),
+    ("/api/ta-prediction-intel", True),  # alias to /ta-prediction-intelligence
+    ("/api/prediction/ta", True),
+    ("/api/terminal", True),
+    ("/api/control", True),
+    ("/api/positions", True),
+    ("/api/trading", True),
+    ("/api/runtime", True),
+    ("/api/audit", True),
+    ("/api/protection", True),
+    ("/api/analytics", True),
+    ("/api/dynamic-risk", True),
+    ("/api/calibration", True),
+    ("/api/exchange-intelligence", True),
+    ("/api/v1/fractal", True),
+)
+
+# Alias rewrites: client URL prefix -> upstream URL prefix.
+# Useful when manifest documented an alias (ta-prediction-intel) but upstream
+# only registered the canonical name.
+_ALIAS_REWRITE: dict[str, str] = {
+    "/api/ta-prediction-intel": "/api/ta-prediction-intelligence",
+}
+
+router = APIRouter(tags=["trading-terminal-gateway"])
+
+
+# ---------------------------------------------------------------------------
+# Lifecycle: shared httpx.AsyncClient (connection pool reuse)
+# ---------------------------------------------------------------------------
+
+_client: httpx.AsyncClient | None = None
+
+
+def _get_client() -> httpx.AsyncClient:
+    global _client
+    if _client is None or _client.is_closed:
+        _client = httpx.AsyncClient(
+            base_url=TRADING_TERMINAL_UPSTREAM,
+            timeout=GATEWAY_TIMEOUT,
+            follow_redirects=False,
+            limits=httpx.Limits(max_connections=64, max_keepalive_connections=16),
+            http2=False,
+        )
+    return _client
+
+
+async def shutdown() -> None:
+    """Close shared httpx client. Call from server.py on app shutdown."""
+    global _client
+    if _client is not None and not _client.is_closed:
+        await _client.aclose()
+    _client = None
+
+
+# ---------------------------------------------------------------------------
+# Header helpers
+# ---------------------------------------------------------------------------
+
+def _filter_request_headers(req: Request) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for k, v in req.headers.items():
+        if k.lower() in _FORWARDED_REQUEST_HEADERS:
+            out[k] = v
+    # Always inject / extend X-Forwarded-* so upstream can see real client.
+    client_host = req.client.host if req.client else "unknown"
+    fwd_for = out.get("x-forwarded-for")
+    out["x-forwarded-for"] = f"{fwd_for}, {client_host}" if fwd_for else client_host
+    out.setdefault("x-forwarded-host", req.headers.get("host", ""))
+    out.setdefault("x-forwarded-proto", req.url.scheme)
+    out.setdefault("x-real-ip", client_host)
+    out["x-trading-gateway"] = "fomo/1.0"
+    return out
+
+
+def _filter_response_headers(headers: Iterable[tuple[str, str]]) -> list[tuple[str, str]]:
+    return [(k, v) for k, v in headers if k.lower() not in _HOP_BY_HOP_RESPONSE_HEADERS]
+
+
+def _rewrite_path(client_path: str) -> str:
+    for alias, target in _ALIAS_REWRITE.items():
+        if client_path == alias or client_path.startswith(alias + "/"):
+            return target + client_path[len(alias):]
+    return client_path
+
+
+# ---------------------------------------------------------------------------
+# Core forwarder
+# ---------------------------------------------------------------------------
+
+async def _forward(req: Request, upstream_path: str) -> Response:
+    client = _get_client()
+    method = req.method.upper()
+    body = await req.body() if method not in {"GET", "HEAD", "DELETE"} else None
+
+    target_path = _rewrite_path(upstream_path)
+    if not target_path.startswith("/"):
+        target_path = "/" + target_path
+
+    try:
+        upstream_resp = await client.request(
+            method=method,
+            url=target_path,
+            params=dict(req.query_params),
+            headers=_filter_request_headers(req),
+            content=body,
+        )
+    except httpx.ConnectError as exc:
+        logger.warning("Upstream unreachable: %s %s -> %s", method, target_path, exc)
+        return JSONResponse(
+            status_code=503,
+            content={
+                "ok": False,
+                "terminal_unavailable": True,
+                "reason": "terminal_sidecar_offline",
+                "detail": "Trading Terminal side-car (port 8002) is not reachable.",
+                "upstream": TRADING_TERMINAL_UPSTREAM,
+            },
+        )
+    except httpx.ReadTimeout:
+        logger.warning("Upstream read timeout: %s %s", method, target_path)
+        return JSONResponse(
+            status_code=504,
+            content={
+                "ok": False,
+                "terminal_unavailable": True,
+                "reason": "terminal_sidecar_timeout",
+                "detail": f"Upstream did not respond within {GATEWAY_TIMEOUT.read}s.",
+            },
+        )
+    except httpx.HTTPError as exc:
+        logger.exception("Gateway error: %s %s -> %s", method, target_path, exc)
+        return JSONResponse(
+            status_code=502,
+            content={
+                "ok": False,
+                "terminal_unavailable": True,
+                "reason": "terminal_sidecar_bad_gateway",
+                "detail": str(exc),
+            },
+        )
+
+    return Response(
+        content=upstream_resp.content,
+        status_code=upstream_resp.status_code,
+        headers=dict(_filter_response_headers(upstream_resp.headers.items())),
+        media_type=upstream_resp.headers.get("content-type"),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Route registration
+# ---------------------------------------------------------------------------
+
+_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"]
+
+
+def _register_routes() -> None:
+    """Generate one APIRoute per (prefix, has_subpath) entry."""
+
+    for prefix, has_subpath in PROXIED_PREFIXES:
+        # Bare prefix (e.g. /api/positions, /api/ta).
+        async def _bare(req: Request, _prefix: str = prefix):
+            return await _forward(req, _prefix)
+
+        router.add_api_route(
+            prefix,
+            _bare,
+            methods=_METHODS,
+            include_in_schema=False,
+        )
+
+        # Sub-path forwarding (e.g. /api/ta/research, /api/ta/anything/deep/nested).
+        if has_subpath:
+            async def _subpath(req: Request, path: str, _prefix: str = prefix):
+                return await _forward(req, f"{_prefix}/{path}")
+
+            router.add_api_route(
+                prefix + "/{path:path}",
+                _subpath,
+                methods=_METHODS,
+                include_in_schema=False,
+            )
+
+
+_register_routes()
+
+
+# ---------------------------------------------------------------------------
+# Operator-facing meta endpoint (NOT proxied — handled locally).
+# Useful for liveness checks of the gateway itself separately from upstream.
+# ---------------------------------------------------------------------------
+
+@router.get("/api/_gateway/trading-terminal/status", include_in_schema=False)
+async def gateway_status() -> JSONResponse:
+    """Return both gateway state and a synchronous probe of upstream /api/health."""
+    client = _get_client()
+    upstream_ok = False
+    upstream_detail: dict | str | None = None
+    try:
+        r = await client.get("/api/health", timeout=5.0)
+        upstream_ok = r.status_code == 200
+        try:
+            upstream_detail = r.json()
+        except Exception:
+            upstream_detail = r.text[:200]
+    except Exception as exc:
+        upstream_detail = f"probe_failed: {exc}"
+
+    return JSONResponse(
+        status_code=200 if upstream_ok else 503,
+        content={
+            "gateway": "trading-terminal",
+            "upstream": TRADING_TERMINAL_UPSTREAM,
+            "upstream_ok": upstream_ok,
+            "upstream_detail": upstream_detail,
+            "prefixes": [p for p, _ in PROXIED_PREFIXES],
+        },
+    )

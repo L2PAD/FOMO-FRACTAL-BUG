@@ -1,0 +1,162 @@
+/**
+ * Comprehensive Crypto RSS Feed Registry
+ * =======================================
+ * ~120 crypto news RSS feeds for the firehose ingestion pipeline.
+ * All feeds are RSS/XML-based, no API keys required.
+ *
+ * Tiers:
+ *  A — Institutional grade, high-signal (CoinDesk, TheBlock, etc.)
+ *  B — Mid-tier, reliable crypto publications
+ *  C — Niche, regional, or aggregator feeds
+ */
+
+export interface FeedSeedEntry {
+  id: string;
+  name: string;
+  url: string;
+  tier: 'A' | 'B' | 'C';
+  lang: string;
+}
+
+export const CRYPTO_RSS_FEEDS: FeedSeedEntry[] = [
+  // ═══════════════════════════ TIER A ═══════════════════════════
+  { id: 'coindesk',          name: 'CoinDesk',          url: 'https://www.coindesk.com/arc/outboundfeeds/rss/',  tier: 'A', lang: 'en' },
+  { id: 'cointelegraph',     name: 'CoinTelegraph',     url: 'https://cointelegraph.com/rss',                   tier: 'A', lang: 'en' },
+  { id: 'theblock',          name: 'TheBlock',          url: 'https://www.theblock.co/rss.xml',                 tier: 'A', lang: 'en' },
+  { id: 'blockworks',        name: 'Blockworks',        url: 'https://blockworks.co/feed',                      tier: 'A', lang: 'en' },
+  { id: 'thedefiant',        name: 'The Defiant',       url: 'https://thedefiant.io/feed',                      tier: 'A', lang: 'en' },
+  { id: 'dlnews',            name: 'DL News',           url: 'https://www.dlnews.com/feed/',                    tier: 'A', lang: 'en' },
+  { id: 'unchained',         name: 'Unchained',         url: 'https://unchainedcrypto.com/feed/',               tier: 'A', lang: 'en' },
+
+  // ═══════════════════════════ TIER B ═══════════════════════════
+  { id: 'decrypt',           name: 'Decrypt',           url: 'https://decrypt.co/feed',                         tier: 'B', lang: 'en' },
+  { id: 'cryptoslate',       name: 'CryptoSlate',       url: 'https://cryptoslate.com/feed/',                   tier: 'B', lang: 'en' },
+  { id: 'bitcoinmagazine',   name: 'BitcoinMagazine',   url: 'https://bitcoinmagazine.com/.rss/full/',          tier: 'B', lang: 'en' },
+  { id: 'beincrypto',        name: 'BeInCrypto',        url: 'https://beincrypto.com/feed/',                    tier: 'B', lang: 'en' },
+  { id: 'bitcoinist',        name: 'Bitcoinist',        url: 'https://bitcoinist.com/feed/',                    tier: 'B', lang: 'en' },
+  { id: 'cryptobriefing',    name: 'CryptoBriefing',    url: 'https://cryptobriefing.com/feed/',                tier: 'B', lang: 'en' },
+  { id: 'ambcrypto',         name: 'AMBCrypto',         url: 'https://ambcrypto.com/feed/',                     tier: 'B', lang: 'en' },
+  { id: 'utoday',            name: 'U.Today',           url: 'https://u.today/rss',                             tier: 'B', lang: 'en' },
+  { id: 'coingape',          name: 'CoinGape',          url: 'https://coingape.com/feed/',                      tier: 'B', lang: 'en' },
+  { id: 'dailycoin',         name: 'DailyCoin',         url: 'https://dailycoin.com/feed/',                     tier: 'B', lang: 'en' },
+  { id: 'coinjournal',       name: 'CoinJournal',       url: 'https://coinjournal.net/feed/',                   tier: 'B', lang: 'en' },
+  { id: 'coinedition',       name: 'Coin Edition',      url: 'https://coinedition.com/feed/',                   tier: 'B', lang: 'en' },
+  { id: 'cryptoglobe',       name: 'CryptoGlobe',       url: 'https://www.cryptoglobe.com/latest/feed/',        tier: 'B', lang: 'en' },
+  { id: 'cryptonews',        name: 'CryptoNews',        url: 'https://cryptonews.com/news/feed/',               tier: 'B', lang: 'en' },
+  { id: 'blockonomi',        name: 'Blockonomi',        url: 'https://blockonomi.com/feed/',                    tier: 'B', lang: 'en' },
+  { id: 'cryptodaily',       name: 'Crypto Daily',      url: 'https://cryptodaily.co.uk/feed',                  tier: 'B', lang: 'en' },
+  { id: 'zycrypto',          name: 'ZyCrypto',          url: 'https://zycrypto.com/feed/',                      tier: 'B', lang: 'en' },
+  { id: 'bitcoincom',        name: 'Bitcoin.com',       url: 'https://news.bitcoin.com/feed/',                  tier: 'B', lang: 'en' },
+  { id: 'cryptopotato',      name: 'CryptoPotato',      url: 'https://cryptopotato.com/feed/',                  tier: 'B', lang: 'en' },
+  { id: 'newsbtc',           name: 'NewsBTC',           url: 'https://www.newsbtc.com/feed/',                   tier: 'B', lang: 'en' },
+  { id: 'fxstreet-crypto',   name: 'FXStreet Crypto',   url: 'https://www.fxstreet.com/cryptocurrencies/news/feed', tier: 'B', lang: 'en' },
+  { id: 'finbold',           name: 'Finbold',           url: 'https://finbold.com/feed/',                       tier: 'B', lang: 'en' },
+  { id: 'cryptonomist',      name: 'The Cryptonomist',  url: 'https://en.cryptonomist.ch/feed/',                tier: 'B', lang: 'en' },
+  { id: 'watcherguru',       name: 'Watcher.Guru',      url: 'https://watcher.guru/news/feed',                  tier: 'B', lang: 'en' },
+  { id: 'nulltx',            name: 'NullTX',            url: 'https://nulltx.com/feed/',                        tier: 'B', lang: 'en' },
+  { id: 'thecurrencyanalytics', name: 'CurrencyAnalytics', url: 'https://thecurrencyanalytics.com/feed/',       tier: 'B', lang: 'en' },
+  { id: 'cryptopress',       name: 'Crypto.news',       url: 'https://crypto.news/feed/',                       tier: 'B', lang: 'en' },
+
+  // ═══════════════════════════ TIER C — Niche/Regional ═══════════════════════════
+  { id: 'cointribune-en',    name: 'CoinTribune EN',    url: 'https://www.cointribune.com/en/feed/',            tier: 'C', lang: 'en' },
+  { id: 'cryptoninjas',      name: 'CryptoNinjas',      url: 'https://www.cryptoninjas.net/feed/',              tier: 'C', lang: 'en' },
+  { id: 'theblockcrypto',    name: 'BlockchainReporter',url: 'https://blockchainreporter.net/feed/',            tier: 'C', lang: 'en' },
+  { id: 'ethereumworldnews', name: 'EthereumWorldNews', url: 'https://en.ethereumworldnews.com/feed/',          tier: 'C', lang: 'en' },
+  { id: 'thecryptobasic',    name: 'The Crypto Basic',  url: 'https://thecryptobasic.com/feed/',                tier: 'C', lang: 'en' },
+  { id: 'btcmanager',        name: 'BTCManager',        url: 'https://btcmanager.com/feed/',                    tier: 'C', lang: 'en' },
+  { id: 'todayonchain',      name: 'TodayOnChain',      url: 'https://todayonchain.com/feed/',                  tier: 'C', lang: 'en' },
+  { id: 'coinpedia',         name: 'CoinPedia',         url: 'https://coinpedia.org/feed/',                     tier: 'C', lang: 'en' },
+  { id: 'cryptotvplus',      name: 'CryptoTvPlus',      url: 'https://cryptotvplus.com/feed/',                  tier: 'C', lang: 'en' },
+  { id: 'bitcoinke',         name: 'Bitcoin KE',        url: 'https://bitcoinke.io/feed/',                      tier: 'C', lang: 'en' },
+  { id: 'coinspeaker',       name: 'CoinSpeaker',       url: 'https://www.coinspeaker.com/feed/',               tier: 'C', lang: 'en' },
+  { id: 'ihodl',             name: 'iHodl',             url: 'https://ihodl.com/rss/',                          tier: 'C', lang: 'en' },
+  { id: 'cryptomode',        name: 'CryptoMode',        url: 'https://cryptomode.com/feed/',                    tier: 'C', lang: 'en' },
+  { id: 'coincodex',         name: 'CoinCodex',         url: 'https://coincodex.com/feed/',                     tier: 'C', lang: 'en' },
+  { id: 'investinblockchain', name: 'InvestInBlockchain', url: 'https://www.investinblockchain.com/feed/',      tier: 'C', lang: 'en' },
+  { id: 'tronweekly',        name: 'TronWeekly',        url: 'https://www.tronweekly.com/feed/',                tier: 'C', lang: 'en' },
+  { id: 'coindoo',           name: 'CoinDoo',           url: 'https://coindoo.com/feed/',                       tier: 'C', lang: 'en' },
+  { id: 'cryptovest',        name: 'CryptoVest',        url: 'https://cryptovest.com/feed/',                    tier: 'C', lang: 'en' },
+  { id: 'usethebitcoin',     name: 'UseTheBitcoin',     url: 'https://usethebitcoin.com/feed/',                 tier: 'C', lang: 'en' },
+  { id: 'bitcoinwarrior',    name: 'BitcoinWarrior',    url: 'https://bitcoinwarrior.net/feed/',                tier: 'C', lang: 'en' },
+  { id: 'blokt',             name: 'Blokt',             url: 'https://blokt.com/feed',                          tier: 'C', lang: 'en' },
+  { id: 'coinquora',         name: 'CoinQuora',         url: 'https://coinquora.com/feed/',                     tier: 'C', lang: 'en' },
+  { id: 'blockchainmagazine', name: 'BlockchainMag',    url: 'https://www.theblockchainmagazine.com/feed/',     tier: 'C', lang: 'en' },
+  { id: 'coinidol',          name: 'CoinIdol',          url: 'https://coinidol.com/rss2/',                      tier: 'C', lang: 'en' },
+  { id: 'cryptoknowmics',    name: 'CryptoKnowmics',   url: 'https://www.cryptoknowmics.com/news/feed/',       tier: 'C', lang: 'en' },
+  { id: 'altcoinbuzz',       name: 'AltcoinBuzz',       url: 'https://www.altcoinbuzz.io/feed/',                tier: 'C', lang: 'en' },
+  { id: 'solanafloor',       name: 'SolanaFloor',       url: 'https://solanafloor.com/feed',                    tier: 'C', lang: 'en' },
+  { id: 'defirate',          name: 'DeFi Rate',         url: 'https://defirate.com/feed/',                      tier: 'C', lang: 'en' },
+  { id: 'defipulse',         name: 'DeFi Pulse',        url: 'https://defipulse.com/blog/feed/',                tier: 'C', lang: 'en' },
+  { id: 'nftevening',        name: 'NFT Evening',       url: 'https://nftevening.com/feed/',                    tier: 'C', lang: 'en' },
+  { id: 'nftnow',            name: 'NFT Now',           url: 'https://nftnow.com/feed/',                        tier: 'C', lang: 'en' },
+  { id: 'metaversepost',     name: 'Metaverse Post',    url: 'https://mpost.io/feed/',                          tier: 'C', lang: 'en' },
+  { id: 'web3isgoinggreat',  name: 'Web3 Is Going',     url: 'https://web3isgoinggreat.com/feed.xml',           tier: 'C', lang: 'en' },
+  { id: 'rekt',              name: 'Rekt News',         url: 'https://rekt.news/feed.xml',                      tier: 'C', lang: 'en' },
+  { id: 'protos',            name: 'Protos',            url: 'https://protos.com/feed/',                        tier: 'C', lang: 'en' },
+  { id: 'coincu',            name: 'Coincu',            url: 'https://coincu.com/feed/',                        tier: 'C', lang: 'en' },
+
+  // ═══════════════════════ TIER C — DeFi/L2 Specific ═══════════════════════
+  { id: 'defillama',         name: 'DefiLlama News',    url: 'https://feed.defillama.com/',                     tier: 'C', lang: 'en' },
+  { id: 'l2beat',            name: 'L2Beat',            url: 'https://l2beat.com/feed.xml',                     tier: 'C', lang: 'en' },
+  { id: 'chainlinktoday',   name: 'Chainlink Today',   url: 'https://chainlinktoday.com/feed/',                tier: 'C', lang: 'en' },
+
+  // ═══════════════════════ TIER C — Macro/Institutional ═══════════════════════
+  { id: 'bitcoinpolicy',     name: 'Bitcoin Policy',    url: 'https://www.btcpolicy.org/feed',                  tier: 'C', lang: 'en' },
+  { id: 'cryptorank',        name: 'CryptoRank',        url: 'https://cryptorank.io/feed',                      tier: 'C', lang: 'en' },
+
+  // ═══════════════════════ TIER C — Reddit/Community ═══════════════════════
+  { id: 'reddit-crypto',     name: 'Reddit r/crypto',   url: 'https://www.reddit.com/r/CryptoCurrency/.rss',    tier: 'C', lang: 'en' },
+  { id: 'reddit-bitcoin',    name: 'Reddit r/Bitcoin',  url: 'https://www.reddit.com/r/Bitcoin/.rss',           tier: 'C', lang: 'en' },
+  { id: 'reddit-ethereum',   name: 'Reddit r/ethereum', url: 'https://www.reddit.com/r/ethereum/.rss',          tier: 'C', lang: 'en' },
+  { id: 'reddit-defi',       name: 'Reddit r/defi',     url: 'https://www.reddit.com/r/defi/.rss',              tier: 'C', lang: 'en' },
+  { id: 'reddit-solana',     name: 'Reddit r/solana',   url: 'https://www.reddit.com/r/solana/.rss',            tier: 'C', lang: 'en' },
+  { id: 'reddit-altcoins',   name: 'Reddit r/altcoins', url: 'https://www.reddit.com/r/altcoin/.rss',           tier: 'C', lang: 'en' },
+  { id: 'reddit-cryptomkts', name: 'Reddit r/CryptoMkts', url: 'https://www.reddit.com/r/CryptoMarkets/.rss',  tier: 'C', lang: 'en' },
+  { id: 'reddit-cardano',    name: 'Reddit r/cardano',  url: 'https://www.reddit.com/r/cardano/.rss',           tier: 'C', lang: 'en' },
+  { id: 'reddit-avax',       name: 'Reddit r/avax',     url: 'https://www.reddit.com/r/Avax/.rss',              tier: 'C', lang: 'en' },
+  { id: 'reddit-polkadot',   name: 'Reddit r/polkadot', url: 'https://www.reddit.com/r/Polkadot/.rss',          tier: 'C', lang: 'en' },
+
+  // ═══════════════════════ TIER C — Medium Crypto Pubs ═══════════════════════
+  { id: 'medium-ethereum',   name: 'Medium Ethereum',   url: 'https://medium.com/feed/ethereum-foundation',     tier: 'C', lang: 'en' },
+  { id: 'medium-coinbase',   name: 'Medium Coinbase',   url: 'https://medium.com/feed/coinbase',                tier: 'C', lang: 'en' },
+  { id: 'medium-binance',    name: 'Medium Binance',    url: 'https://medium.com/feed/binanceexchange',         tier: 'C', lang: 'en' },
+  { id: 'medium-solana',     name: 'Medium Solana',     url: 'https://medium.com/feed/solana-labs',             tier: 'C', lang: 'en' },
+  { id: 'medium-aave',       name: 'Medium Aave',       url: 'https://medium.com/feed/aave',                    tier: 'C', lang: 'en' },
+  { id: 'medium-uniswap',    name: 'Medium Uniswap',    url: 'https://medium.com/feed/uniswap-labs',            tier: 'C', lang: 'en' },
+  { id: 'medium-chainlink',  name: 'Medium Chainlink',  url: 'https://medium.com/feed/chainlink',               tier: 'C', lang: 'en' },
+  { id: 'medium-polygon',    name: 'Medium Polygon',    url: 'https://medium.com/feed/polygon-technology',      tier: 'C', lang: 'en' },
+  { id: 'medium-arbitrum',   name: 'Medium Arbitrum',   url: 'https://medium.com/feed/offchainlabs',            tier: 'C', lang: 'en' },
+  { id: 'medium-optimism',   name: 'Medium Optimism',   url: 'https://medium.com/feed/ethereum-optimism',       tier: 'C', lang: 'en' },
+  { id: 'medium-makerdao',   name: 'Medium MakerDAO',   url: 'https://medium.com/feed/makerdao',                tier: 'C', lang: 'en' },
+  { id: 'medium-kraken',     name: 'Medium Kraken',     url: 'https://medium.com/feed/kraken-exchange',         tier: 'C', lang: 'en' },
+
+  // ═══════════════════════ TIER C — Blog/Protocol ═══════════════════════
+  { id: 'vitalik',           name: 'Vitalik Buterin',   url: 'https://vitalik.eth.limo/feed.xml',               tier: 'C', lang: 'en' },
+  { id: 'paradigm',          name: 'Paradigm',          url: 'https://www.paradigm.xyz/feed.xml',               tier: 'C', lang: 'en' },
+  { id: 'a16zcrypto',        name: 'a16z Crypto',       url: 'https://a16zcrypto.com/feed/',                    tier: 'C', lang: 'en' },
+  { id: 'messari',           name: 'Messari',           url: 'https://messari.io/rss',                          tier: 'C', lang: 'en' },
+  { id: 'glassnode',         name: 'Glassnode',         url: 'https://insights.glassnode.com/rss/',             tier: 'C', lang: 'en' },
+  { id: 'delphi',            name: 'Delphi Digital',    url: 'https://members.delphidigital.io/feed/',          tier: 'C', lang: 'en' },
+
+  // ═══════════════════════ TIER C — Multilingual ═══════════════════════
+  { id: 'cointelegraph-es',  name: 'CoinTelegraph ES',  url: 'https://es.cointelegraph.com/rss',               tier: 'C', lang: 'es' },
+  { id: 'cointelegraph-pt',  name: 'CoinTelegraph BR',  url: 'https://br.cointelegraph.com/rss',               tier: 'C', lang: 'pt' },
+  { id: 'cointelegraph-de',  name: 'CoinTelegraph DE',  url: 'https://de.cointelegraph.com/rss',               tier: 'C', lang: 'de' },
+  { id: 'cointelegraph-jp',  name: 'CoinTelegraph JP',  url: 'https://jp.cointelegraph.com/rss',               tier: 'C', lang: 'ja' },
+  { id: 'cointelegraph-it',  name: 'CoinTelegraph IT',  url: 'https://it.cointelegraph.com/rss',               tier: 'C', lang: 'it' },
+  { id: 'cointelegraph-tr',  name: 'CoinTelegraph TR',  url: 'https://tr.cointelegraph.com/rss',               tier: 'C', lang: 'tr' },
+  { id: 'cointelegraph-ar',  name: 'CoinTelegraph AR',  url: 'https://ar.cointelegraph.com/rss',               tier: 'C', lang: 'ar' },
+  { id: 'beincrypto-es',     name: 'BeInCrypto ES',     url: 'https://es.beincrypto.com/feed/',                 tier: 'C', lang: 'es' },
+  { id: 'beincrypto-de',     name: 'BeInCrypto DE',     url: 'https://de.beincrypto.com/feed/',                 tier: 'C', lang: 'de' },
+  { id: 'beincrypto-fr',     name: 'BeInCrypto FR',     url: 'https://fr.beincrypto.com/feed/',                 tier: 'C', lang: 'fr' },
+  { id: 'beincrypto-jp',     name: 'BeInCrypto JP',     url: 'https://jp.beincrypto.com/feed/',                 tier: 'C', lang: 'ja' },
+  { id: 'beincrypto-tr',     name: 'BeInCrypto TR',     url: 'https://tr.beincrypto.com/feed/',                 tier: 'C', lang: 'tr' },
+  { id: 'beincrypto-ru',     name: 'BeInCrypto RU',     url: 'https://ru.beincrypto.com/feed/',                 tier: 'C', lang: 'ru' },
+
+  // ═══════════════════════ TIER C — YouTube RSS (channel feeds) ═══════════════════════
+  { id: 'yt-coinbureau',     name: 'YT Coin Bureau',    url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqK_GSMbpiV8spgD3ZGloSw', tier: 'C', lang: 'en' },
+  { id: 'yt-bankless',       name: 'YT Bankless',       url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCAl9Ld79qaZxp9JzEOwd3aA', tier: 'C', lang: 'en' },
+  { id: 'yt-raoulpal',       name: 'YT Raoul Pal',      url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCEHaLxBkJMAASIHgJhtR-ZA', tier: 'C', lang: 'en' },
+];
+
+export const TOTAL_FEEDS = CRYPTO_RSS_FEEDS.length;

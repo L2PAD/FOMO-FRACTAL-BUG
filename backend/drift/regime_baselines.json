@@ -1,0 +1,127 @@
+{
+  "baselines": {
+    "7D": {
+      "TREND": {
+        "n": 1546,
+        "mae_mean": 0.088574,
+        "mae_std": 0.074655,
+        "mae_p75": 0.124491,
+        "dir_hit_mean": 0.5252,
+        "flip_mean": 0.2142,
+        "flip_std": 0.8206,
+        "mean_return": 0.007265,
+        "std_return": 0.077353,
+        "median_return": 0.003299,
+        "p25_return": -0.032568,
+        "p75_return": 0.04586
+      },
+      "RANGE": {
+        "n": 30,
+        "mae_mean": 0.085775,
+        "mae_std": 0.064014,
+        "mae_p75": 0.139363,
+        "dir_hit_mean": 0.5,
+        "flip_mean": 0.2069,
+        "flip_std": 0.8102,
+        "mean_return": 0.067475,
+        "std_return": 0.079691,
+        "median_return": 0.037785,
+        "p25_return": 0.010458,
+        "p75_return": 0.112484
+      },
+      "RISK_OFF": {
+        "n": 113,
+        "mae_mean": 0.205456,
+        "mae_std": 0.157363,
+        "mae_p75": 0.251503,
+        "dir_hit_mean": 0.5044,
+        "flip_mean": 0.0357,
+        "flip_std": 0.3712,
+        "mean_return": -0.009257,
+        "std_return": 0.112595,
+        "median_return": -0.00014,
+        "p25_return": -0.047134,
+        "p75_return": 0.045235
+      },
+      "TRANSITION": {
+        "n": 805,
+        "mae_mean": 0.127072,
+        "mae_std": 0.108641,
+        "mae_p75": 0.177892,
+        "dir_hit_mean": 0.4646,
+        "flip_mean": 0.2301,
+        "flip_std": 0.8418,
+        "mean_return": 0.018438,
+        "std_return": 0.09943,
+        "median_return": 0.005854,
+        "p25_return": -0.040234,
+        "p75_return": 0.069596
+      }
+    },
+    "30D": {
+      "TREND": {
+        "n": 1538,
+        "mae_mean": 0.188896,
+        "mae_std": 0.14395,
+        "mae_p75": 0.273414,
+        "dir_hit_mean": 0.5299,
+        "flip_mean": 0.2154,
+        "flip_std": 0.8221,
+        "mean_return": 0.038874,
+        "std_return": 0.176983,
+        "median_return": 0.015785,
+        "p25_return": -0.074977,
+        "p75_return": 0.142076
+      },
+      "RANGE": {
+        "n": 30,
+        "mae_mean": 0.141046,
+        "mae_std": 0.106251,
+        "mae_p75": 0.245302,
+        "dir_hit_mean": 0.7333,
+        "flip_mean": 0.2069,
+        "flip_std": 0.8102,
+        "mean_return": 0.056685,
+        "std_return": 0.194015,
+        "median_return": -0.004964,
+        "p25_return": -0.135571,
+        "p75_return": 0.274932
+      },
+      "RISK_OFF": {
+        "n": 113,
+        "mae_mean": 0.396927,
+        "mae_std": 0.308597,
+        "mae_p75": 0.532946,
+        "dir_hit_mean": 0.5487,
+        "flip_mean": 0.0357,
+        "flip_std": 0.3712,
+        "mean_return": -0.01114,
+        "std_return": 0.169039,
+        "median_return": -0.010674,
+        "p25_return": -0.126693,
+        "p75_return": 0.109284
+      },
+      "TRANSITION": {
+        "n": 790,
+        "mae_mean": 0.278497,
+        "mae_std": 0.240619,
+        "mae_p75": 0.391522,
+        "dir_hit_mean": 0.4772,
+        "flip_mean": 0.2319,
+        "flip_std": 0.8441,
+        "mean_return": 0.069363,
+        "std_return": 0.238541,
+        "median_return": 0.024422,
+        "p25_return": -0.073194,
+        "p75_return": 0.178938
+      }
+    }
+  },
+  "regimeDistribution": {
+    "TREND": 1546,
+    "TRANSITION": 866,
+    "RISK_OFF": 113,
+    "RANGE": 30
+  },
+  "totalDays": 2555
+}

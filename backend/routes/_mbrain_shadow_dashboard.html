@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MBrain Shadow Fusion · Observability</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0B0F14;
+  --bg-elev: #111821;
+  --border: #1B2530;
+  --muted: #6B7886;
+  --text: #E6EBF0;
+  --text-2: #B5BFCA;
+  --mint: #2FE6A6;
+  --mint-dim: #1F9A6F;
+  --warn: #F7B955;
+  --bad: #FF6B6B;
+  --good: #2FE6A6;
+  --neutral: #6B7886;
+  --grid: #18222D;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, "SF Pro Text", "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  margin: 0; padding: 0; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1440px; margin: 0 auto; padding: 24px; }
+header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; gap: 24px; flex-wrap: wrap; }
+.h-title { display: flex; gap: 16px; align-items: baseline; }
+.h-title h1 { font-size: 22px; margin: 0; letter-spacing: -0.01em; }
+.h-title .pill { background: rgba(47,230,166,.10); color: var(--mint); border: 1px solid rgba(47,230,166,.25);
+  padding: 4px 10px; font-size: 11px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase; }
+.h-title .sub { color: var(--muted); font-size: 13px; }
+.controls { display: flex; gap: 12px; align-items: center; }
+.controls select, .controls button {
+  background: var(--bg-elev); color: var(--text); border: 1px solid var(--border);
+  padding: 8px 12px; font-size: 12px; border-radius: 8px; outline: none; font-family: inherit;
+}
+.controls button { cursor: pointer; }
+.controls button:hover { border-color: var(--mint); color: var(--mint); }
+
+.windows { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.win-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.win-card .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.win-card .val { font-size: 24px; font-weight: 600; margin-top: 6px; }
+.win-card .n { color: var(--text-2); font-size: 12px; margin-top: 4px; }
+
+.kpi-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px; }
+.kpi { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.kpi .lbl { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.kpi .row { display: flex; align-items: baseline; justify-content: space-between; margin-top: 8px; }
+.kpi .v { font-size: 22px; font-weight: 600; }
+.kpi .v.good { color: var(--good); } .kpi .v.warn { color: var(--warn); } .kpi .v.bad { color: var(--bad); }
+.kpi .deltas { display: flex; gap: 10px; margin-top: 10px; font-size: 11px; color: var(--text-2); }
+.kpi .deltas span { color: var(--muted); }
+.kpi .deltas b { color: var(--text); font-weight: 500; }
+
+.grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
+.grid-2-eq { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+.panel { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+.panel h3 { font-size: 13px; margin: 0 0 4px 0; letter-spacing: .02em; }
+.panel .desc { color: var(--muted); font-size: 12px; margin-bottom: 14px; }
+.panel canvas { width: 100% !important; max-height: 240px; }
+.panel.tall canvas { max-height: 280px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--grid); }
+th { color: var(--muted); font-weight: 500; text-transform: uppercase; font-size: 10px; letter-spacing: .08em; }
+td.mono { font-variant-numeric: tabular-nums; color: var(--text-2); }
+td .bias-bull { color: var(--good); }
+td .bias-bear { color: var(--bad); }
+td .bias-neut { color: var(--muted); }
+td .ovr { background: rgba(247,185,85,.10); color: var(--warn); padding: 1px 6px; border-radius: 4px; font-size: 10px; }
+td .div { background: rgba(255,107,107,.10); color: var(--bad); padding: 1px 6px; border-radius: 4px; font-size: 10px; }
+
+.foot-meta { color: var(--muted); font-size: 11px; margin-top: 24px; text-align: right; }
+.health-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+.health-dot.up { background: var(--good); box-shadow: 0 0 8px rgba(47,230,166,.6); }
+.health-dot.down { background: var(--bad); }
+.health-dot.warn { background: var(--warn); }
+
+.empty { color: var(--muted); text-align: center; padding: 24px 12px; font-size: 12px; }
+
+@media (max-width: 1100px) {
+  .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .windows { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="h-title">
+    <span class="pill">Shadow Mode</span>
+    <h1>MBrain · TA Fusion Observability</h1>
+    <span class="sub" id="sub">loading…</span>
+  </div>
+  <div class="controls">
+    <span><span class="health-dot down" id="ta-dot"></span><span id="ta-status">probing…</span></span>
+    <select id="bucket-min">
+      <option value="15">15min buckets</option>
+      <option value="60" selected>60min buckets</option>
+      <option value="240">4h buckets</option>
+      <option value="720">12h buckets</option>
+    </select>
+    <button id="refresh">⟳ Refresh</button>
+  </div>
+</header>
+
+<!-- ROLLING WINDOW STRIP -->
+<div class="windows" id="windows-strip"></div>
+
+<!-- KPI STRIP -->
+<div class="kpi-strip" id="kpi-strip"></div>
+
+<!-- TIMELINE + REGIME -->
+<div class="grid-2">
+  <div class="panel tall">
+    <h3>Agreement / Divergence / Override timeline</h3>
+    <div class="desc">Bucketed series. Confirms that TA fusion impact is stable and not a momentary spike.</div>
+    <canvas id="chart-timeline"></canvas>
+  </div>
+  <div class="panel tall">
+    <h3>Regime split (TA reported)</h3>
+    <div class="desc">If one regime dominates &gt;80%, our shadow data is biased.</div>
+    <canvas id="chart-regime"></canvas>
+  </div>
+</div>
+
+<!-- INFLUENCE SCATTER + CONFIDENCE HISTOGRAM -->
+<div class="grid-2-eq">
+  <div class="panel tall">
+    <h3>Confidence inflation map</h3>
+    <div class="desc">Each dot = one shadow eval. <b>Above</b> the diagonal → TA <b>inflates</b> confidence. <b>Below</b> → TA <b>deflates</b>.</div>
+    <canvas id="chart-influence"></canvas>
+  </div>
+  <div class="panel tall">
+    <h3>Confidence-shift distribution</h3>
+    <div class="desc">Should be ~symmetric and tight around 0. Heavy positive tail = TA pumping confidence.</div>
+    <canvas id="chart-hist-confshift"></canvas>
+  </div>
+</div>
+
+<!-- BREAKDOWNS -->
+<div class="grid-3">
+  <div class="panel">
+    <h3>By horizon</h3>
+    <div class="desc">Short horizons should agree more; long horizons more divergent.</div>
+    <table id="tbl-horizon"></table>
+  </div>
+  <div class="panel">
+    <h3>By asset</h3>
+    <div class="desc">Per-asset agreement / override rates.</div>
+    <table id="tbl-asset"></table>
+  </div>
+  <div class="panel">
+    <h3>By TA bias</h3>
+    <div class="desc">When TA says bullish/bearish/neutral, how often does it match legacy?</div>
+    <table id="tbl-tabias"></table>
+  </div>
+</div>
+
+<!-- DIVERGENCE FEED -->
+<div class="panel" style="margin-bottom:16px;">
+  <h3>Recent divergences <span style="color:var(--muted);font-weight:400;font-size:11px;">(legacy ↔ TA disagree, TA active)</span></h3>
+  <div class="desc">If this list grows fast and no override is firing, weight is too low; if everything overrides, weight is too high.</div>
+  <table id="tbl-div"></table>
+</div>
+
+<div class="foot-meta">
+  Endpoint: <code style="color:var(--text-2)">/api/mbrain/shadow/*</code> ·
+  Strict shadow mode — production aggregator is untouched.
+  Last refresh: <span id="last-refresh">—</span>
+</div>
+
+</div>
+
+<script>
+const API = "/api/mbrain/shadow";
+
+const fmtPct = v => (v == null || isNaN(v)) ? "—" : `${(v * 100).toFixed(1)}%`;
+const fmtNum = v => (v == null || isNaN(v)) ? "—" : (Math.abs(v) < 0.001 ? v.toExponential(1) : v.toFixed(3));
+const fmtTs = v => v ? new Date(v).toLocaleString(undefined, {month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit'}) : "—";
+
+function biasClass(b) { return b === "bullish" ? "bias-bull" : b === "bearish" ? "bias-bear" : "bias-neut"; }
+function colorForShare(v, kind) {
+  // kind: 'good_high' (uptime/agreement), 'bad_high' (divergence/override)
+  if (v == null) return "";
+  if (kind === "good_high") return v >= 0.85 ? "good" : v >= 0.6 ? "warn" : "bad";
+  return v >= 0.5 ? "bad" : v >= 0.25 ? "warn" : "good";
+}
+
+async function fetchJSON(u) {
+  const r = await fetch(u, {cache: "no-cache"});
+  return r.json();
+}
+
+let timelineChart, regimeChart, influenceChart, histChart;
+
+function renderRollingStrip(rolling) {
+  const order = [
+    {k: "1h",  label: "Last 1h"},
+    {k: "24h", label: "Last 24h"},
+    {k: "7d",  label: "Last 7d"},
+    {k: "all", label: "All-time"},
+  ];
+  const w = rolling?.windows || {};
+  document.getElementById("windows-strip").innerHTML = order.map(({k,label}) => {
+    const d = w[k] || {};
+    return `
+      <div class="win-card">
+        <div class="label">${label}</div>
+        <div class="val">${d.n || 0}</div>
+        <div class="n">agree ${fmtPct(d.avg_agreement)} · diverge ${fmtPct(d.divergence_share)} · override ${fmtPct(d.ta_override_share)}</div>
+      </div>`;
+  }).join("");
+}
+
+function renderKpiStrip(rolling) {
+  const w24 = rolling?.windows?.["24h"] || {};
+  const wAll = rolling?.windows?.all || {};
+  const items = [
+    {label: "TA Uptime",        v24: w24.ta_uptime_share,   vAll: wAll.ta_uptime_share,   kind: "good_high", fmt: fmtPct},
+    {label: "Agreement",        v24: w24.avg_agreement,     vAll: wAll.avg_agreement,     kind: "good_high", fmt: fmtPct},
+    {label: "Divergence",       v24: w24.divergence_share,  vAll: wAll.divergence_share,  kind: "bad_high",  fmt: fmtPct},
+    {label: "Override",         v24: w24.ta_override_share, vAll: wAll.ta_override_share, kind: "bad_high",  fmt: fmtPct},
+    {label: "Conf. shift μ",    v24: w24.avg_confidence_shift, vAll: wAll.avg_confidence_shift, kind: "bad_high", fmt: fmtNum},
+    {label: "Direct. delta μ",  v24: w24.avg_directional_delta, vAll: wAll.avg_directional_delta, kind: "bad_high", fmt: fmtNum},
+  ];
+  document.getElementById("kpi-strip").innerHTML = items.map(it => {
+    const cls = colorForShare(it.v24, it.kind);
+    return `
+      <div class="kpi">
+        <div class="lbl">${it.label}</div>
+        <div class="row">
+          <div class="v ${cls}">${it.fmt(it.v24)}</div>
+        </div>
+        <div class="deltas"><span>all-time</span> <b>${it.fmt(it.vAll)}</b></div>
+      </div>`;
+  }).join("");
+}
+
+function renderTimeline(tl) {
+  const buckets = tl?.buckets || [];
+  const labels = buckets.map(b => fmtTs(b.ts));
+  const cfg = {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {label: "Agreement", data: buckets.map(b => b.avg_agreement), borderColor: "#2FE6A6", backgroundColor: "rgba(47,230,166,.1)", tension: 0.25, pointRadius: 0, borderWidth: 2},
+        {label: "Divergence", data: buckets.map(b => b.divergence_share), borderColor: "#FF6B6B", backgroundColor: "rgba(255,107,107,.1)", tension: 0.25, pointRadius: 0, borderWidth: 2},
+        {label: "Override", data: buckets.map(b => b.ta_override_share), borderColor: "#F7B955", backgroundColor: "rgba(247,185,85,.1)", tension: 0.25, pointRadius: 0, borderWidth: 2},
+        {label: "TA uptime", data: buckets.map(b => b.ta_uptime_share), borderColor: "#6B7886", borderDash: [4,4], tension: 0, pointRadius: 0, borderWidth: 1.5},
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      interaction: {mode: "index", intersect: false},
+      scales: {
+        y: {min: 0, max: 1, grid: {color: "#18222D"}, ticks: {color: "#6B7886", callback: v => `${(v*100).toFixed(0)}%`}},
+        x: {grid: {display: false}, ticks: {color: "#6B7886", maxTicksLimit: 8}},
+      },
+      plugins: {legend: {position: "bottom", labels: {color: "#B5BFCA", boxWidth: 12}}},
+    },
+  };
+  if (timelineChart) timelineChart.destroy();
+  timelineChart = new Chart(document.getElementById("chart-timeline"), cfg);
+}
+
+function renderRegime(breakdownRegime) {
+  const groups = breakdownRegime?.groups || {};
+  const labels = Object.keys(groups);
+  const data = labels.map(k => groups[k].n || 0);
+  const palette = ["#2FE6A6", "#F7B955", "#6B7886", "#FF6B6B", "#5DADE2", "#A180FF", "#E879F9"];
+  const cfg = {
+    type: "doughnut",
+    data: {labels, datasets: [{data, backgroundColor: palette.slice(0, labels.length), borderColor: "#0B0F14", borderWidth: 2}]},
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: "65%",
+      plugins: {legend: {position: "bottom", labels: {color: "#B5BFCA", boxWidth: 12, font: {size: 11}}}},
+    },
+  };
+  if (regimeChart) regimeChart.destroy();
+  if (!labels.length) {
+    document.getElementById("chart-regime").parentElement.querySelector(".desc").innerHTML = "No regime data — TA hypothesis returned empty.";
+    return;
+  }
+  regimeChart = new Chart(document.getElementById("chart-regime"), cfg);
+}
+
+function renderInfluence(infl) {
+  const pairs = (infl?.pairs || []).filter(p => p.ta_active);
+  const cfg = {
+    type: "scatter",
+    data: {
+      datasets: [
+        {label: "TA active", data: pairs.map(p => ({x: p.legacy_confidence, y: p.shadow_confidence})), backgroundColor: "rgba(47,230,166,.55)", pointRadius: 3},
+        {label: "diagonal (no shift)", type: "line", data: [{x:0, y:0}, {x:1, y:1}], borderColor: "#6B7886", borderDash: [4,4], borderWidth: 1.5, pointRadius: 0, fill: false},
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      scales: {
+        x: {min: 0, max: 1, title: {display: true, text: "legacy confidence", color: "#6B7886"}, grid: {color: "#18222D"}, ticks: {color: "#6B7886"}},
+        y: {min: 0, max: 1, title: {display: true, text: "shadow confidence", color: "#6B7886"}, grid: {color: "#18222D"}, ticks: {color: "#6B7886"}},
+      },
+      plugins: {legend: {labels: {color: "#B5BFCA", boxWidth: 12}}},
+    },
+  };
+  if (influenceChart) influenceChart.destroy();
+  influenceChart = new Chart(document.getElementById("chart-influence"), cfg);
+}
+
+function renderHistogram(h) {
+  const labels = (h.edges || []).slice(0, -1).map((e, i) => `${e.toFixed(2)}…${(h.edges[i+1]).toFixed(2)}`);
+  const cfg = {
+    type: "bar",
+    data: {labels, datasets: [{label: "n", data: h.counts || [], backgroundColor: "rgba(47,230,166,.55)", borderColor: "#2FE6A6", borderWidth: 1}]},
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      scales: {
+        x: {grid: {display: false}, ticks: {color: "#6B7886", maxTicksLimit: 11, font: {size: 10}}},
+        y: {grid: {color: "#18222D"}, ticks: {color: "#6B7886"}},
+      },
+      plugins: {legend: {display: false}, title: {display: true, color: "#6B7886", font: {size: 11, weight: "normal"}, text: `mean=${(h.mean||0).toFixed(3)} · n=${h.n||0}`}},
+    },
+  };
+  if (histChart) histChart.destroy();
+  histChart = new Chart(document.getElementById("chart-hist-confshift"), cfg);
+}
+
+function tableHeader(cols) { return `<thead><tr>${cols.map(c => `<th>${c}</th>`).join("")}</tr></thead>`; }
+function emptyRow(cols, msg) { return `<tr><td colspan="${cols}"><div class="empty">${msg}</div></td></tr>`; }
+
+function renderBreakdownTable(elId, dim, labels, breakdown) {
+  const groups = breakdown?.groups || {};
+  const keys = Object.keys(groups).sort();
+  const head = tableHeader([dim, "n", "agree", "diverge", "override", "uptime"]);
+  if (!keys.length) {
+    document.getElementById(elId).innerHTML = head + `<tbody>${emptyRow(6, "no data yet — run the seeder")}</tbody>`;
+    return;
+  }
+  const body = keys.map(k => {
+    const g = groups[k];
+    const aClass = colorForShare(g.avg_agreement, "good_high");
+    const dClass = colorForShare(g.divergence_share, "bad_high");
+    const oClass = colorForShare(g.ta_override_share, "bad_high");
+    const uClass = colorForShare(g.ta_uptime_share, "good_high");
+    const colorVar = c => c === "good" ? "var(--good)" : c === "warn" ? "var(--warn)" : c === "bad" ? "var(--bad)" : "var(--text)";
+    return `<tr>
+      <td><b>${k}</b></td>
+      <td class="mono">${g.n}</td>
+      <td class="mono" style="color:${colorVar(aClass)}">${fmtPct(g.avg_agreement)}</td>
+      <td class="mono" style="color:${colorVar(dClass)}">${fmtPct(g.divergence_share)}</td>
+      <td class="mono" style="color:${colorVar(oClass)}">${fmtPct(g.ta_override_share)}</td>
+      <td class="mono" style="color:${colorVar(uClass)}">${fmtPct(g.ta_uptime_share)}</td>
+    </tr>`;
+  }).join("");
+  document.getElementById(elId).innerHTML = head + `<tbody>${body}</tbody>`;
+}
+
+function renderDivergences(div) {
+  const rows = div?.rows || [];
+  const head = tableHeader(["time", "asset", "horizon", "legacy", "TA", "shadow", "Δ signal", "Δ conf", "flags"]);
+  if (!rows.length) {
+    document.getElementById("tbl-div").innerHTML = head + `<tbody>${emptyRow(9, "no divergences in last 50 active rows")}</tbody>`;
+    return;
+  }
+  const body = rows.slice(0, 12).map(r => {
+    const m = r.metrics || {};
+    const flags = [];
+    if (m.divergence) flags.push(`<span class="div">DIV</span>`);
+    if (m.ta_override) flags.push(`<span class="ovr">OVR</span>`);
+    return `<tr>
+      <td class="mono">${fmtTs(r.ts)}</td>
+      <td><b>${r.asset}</b></td>
+      <td class="mono">${r.horizon}</td>
+      <td><span class="${biasClass(r.legacy?.bias)}">${r.legacy?.bias || "—"}</span> · <span class="mono">${fmtNum(r.legacy?.confidence)}</span></td>
+      <td><span class="${biasClass(r.ta?.bias)}">${r.ta?.bias || "—"}</span> · <span class="mono">${fmtNum(r.ta?.confidence)}</span></td>
+      <td><span class="${biasClass(r.shadow_fusion?.bias)}">${r.shadow_fusion?.bias || "—"}</span> · <span class="mono">${fmtNum(r.shadow_fusion?.confidence)}</span></td>
+      <td class="mono">${fmtNum(m.directional_delta)}</td>
+      <td class="mono">${fmtNum(m.confidence_shift)}</td>
+      <td>${flags.join(" ") || "—"}</td>
+    </tr>`;
+  }).join("");
+  document.getElementById("tbl-div").innerHTML = head + `<tbody>${body}</tbody>`;
+}
+
+async function refresh() {
+  const bucketMin = +document.getElementById("bucket-min").value;
+  document.getElementById("sub").textContent = "fetching…";
+
+  const [rolling, tl, brkH, brkA, brkR, brkB, infl, hist, divs, health] = await Promise.all([
+    fetchJSON(`${API}/summary/rolling`),
+    fetchJSON(`${API}/timeline?window=2000&bucket_minutes=${bucketMin}`),
+    fetchJSON(`${API}/breakdown?dim=horizon&window=2000`),
+    fetchJSON(`${API}/breakdown?dim=asset&window=2000`),
+    fetchJSON(`${API}/breakdown?dim=regime&window=2000`),
+    fetchJSON(`${API}/breakdown?dim=ta_bias&window=2000`),
+    fetchJSON(`${API}/influence?window=2000`),
+    fetchJSON(`${API}/histogram?metric=confidence_shift&bins=21&window=2000`),
+    fetchJSON(`${API}/divergences?limit=50&only_active=true`),
+    fetchJSON(`${API}/health`),
+  ]);
+
+  // Health pill
+  const upstreamOk = !!health?.ta_adapter?.upstream_ok;
+  document.getElementById("ta-dot").className = "health-dot " + (upstreamOk ? "up" : "down");
+  document.getElementById("ta-status").textContent = upstreamOk ? "TA adapter UP" : "TA adapter DOWN";
+
+  // Sub
+  const wAll = rolling?.windows?.all || {};
+  document.getElementById("sub").textContent = `n=${wAll.n || 0} · ${rolling.first_ts ? fmtTs(rolling.first_ts) : "—"} → ${rolling.last_ts ? fmtTs(rolling.last_ts) : "—"}`;
+
+  // Strips
+  renderRollingStrip(rolling);
+  renderKpiStrip(rolling);
+
+  // Charts
+  renderTimeline(tl);
+  renderRegime(brkR);
+  renderInfluence(infl);
+  renderHistogram(hist);
+
+  // Tables
+  renderBreakdownTable("tbl-horizon", "horizon", null, brkH);
+  renderBreakdownTable("tbl-asset",   "asset",   null, brkA);
+  renderBreakdownTable("tbl-tabias",  "TA bias", null, brkB);
+  renderDivergences(divs);
+
+  document.getElementById("last-refresh").textContent = new Date().toLocaleTimeString();
+}
+
+document.getElementById("refresh").addEventListener("click", refresh);
+document.getElementById("bucket-min").addEventListener("change", refresh);
+refresh();
+setInterval(refresh, 30_000);
+</script>
+</body>
+</html>

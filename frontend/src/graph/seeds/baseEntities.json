@@ -1,0 +1,37 @@
+[
+  { "type": "dex", "label": "Uniswap", "chain": "ethereum", "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984" },
+  { "type": "dex", "label": "Curve", "chain": "ethereum", "address": "0xD533a949740bb3306d119CC777fa900bA034cd52" },
+  { "type": "dex", "label": "Balancer", "chain": "ethereum", "address": "0xba100000625a3754423978a60c9317c58a424e3D" },
+  { "type": "dex", "label": "Sushi", "chain": "ethereum", "address": "0x6B3595068778DD592e39A122f4f5a5cF09C90fE2" },
+
+  { "type": "cex", "label": "Binance", "chain": "ethereum", "address": "0x28C6c06298d514Db089934071355E5743bf21d60" },
+  { "type": "cex", "label": "Binance 2", "chain": "ethereum", "address": "0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549" },
+  { "type": "cex", "label": "Coinbase", "chain": "ethereum", "address": "0x71660c4005BA85c37ccec55d0C4493E66Fe775d3" },
+  { "type": "cex", "label": "Coinbase 2", "chain": "ethereum", "address": "0xA9D1e08C7793af67e9d92fe308d5697FB81d3E43" },
+  { "type": "cex", "label": "Kraken", "chain": "ethereum", "address": "0x2910543Af39abA0Cd09dBb2D50200b3E800A63D2" },
+  { "type": "cex", "label": "OKX", "chain": "ethereum", "address": "0x6cC5F688a315f3dC28A7781717a9A798a59fDA7b" },
+
+  { "type": "token", "label": "ETH", "chain": "ethereum", "address": "0x0000000000000000000000000000000000000000" },
+  { "type": "token", "label": "WETH", "chain": "ethereum", "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" },
+  { "type": "token", "label": "USDC", "chain": "ethereum", "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" },
+  { "type": "token", "label": "USDT", "chain": "ethereum", "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7" },
+  { "type": "token", "label": "WBTC", "chain": "ethereum", "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599" },
+  { "type": "token", "label": "DAI", "chain": "ethereum", "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F" },
+  { "type": "token", "label": "LINK", "chain": "ethereum", "address": "0x514910771AF9Ca656af840dff83E8264EcF986CA" },
+  { "type": "token", "label": "UNI", "chain": "ethereum", "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984" },
+  { "type": "token", "label": "AAVE", "chain": "ethereum", "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9" },
+
+  { "type": "bridge", "label": "Wormhole", "chain": "ethereum", "address": "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B" },
+  { "type": "bridge", "label": "LayerZero", "chain": "ethereum", "address": "0x66A71Dcef29A0fFBDBE3c6a460a3B5BC225Cd675" },
+  { "type": "bridge", "label": "Arbitrum Bridge", "chain": "arbitrum", "address": "0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a" },
+  { "type": "bridge", "label": "Hop", "chain": "ethereum", "address": "0xb8901acB165ed027E32754E0FFe830802919727f" },
+  { "type": "bridge", "label": "Stargate", "chain": "ethereum", "address": "0x8731d54E9D02c286767d56ac03e8037C07e01e98" },
+
+  { "type": "wallet", "label": "Vitalik", "chain": "ethereum", "address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" },
+  { "type": "wallet", "label": "Jump Trading", "chain": "ethereum", "address": "0xF584F8728B874a6a5c7A8d4d387C9aae9172D621" },
+  { "type": "wallet", "label": "Wintermute", "chain": "ethereum", "address": "0x0000006daea1723962647b7e189d311d757Fb793" },
+  { "type": "wallet", "label": "a16z", "chain": "ethereum", "address": "0x05E793cE0C6027323Ac150F6d45C2344d28B6019" },
+
+  { "type": "contract", "label": "Aave V3", "chain": "ethereum", "address": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2" },
+  { "type": "contract", "label": "Lido stETH", "chain": "ethereum", "address": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84" }
+]

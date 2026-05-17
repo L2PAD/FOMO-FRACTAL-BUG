@@ -1,0 +1,94 @@
+{
+  "summary": "P2 FRONTEND REGRESSION - UI smoke tests completed. Admin panel (login, governance, attribution, execution, billing, connections) verified. MetaBrain UI renders with verdict display. Symbol canonicalization (BTCUSDT → BTC) works end-to-end. MiniApp loads without crashes. Backend APIs return correct data (186/186 backend tests PASS). Minor UI display issue: MetaBrain shows Coverage 0/4 instead of expected 4/5 modules (backend returns correct 4/5 data, UI rendering discrepancy only).",
+  
+  "backend_issues": {
+    "critical_bugs": [],
+    "flaky_endpoints": []
+  },
+  
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "MetaBrain UI - System Health Panel",
+        "issue": "Coverage displays 0/4 modules instead of expected 4/5 modules. Backend API returns correct verdict data (BTC: WAIT, conf=0.36, 4/5 active per P2 backend regression), but UI shows 0/4 coverage.",
+        "severity": "MEDIUM",
+        "impact": "Visual discrepancy only - core functionality works (verdicts display correctly, API returns correct data)",
+        "affected_pages": ["/", "/intelligence/price-expectation-v2"],
+        "fix_priority": "MEDIUM"
+      },
+      {
+        "component": "MetaBrain UI - Asset Selector",
+        "issue": "No visible asset selector/dropdown to switch between production universe assets (BTC, ETH, SOL, DOGE, LINK, AVAX, ARB, OP, ADA, BNB, XRP). UI appears to show data for single asset only.",
+        "severity": "LOW",
+        "impact": "Cannot verify UI rendering for all 11 production universe assets via UI navigation",
+        "affected_pages": ["/"],
+        "fix_priority": "LOW"
+      },
+      {
+        "component": "MiniApp",
+        "issue": "MiniApp route shows landing page instead of dedicated MiniApp interface. Shows 3/11 universe assets (BTC, ETH, SOL) in terminal output.",
+        "severity": "LOW",
+        "impact": "MiniApp loads without crashes, shows prediction content, but may not be the intended Telegram MiniApp interface",
+        "affected_pages": ["/miniapp"],
+        "fix_priority": "LOW"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  
+  "passed_tests": [
+    "Admin Panel - Login flow (admin/admin12345) works correctly",
+    "Admin Panel - Governance section loads and displays policy data (drift PSI, rolling score, guardrails, weight distribution)",
+    "Admin Panel - Attribution/Research section loads without errors",
+    "Admin Panel - Execution/Exchange section loads without errors",
+    "Admin Panel - Billing section loads and displays products, reconciliation, crypto payments (NOWPayments integration visible)",
+    "Admin Panel - Twitter Parser Accounts page loads with CRUD interface (1 active account visible, add/edit/delete buttons present)",
+    "Web Platform - MetaBrain UI renders with verdict display (HOLD/WAIT shown)",
+    "Web Platform - Symbol canonicalization works end-to-end (BTCUSDT → BTC via /api/trading/verdict/BTCUSDT returns correct BTC data)",
+    "Web Platform - Backend API returns correct verdict data (BTC: action=WAIT, confidence=0.36, matches P2 backend regression)",
+    "MiniApp - Loads without crashes, shows prediction/verdict content, displays 3 universe assets",
+    "No React error boundaries triggered on any tested pages",
+    "No critical XHR errors (5xx) detected during testing",
+    "WebSocket errors are environmental (port 8003 not running) and do not affect core functionality"
+  ],
+  
+  "test_report_links": [
+    "/app/test_reports/iteration_10.json",
+    "/root/.emergent/automation_output/20260515_200128/console_20260515_200128.log",
+    "/root/.emergent/automation_output/20260515_200314/console_20260515_200314.log",
+    "/root/.emergent/automation_output/20260515_200458/console_20260515_200458.log"
+  ],
+  
+  "action_item_for_main_agent": {
+    "priority_1_ui_fix": "MetaBrain UI Coverage display shows 0/4 instead of 4/5 modules. Backend API returns correct data, investigate frontend data binding or API endpoint used by UI component. Check /api/meta-brain-v2/forecast-table or similar endpoint used by MetaBrainForecastTable.jsx component.",
+    "priority_2_verification": "Verify MetaBrain UI displays correctly for all 11 production universe assets (BTC, ETH, SOL, DOGE, LINK, AVAX, ARB, OP, ADA, BNB, XRP). Add asset selector if missing or verify navigation works.",
+    "priority_3_miniapp": "Verify /miniapp route shows intended Telegram MiniApp interface (not landing page). Current implementation shows landing page with terminal output.",
+    "note": "All admin panel sections render correctly (governance, billing, twitter parser, etc.). Backend regression 186/186 PASS confirmed. Symbol canonicalization works. No critical bugs blocking P2 freeze stage."
+  },
+  
+  "updated_files": [
+    "/app/test_reports/iteration_10.json"
+  ],
+  
+  "success_percentage": {
+    "admin_panel": "100% (all sections load and render correctly)",
+    "metabrain_ui": "80% (renders and shows verdicts, but coverage display incorrect)",
+    "canonicalization": "100% (BTCUSDT → BTC works end-to-end)",
+    "miniapp": "70% (loads without crashes, but shows landing page instead of dedicated interface)",
+    "overall": "90%"
+  },
+  
+  "should_call_test_agent_after_fix": false,
+  "should_main_agent_test_itself": true,
+  
+  "notes": {
+    "regression_stage": "P2 FREEZE/REGRESSION - baseline verification before P3 sentiment-substrate work",
+    "backend_status": "186/186 tests PASS (see /app/memory/P2_BACKEND_REGRESSION_2026-05-15.md)",
+    "sentiment_status": "Sentiment showing as degraded across all 11 assets is EXPECTED (honest-substrate-abstain by design, NOT a bug)",
+    "websocket_errors": "WebSocket errors to port 8003 are environmental and do not affect core functionality",
+    "production_universe": "11 assets: BTC, ETH, BNB, SOL, XRP, DOGE, ADA, AVAX, LINK, ARB, OP",
+    "testing_scope": "Frontend smoke tests only (backend already verified)",
+    "freeze_compliance": "Did NOT touch sentiment logic, confidence policy, thresholds, MetaBrain weighting, or paper-execution policy per freeze stage requirements"
+  }
+}
