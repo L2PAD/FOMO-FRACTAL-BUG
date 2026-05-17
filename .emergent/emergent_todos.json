@@ -1,22 +1,22 @@
 [
   {
-    "content": "Audit Meta Brain endpoints (status, state, signals, drift, influence, performance, correlation, dataset/*, snapshots)",
+    "content": "Audit Web SPA endpoints (use of real engine)",
     "status": "completed"
   },
   {
-    "content": "Replace 10 stubs with real-data implementations in /api/routes/meta_brain_real.py",
+    "content": "Audit Expo Mobile App endpoints (verdicts, positions, billing)",
     "status": "completed"
   },
   {
-    "content": "Wire router in server.py BEFORE legacy_compat",
+    "content": "Fix /api/mbrain/verdicts/list (was failing - upstream dead)",
     "status": "completed"
   },
   {
-    "content": "Fix data structure mismatches (timestamp vs ts, actor_handle vs actor, flat close vs ohlcv.c)",
+    "content": "Audit Telegram MiniApp endpoints (core, search, polymarket)",
     "status": "completed"
   },
   {
-    "content": "Verify all endpoints return real-data with no 'stub_empty' note",
+    "content": "Verify Telegram Bot integration with menu button",
     "status": "completed"
   }
 ]

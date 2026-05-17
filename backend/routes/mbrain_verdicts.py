@@ -119,24 +119,88 @@ async def list_verdicts(
     limit: int = Query(50, ge=1, le=200),
     status: str = Query("OPEN", pattern="^(OPEN|CLOSED|ALL)$"),
 ):
-    """Pulls open verdicts from the side-car and returns them as
-    inspector-ready cards. Currently the side-car only persists OPEN
-    rows when /api/verdict/commit is called — in the audit-only mode
-    we run we have an empty list. The /sweep endpoint generates fresh
-    cards on demand."""
-    url = f"{UPSTREAM}/api/verdict/open"
-    try:
-        async with httpx.AsyncClient(timeout=15) as client:
-            r = await client.get(url)
-            if r.status_code != 200:
-                return {"ok": True, "n": 0, "cards": [],
-                        "note": f"upstream returned {r.status_code}"}
-            body = r.json()
-            verdicts = body.get("verdicts") or []
-            cards = [_build_inspector_card(v) for v in verdicts[:limit]]
-            return {"ok": True, "n": len(cards), "cards": cards}
-    except Exception as e:
-        return {"ok": False, "n": 0, "cards": [], "error": str(e)}
+    """Lists fractal verdicts as inspector cards.
+
+    Previously this proxied to the legacy Trading Terminal sidecar on
+    port 8002 (now quarantined).  We now build the same shape directly
+    from the native `<asset>_fractal_forecasts` collections that the
+    fractal_native_v1 engine writes to.  No upstream dependency.
+    """
+    from pymongo import DESCENDING as _DESC
+    from pymongo import MongoClient as _MC
+    _mongo = _MC(os.environ.get("MONGO_URL", "mongodb://localhost:27017"))
+    _db_ = _mongo[os.environ.get("DB_NAME", "fomo_mobile")]
+
+    assets = ["BTC", "ETH", "SOL", "BNB", "XRP", "DOGE", "ADA", "AVAX",
+              "ARB", "OP", "LINK", "SPX", "DXY"]
+    cards: List[Dict[str, Any]] = []
+    for asset in assets:
+        col = _db_.get_collection(f"{asset.lower()}_fractal_forecasts")
+        try:
+            rows = list(col.find({}, {"_id": 0}).sort("createdAt", _DESC).limit(8))
+        except Exception:
+            rows = []
+        for r in rows:
+            direction  = (r.get("direction") or "HOLD").upper()
+            confidence = float(r.get("confidence") or 0.0)
+            entry      = r.get("entryPrice")
+            target     = r.get("targetPrice")
+            horizon    = r.get("horizon") or "30D"
+            created_at = r.get("createdAt") or r.get("ts") or ""
+            evaluate_at = r.get("evaluateAt")
+
+            # Build a verdict shape compatible with normalize_verdict_to_decision.
+            # Required fields: symbol, ts, horizon, action, raw.expectedReturn
+            v = {
+                "symbol":       asset,
+                "asset":        asset,
+                "horizon":      horizon,
+                "ts":           str(evaluate_at or created_at),
+                "createdAt":    str(created_at),
+                "evaluateAt":   str(evaluate_at) if evaluate_at else None,
+                "action":       direction,
+                "regime":       r.get("regime"),
+                "modelId":      r.get("source") or "fractal_native_v1",
+                "raw": {
+                    "direction":      direction,
+                    "confidence":     confidence,
+                    "expectedReturn": float(r.get("expectedReturn") or 0.0),
+                },
+                "stages": {
+                    "raw": {"direction": direction, "confidence": confidence,
+                            "expectedReturn": float(r.get("expectedReturn") or 0.0)},
+                    "after_meta_brain": {"direction": direction, "confidence": confidence,
+                            "expectedReturn": float(r.get("expectedReturn") or 0.0)},
+                    "final": {"direction": direction, "confidence": confidence,
+                            "expectedReturn": float(r.get("expectedReturn") or 0.0)},
+                },
+                "final_action":     direction,
+                "final_confidence": confidence,
+                "confidence":       confidence,
+                "blocked":          False,
+                "entry":            entry,
+                "entryPrice":       entry,
+                "target":           target,
+                "targetPrice":      target,
+                "source":           r.get("source") or "fractal_native_v1",
+                "appliedRules":     [],
+                "adjustments":      [],
+            }
+            try:
+                cards.append(_build_inspector_card(v))
+            except Exception:
+                cards.append({"verdict": v, "ok": True, "_fallback": True})
+
+    # Sort by createdAt descending (newest first), then trim
+    cards.sort(key=lambda c: str(((c.get("verdict") or {}).get("createdAt") or "")),
+               reverse=True)
+    cards = cards[:limit]
+    return {
+        "ok":     True,
+        "n":      len(cards),
+        "cards":  cards,
+        "source": "native_fractal_forecasts",
+    }
 
 
 @router.get("/sweep")
